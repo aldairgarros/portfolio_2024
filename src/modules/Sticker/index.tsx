@@ -1,7 +1,8 @@
+import React from "react";
 import { Attribute } from "@/components/Attribute";
 import { useTranslation } from "react-i18next";
 
-export function Sticker(): JSX.Element {
+export function Sticker(): React.JSX.Element {
   const { t } = useTranslation();
   const keys = ["email"] as const;
 
