@@ -252,128 +252,77 @@
   },
   "expertise": {
     "title": "competências",
+    "contextLabel": "contexto",
+    "applicabilityLabel": "aplicabilidade",
+    "impactLabel": "impacto",
     "list": {
-      "backend": {
-        "title": "desenvolvimento_backend",
+      "api-backend": {
+        "title": "API & Sistemas Backend",
+        "context": "Projeto e implementação de arquiteturas server-side confiáveis — APIs REST, modelagem de banco de dados, sistemas de autenticação e pipelines de observabilidade.",
+        "applicability": "Aplicado em 4 projetos backend: APIs Fastify 5 com Drizzle ORM em PostgreSQL (Atalaia Pro — 80+ endpoints, autenticação com 6 grupos de usuários), Koa 2 com SQL puro e OAuth Firebase (Music Market — 19 tabelas, 80+ endpoints), Express com Sequelize em MariaDB (Budget) e uma API podcast com Fastify, validação Zod completa e documentação Swagger auto-gerada.",
+        "impact": "Entreguei APIs em produção com autenticação, soft deletes, paginação, filtros e operações multi-tenant. Todos os projetos incluem pipelines CI/CD, orquestração com Docker Compose e observabilidade via OpenTelemetry e Sentry.",
         "list": {
-          "node": {
-            "label": "Node",
-            "imageSrc": "nodejs.png"
-          },
-          "redux": {
-            "label": "Redux",
-            "imageSrc": "redux.png"
-          },
-          "sql": {
-            "label": "SQL",
-            "imageSrc": "postgres.png"
-          },
-          "prisma": {
-            "label": "Prisma",
-            "imageSrc": "prisma.png"
-          },
-          "nginx": {
-            "label": "Nginx",
-            "imageSrc": "nginx.png"
-          },
-          "apache": {
-            "label": "Apache",
-            "imageSrc": "apache.png"
-          },
-          "rest": {
-            "label": "REST",
-            "imageSrc": "restapi.png"
-          },
-          "mongodb": {
-            "label": "Mongo DB",
-            "imageSrc": "mongodb.png"
-          },
-          "express": {
-            "label": "Express",
-            "imageSrc": "expressjs.png"
-          },
-          "c": {
-            "label": "C",
-            "imageSrc": "c.png"
-          }
+          "node": { "label": "Node", "imageSrc": "nodejs.png" },
+          "express": { "label": "Express", "imageSrc": "expressjs.png" },
+          "fastify": { "label": "Fastify", "imageSrc": "fastify.png" },
+          "prisma": { "label": "Prisma", "imageSrc": "prisma.png" },
+          "sql": { "label": "SQL", "imageSrc": "postgres.png" },
+          "mongodb": { "label": "MongoDB", "imageSrc": "mongodb.png" },
+          "rest": { "label": "REST", "imageSrc": "restapi.png" },
+          "jwt": { "label": "JWT", "imageSrc": "jwt.png" }
         }
       },
-      "frontend": {
-        "title": "desenvolvimento_frontend",
+      "frontend-engineering": {
+        "title": "Engenharia Frontend Moderna",
+        "context": "Construção de single-page applications performáticas, acessíveis e visualmente refinadas usando arquitetura orientada a componentes, desenvolvimento type-safe e ferramental moderno.",
+        "applicability": "Aplicado em 4 projetos frontend: um PWA React 19 com cache offline IndexedDB, TypeScript 6, Zustand e TanStack Query/Table (Atalaia Pro — 12 páginas, 60+ componentes, árvores de rotas duplas para autenticação); um app Next.js 16 com Prisma 7 e trilha de auditoria completa (Penhor — 14 páginas, 24 tabelas); um dashboard admin React 18 com Zustand e Tailwind 3 (Music Market — 12 rotas); e este portfólio bilíngue com i18next e estética code-as-UI.",
+        "impact": "Entreguei PWAs com suporte offline, filtragem de UI por permissões, UX com drag-and-drop e sistemas de design consistentes. Estabeleci bibliotecas de componentes reutilizáveis, contratos de API type-safe e builds CI/CD automatizados em todos os projetos.",
         "list": {
-          "css": {
-            "label": "CSS",
-            "imageSrc": "css3.png"
-          },
-          "html": {
-            "label": "HTML",
-            "imageSrc": "html5.png"
-          },
-          "javascript": {
-            "label": "JavaScript",
-            "imageSrc": "js.png"
-          },
-          "typescript": {
-            "label": "TypeScript",
-            "imageSrc": "ts.png"
-          },
-          "react": {
-            "label": "React",
-            "imageSrc": "react.png"
-          },
-          "nextjs": {
-            "label": "NextJS",
-            "imageSrc": "nextjs.png"
-          },
-          "reactNative": {
-            "label": "React Native",
-            "imageSrc": "react.png"
-          },
-          "vite": {
-            "label": "Vite",
-            "imageSrc": "vite.png"
-          },
-          "tailwind": {
-            "label": "TailwindCSS",
-            "imageSrc": "tailwind.png"
-          }
+          "react": { "label": "React", "imageSrc": "react.png" },
+          "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
+          "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
+          "tailwind": { "label": "TailwindCSS", "imageSrc": "tailwind.png" },
+          "redux": { "label": "Redux", "imageSrc": "redux.png" },
+          "vite": { "label": "Vite", "imageSrc": "vite.png" },
+          "html": { "label": "HTML", "imageSrc": "html5.png" },
+          "css": { "label": "CSS", "imageSrc": "css3.png" },
+          "javascript": { "label": "JavaScript", "imageSrc": "js.png" }
         }
       },
-      "general": {
-        "title": "geral",
+      "mobile": {
+        "title": "Desenvolvimento Mobile",
+        "context": "Criação de aplicativos móveis nativos multiplataforma para Android e iOS usando React Native com lógica de negócio compartilhada em TypeScript.",
+        "applicability": "Entreguei 3 aplicativos móveis do zero: um app de finanças pessoais (Bolso Bom) com React Native, backend PostgreSQL e autenticação JWT; o app Music Market conectando músicos e produtores em um marketplace comunitário; e um app social de podcast com salas de chat, gestão de mídia e permissões por grupos de usuários.",
+        "impact": "Publiquei apps nativos totalmente funcionais com reuso de código TypeScript entre plataformas, autenticação segura, notificações push e integração com APIs REST. Gerenciei o ciclo completo de desenvolvimento, do design UI/UX à arquitetura backend e deploy.",
         "list": {
-          "git": {
-            "label": "Git",
-            "imageSrc": "git.png"
-          },
-          "ui": {
-            "label": "UI",
-            "imageSrc": "design.png"
-          },
-          "ux": {
-            "label": "UX",
-            "imageSrc": "insight.png"
-          },
-          "docker": {
-            "label": "Docker",
-            "imageSrc": "docker.png"
-          },
-          "strapi": {
-            "label": "Strapi",
-            "imageSrc": "strapi.png"
-          },
-          "jest": {
-            "label": "Jest",
-            "imageSrc": "jest.png"
-          },
-          "solid": {
-            "label": "SOLID",
-            "imageSrc": "solid.png"
-          },
-          "designPatterns": {
-            "label": "Design Patterns",
-            "imageSrc": "design-patterns.png"
-          }
+          "reactNative": { "label": "React Native", "imageSrc": "react.png" },
+          "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
+          "jest": { "label": "Jest", "imageSrc": "jest.png" },
+          "solid": { "label": "SOLID", "imageSrc": "solid.png" },
+          "designPatterns": { "label": "Design Patterns", "imageSrc": "design-patterns.png" }
+        }
+      },
+      "devops": {
+        "title": "DevOps & Infraestrutura",
+        "context": "Gestão de infraestrutura auto-hospedada em VPS — orquestração de contêineres, stacks de observabilidade, pipelines CI/CD e deploys automatizados.",
+        "applicability": "Projetei e mantenho uma plataforma completa de observabilidade LGTM (Loki, Grafana, Tempo, Prometheus) com 9 serviços conteinerizados em Podman rootless, 14 regras de alerta, 8 dashboards provisionados e alertas baseados em SLO com 99,5% de disponibilidade. Todos os 6 projetos em produção utilizam Docker/Podman Compose com GitHub Actions CI/CD, deploys via SSH, proxies reversos Nginx e monitoramento com PostgreSQL exporter.",
+        "impact": "Estabeleci uma infraestrutura com auto-recuperação usando rollbacks automáticos, roteamento de alertas Telegram + email, rastreamento de orçamento de erro multi-janela e retenção de 30 dias de logs/métricas. Possibilitei observabilidade full-stack — logs, métricas e traces distribuídos — em todas as aplicações a partir de um único VPS.",
+        "list": {
+          "docker": { "label": "Docker", "imageSrc": "docker.png" },
+          "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
+          "apache": { "label": "Apache", "imageSrc": "apache.png" },
+          "git": { "label": "Git", "imageSrc": "git.png" },
+          "strapi": { "label": "Strapi", "imageSrc": "strapi.png" }
+        }
+      },
+      "ux-strategy": {
+        "title": "UX Strategy & Design",
+        "context": "Aplicação de metodologia de design centrado no usuário, da pesquisa de descoberta à prototipação de alta fidelidade — unindo rigor analítico e resolução criativa de problemas.",
+        "applicability": "Liderei 3 projetos freelance completos de UI/UX usando a metodologia Spiral UX UI Continuous (uma abstração do Duplo Diamante). Conduzi entrevistas com usuários, análise competitiva, proto-personas, mapeamento de jornada, matrizes CSD, wireframes, testes de usabilidade e entreguei protótipos de alta fidelidade no Figma. Apliquei essa base de design em todos os projetos de desenvolvimento.",
+        "impact": "Recebi feedback consistentemente positivo dos clientes pela abordagem simplificada, atenção aos detalhes e insights de pesquisa acionáveis. A metodologia de design agora orienta todo o trabalho de desenvolvimento — cada projeto começa com análise centrada no usuário antes da primeira linha de código.",
+        "list": {
+          "ui": { "label": "UI Design", "imageSrc": "design.png" },
+          "ux": { "label": "UX Research", "imageSrc": "insight.png" }
         }
       }
     }
