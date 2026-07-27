@@ -1,35 +1,42 @@
 [
   {
-    "name": "backend",
-    "values": [
-      "node",
-      "redux",
-      "sql",
-      "prisma",
-      "nginx",
-      "apache",
-      "rest",
-      "mongodb",
-      "express",
-      "c"
-    ]
+    "id": "api-backend",
+    "title": "API & Backend Systems",
+    "context": "Designing and implementing reliable server-side architectures — REST APIs, database modeling, authentication systems, and observability pipelines.",
+    "applicability": "Applied across 4 backend projects: Fastify 5 APIs with Drizzle ORM on PostgreSQL (Atalaia Pro — 80+ endpoints, role-based auth with 6 user groups), Koa 2 with raw SQL and Firebase OAuth (Music Market — 19 tables, 80+ endpoints), Express with Sequelize on MariaDB (Budget), and a Fastify podcast API with full Zod schema validation and auto-generated Swagger docs.",
+    "impact": "Delivered production APIs handling authentication, soft deletes, pagination, filtering, and multi-tenant operations. All projects include CI/CD pipelines, Docker Compose orchestration, and observability via OpenTelemetry and Sentry.",
+    "tech": ["node", "express", "fastify", "prisma", "sql", "mongodb", "rest", "jwt"]
   },
   {
-    "name": "frontend",
-    "values": [
-      "css",
-      "html",
-      "javascript",
-      "typescript",
-      "react",
-      "nextjs",
-      "reactNative",
-      "vite",
-      "tailwind"
-    ]
+    "id": "frontend-engineering",
+    "title": "Modern Frontend Engineering",
+    "context": "Building performant, accessible, and visually refined single-page applications using component-driven architecture, type-safe development, and modern tooling.",
+    "applicability": "Leveraged across 4 frontend projects: a React 19 PWA with offline IndexedDB cache, TypeScript 6, Zustand, and TanStack Query/Table (Atalaia Pro — 12 pages, 60+ components, dual router trees for auth); a Next.js 16 app with Prisma 7 and full audit trail (Penhor — 14 pages, 24 DB tables); a React 18 admin dashboard with Zustand and Tailwind 3 (Music Market — 12 routes); and this bilingual portfolio with i18next and code-as-UI aesthetic.",
+    "impact": "Delivered PWAs with offline support, role-based UI filtering, drag-and-drop UX, and consistent design systems. Established reusable component libraries, type-safe API contracts, and automated CI/CD builds across projects.",
+    "tech": ["react", "nextjs", "typescript", "tailwind", "redux", "vite", "html", "css", "javascript"]
   },
   {
-    "name": "general",
-    "values": ["git", "ui", "ux", "docker", "strapi", "jest", "solid", "designPatterns"]
+    "id": "mobile",
+    "title": "Mobile Development",
+    "context": "Creating cross-platform native mobile applications for Android and iOS using React Native with shared TypeScript business logic.",
+    "applicability": "Delivered 3 mobile applications from scratch: a personal finance app (Bolso Bom) with React Native, PostgreSQL backend, and JWT authentication; the Music Market community marketplace app connecting musicians and producers; and a social podcast app with chat rooms, media management, and user group permissions.",
+    "impact": "Shipped fully functional native apps with cross-platform TypeScript code reuse, secure authentication, push notifications, and REST API integration. Managed the full development lifecycle from UI/UX design through backend architecture and deployment.",
+    "tech": ["reactNative", "typescript", "jest", "solid", "designPatterns"]
+  },
+  {
+    "id": "devops",
+    "title": "DevOps & Infrastructure",
+    "context": "Managing self-hosted production infrastructure on VPS environments — container orchestration, observability stacks, CI/CD pipelines, and automated deployments.",
+    "applicability": "Designed and maintain a complete LGTM observability platform (Loki, Grafana, Tempo, Prometheus) with 9 containerized services on rootless Podman, 14 alert rules, 8 provisioned dashboards, and SLO-based alerting at 99.5% availability. All 6 production projects run Docker/Podman Compose with GitHub Actions CI/CD, SSH-based deploys, Nginx reverse proxies, and PostgreSQL exporter monitoring.",
+    "impact": "Established a self-healing infrastructure with automatic deploy rollbacks, Telegram + email alert routing, multi-window error budget tracking, and 30-day log/metric retention. Enabled full-stack observability — logs, metrics, and distributed traces — across all deployed applications from a single VPS.",
+    "tech": ["docker", "nginx", "apache", "git", "strapi"]
+  },
+  {
+    "id": "ux-strategy",
+    "title": "UX Strategy & Design",
+    "context": "Applying user-centered design methodology from discovery research through high-fidelity prototyping — blending analytical rigor with creative problem-solving.",
+    "applicability": "Led 3 complete freelance UI/UX design projects using the Spiral UX UI Continuous methodology (a Double Diamond abstraction). Conducted user interviews, competitor analysis, proto-personas, journey mapping, CSD matrices, wireframes, usability testing, and delivered high-fidelity prototypes in Figma. Applied this design foundation across all development projects.",
+    "impact": "Received consistently positive client feedback for simplified approaches, attention to detail, and actionable research insights. The design methodology now informs all development work — every project begins with user-centered analysis before a single line of code.",
+    "tech": ["ui", "ux"]
   }
 ]
