@@ -12,6 +12,15 @@
       "value": "A Fullstack Developer specialized in Web and Mobile Development -- and a Software Engineering Specialist from USP/ESALQ"
     }
   },
+  "education": {
+    "title": "Education",
+    "course": {
+      "title": "Software Engineering Specialist",
+      "institution": "USP/ESALQ",
+      "period": "2024 — 2026",
+      "description": "Postgraduate specialization in Software Engineering at the University of Sao Paulo (USP/ESALQ). The program covered software architecture, design patterns, agile methodologies, project management, and culminated in a Design Thinking capstone project: Atalaia Pro — a real-time SPA/PWA system developed for the Atalaia port authority that reduced maritime maneuver report preparation time by 82%."
+    }
+  },
   "projects": {
     "title": "projects",
     "open": "open",
@@ -465,7 +474,6 @@
     }
   },
   "extra": {
-    "openToWork": "open to work",
     "imOpenToNewOpportunities": "I'm open to new opportunities, so feel free to contact me."
   }
 }
