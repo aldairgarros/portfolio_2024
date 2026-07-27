@@ -8,6 +8,7 @@ interface ProjectProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function ProjectCard({ project, ...rest }: ProjectProps) {
   const { t } = useTranslation("translation", { keyPrefix: `projects.list.${project}` });
+  const { t: tp } = useTranslation("translation", { keyPrefix: "projects" });
 
   return (
     <GlassCard hover className="overflow-hidden p-0 group" {...rest}>
@@ -34,7 +35,7 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
             {t("overview.value")}
           </p>
           <span className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-secondary-600 dark:text-secondary-400 group-hover:gap-2 transition-all">
-            {t("open")}
+            {tp("open")}
             <span aria-hidden="true">&rarr;</span>
           </span>
         </div>
