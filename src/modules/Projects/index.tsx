@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export function Projects() {
   const { t } = useTranslation("translation", { keyPrefix: "projects" });
 
-  const projects = ["penhor", "musicaShow", "bolsobom"];
+  const projects = ["penhor", "musicaShow", "bolsobom", "atalaiaPro"];
   const attributes = ["name", "date", "overview"];
 
   return (

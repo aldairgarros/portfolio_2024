@@ -9,7 +9,7 @@
     },
     "subtitle": {
       "label": "intro",
-      "value": "A Fullstack Developer specialized in Web and Mobile Development, Javascript, API, Responsive Web Design and UI/UX"
+      "value": "A Fullstack Developer specialized in Web and Mobile Development -- and a Software Engineering Specialist from USP/ESALQ"
     }
   },
   "projects": {
@@ -179,6 +179,60 @@
             "image4": {
               "src": "/images/bolsobom4.png",
               "alt": "Screenshot of project Musica Show",
+              "width": "393",
+              "height": "852"
+            }
+          }
+        }
+      },
+      "atalaiaPro": {
+        "image": {
+          "src": "/images/atalaiapro-display.png",
+          "alt": "Project Atalaia Pro screenshot"
+        },
+        "name": {
+          "label": "name",
+          "value": "Atalaia Pro"
+        },
+        "date": {
+          "label": "date",
+          "value": "2026"
+        },
+        "overview": {
+          "label": "overview",
+          "value": "A modern SPA/PWA system for the Atalaia port authority that replaces error-prone manual Excel reports with an automated, real-time maneuver forecast platform for maritime pilots and control room operators."
+        },
+        "description": {
+          "label": "description",
+          "value": "Atalaia Pro streamlines operational communication at the Atalaia port authority by replacing manual spreadsheet-based maneuver forecasts with an automated, real-time system. Built as a Progressive Web App, it works offline and on mobile devices -- essential for maritime pilots at sea. Features include automatic data import from internal systems, dynamic schedule management with drag-and-drop, multi-scenario forecast support, and instant updates. Usability testing showed an 82% reduction in report preparation time compared to the previous Excel-based workflow."
+        },
+        "details": {
+          "label": "details",
+          "value": "Single Page Application with PWA offline support. Replaces manual Excel-based reports with automated forecast generation. Drag-and-drop schedule management. Real-time updates for pilots. Responsive design for control room monitors and mobile devices. Import algorithm extracts data from legacy internal system. Progressive Web App enables offline access and home screen installation. 82% reduction in report preparation time validated through usability testing with operators and pilots."
+        },
+        "link": {
+          "label": "website",
+          "href": "https://atalaiapro.com",
+          "value": "Visit Atalaia Pro"
+        },
+        "images": {
+          "label": "images",
+          "list": {
+            "image1": {
+              "src": "/images/atalaiapro1.png",
+              "alt": "Screenshot of project Atalaia Pro",
+              "width": "393",
+              "height": "852"
+            },
+            "image2": {
+              "src": "/images/atalaiapro2.png",
+              "alt": "Screenshot of project Atalaia Pro",
+              "width": "393",
+              "height": "852"
+            },
+            "image3": {
+              "src": "/images/atalaiapro3.png",
+              "alt": "Screenshot of project Atalaia Pro",
               "width": "393",
               "height": "852"
             }

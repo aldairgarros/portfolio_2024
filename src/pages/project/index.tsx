@@ -13,7 +13,7 @@ export function Project() {
   const { t: p } = useTranslation("translation", { keyPrefix: `projects.list.${project}` });
   const keys = ["name", "date", "description", "details"] as const;
   const IMAGES = ["image1", "image2", "image3"] as const;
-  const PROJECTLIST = ["penhor", "musicaShow", "bolsobom"];
+  const PROJECTLIST = ["penhor", "musicaShow", "bolsobom", "atalaiaPro"];
 
   return (
     <main className="flex min-h-screen flex-col">

@@ -9,7 +9,7 @@
     },
     "subtitle": {
       "label": "intro",
-      "value": "Desenvolvedor Fullstack especializado em Web, Mobile, Javascript, API, Design Responsivo e UX/UI"
+      "value": "Desenvolvedor Fullstack especializado em Web e Mobile -- e Especialista em Engenharia de Software pela USP/ESALQ"
     }
   },
   "projects": {
@@ -179,6 +179,60 @@
             "image4": {
               "src": "/images/bolsobom4.png",
               "alt": "Imagem do projeto Bolso Bom",
+              "width": "393",
+              "height": "852"
+            }
+          }
+        }
+      },
+      "atalaiaPro": {
+        "image": {
+          "src": "/images/atalaiapro-display.png",
+          "alt": "Imagem do projeto Atalaia Pro"
+        },
+        "name": {
+          "label": "nome",
+          "value": "Atalaia Pro"
+        },
+        "date": {
+          "label": "data",
+          "value": "2026"
+        },
+        "overview": {
+          "label": "visao geral",
+          "value": "Um sistema SPA/PWA moderno para a autoridade portuária da Atalaia que substitui relatórios manuais em Excel por uma plataforma automatizada de previsao de manobras em tempo real para práticos e operadores da Sala de Controle."
+        },
+        "description": {
+          "label": "descriçao",
+          "value": "O Atalaia Pro otimiza a comunicaçao operacional na autoridade portuária da Atalaia, substituindo previsoes manuais baseadas em planilhas por um sistema automatizado em tempo real. Construído como um Progressive Web App, funciona offline e em dispositivos móveis -- essencial para práticos no mar. Os recursos incluem importaçao automática de dados dos sistemas internos, gerenciamento dinâmico de escalas com arrastar e soltar, suporte a múltiplos cenários de previsao e atualizaçoes instantâneas. Os testes de usabilidade mostraram reduçao de 82% no tempo de preparaçao de relatórios em comparaçao com o fluxo anterior baseado em Excel."
+        },
+        "details": {
+          "label": "detalhes",
+          "value": "Single Page Application com suporte offline via PWA. Substitui relatórios manuais em Excel por geraçao automatizada de previsoes. Gerenciamento de escalas com arrastar e soltar. Atualizaçoes em tempo real para práticos. Design responsivo para monitores da Sala de Controle e dispositivos móveis. Algoritmo de importaçao extrai dados do sistema interno legado. Progressive Web App permite acesso offline e instalaçao na tela inicial. Reduçao de 82% no tempo de preparaçao de relatórios validada por testes de usabilidade com operadores e práticos."
+        },
+        "link": {
+          "label": "website",
+          "href": "https://atalaiapro.com",
+          "value": "Visitar Atalaia Pro"
+        },
+        "images": {
+          "label": "imagens",
+          "list": {
+            "image1": {
+              "src": "/images/atalaiapro1.png",
+              "alt": "Imagem do projeto Atalaia Pro",
+              "width": "393",
+              "height": "852"
+            },
+            "image2": {
+              "src": "/images/atalaiapro2.png",
+              "alt": "Imagem do projeto Atalaia Pro",
+              "width": "393",
+              "height": "852"
+            },
+            "image3": {
+              "src": "/images/atalaiapro3.png",
+              "alt": "Imagem do projeto Atalaia Pro",
               "width": "393",
               "height": "852"
             }
