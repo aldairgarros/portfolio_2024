@@ -445,6 +445,7 @@
   },
   "contact": {
     "title": "contato",
+    "message": "Estou disponível para novas oportunidades. Entre em contato comigo.",
     "list": {
       "email": {
         "label": "email",
@@ -472,8 +473,5 @@
         "href": "https://github.com/aldair-gc"
       }
     }
-  },
-  "extra": {
-    "imOpenToNewOpportunities": "Estou disponível para novas oportunidades. Entre em contato comigo."
   }
 }

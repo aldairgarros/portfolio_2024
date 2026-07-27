@@ -1,21 +1,18 @@
-import React from "react";
-import { Attribute } from "@/components/Attribute";
+import { GlassCard } from "@/components/GlassCard";
 import { useTranslation } from "react-i18next";
 
-export function Sticker(): React.JSX.Element {
+export function Sticker() {
   const { t } = useTranslation();
-  const keys = ["email"] as const;
 
   return (
-    <div id="sticker" className="fixed hidden sm:flex flex-col bottom-0 left-0 backdrop-blur-md">
-      {keys.map((key) => (
-        <Attribute
-          key={key}
-          label={t(`contact.list.${key}.label`)}
-          value={t(`contact.list.${key}.value`)}
-          href={t(`contact.list.${key}.href`)}
-        />
-      ))}
+    <div className="fixed hidden lg:block bottom-8 left-8 z-10">
+      <GlassCard className="px-4 py-2 text-sm">
+        <a
+          href={`mailto:${t("contact.list.email.value")}`}
+          className="text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          {t("contact.list.email.value")}
+        </a>
+      </GlassCard>
     </div>
   );
 }
