@@ -1,52 +1,110 @@
-import { ScrollRestoration, useParams } from "react-router-dom";
+import { ScrollRestoration, useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Contact } from "@/modules/Contact";
-import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
-import { Attribute } from "@/components/Attribute";
+import { GlassCard } from "@/components/GlassCard";
+import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectList } from "@/modules/Projects/ProjectList";
+
+interface ImageData {
+  src: string;
+  alt: string;
+  width: string;
+  height: string;
+}
 
 export function Project() {
   const { project } = useParams();
-
-  const { t: m } = useTranslation("translation", { keyPrefix: "extra" });
-  const { t: p } = useTranslation("translation", { keyPrefix: `projects.list.${project}` });
-  const keys = ["name", "date", "description", "details"] as const;
-  const IMAGES = ["image1", "image2", "image3"] as const;
   const PROJECTLIST = ["penhor", "musicaShow", "bolsobom", "atalaiaPro"];
 
+  const { t: p } = useTranslation("translation", { keyPrefix: `projects.list.${project}` });
+  const { t: tProjects } = useTranslation("translation", { keyPrefix: "projects" });
+
+  const imageKeys = Object.keys(
+    (p("images.list", { returnObjects: true }) as Record<string, unknown>) || {}
+  ).filter((k) => k.startsWith("image"));
+
+  const images: ImageData[] = imageKeys.map((key: string) => ({
+    src: p(`images.list.${key}.src`),
+    alt: p(`images.list.${key}.alt`),
+    width: p(`images.list.${key}.width`),
+    height: p(`images.list.${key}.height`),
+  }));
+
+  const linkHref = p("link.href");
+  const linkValue = p("link.value");
+
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col pt-16">
       <ScrollRestoration />
-      <div className="w-full mx-auto z-10" id="top">
-        <div className="flex flex-col w-full max-w-7xl px-4 gap-16 mx-auto z-10 py-14" id="top">
-          <Section title={`${project}`} closing="curlyBrace">
-            <div className="py-10">
-              <Container shadow={false} background={false}>
-                <div className="flex flex-col gap-4">
-                  {keys.map((key) => (
-                    <Attribute key={key} label={p(`${key}.label`)} value={p(`${key}.value`)} />
-                  ))}
-                  <Attribute
-                    label={p("images.label")}
-                    images={IMAGES.map((img) => {
-                      return {
-                        src: p(`images.list.${img}.src`),
-                        alt: p(`images.list.${img}.alt`),
-                        width: p(`images.list.${img}.width`),
-                        height: p(`images.list.${img}.height`),
-                      };
-                    })}
+      <div className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+        <Link
+          to="/#projects"
+          className="inline-flex items-center gap-1 text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 transition-colors mb-12 focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          <span aria-hidden="true">&larr;</span>
+          {tProjects("title")}
+        </Link>
+
+        <SectionTitle title={p("name.value")} />
+
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-primary-500 dark:text-primary-400">
+              {p("date.value")}
+            </span>
+          </div>
+
+          <GlassCard>
+            <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
+              {p("description.value")}
+            </p>
+          </GlassCard>
+
+          <GlassCard>
+            <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
+              {p("details.value")}
+            </p>
+          </GlassCard>
+
+          {linkHref && (
+            <a
+              href={linkHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-secondary-500/30 text-secondary-600 dark:text-secondary-400 hover:bg-secondary-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+              {linkValue || "Visit project"}
+              <span aria-hidden="true">&nearr;</span>
+            </a>
+          )}
+
+          {images.length > 0 && (
+            <div className="mt-4">
+              <p className="text-sm font-medium text-primary-500 dark:text-primary-400 mb-4">
+                {p("images.label")}
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {images.map((img) => (
+                  <img
+                    key={img.src}
+                    src={img.src}
+                    alt={img.alt}
+                    width={+img.width}
+                    height={+img.height}
+                    className="rounded-xl object-contain w-full h-auto"
+                    loading="lazy"
                   />
-                </div>
-              </Container>
+                ))}
+              </div>
             </div>
-          </Section>
+          )}
         </div>
       </div>
-      <ProjectList list={PROJECTLIST.filter((item) => item !== project)} />
-      <div className="w-full bg-primary-300 dark:bg-primary-950 pb-6" id="contact">
-        <Contact textBox={m("imOpenToNewOpportunities")} />
+
+      <div className="bg-primary-100/50 dark:bg-primary-800/30">
+        <ProjectList list={PROJECTLIST.filter((item) => item !== project)} />
+      </div>
+
+      <div className="w-full">
+        <Contact />
       </div>
     </main>
   );
