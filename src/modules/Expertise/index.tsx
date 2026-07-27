@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Section } from "@/components/Section";
-import { Container } from "@/components/Container";
+import { SectionTitle } from "@/components/SectionTitle";
+import { GlassCard } from "@/components/GlassCard";
 import { Skill } from "@/modules/Expertise/Skill";
 import expertise from "@/assets/expertise.json";
 
@@ -8,32 +8,24 @@ export function Expertise() {
   const { t } = useTranslation("translation", { keyPrefix: "expertise" });
 
   return (
-    <div className="w-full" id={t("title")}>
-      <Section
-        title={t("title")}
-        closing="squareBrace"
-        className="flex flex-col md:pl-20 md:pr-10 py-10 sm:py-20">
+    <section id="expertise" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
+      <SectionTitle title={t("title")} />
+      <div className="flex flex-col gap-12">
         {expertise.map((field) => (
-          <Container
-            key={field.name}
-            closing="curlyBrace"
-            shadow={false}
-            background={false}
-            className="pl-4">
-            <h3 className="text-2xl text-primary-800 dark:text-primary-100">
+          <div key={field.name}>
+            <h3 className="text-lg font-semibold text-secondary-600 dark:text-secondary-400 mb-4">
               {t(`list.${field.name}.title`)}
-              <span className="text-primary-600 dark:text-primary-400">:</span>
             </h3>
-            <Container closing="squareBrace" background={false} shadow={false}>
+            <GlassCard>
               <div className="flex flex-wrap gap-4">
                 {field.values.map((value) => (
                   <Skill key={value} expertise={field.name} skill={value} />
                 ))}
               </div>
-            </Container>
-          </Container>
+            </GlassCard>
+          </div>
         ))}
-      </Section>
-    </div>
+      </div>
+    </section>
   );
 }

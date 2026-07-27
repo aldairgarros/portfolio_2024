@@ -11,16 +11,16 @@ export function Skill({ expertise, skill, ...rest }: Props) {
 
   return (
     <div
-      className="relative flex items-center flex-col w-20 h-20 gap-2 group hover:scale-110 transition-all"
+      className="flex flex-col items-center gap-2 p-3 rounded-xl backdrop-blur-sm bg-white/10 dark:bg-white/5 border border-white/10 dark:border-white/5 hover:scale-110 transition-transform cursor-default w-20"
       {...rest}>
       <img
         src={`skill_images/${t(`list.${expertise}.list.${skill}.imageSrc`)}`}
         alt={t(`list.${expertise}.list.${skill}.label`)}
-        width={54}
-        height={54}
-        className="flex-1 object-contain drop-shadow group-hover:drop-shadow-lg dark:drop-shadow-light group-hover:scale-110 transition-all aspect-square"
+        width={40}
+        height={40}
+        className="w-10 h-10 object-contain"
       />
-      <span className="h-4 font-medium text-sm text-center text-primary-950 dark:text-primary-50 leading-4 z-10">
+      <span className="text-xs text-center text-primary-700 dark:text-primary-300 leading-tight">
         {t(`list.${expertise}.list.${skill}.label`)}
       </span>
     </div>
