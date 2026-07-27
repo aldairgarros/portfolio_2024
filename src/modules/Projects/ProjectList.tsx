@@ -1,4 +1,4 @@
-import { Section } from "@/components/Section";
+import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectCard } from "./ProjectCard";
 import { useTranslation } from "react-i18next";
 
@@ -9,20 +9,16 @@ interface Props {
 export function ProjectList({ list }: Props) {
   const { t } = useTranslation("translation", { keyPrefix: "projects" });
 
+  if (list.length === 0) return null;
+
   return (
-    <main className="flex min-h-screen flex-col">
-      <div className="w-full mx-auto z-10" id="home">
-        <div className="w-full" id={t("title")}>
-          <Section
-            title={t("title")}
-            closing="squareBrace"
-            className="md:pl-20 md:pr-10 py-20 w-full grid sm:grid-cols-2 gap-6">
-            {list.map((project) => (
-              <ProjectCard key={project} project={project} className="shadow-2xl" />
-            ))}
-          </Section>
-        </div>
+    <section className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
+      <SectionTitle title={t("title")} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {list.map((project) => (
+          <ProjectCard key={project} project={project} />
+        ))}
       </div>
-    </main>
+    </section>
   );
 }
