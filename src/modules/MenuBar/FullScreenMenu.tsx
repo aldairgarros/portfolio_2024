@@ -16,7 +16,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange, ...rest }: Props) {
   return (
     <div
-      className={`fixed inset-0 top-12 bg-white/95 dark:bg-primary-900/95 backdrop-blur-md z-30 overscroll-contain overflow-hidden transition-opacity duration-300 ${
+      className={`fixed inset-0 top-12 bg-white/95 dark:bg-primary-900/95 backdrop-blur-md z-40 overscroll-contain overflow-hidden transition-opacity duration-300 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
       {...rest}>
@@ -25,7 +25,7 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
           {links.map((link, ind) => (
             <Link
               key={link.hash}
-              className={`text-2xl font-medium text-primary-900 dark:text-primary-50 hover:text-secondary-600 dark:hover:text-secondary-400 transition-all duration-300 cursor-pointer focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded ${
+              className={`text-2xl font-medium font-heading text-primary-900 dark:text-primary-50 hover:text-accent-600 dark:hover:text-accent-400 transition-all duration-300 cursor-pointer focus:ring-2 focus:ring-accent-500 focus:outline-none rounded ${
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               }`}
               style={{ transitionDelay: `${ind * 50}ms` }}
@@ -38,11 +38,11 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
           {(["en", "br"] as const).map((lang, ind) => (
             <button
               key={lang}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer focus:ring-2 focus:ring-secondary-500 focus:outline-none ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer focus:ring-2 focus:ring-accent-500 focus:outline-none ${
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               } ${
                 currentLanguage === lang
-                  ? "bg-secondary-500 text-white"
+                  ? "bg-accent-500 text-white"
                   : "border border-primary-300 dark:border-primary-600 text-primary-700 dark:text-primary-300"
               }`}
               style={{ transitionDelay: `${(links.length + ind) * 50}ms` }}
