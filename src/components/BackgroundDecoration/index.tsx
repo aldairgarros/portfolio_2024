@@ -23,51 +23,44 @@ interface BuildingData {
   left: string;
   width: number;
   height: string;
-  angled: boolean;
-  spine: boolean;
+  tapered: boolean;
 }
 
 const BUILDINGS_BG: BuildingData[] = [
-  { left: "3%", width: 28, height: "100%", angled: false, spine: false },
-  { left: "15%", width: 32, height: "100%", angled: false, spine: false },
-  { left: "28%", width: 26, height: "100%", angled: false, spine: false },
-  { left: "40%", width: 30, height: "100%", angled: false, spine: false },
-  { left: "52%", width: 28, height: "100%", angled: false, spine: false },
-  { left: "64%", width: 32, height: "100%", angled: false, spine: false },
-  { left: "76%", width: 26, height: "100%", angled: false, spine: false },
-  { left: "88%", width: 30, height: "100%", angled: false, spine: false },
+  { left: "3%", width: 28, height: "100%", tapered: true },
+  { left: "15%", width: 32, height: "100%", tapered: false },
+  { left: "28%", width: 26, height: "100%", tapered: true },
+  { left: "40%", width: 30, height: "100%", tapered: false },
+  { left: "52%", width: 28, height: "100%", tapered: true },
+  { left: "64%", width: 32, height: "100%", tapered: false },
+  { left: "76%", width: 26, height: "100%", tapered: true },
+  { left: "88%", width: 30, height: "100%", tapered: false },
 ];
 
 const BUILDINGS_MID: BuildingData[] = [
-  { left: "8%", width: 55, height: "100%", angled: true, spine: false },
-  { left: "23%", width: 60, height: "100%", angled: false, spine: false },
-  { left: "38%", width: 55, height: "100%", angled: true, spine: false },
-  { left: "53%", width: 65, height: "100%", angled: false, spine: false },
-  { left: "68%", width: 55, height: "100%", angled: true, spine: true },
-  { left: "83%", width: 60, height: "100%", angled: false, spine: false },
+  { left: "8%", width: 55, height: "100%", tapered: true },
+  { left: "23%", width: 60, height: "100%", tapered: false },
+  { left: "38%", width: 55, height: "100%", tapered: true },
+  { left: "53%", width: 65, height: "100%", tapered: false },
+  { left: "68%", width: 55, height: "100%", tapered: true },
+  { left: "83%", width: 60, height: "100%", tapered: false },
 ];
 
 const BUILDINGS_FG: BuildingData[] = [
-  { left: "1%", width: 100, height: "100%", angled: true, spine: true },
-  { left: "25%", width: 120, height: "100%", angled: false, spine: true },
-  { left: "47%", width: 110, height: "100%", angled: true, spine: true },
-  { left: "67%", width: 130, height: "100%", angled: false, spine: true },
-  { left: "88%", width: 100, height: "100%", angled: true, spine: true },
+  { left: "1%", width: 100, height: "100%", tapered: true },
+  { left: "25%", width: 120, height: "100%", tapered: false },
+  { left: "47%", width: 110, height: "100%", tapered: true },
+  { left: "67%", width: 130, height: "100%", tapered: false },
+  { left: "88%", width: 100, height: "100%", tapered: true },
 ];
 
 function Building({ data, lightColor, darkColor }: { data: BuildingData; lightColor: string; darkColor: string }) {
-  const clipPath = data.angled ? "polygon(0% 100%, 0% 40%, 50% 0%, 100% 40%, 100% 100%)" : undefined;
+  const clipPath = data.tapered ? "polygon(0% 100%, 0% 50%, 50% 3%, 100% 50%, 100% 100%)" : undefined;
 
   return (
     <div className="absolute bottom-0" style={{ left: data.left, width: data.width, height: data.height }}>
       <div className="w-full h-full dark:hidden" style={{ background: lightColor, clipPath }} />
       <div className="w-full h-full hidden dark:block" style={{ background: darkColor, clipPath }} />
-      {data.spine && (
-        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-0.5 h-[25%] dark:hidden" style={{ background: lightColor }} />
-      )}
-      {data.spine && (
-        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-0.5 h-[25%] hidden dark:block" style={{ background: darkColor }} />
-      )}
     </div>
   );
 }
