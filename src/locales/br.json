@@ -266,10 +266,12 @@
           "express": { "label": "Express", "imageSrc": "expressjs.png" },
           "fastify": { "label": "Fastify", "imageSrc": "fastify.png" },
           "prisma": { "label": "Prisma", "imageSrc": "prisma.png" },
-          "sql": { "label": "SQL", "imageSrc": "postgres.png" },
+          "drizzle": { "label": "Drizzle ORM", "imageSrc": "drizzle.png" },
+          "postgresql": { "label": "PostgreSQL", "imageSrc": "postgres.png" },
           "mongodb": { "label": "MongoDB", "imageSrc": "mongodb.png" },
           "rest": { "label": "REST", "imageSrc": "restapi.png" },
-          "jwt": { "label": "JWT", "imageSrc": "jwt.png" }
+          "jwt": { "label": "JWT", "imageSrc": "jwt.png" },
+          "zod": { "label": "Zod", "imageSrc": "zod.png" }
         }
       },
       "frontend-engineering": {
@@ -282,8 +284,13 @@
           "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
           "tailwind": { "label": "TailwindCSS", "imageSrc": "tailwind.png" },
+          "zustand": { "label": "Zustand", "imageSrc": "zustand.png" },
+          "tanstackQuery": { "label": "TanStack Query", "imageSrc": "tanstackquery.png" },
+          "reactHookForm": { "label": "React Hook Form", "imageSrc": "reacthookform.png" },
           "redux": { "label": "Redux", "imageSrc": "redux.png" },
           "vite": { "label": "Vite", "imageSrc": "vite.png" },
+          "solid": { "label": "SOLID", "imageSrc": "solid.png" },
+          "designPatterns": { "label": "Design Patterns", "imageSrc": "design-patterns.png" },
           "html": { "label": "HTML", "imageSrc": "html5.png" },
           "css": { "label": "CSS", "imageSrc": "css3.png" },
           "javascript": { "label": "JavaScript", "imageSrc": "js.png" }
@@ -297,9 +304,7 @@
         "list": {
           "reactNative": { "label": "React Native", "imageSrc": "react.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
-          "jest": { "label": "Jest", "imageSrc": "jest.png" },
-          "solid": { "label": "SOLID", "imageSrc": "solid.png" },
-          "designPatterns": { "label": "Design Patterns", "imageSrc": "design-patterns.png" }
+          "jest": { "label": "Jest", "imageSrc": "jest.png" }
         }
       },
       "devops": {
@@ -312,7 +317,13 @@
           "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
           "apache": { "label": "Apache", "imageSrc": "apache.png" },
           "git": { "label": "Git", "imageSrc": "git.png" },
-          "strapi": { "label": "Strapi", "imageSrc": "strapi.png" }
+          "strapi": { "label": "Strapi", "imageSrc": "strapi.png" },
+          "githubActions": { "label": "GitHub Actions", "imageSrc": "githubactions.png" },
+          "prometheus": { "label": "Prometheus", "imageSrc": "prometheus.png" },
+          "grafana": { "label": "Grafana", "imageSrc": "grafana.png" },
+          "opentelemetry": { "label": "OpenTelemetry", "imageSrc": "opentelemetry.png" },
+          "sentry": { "label": "Sentry", "imageSrc": "sentry.png" },
+          "playwright": { "label": "Playwright", "imageSrc": "playwright.png" }
         }
       },
       "ux-strategy": {
@@ -322,7 +333,8 @@
         "impact": "Recebi feedback consistentemente positivo dos clientes pela abordagem simplificada, atenção aos detalhes e insights de pesquisa acionáveis. A metodologia de design agora orienta todo o trabalho de desenvolvimento — cada projeto começa com análise centrada no usuário antes da primeira linha de código.",
         "list": {
           "ui": { "label": "UI Design", "imageSrc": "design.png" },
-          "ux": { "label": "UX Research", "imageSrc": "insight.png" }
+          "ux": { "label": "UX Research", "imageSrc": "insight.png" },
+          "figma": { "label": "Figma", "imageSrc": "figma.png" }
         }
       }
     }

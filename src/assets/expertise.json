@@ -1,7 +1,7 @@
 [
-  { "id": "api-backend", "tech": ["node", "express", "fastify", "prisma", "sql", "mongodb", "rest", "jwt"] },
-  { "id": "frontend-engineering", "tech": ["react", "nextjs", "typescript", "tailwind", "redux", "vite", "html", "css", "javascript"] },
-  { "id": "mobile", "tech": ["reactNative", "typescript", "jest", "solid", "designPatterns"] },
-  { "id": "devops", "tech": ["docker", "nginx", "apache", "git", "strapi"] },
-  { "id": "ux-strategy", "tech": ["ui", "ux"] }
+  { "id": "api-backend", "tech": ["node", "express", "fastify", "prisma", "drizzle", "postgresql", "mongodb", "rest", "jwt", "zod"] },
+  { "id": "frontend-engineering", "tech": ["react", "nextjs", "typescript", "tailwind", "zustand", "tanstackQuery", "reactHookForm", "redux", "vite", "solid", "designPatterns", "html", "css", "javascript"] },
+  { "id": "mobile", "tech": ["reactNative", "typescript", "jest"] },
+  { "id": "devops", "tech": ["docker", "nginx", "apache", "git", "strapi", "githubActions", "prometheus", "grafana", "opentelemetry", "sentry", "playwright"] },
+  { "id": "ux-strategy", "tech": ["ui", "ux", "figma"] }
 ]
