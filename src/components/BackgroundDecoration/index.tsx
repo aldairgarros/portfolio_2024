@@ -19,35 +19,6 @@ function useMousePosition() {
   return { x, y };
 }
 
-interface NodeData {
-  x: number;
-  y: number;
-  delay: number;
-  dur: number;
-}
-
-const NODES: NodeData[] = Array.from({ length: 20 }, () => ({
-  x: 5 + Math.random() * 90,
-  y: 5 + Math.random() * 90,
-  delay: Math.random() * 3,
-  dur: 3 + Math.random() * 4,
-}));
-
-const POLYLINES: { points: [number, number][]; }[] = [
-  { points: [[15, 20], [35, 20], [35, 15], [55, 15], [55, 25]] },
-  { points: [[75, 18], [75, 25], [65, 25], [65, 55]] },
-  { points: [[45, 50], [45, 35], [40, 35], [40, 60]] },
-  { points: [[25, 60], [25, 50], [10, 50], [10, 55]] },
-  { points: [[50, 72], [50, 85], [55, 85]] },
-  { points: [[70, 68], [80, 68], [80, 80]] },
-  { points: [[8, 35], [15, 35], [15, 20]] },
-  { points: [[85, 15], [90, 15], [90, 45]] },
-  { points: [[30, 88], [50, 88], [50, 72]] },
-  { points: [[75, 58], [75, 68], [70, 68]] },
-  { points: [[20, 75], [20, 55], [10, 55]] },
-  { points: [[60, 42], [60, 25], [55, 25]] },
-];
-
 interface BuildingData {
   left: string;
   width: number;
@@ -56,48 +27,48 @@ interface BuildingData {
   spine: boolean;
 }
 
-const BUILDINGS: BuildingData[] = [
-  { left: "1%", width: 70, height: "50%", angled: false, spine: true },
-  { left: "6%", width: 55, height: "25%", angled: true, spine: false },
-  { left: "10%", width: 90, height: "55%", angled: true, spine: false },
-  { left: "18%", width: 60, height: "20%", angled: false, spine: false },
-  { left: "22%", width: 100, height: "40%", angled: false, spine: true },
-  { left: "31%", width: 75, height: "48%", angled: true, spine: false },
-  { left: "37%", width: 50, height: "15%", angled: false, spine: false },
-  { left: "40%", width: 110, height: "60%", angled: true, spine: true },
-  { left: "50%", width: 65, height: "30%", angled: false, spine: false },
-  { left: "55%", width: 85, height: "50%", angled: true, spine: false },
-  { left: "62%", width: 70, height: "22%", angled: false, spine: false },
-  { left: "67%", width: 95, height: "42%", angled: false, spine: true },
-  { left: "75%", width: 55, height: "18%", angled: true, spine: false },
-  { left: "78%", width: 100, height: "52%", angled: true, spine: false },
-  { left: "87%", width: 60, height: "35%", angled: false, spine: false },
-  { left: "91%", width: 80, height: "45%", angled: true, spine: true },
+const BUILDINGS_BG: BuildingData[] = [
+  { left: "2%", width: 50, height: "18%", angled: false, spine: false },
+  { left: "8%", width: 65, height: "25%", angled: false, spine: false },
+  { left: "15%", width: 45, height: "20%", angled: true, spine: false },
+  { left: "22%", width: 70, height: "28%", angled: false, spine: false },
+  { left: "30%", width: 55, height: "22%", angled: true, spine: false },
+  { left: "38%", width: 60, height: "16%", angled: false, spine: false },
+  { left: "46%", width: 50, height: "24%", angled: false, spine: false },
+  { left: "55%", width: 65, height: "20%", angled: true, spine: false },
+  { left: "63%", width: 45, height: "26%", angled: false, spine: false },
+  { left: "70%", width: 55, height: "18%", angled: false, spine: false },
+  { left: "78%", width: 60, height: "23%", angled: true, spine: false },
+  { left: "86%", width: 50, height: "28%", angled: false, spine: false },
+  { left: "92%", width: 65, height: "20%", angled: false, spine: false },
 ];
 
-function Node({ data }: { data: NodeData }) {
-  return (
-    <motion.rect
-      x={data.x - 4}
-      y={data.y - 4}
-      width={8}
-      height={8}
-      transform={`rotate(45 ${data.x} ${data.y})`}
-      fill="currentColor"
-      initial={{ opacity: 0.06 }}
-      animate={{ opacity: [0.06, 0.22, 0.06] }}
-      transition={{
-        duration: data.dur,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: data.delay,
-      }}
-      style={{ color: "var(--color-primary-500)" }}
-    />
-  );
-}
+const BUILDINGS_MID: BuildingData[] = [
+  { left: "5%", width: 70, height: "35%", angled: true, spine: false },
+  { left: "13%", width: 80, height: "42%", angled: false, spine: false },
+  { left: "20%", width: 60, height: "30%", angled: false, spine: false },
+  { left: "28%", width: 90, height: "45%", angled: true, spine: true },
+  { left: "36%", width: 75, height: "35%", angled: false, spine: false },
+  { left: "45%", width: 85, height: "48%", angled: true, spine: false },
+  { left: "53%", width: 65, height: "32%", angled: false, spine: false },
+  { left: "60%", width: 95, height: "50%", angled: true, spine: true },
+  { left: "72%", width: 70, height: "38%", angled: false, spine: false },
+  { left: "80%", width: 80, height: "44%", angled: true, spine: false },
+  { left: "88%", width: 75, height: "35%", angled: false, spine: false },
+];
 
-function Building({ data }: { data: BuildingData }) {
+const BUILDINGS_FG: BuildingData[] = [
+  { left: "3%", width: 100, height: "65%", angled: false, spine: true },
+  { left: "16%", width: 85, height: "50%", angled: true, spine: false },
+  { left: "24%", width: 120, height: "70%", angled: false, spine: true },
+  { left: "38%", width: 90, height: "55%", angled: true, spine: false },
+  { left: "48%", width: 110, height: "60%", angled: false, spine: true },
+  { left: "62%", width: 100, height: "68%", angled: true, spine: false },
+  { left: "74%", width: 120, height: "55%", angled: false, spine: true },
+  { left: "88%", width: 95, height: "62%", angled: true, spine: false },
+];
+
+function Building({ data, lightOp, darkOp }: { data: BuildingData; lightOp: number; darkOp: number }) {
   const clipPath = data.angled
     ? "polygon(0% 100%, 0% 25%, 50% 0%, 100% 25%, 100% 100%)"
     : undefined;
@@ -110,25 +81,25 @@ function Building({ data }: { data: BuildingData }) {
       <div
         className="w-full h-full dark:hidden"
         style={{
-          background: "linear-gradient(to top, rgb(0 0 0 / 0.05) 0%, transparent 60%)",
+          background: `linear-gradient(to top, rgb(0 0 0 / ${lightOp}) 0%, transparent 60%)`,
           clipPath,
         }}
       />
       <div
         className="w-full h-full hidden dark:block"
         style={{
-          background: "linear-gradient(to top, rgb(255 255 255 / 0.03) 0%, transparent 60%)",
+          background: `linear-gradient(to top, rgb(255 255 255 / ${darkOp}) 0%, transparent 60%)`,
           clipPath,
         }}
       />
       {data.spine && (
-        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[12%] dark:hidden"
-          style={{ background: "rgb(0 0 0 / 0.03)" }}
+        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[15%] dark:hidden"
+          style={{ background: `rgb(0 0 0 / ${lightOp})` }}
         />
       )}
       {data.spine && (
-        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[12%] hidden dark:block"
-          style={{ background: "rgb(255 255 255 / 0.02)" }}
+        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[15%] hidden dark:block"
+          style={{ background: `rgb(255 255 255 / ${darkOp})` }}
         />
       )}
     </div>
@@ -137,13 +108,17 @@ function Building({ data }: { data: BuildingData }) {
 
 export function BackgroundDecoration() {
   const prefersReducedMotion = useReducedMotion();
-  const { x: mouseX } = useMousePosition();
+  const mouseX = useMousePosition().x;
 
   const { scrollYProgress } = useScroll();
   const gridY = useTransform(scrollYProgress, [0, 1], [0, 15]);
-  const skylineY = useTransform(scrollYProgress, [0, 1], [0, -10]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, -5]);
+  const midY = useTransform(scrollYProgress, [0, 1], [0, -12]);
+  const fgY = useTransform(scrollYProgress, [0, 1], [0, -20]);
 
-  const skyX = useSpring(useTransform(mouseX, [-1, 1], [-8, 8]), { stiffness: 50, damping: 20 });
+  const bgX = useSpring(useTransform(mouseX, [-1, 1], [-3, 3]), { stiffness: 40, damping: 25 });
+  const midX = useSpring(useTransform(mouseX, [-1, 1], [-7, 7]), { stiffness: 50, damping: 20 });
+  const fgX = useSpring(useTransform(mouseX, [-1, 1], [-14, 14]), { stiffness: 60, damping: 18 });
 
   const gridStyle = {
     transform: "rotateX(72deg)",
@@ -158,7 +133,7 @@ export function BackgroundDecoration() {
   return (
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
 
-      {/* Layer 1: Perspective Grid Floor — light */}
+      {/* Layer 1: Perspective Grid Floor */}
       <div style={{ perspective: "800px", perspectiveOrigin: "50% 40%" }} className="absolute inset-0 dark:hidden">
         <motion.div
           style={{
@@ -169,8 +144,6 @@ export function BackgroundDecoration() {
           }}
         />
       </div>
-
-      {/* Layer 1: Perspective Grid Floor — dark */}
       <div style={{ perspective: "800px", perspectiveOrigin: "50% 40%" }} className="absolute inset-0 hidden dark:block">
         <motion.div
           style={{
@@ -182,36 +155,41 @@ export function BackgroundDecoration() {
         />
       </div>
 
-      {/* Layer 2: Circuit Network */}
+      {/* Layer 2: 3D City Skyline — Background Plane */}
       {!prefersReducedMotion && (
-        <svg className="absolute inset-0 w-full h-full" style={{ color: "var(--color-primary-500)" }}>
-          {POLYLINES.map((poly, i) => (
-            <polyline
-              key={i}
-              points={poly.points.map(([px, py]) => `${px}%,${py}%`).join(" ")}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1}
-              strokeOpacity={0.06}
-            />
-          ))}
-          {NODES.map((node, i) => (
-            <Node key={i} data={node} />
-          ))}
-        </svg>
-      )}
-
-      {/* Layer 3: Futuristic City Skyline */}
-      {!prefersReducedMotion && (
-        <motion.div
-          className="absolute inset-x-0 bottom-0 h-full"
-          style={{ x: skyX, y: skylineY }}
-        >
-          {BUILDINGS.map((b, i) => (
-            <Building key={i} data={b} />
+        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: bgX, y: bgY }}>
+          {BUILDINGS_BG.map((b, i) => (
+            <Building key={i} data={b} lightOp={0.018} darkOp={0.012} />
           ))}
         </motion.div>
       )}
+
+      {/* Layer 2: 3D City Skyline — Midground Plane */}
+      {!prefersReducedMotion && (
+        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: midX, y: midY }}>
+          {BUILDINGS_MID.map((b, i) => (
+            <Building key={i} data={b} lightOp={0.035} darkOp={0.02} />
+          ))}
+        </motion.div>
+      )}
+
+      {/* Layer 2: 3D City Skyline — Foreground Plane */}
+      {!prefersReducedMotion && (
+        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: fgX, y: fgY }}>
+          {BUILDINGS_FG.map((b, i) => (
+            <Building key={i} data={b} lightOp={0.055} darkOp={0.03} />
+          ))}
+        </motion.div>
+      )}
+
+      {/* Layer 3: Metallic Grain */}
+      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.04 }}>
+        <filter id="mesh-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#mesh-noise)" />
+      </svg>
 
       {/* Layer 4: Scan Lines */}
       {!prefersReducedMotion && (
