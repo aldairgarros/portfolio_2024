@@ -1,0 +1,94 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: "npm"
+      - run: npm ci --legacy-peer-deps --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run typecheck
+
+  build-and-deploy:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: "npm"
+      - run: npm ci --legacy-peer-deps --no-audit --no-fund
+      - run: npm run build
+
+      - name: Prepare deployment on VPS
+        id: pre_deployment
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p /var/www/aldairgarros"
+          export BACKUP_DIR="/var/www/aldairgarros.backup.$(date +%Y%m%d_%H%M%S)"
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p $BACKUP_DIR && cp -r /var/www/aldairgarros/* $BACKUP_DIR 2>/dev/null || true"
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "rm -rf /var/www/aldairgarros/*"
+          echo "backup_dir=$BACKUP_DIR" >> $GITHUB_OUTPUT
+
+      - name: Copy files to VPS and set permissions
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p ~/aldairgarros"
+          scp -o StrictHostKeyChecking=no -r ./dist/* $VPS_USER@$VPS_HOST:~/aldairgarros/
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST << EOF
+          set -e
+          mv ~/aldairgarros/* /var/www/aldairgarros/
+          chgrp -R www-data /var/www/aldairgarros/
+          chmod -R 775 /var/www/aldairgarros/
+          EOF
+
+      - name: Restart web server and verify deployment
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          eval "$(ssh-agent -s)"
+          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST << 'EOF'
+          set -e
+          sudo systemctl reload nginx || { echo 'Error: Failed to reload Nginx'; exit 1; }
+          sleep 5
+          if systemctl is-active --quiet nginx; then echo "Nginx is running"
+          else echo "Error: Nginx is not running"; exit 1; fi
+          if curl -s --head https://aldairgarros.com | grep "200 OK" > /dev/null; then
+            echo "Application is accessible"
+            rm -rf ${{ steps.pre_deployment.outputs.backup_dir }}
+          else
+            echo "Error: Application is not accessible"
+            rm -rf /var/www/aldairgarros
+            mv ${{ steps.pre_deployment.outputs.backup_dir }} /var/www/aldairgarros
+            sudo systemctl reload nginx
+            exit 1
+          fi
+          EOF
