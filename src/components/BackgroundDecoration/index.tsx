@@ -35,7 +35,7 @@ export function BackgroundDecoration() {
   const blob2X = useSpring(useTransform(mouseX, [-1, 1], [1.5, -1.5]), { stiffness: 80, damping: 20 });
   const blob2Y = useSpring(useTransform(mouseY, [-1, 1], [1.5, -1.5]), { stiffness: 80, damping: 20 });
 
-  useParallaxOffset(-0.2);
+  const scrollOffset = useParallaxOffset(-0.2);
 
   const blobs = [
     { color: "bg-primary-400/10", size: "w-[600px] h-[600px]", top: "-10%", left: "-5%", x: blob1X, y: blob1Y, animDuration: 12 },
@@ -48,26 +48,27 @@ export function BackgroundDecoration() {
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden">
       {/* Layer 1: Animated blobs */}
       {!prefersReducedMotion && blobs.map((blob, i) => (
-        <motion.div
-          key={i}
-          className={`absolute ${blob.size} ${blob.color} blur-3xl rounded-full`}
-          style={{
-            top: blob.top,
-            left: "left" in blob ? blob.left : undefined,
-            right: "right" in blob ? blob.right : undefined,
-            x: blob.x,
-            y: blob.y,
-          }}
-          animate={{
-            x: [0, 30, -20, 10, 0],
-            y: [0, -20, 30, -10, 0],
-          }}
-          transition={{
-            duration: blob.animDuration,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        <motion.div key={i} style={{ y: scrollOffset }}>
+          <motion.div
+            className={`${blob.size} ${blob.color} blur-3xl rounded-full`}
+            style={{
+              top: blob.top,
+              left: "left" in blob ? blob.left : undefined,
+              right: "right" in blob ? blob.right : undefined,
+              x: blob.x,
+              y: blob.y,
+            }}
+            animate={{
+              x: [0, 30, -20, 10, 0],
+              y: [0, -20, 30, -10, 0],
+            }}
+            transition={{
+              duration: blob.animDuration,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        </motion.div>
       ))}
 
       {/* Layer 2: Dot grid */}

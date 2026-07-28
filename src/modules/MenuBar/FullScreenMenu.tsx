@@ -16,7 +16,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange, ...rest }: Props) {
   return (
     <div
-      className={`fixed inset-0 top-12 bg-white/95 dark:bg-primary-900/95 backdrop-blur-md z-30 overscroll-contain overflow-hidden transition-opacity duration-300 ${
+      className={`fixed inset-0 top-12 bg-white/95 dark:bg-primary-900/95 backdrop-blur-md z-40 overscroll-contain overflow-hidden transition-opacity duration-300 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
       {...rest}>

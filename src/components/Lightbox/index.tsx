@@ -59,6 +59,18 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
     return () => document.removeEventListener("keydown", handleKey);
   }, [open, onClose, prev, next]);
 
+  useEffect(() => {
+    if (!open || images.length <= 1) return;
+    const preload = (src: string) => {
+      const img = new Image();
+      img.src = src;
+    };
+    const prevIdx = (index - 1 + images.length) % images.length;
+    const nextIdx = (index + 1) % images.length;
+    preload(images[prevIdx].src);
+    preload(images[nextIdx].src);
+  }, [open, index, images]);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 2) {
       const dist = Math.hypot(
@@ -126,7 +138,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       </button>
 
       {/* Counter */}
-      <span className="absolute top-4 left-4 z-10 text-sm text-white/60 font-mono">
+      <span className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-sm text-white/60 font-mono">
         {index + 1} / {images.length}
       </span>
 
