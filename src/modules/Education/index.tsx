@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { GraduationCap } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { GlassCard } from "@/components/GlassCard";
 
@@ -7,12 +9,18 @@ export function Education() {
 
   return (
     <section id="education" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
-      <SectionTitle title={t("title")} />
-      <GlassCard hover className="max-w-2xl">
-        <div className="flex items-start gap-4">
-          <span className="text-3xl">&#x1F393;</span>
-          <div>
-            <h3 className="text-xl font-semibold text-primary-900 dark:text-primary-50">
+      <SectionTitle title={t("title")} icon={GraduationCap} />
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <GlassCard hover className="max-w-2xl">
+          <div className="flex items-start gap-4">
+            <GraduationCap size={28} className="text-secondary-500 shrink-0 mt-1" />
+            <div>
+              <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50">
               {t("course.title")}
             </h3>
             <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
@@ -23,7 +31,8 @@ export function Education() {
             </p>
           </div>
         </div>
-      </GlassCard>
+        </GlassCard>
+      </motion.div>
     </section>
   );
 }
