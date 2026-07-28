@@ -25,7 +25,7 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
           {links.map((link, ind) => (
             <Link
               key={link.hash}
-              className={`text-2xl font-medium text-primary-900 dark:text-primary-50 hover:text-secondary-600 dark:hover:text-secondary-400 transition-all duration-300 cursor-pointer focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded ${
+              className={`text-2xl font-medium font-heading text-primary-900 dark:text-primary-50 hover:text-secondary-600 dark:hover:text-secondary-400 transition-all duration-300 cursor-pointer focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded ${
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               }`}
               style={{ transitionDelay: `${ind * 50}ms` }}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FullScreenMenu } from "./FullScreenMenu";
 import { Link, ScrollRestoration } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Menu, X } from "lucide-react";
 
 interface LinkItem {
   label: string;
@@ -30,7 +31,7 @@ export function MenuBar({ links }: Props) {
     <>
       <ScrollRestoration />
       <nav
-        className="fixed top-0 flex justify-end w-full backdrop-blur-md bg-white/70 dark:bg-primary-900/70 z-20"
+        className="fixed top-0 flex justify-end w-full backdrop-blur-md bg-white/70 dark:bg-primary-900/70 z-30"
         role="navigation"
         aria-label="Main navigation">
         <button
@@ -38,9 +39,7 @@ export function MenuBar({ links }: Props) {
           onClick={() => setIsMenuOpen((state) => !state)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}>
-          <span className="text-xl font-bold text-primary-900 dark:text-primary-50">
-            {isMenuOpen ? "✕" : "☰"}
-          </span>
+          {isMenuOpen ? <X size={20} className="text-primary-900 dark:text-primary-50" /> : <Menu size={20} className="text-primary-900 dark:text-primary-50" />}
         </button>
         <div className="hidden sm:flex w-full max-w-6xl h-12 mx-auto items-center justify-between px-4">
           <div className="flex items-center gap-1">
