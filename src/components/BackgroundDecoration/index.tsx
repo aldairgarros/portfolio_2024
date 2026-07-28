@@ -27,40 +27,40 @@ interface BuildingData {
 }
 
 const BUILDINGS_BG: BuildingData[] = [
-  { left: "3%", width: 28, height: "100%", tapered: true },
+  { left: "3%", width: 28, height: "100%", tapered: false },
   { left: "15%", width: 32, height: "100%", tapered: false },
-  { left: "28%", width: 26, height: "100%", tapered: true },
+  { left: "28%", width: 26, height: "100%", tapered: false },
   { left: "40%", width: 30, height: "100%", tapered: false },
-  { left: "52%", width: 28, height: "100%", tapered: true },
+  { left: "52%", width: 28, height: "100%", tapered: false },
   { left: "64%", width: 32, height: "100%", tapered: false },
-  { left: "76%", width: 26, height: "100%", tapered: true },
+  { left: "76%", width: 26, height: "100%", tapered: false },
   { left: "88%", width: 30, height: "100%", tapered: false },
 ];
 
 const BUILDINGS_MID: BuildingData[] = [
-  { left: "8%", width: 55, height: "100%", tapered: true },
+  { left: "8%", width: 55, height: "100%", tapered: false },
   { left: "23%", width: 60, height: "100%", tapered: false },
-  { left: "38%", width: 55, height: "100%", tapered: true },
+  { left: "38%", width: 55, height: "100%", tapered: false },
   { left: "53%", width: 65, height: "100%", tapered: false },
-  { left: "68%", width: 55, height: "100%", tapered: true },
+  { left: "68%", width: 55, height: "100%", tapered: false },
   { left: "83%", width: 60, height: "100%", tapered: false },
 ];
 
 const BUILDINGS_FG: BuildingData[] = [
-  { left: "1%", width: 100, height: "100%", tapered: true },
+  { left: "1%", width: 100, height: "100%", tapered: false },
   { left: "25%", width: 120, height: "100%", tapered: false },
-  { left: "47%", width: 110, height: "100%", tapered: true },
+  { left: "47%", width: 110, height: "100%", tapered: false },
   { left: "67%", width: 130, height: "100%", tapered: false },
-  { left: "88%", width: 100, height: "100%", tapered: true },
+  { left: "88%", width: 100, height: "100%", tapered: false },
 ];
 
-function Building({ data, lightColor, darkColor }: { data: BuildingData; lightColor: string; darkColor: string }) {
+function Building({ data }: { data: BuildingData }) {
   const clipPath = data.tapered ? "polygon(0% 100%, 0% 50%, 50% 3%, 100% 50%, 100% 100%)" : undefined;
 
   return (
     <div className="absolute bottom-0" style={{ left: data.left, width: data.width, height: data.height }}>
-      <div className="w-full h-full dark:hidden" style={{ background: lightColor, clipPath }} />
-      <div className="w-full h-full hidden dark:block" style={{ background: darkColor, clipPath }} />
+      <div className="w-full h-full dark:hidden" style={{ background: "var(--color-primary-400)", clipPath }} />
+      <div className="w-full h-full hidden dark:block" style={{ background: "var(--color-primary-600)", clipPath }} />
     </div>
   );
 }
@@ -113,30 +113,24 @@ export function BackgroundDecoration() {
         />
       </div>
 
-      {/* Layer 2: 3D City Skyline — Background Plane */}
+      {/* Layer 2: Forest — Background (most fog) */}
       {!prefersReducedMotion && (
-        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: bgX, y: bgY }}>
-          {BUILDINGS_BG.map((b, i) => (
-            <Building key={i} data={b} lightColor="var(--color-primary-200)" darkColor="var(--color-primary-800)" />
-          ))}
+        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: bgX, y: bgY, opacity: 0.35 }}>
+          {BUILDINGS_BG.map((b, i) => <Building key={i} data={b} />)}
         </motion.div>
       )}
 
-      {/* Layer 2: 3D City Skyline — Midground Plane */}
+      {/* Layer 2: Forest — Midground (medium fog) */}
       {!prefersReducedMotion && (
-        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: midX, y: midY }}>
-          {BUILDINGS_MID.map((b, i) => (
-            <Building key={i} data={b} lightColor="var(--color-primary-300)" darkColor="var(--color-primary-700)" />
-          ))}
+        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: midX, y: midY, opacity: 0.65 }}>
+          {BUILDINGS_MID.map((b, i) => <Building key={i} data={b} />)}
         </motion.div>
       )}
 
-      {/* Layer 2: 3D City Skyline — Foreground Plane */}
+      {/* Layer 2: Forest — Foreground (no fog) */}
       {!prefersReducedMotion && (
         <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: fgX, y: fgY }}>
-          {BUILDINGS_FG.map((b, i) => (
-            <Building key={i} data={b} lightColor="var(--color-primary-400)" darkColor="var(--color-primary-600)" />
-          ))}
+          {BUILDINGS_FG.map((b, i) => <Building key={i} data={b} />)}
         </motion.div>
       )}
 
