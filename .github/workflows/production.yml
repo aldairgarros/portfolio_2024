@@ -81,14 +81,22 @@ jobs:
           sleep 5
           if systemctl is-active --quiet nginx; then echo "Nginx is running"
           else echo "Error: Nginx is not running"; exit 1; fi
+          BACKUP_DIR="${{ steps.pre_deployment.outputs.backup_dir }}"
           if curl -s --head https://aldairgarros.com | grep "200 OK" > /dev/null; then
             echo "Application is accessible"
-            rm -rf ${{ steps.pre_deployment.outputs.backup_dir }}
+            if [ -n "$(ls -A "$BACKUP_DIR" 2>/dev/null)" ]; then
+              rm -rf "$BACKUP_DIR"
+            fi
           else
             echo "Error: Application is not accessible"
-            rm -rf /var/www/aldairgarros
-            mv ${{ steps.pre_deployment.outputs.backup_dir }} /var/www/aldairgarros
-            sudo systemctl reload nginx
+            if [ -n "$(ls -A "$BACKUP_DIR" 2>/dev/null)" ]; then
+              echo "Restoring from backup..."
+              rm -rf /var/www/aldairgarros
+              mv "$BACKUP_DIR" /var/www/aldairgarros
+              sudo systemctl reload nginx
+            else
+              echo "Warning: No backup to restore. Keeping deployed files."
+            fi
             exit 1
           fi
           EOF
