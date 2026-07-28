@@ -28,79 +28,45 @@ interface BuildingData {
 }
 
 const BUILDINGS_BG: BuildingData[] = [
-  { left: "2%", width: 50, height: "100%", angled: false, spine: false },
-  { left: "8%", width: 65, height: "100%", angled: false, spine: false },
-  { left: "15%", width: 45, height: "100%", angled: true, spine: false },
-  { left: "22%", width: 70, height: "100%", angled: false, spine: false },
-  { left: "30%", width: 55, height: "100%", angled: true, spine: false },
-  { left: "38%", width: 60, height: "100%", angled: false, spine: false },
-  { left: "46%", width: 50, height: "100%", angled: false, spine: false },
-  { left: "55%", width: 65, height: "100%", angled: true, spine: false },
-  { left: "63%", width: 45, height: "100%", angled: false, spine: false },
-  { left: "70%", width: 55, height: "100%", angled: false, spine: false },
-  { left: "78%", width: 60, height: "100%", angled: true, spine: false },
-  { left: "86%", width: 50, height: "100%", angled: false, spine: false },
-  { left: "92%", width: 65, height: "100%", angled: false, spine: false },
+  { left: "3%", width: 28, height: "100%", angled: false, spine: false },
+  { left: "15%", width: 32, height: "100%", angled: false, spine: false },
+  { left: "28%", width: 26, height: "100%", angled: false, spine: false },
+  { left: "40%", width: 30, height: "100%", angled: false, spine: false },
+  { left: "52%", width: 28, height: "100%", angled: false, spine: false },
+  { left: "64%", width: 32, height: "100%", angled: false, spine: false },
+  { left: "76%", width: 26, height: "100%", angled: false, spine: false },
+  { left: "88%", width: 30, height: "100%", angled: false, spine: false },
 ];
 
 const BUILDINGS_MID: BuildingData[] = [
-  { left: "5%", width: 70, height: "100%", angled: true, spine: false },
-  { left: "13%", width: 80, height: "100%", angled: false, spine: false },
-  { left: "20%", width: 60, height: "100%", angled: false, spine: false },
-  { left: "28%", width: 90, height: "100%", angled: true, spine: true },
-  { left: "36%", width: 75, height: "100%", angled: false, spine: false },
-  { left: "45%", width: 85, height: "100%", angled: true, spine: false },
+  { left: "8%", width: 55, height: "100%", angled: true, spine: false },
+  { left: "23%", width: 60, height: "100%", angled: false, spine: false },
+  { left: "38%", width: 55, height: "100%", angled: true, spine: false },
   { left: "53%", width: 65, height: "100%", angled: false, spine: false },
-  { left: "60%", width: 95, height: "100%", angled: true, spine: true },
-  { left: "72%", width: 70, height: "100%", angled: false, spine: false },
-  { left: "80%", width: 80, height: "100%", angled: true, spine: false },
-  { left: "88%", width: 75, height: "100%", angled: false, spine: false },
+  { left: "68%", width: 55, height: "100%", angled: true, spine: true },
+  { left: "83%", width: 60, height: "100%", angled: false, spine: false },
 ];
 
 const BUILDINGS_FG: BuildingData[] = [
-  { left: "3%", width: 100, height: "100%", angled: false, spine: true },
-  { left: "16%", width: 85, height: "100%", angled: true, spine: false },
-  { left: "24%", width: 120, height: "100%", angled: false, spine: true },
-  { left: "38%", width: 90, height: "100%", angled: true, spine: false },
-  { left: "48%", width: 110, height: "100%", angled: false, spine: true },
-  { left: "62%", width: 100, height: "100%", angled: true, spine: false },
-  { left: "74%", width: 120, height: "100%", angled: false, spine: true },
-  { left: "88%", width: 95, height: "100%", angled: true, spine: false },
+  { left: "1%", width: 100, height: "100%", angled: true, spine: true },
+  { left: "25%", width: 120, height: "100%", angled: false, spine: true },
+  { left: "47%", width: 110, height: "100%", angled: true, spine: true },
+  { left: "67%", width: 130, height: "100%", angled: false, spine: true },
+  { left: "88%", width: 100, height: "100%", angled: true, spine: true },
 ];
 
-function Building({ data, lightOp, darkOp }: { data: BuildingData; lightOp: number; darkOp: number }) {
-  const clipPath = data.angled
-    ? "polygon(0% 100%, 0% 40%, 50% 0%, 100% 40%, 100% 100%)"
-    : undefined;
+function Building({ data, lightColor, darkColor }: { data: BuildingData; lightColor: string; darkColor: string }) {
+  const clipPath = data.angled ? "polygon(0% 100%, 0% 40%, 50% 0%, 100% 40%, 100% 100%)" : undefined;
 
   return (
-    <div
-      className="absolute bottom-0"
-      style={{ left: data.left, width: data.width, height: data.height }}
-    >
-      <div
-        className="w-full h-full dark:hidden"
-        style={{
-          background: `linear-gradient(to top, rgb(0 0 0 / ${lightOp}) 0%, transparent 80%)`,
-          clipPath,
-        }}
-      />
-      <div
-        className="w-full h-full hidden dark:block"
-        style={{
-          background: `linear-gradient(to top, rgb(255 255 255 / ${darkOp}) 0%, transparent 80%)`,
-          clipPath,
-        }}
-      />
+    <div className="absolute bottom-0" style={{ left: data.left, width: data.width, height: data.height }}>
+      <div className="w-full h-full dark:hidden" style={{ background: lightColor, clipPath }} />
+      <div className="w-full h-full hidden dark:block" style={{ background: darkColor, clipPath }} />
       {data.spine && (
-        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[25%] dark:hidden"
-          style={{ background: `rgb(0 0 0 / ${lightOp})` }}
-        />
+        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-0.5 h-[25%] dark:hidden" style={{ background: lightColor }} />
       )}
       {data.spine && (
-        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[25%] hidden dark:block"
-          style={{ background: `rgb(255 255 255 / ${darkOp})` }}
-        />
+        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-0.5 h-[25%] hidden dark:block" style={{ background: darkColor }} />
       )}
     </div>
   );
@@ -132,7 +98,6 @@ export function BackgroundDecoration() {
 
   return (
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-
       {/* Layer 1: Perspective Grid Floor */}
       <div style={{ perspective: "800px", perspectiveOrigin: "50% 40%" }} className="absolute inset-0 dark:hidden">
         <motion.div
@@ -159,7 +124,7 @@ export function BackgroundDecoration() {
       {!prefersReducedMotion && (
         <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: bgX, y: bgY }}>
           {BUILDINGS_BG.map((b, i) => (
-            <Building key={i} data={b} lightOp={0.018} darkOp={0.012} />
+            <Building key={i} data={b} lightColor="var(--color-primary-200)" darkColor="var(--color-primary-800)" />
           ))}
         </motion.div>
       )}
@@ -168,7 +133,7 @@ export function BackgroundDecoration() {
       {!prefersReducedMotion && (
         <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: midX, y: midY }}>
           {BUILDINGS_MID.map((b, i) => (
-            <Building key={i} data={b} lightOp={0.035} darkOp={0.02} />
+            <Building key={i} data={b} lightColor="var(--color-primary-300)" darkColor="var(--color-primary-700)" />
           ))}
         </motion.div>
       )}
@@ -177,7 +142,7 @@ export function BackgroundDecoration() {
       {!prefersReducedMotion && (
         <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: fgX, y: fgY }}>
           {BUILDINGS_FG.map((b, i) => (
-            <Building key={i} data={b} lightOp={0.055} darkOp={0.03} />
+            <Building key={i} data={b} lightColor="var(--color-primary-400)" darkColor="var(--color-primary-600)" />
           ))}
         </motion.div>
       )}
@@ -204,7 +169,6 @@ export function BackgroundDecoration() {
           }}
         />
       )}
-
     </div>
   );
 }
