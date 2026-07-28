@@ -24,6 +24,9 @@
   --color-secondary-800: var(--color-rose-800);
   --color-secondary-900: var(--color-rose-900);
   --color-secondary-950: var(--color-rose-950);
+
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
