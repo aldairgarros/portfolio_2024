@@ -23,7 +23,7 @@ export function Hero() {
           <div className="mt-8 flex justify-center">
             <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-secondary-500/30">
               <span className="text-secondary-600 dark:text-secondary-400 text-sm font-semibold">
-                USP/ESALQ &middot; 2026
+                {t("education.course.institution")}
               </span>
             </GlassCard>
           </div>

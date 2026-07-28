@@ -21,7 +21,6 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [direction, setDirection] = useState(0);
   const touchRef = useRef<{ startX: number; startDist: number; startZoom: number } | null>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
 
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
@@ -105,10 +104,11 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
     }
   };
 
-  if (!open) return null;
-
   return createPortal(
+    <AnimatePresence>
+      {open && (
     <motion.div
+      key="lightbox"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -158,7 +158,6 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
           className="flex items-center justify-center w-full h-full p-16"
         >
           <img
-            ref={imageRef}
             src={images[index].src}
             alt={images[index].alt ?? ""}
             className="max-w-[90vw] max-h-[85vh] object-contain select-none"
@@ -182,7 +181,9 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
           <ChevronRight size={28} />
         </button>
       )}
-    </motion.div>,
+    </motion.div>
+      )}
+    </AnimatePresence>,
     document.body
   );
 }
