@@ -97,7 +97,7 @@ export function Project() {
                     alt={img.alt}
                     width={+img.width}
                     height={+img.height}
-                    className="rounded-xl object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-accent-500/50 transition-all duration-200"
+                    className="rounded-xl object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-accent-500/50 transition-all duration-200 bg-white dark:bg-transparent"
                     loading="lazy"
                     onClick={() => openLightbox(index)}
                   />

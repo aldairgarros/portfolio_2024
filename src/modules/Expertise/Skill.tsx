@@ -40,7 +40,7 @@ export function Skill({ expertise, skill, ...rest }: Props) {
         alt={t(`list.${expertise}.list.${skill}.label`)}
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="w-10 h-10 object-contain bg-white dark:bg-transparent"
       />
       <span className="text-xs text-center text-primary-700 dark:text-primary-300 leading-tight">
         {t(`list.${expertise}.list.${skill}.label`)}

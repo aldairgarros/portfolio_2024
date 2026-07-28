@@ -48,6 +48,33 @@ const POLYLINES: { points: [number, number][]; }[] = [
   { points: [[60, 42], [60, 25], [55, 25]] },
 ];
 
+interface BuildingData {
+  left: string;
+  width: number;
+  height: string;
+  angled: boolean;
+  spine: boolean;
+}
+
+const BUILDINGS: BuildingData[] = [
+  { left: "1%", width: 70, height: "50%", angled: false, spine: true },
+  { left: "6%", width: 55, height: "25%", angled: true, spine: false },
+  { left: "10%", width: 90, height: "55%", angled: true, spine: false },
+  { left: "18%", width: 60, height: "20%", angled: false, spine: false },
+  { left: "22%", width: 100, height: "40%", angled: false, spine: true },
+  { left: "31%", width: 75, height: "48%", angled: true, spine: false },
+  { left: "37%", width: 50, height: "15%", angled: false, spine: false },
+  { left: "40%", width: 110, height: "60%", angled: true, spine: true },
+  { left: "50%", width: 65, height: "30%", angled: false, spine: false },
+  { left: "55%", width: 85, height: "50%", angled: true, spine: false },
+  { left: "62%", width: 70, height: "22%", angled: false, spine: false },
+  { left: "67%", width: 95, height: "42%", angled: false, spine: true },
+  { left: "75%", width: 55, height: "18%", angled: true, spine: false },
+  { left: "78%", width: 100, height: "52%", angled: true, spine: false },
+  { left: "87%", width: 60, height: "35%", angled: false, spine: false },
+  { left: "91%", width: 80, height: "45%", angled: true, spine: true },
+];
+
 function Node({ data }: { data: NodeData }) {
   return (
     <motion.rect
@@ -70,17 +97,53 @@ function Node({ data }: { data: NodeData }) {
   );
 }
 
+function Building({ data }: { data: BuildingData }) {
+  const clipPath = data.angled
+    ? "polygon(0% 100%, 0% 25%, 50% 0%, 100% 25%, 100% 100%)"
+    : undefined;
+
+  return (
+    <div
+      className="absolute bottom-0"
+      style={{ left: data.left, width: data.width, height: data.height }}
+    >
+      <div
+        className="w-full h-full dark:hidden"
+        style={{
+          background: "linear-gradient(to top, rgb(0 0 0 / 0.05) 0%, transparent 60%)",
+          clipPath,
+        }}
+      />
+      <div
+        className="w-full h-full hidden dark:block"
+        style={{
+          background: "linear-gradient(to top, rgb(255 255 255 / 0.03) 0%, transparent 60%)",
+          clipPath,
+        }}
+      />
+      {data.spine && (
+        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[12%] dark:hidden"
+          style={{ background: "rgb(0 0 0 / 0.03)" }}
+        />
+      )}
+      {data.spine && (
+        <div className="absolute left-1/2 bottom-full -translate-x-1/2 w-[2px] h-[12%] hidden dark:block"
+          style={{ background: "rgb(255 255 255 / 0.02)" }}
+        />
+      )}
+    </div>
+  );
+}
+
 export function BackgroundDecoration() {
   const prefersReducedMotion = useReducedMotion();
-  const { x: mouseX, y: mouseY } = useMousePosition();
+  const { x: mouseX } = useMousePosition();
 
   const { scrollYProgress } = useScroll();
   const gridY = useTransform(scrollYProgress, [0, 1], [0, 15]);
+  const skylineY = useTransform(scrollYProgress, [0, 1], [0, -10]);
 
-  const bar1X = useSpring(useTransform(mouseX, [-1, 1], [-15, 15]), { stiffness: 60, damping: 18 });
-  const bar1Y = useSpring(useTransform(mouseY, [-1, 1], [-15, 15]), { stiffness: 60, damping: 18 });
-  const bar2X = useSpring(useTransform(mouseX, [-1, 1], [12, -12]), { stiffness: 60, damping: 18 });
-  const bar2Y = useSpring(useTransform(mouseY, [-1, 1], [12, -12]), { stiffness: 60, damping: 18 });
+  const skyX = useSpring(useTransform(mouseX, [-1, 1], [-8, 8]), { stiffness: 50, damping: 20 });
 
   const gridStyle = {
     transform: "rotateX(72deg)",
@@ -95,7 +158,7 @@ export function BackgroundDecoration() {
   return (
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
 
-      {/* Layer 1: Perspective Grid Floor — light mode */}
+      {/* Layer 1: Perspective Grid Floor — light */}
       <div style={{ perspective: "800px", perspectiveOrigin: "50% 40%" }} className="absolute inset-0 dark:hidden">
         <motion.div
           style={{
@@ -107,7 +170,7 @@ export function BackgroundDecoration() {
         />
       </div>
 
-      {/* Layer 1: Perspective Grid Floor — dark mode */}
+      {/* Layer 1: Perspective Grid Floor — dark */}
       <div style={{ perspective: "800px", perspectiveOrigin: "50% 40%" }} className="absolute inset-0 hidden dark:block">
         <motion.div
           style={{
@@ -138,62 +201,19 @@ export function BackgroundDecoration() {
         </svg>
       )}
 
-      {/* Layer 3: Angular Accent Bars */}
+      {/* Layer 3: Futuristic City Skyline */}
       {!prefersReducedMotion && (
-        <>
-          <motion.div
-            style={{ x: bar1X, y: bar1Y }}
-            className="absolute -top-10 -right-20 w-[500px] h-[250px]"
-            initial={{ rotate: 32 }}
-          >
-            <div
-              className="w-full h-full dark:hidden"
-              style={{
-                background: "linear-gradient(135deg, rgb(0 0 0 / 0.06) 0%, transparent 100%)",
-                clipPath: "polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%)",
-              }}
-            />
-            <div
-              className="w-full h-full hidden dark:block"
-              style={{
-                background: "linear-gradient(135deg, rgb(255 255 255 / 0.04) 0%, transparent 100%)",
-                clipPath: "polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%)",
-              }}
-            />
-          </motion.div>
-          <motion.div
-            style={{ x: bar2X, y: bar2Y }}
-            className="absolute -bottom-20 -left-10 w-[450px] h-[220px]"
-            initial={{ rotate: -48 }}
-          >
-            <div
-              className="w-full h-full dark:hidden"
-              style={{
-                background: "linear-gradient(225deg, rgb(0 0 0 / 0.06) 0%, transparent 100%)",
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%)",
-              }}
-            />
-            <div
-              className="w-full h-full hidden dark:block"
-              style={{
-                background: "linear-gradient(225deg, rgb(255 255 255 / 0.04) 0%, transparent 100%)",
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%)",
-              }}
-            />
-          </motion.div>
-        </>
+        <motion.div
+          className="absolute inset-x-0 bottom-0 h-full"
+          style={{ x: skyX, y: skylineY }}
+        >
+          {BUILDINGS.map((b, i) => (
+            <Building key={i} data={b} />
+          ))}
+        </motion.div>
       )}
 
-      {/* Layer 4: Metallic Grain */}
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.04 }}>
-        <filter id="mesh-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#mesh-noise)" />
-      </svg>
-
-      {/* Layer 5: Scan Lines */}
+      {/* Layer 4: Scan Lines */}
       {!prefersReducedMotion && (
         <motion.div
           className="absolute inset-0"
