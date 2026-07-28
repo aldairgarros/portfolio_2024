@@ -48,9 +48,9 @@ export function BackgroundDecoration() {
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden">
       {/* Layer 1: Animated blobs */}
       {!prefersReducedMotion && blobs.map((blob, i) => (
-        <motion.div key={i} style={{ y: scrollOffset }}>
+        <motion.div key={i} className="absolute" style={{ y: scrollOffset }}>
           <motion.div
-            className={`${blob.size} ${blob.color} blur-3xl rounded-full`}
+            className={`absolute ${blob.size} ${blob.color} blur-3xl rounded-full`}
             style={{
               top: blob.top,
               left: "left" in blob ? blob.left : undefined,

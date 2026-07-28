@@ -57,7 +57,7 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
             <p className="text-sm text-primary-600 dark:text-primary-400 line-clamp-3">
               {t("overview.value")}
             </p>
-            <span className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-secondary-600 dark:text-secondary-400 group-hover:gap-2 transition-all">
+            <span className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-accent-600 dark:text-accent-400 group-hover:gap-2 transition-all">
               {tp("open")}
               <ArrowRight size={14} aria-hidden="true" />
             </span>

@@ -29,7 +29,7 @@ export function About() {
             <GlassCard hover className="p-8">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                 <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50 flex items-center gap-2">
-                  <Briefcase size={20} className="text-secondary-500 shrink-0" />
+                  <Briefcase size={20} className="text-accent-500 shrink-0" />
                   {t(`list.${item}.title.value`)}
                 </h3>
                 <span className="text-sm font-mono text-primary-500 dark:text-primary-400 mt-1 sm:mt-0 flex items-center gap-1">

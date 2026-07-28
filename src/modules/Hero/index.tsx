@@ -33,9 +33,9 @@ export function Hero() {
         style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
         className="relative"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-500/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-b from-accent-500/10 to-transparent rounded-full blur-3xl" />
         <div className="relative">
-          <p className="text-sm sm:text-base font-medium text-secondary-600 dark:text-secondary-400 mb-4 tracking-widest uppercase">
+          <p className="text-sm sm:text-base font-medium text-accent-600 dark:text-accent-400 mb-4 tracking-widest uppercase">
             {t("hero.title.label")}
           </p>
           <motion.h1
@@ -48,8 +48,8 @@ export function Hero() {
             {t("hero.subtitle.value")}
           </p>
           <div className="mt-8 flex justify-center">
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-secondary-500/30">
-              <span className="text-secondary-600 dark:text-secondary-400 text-sm font-semibold">
+            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-accent-500/30">
+              <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">
                 {t("education.course.institution")}
               </span>
             </GlassCard>

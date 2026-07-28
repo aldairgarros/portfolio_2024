@@ -35,7 +35,7 @@ export function MenuBar({ links }: Props) {
         role="navigation"
         aria-label="Main navigation">
         <button
-          className="sm:hidden flex items-center justify-center w-12 h-12 cursor-pointer select-none focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+          className="sm:hidden flex items-center justify-center w-12 h-12 cursor-pointer select-none focus:ring-2 focus:ring-accent-500 focus:outline-none"
           onClick={() => setIsMenuOpen((state) => !state)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}>
@@ -45,13 +45,13 @@ export function MenuBar({ links }: Props) {
           <div className="flex items-center gap-1">
             <Link
               to="/"
-              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-accent-600 dark:hover:text-accent-400 transition-colors focus:ring-2 focus:ring-accent-500 focus:outline-none rounded">
               AG
             </Link>
             {links.map((link) => (
               <Link
                 key={link.hash}
-                className="px-3 py-1 text-sm font-medium text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors rounded focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+                className="px-3 py-1 text-sm font-medium text-primary-700 dark:text-primary-300 hover:text-accent-600 dark:hover:text-accent-400 transition-colors rounded focus:ring-2 focus:ring-accent-500 focus:outline-none"
                 to={{ pathname: "/", hash: link.hash }}>
                 {link.label}
               </Link>
@@ -60,9 +60,9 @@ export function MenuBar({ links }: Props) {
           <div className="flex items-center">
             <div className="flex rounded-full border border-primary-300 dark:border-primary-600 overflow-hidden">
               <button
-                className={`px-3 py-1 text-xs font-medium transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none ${
+                className={`px-3 py-1 text-xs font-medium transition-colors focus:ring-2 focus:ring-accent-500 focus:outline-none ${
                   language === "en"
-                    ? "bg-secondary-500 text-white"
+                    ? "bg-accent-500 text-white"
                     : "text-primary-600 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-200"
                 }`}
                 onClick={() => handleLanguageChange("en")}
@@ -71,9 +71,9 @@ export function MenuBar({ links }: Props) {
                 EN
               </button>
               <button
-                className={`px-3 py-1 text-xs font-medium transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none ${
+                className={`px-3 py-1 text-xs font-medium transition-colors focus:ring-2 focus:ring-accent-500 focus:outline-none ${
                   language === "br"
-                    ? "bg-secondary-500 text-white"
+                    ? "bg-accent-500 text-white"
                     : "text-primary-600 dark:text-primary-400 hover:text-primary-900 dark:hover:text-primary-200"
                 }`}
                 onClick={() => handleLanguageChange("br")}

@@ -47,7 +47,7 @@ export function Project() {
       <div className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <Link
           to="/#projects"
-          className="inline-flex items-center gap-1 text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 transition-colors mb-12 focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          className="inline-flex items-center gap-1 text-sm text-accent-600 dark:text-accent-400 hover:text-accent-800 dark:hover:text-accent-200 transition-colors mb-12 focus:ring-2 focus:ring-accent-500 focus:outline-none rounded">
           <ArrowLeft size={16} aria-hidden="true" />
           {tProjects("title")}
         </Link>
@@ -78,7 +78,7 @@ export function Project() {
               href={linkHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-secondary-500/30 text-secondary-600 dark:text-secondary-400 hover:bg-secondary-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-accent-500/30 text-accent-600 dark:text-accent-400 hover:bg-accent-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-accent-500 focus:outline-none">
               {linkValue || "Visit project"}
               <ExternalLink size={16} aria-hidden="true" />
             </a>
@@ -97,7 +97,7 @@ export function Project() {
                     alt={img.alt}
                     width={+img.width}
                     height={+img.height}
-                    className="rounded-xl object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-secondary-500/50 transition-all duration-200"
+                    className="rounded-xl object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-accent-500/50 transition-all duration-200"
                     loading="lazy"
                     onClick={() => openLightbox(index)}
                   />

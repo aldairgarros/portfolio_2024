@@ -18,12 +18,12 @@ export function Education() {
       >
         <GlassCard hover className="max-w-2xl">
           <div className="flex items-start gap-4">
-            <GraduationCap size={28} className="text-secondary-500 shrink-0 mt-1" />
+            <GraduationCap size={28} className="text-accent-500 shrink-0 mt-1" />
             <div>
               <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50">
               {t("course.title")}
             </h3>
-            <p className="text-sm text-secondary-600 dark:text-secondary-400 mt-1">
+            <p className="text-sm text-accent-600 dark:text-accent-400 mt-1">
               {t("course.institution")} &mdash; {t("course.period")}
             </p>
             <p className="mt-4 text-primary-700 dark:text-primary-300 leading-relaxed">
