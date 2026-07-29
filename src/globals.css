@@ -113,6 +113,11 @@
 @keyframes scan-left { to { background-position: -70px 0; } }
 @keyframes scan-right { to { background-position: 35px 0; } }
 
+@keyframes l1 { to { background-position: 0 -250px; } }
+@keyframes l2 { to { background-position: 0 300px; } }
+@keyframes l3 { to { background-position: 0 -400px; } }
+@keyframes l4 { to { background-position: 0 500px; } }
+
 @media (prefers-color-scheme: dark) {
   :root {
     background-color: var(--color-primary-900);
