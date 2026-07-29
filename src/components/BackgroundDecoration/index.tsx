@@ -18,7 +18,7 @@ export function BackgroundDecoration() {
 
   return (
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Layer 1: Perspective Grid Floor */}
+      {/* Perspective Grid Floor */}
       <div style={{ perspective: "800px", perspectiveOrigin: "50% 40%" }} className="absolute inset-0 dark:hidden">
         <motion.div
           style={{
@@ -40,42 +40,49 @@ export function BackgroundDecoration() {
         />
       </div>
 
-      {/* Scan line — horizontal stripes scanning downward */}
-      {!prefersReducedMotion && (
-        <motion.div
-          className="absolute inset-0"
-          animate={{ y: ["0%", "60px"] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(transparent 0px, transparent 57px, rgb(128 128 128 / 0.015) 57px, rgb(128 128 128 / 0.015) 60px)",
-            backgroundSize: "100% 60px",
-          }}
-        />
-      )}
+      {/* Horizontal stripes — scanning down (120px spacing, 1px line, 10s) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(transparent 0px, transparent 119px, rgb(128 128 128 / 0.015) 119px, rgb(128 128 128 / 0.015) 120px)",
+          backgroundSize: "100% 120px",
+          animation: prefersReducedMotion ? "none" : "scan-down 10s linear infinite",
+        }}
+      />
 
-      {/* Scan line — vertical stripes scanning leftward */}
-      {!prefersReducedMotion && (
-        <motion.div
-          className="absolute inset-0"
-          animate={{ x: ["0%", "-60px"] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(90deg, transparent 0px, transparent 57px, rgb(128 128 128 / 0.015) 57px, rgb(128 128 128 / 0.015) 60px)",
-            backgroundSize: "60px 100%",
-          }}
-        />
-      )}
+      {/* Horizontal stripes — scanning up (45px spacing, 3px line, 5s) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(transparent 0px, transparent 42px, rgb(128 128 128 / 0.025) 42px, rgb(128 128 128 / 0.025) 45px)",
+          backgroundSize: "100% 45px",
+          animation: prefersReducedMotion ? "none" : "scan-up 5s linear infinite",
+        }}
+      />
 
-      {/* Grain */}
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.04 }}>
-        <filter id="mesh-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#mesh-noise)" />
-      </svg>
+      {/* Vertical stripes — scanning left (70px spacing, 2px line, 7s) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(90deg, transparent 0px, transparent 68px, rgb(128 128 128 / 0.02) 68px, rgb(128 128 128 / 0.02) 70px)",
+          backgroundSize: "70px 100%",
+          animation: prefersReducedMotion ? "none" : "scan-left 7s linear infinite",
+        }}
+      />
+
+      {/* Vertical stripes — scanning right (35px spacing, 1px line, 4s) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(90deg, transparent 0px, transparent 34px, rgb(128 128 128 / 0.015) 34px, rgb(128 128 128 / 0.015) 35px)",
+          backgroundSize: "35px 100%",
+          animation: prefersReducedMotion ? "none" : "scan-right 4s linear infinite",
+        }}
+      />
     </div>
   );
 }

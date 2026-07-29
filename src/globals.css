@@ -107,6 +107,12 @@
   color: var(--color-primary-950);
 }
 
+/* Scan line keyframes */
+@keyframes scan-down { to { background-position: 0 120px; } }
+@keyframes scan-up { to { background-position: 0 -45px; } }
+@keyframes scan-left { to { background-position: -70px 0; } }
+@keyframes scan-right { to { background-position: 35px 0; } }
+
 @media (prefers-color-scheme: dark) {
   :root {
     background-color: var(--color-primary-900);
