@@ -108,15 +108,10 @@
 }
 
 /* Scan line keyframes */
-@keyframes scan-down { to { background-position: 0 120px; } }
-@keyframes scan-up { to { background-position: 0 -45px; } }
-@keyframes scan-left { to { background-position: -70px 0; } }
-@keyframes scan-right { to { background-position: 35px 0; } }
-
-@keyframes l1 { to { background-position: 0 -250px; } }
-@keyframes l2 { to { background-position: 0 300px; } }
-@keyframes l3 { to { background-position: 0 -400px; } }
-@keyframes l4 { to { background-position: 0 500px; } }
+@keyframes l1 { to { background-position: 0 -35px; } }
+@keyframes l2 { to { background-position: 0 50px; } }
+@keyframes l3 { to { background-position: 0 -70px; } }
+@keyframes l4 { to { background-position: 0 95px; } }
 
 @media (prefers-color-scheme: dark) {
   :root {
