@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { FullScreenMenu } from "./FullScreenMenu";
-import { Link, ScrollRestoration } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { GlassCard } from "@/components/GlassCard";
 import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link, ScrollRestoration } from "react-router-dom";
+import { FullScreenMenu } from "./FullScreenMenu";
 
 interface LinkItem {
   label: string;
@@ -30,30 +31,26 @@ export function MenuBar({ links }: Props) {
   return (
     <>
       <ScrollRestoration />
-      <nav
-        className="fixed top-0 flex justify-end w-full backdrop-blur-md bg-white/70 dark:bg-primary-900/70 z-30"
-        role="navigation"
-        aria-label="Main navigation">
+      <nav className="fixed top-0 flex justify-end w-full z-30" role="navigation" aria-label="Main navigation">
         <button
           className="sm:hidden flex items-center justify-center w-12 h-12 cursor-pointer select-none focus:ring-2 focus:ring-accent-500 focus:outline-none"
           onClick={() => setIsMenuOpen((state) => !state)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}>
-          {isMenuOpen ? <X size={20} className="text-primary-900 dark:text-primary-50" /> : <Menu size={20} className="text-primary-900 dark:text-primary-50" />}
+          {isMenuOpen ? (
+            <X size={20} className="text-primary-900 dark:text-primary-50" />
+          ) : (
+            <Menu size={20} className="text-primary-900 dark:text-primary-50" />
+          )}
         </button>
         <div className="hidden sm:flex w-full max-w-6xl h-12 mx-auto items-center justify-between px-4">
-          <div className="flex items-center gap-1">
-            <Link
-              to="/"
-              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-accent-600 dark:hover:text-accent-400 transition-colors focus:ring-2 focus:ring-accent-500 focus:outline-none rounded">
-              AG
-            </Link>
+          <div className="flex items-center py-3 gap-2">
             {links.map((link) => (
               <Link
                 key={link.hash}
-                className="px-3 py-1 text-sm font-medium text-primary-700 dark:text-primary-300 hover:text-accent-600 dark:hover:text-accent-400 transition-colors rounded focus:ring-2 focus:ring-accent-500 focus:outline-none"
+                className="text-sm font-medium text-primary-700 dark:text-primary-300 hover:text-accent-600 dark:hover:text-accent-400 transition-colors focus:outline-none"
                 to={{ pathname: "/", hash: link.hash }}>
-                {link.label}
+                <GlassCard className="inline-flex items-center px-3 py-1 border-accent-500/30">{link.label}</GlassCard>
               </Link>
             ))}
           </div>

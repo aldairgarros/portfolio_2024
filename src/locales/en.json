@@ -4,12 +4,22 @@
   },
   "hero": {
     "title": {
-      "label": "developer",
+      "label": "professional",
       "value": "Aldair Garros"
     },
     "subtitle": {
       "label": "intro",
-      "value": "A Fullstack Developer specialized in Web and Mobile Development -- and a Software Engineering Specialist from USP/ESALQ"
+      "value": "A Software Engineering Specialist and Fullstack Developer with expertise in Web and Mobile applications, UI/UX design and user-centered development"
+    },
+    "extras": {
+      "available": {
+        "label": "Available",
+        "value": "Available for new opportunities"
+      },
+      "artificialIntelligence": {
+        "label": "AI Ready",
+        "value": "Ready to work with Artificial Intelligence"
+      }
     }
   },
   "education": {
@@ -18,7 +28,7 @@
       "title": "Software Engineering Specialist",
       "institution": "USP/ESALQ",
       "period": "2024 — 2026",
-      "description": "Postgraduate specialization in Software Engineering at the University of Sao Paulo (USP/ESALQ). The program covered software architecture, design patterns, agile methodologies, project management, and culminated in a Design Thinking capstone project: Atalaia Pro — a real-time SPA/PWA system developed for the Atalaia port authority that reduced maritime maneuver report preparation time by 82%."
+      "description": "Postgraduate specialization in Software Engineering at the University of Sao Paulo (USP/ESALQ). The program covered software architecture, design patterns, agile methodologies, project management, and culminated in a Design Thinking capstone project: Atalaia Pro — a SPA/PWA system developed to improve communication in port control, capable of reducing report preparation time by up to 82%."
     }
   },
   "projects": {
@@ -209,15 +219,15 @@
         },
         "overview": {
           "label": "overview",
-          "value": "A modern SPA/PWA system for the Atalaia port authority that replaces error-prone manual Excel reports with an automated, real-time maneuver forecast platform for maritime pilots and control room operators."
+          "value": "A modern SPA/PWA system for a port control station that replaces error-prone manual Excel reports with an automated, real-time maneuver forecast platform for maritime pilots."
         },
         "description": {
           "label": "description",
-          "value": "Atalaia Pro streamlines operational communication at the Atalaia port authority by replacing manual spreadsheet-based maneuver forecasts with an automated, real-time system. Built as a Progressive Web App, it works offline and on mobile devices -- essential for maritime pilots at sea. Features include automatic data import from internal systems, dynamic schedule management with drag-and-drop, multi-scenario forecast support, and instant updates. Usability testing showed an 82% reduction in report preparation time compared to the previous Excel-based workflow."
+          "value": "Atalaia Pro streamlines operational communication at the Atalaia control room by replacing manual spreadsheet-based maneuver forecasts with an automated, real-time system. Built as a Progressive Web App, it works offline and on mobile devices -- essential for maritime pilots at sea. Features include automatic data import, dynamic schedule management, multi-scenario forecast support, and instant updates. Usability testing showed an 82% reduction in report preparation time compared to the previous Excel-based workflow."
         },
         "details": {
           "label": "details",
-          "value": "Single Page Application with PWA offline support. Replaces manual Excel-based reports with automated forecast generation. Drag-and-drop schedule management. Real-time updates for pilots. Responsive design for control room monitors and mobile devices. Import algorithm extracts data from legacy internal system. Progressive Web App enables offline access and home screen installation. 82% reduction in report preparation time validated through usability testing with operators and pilots."
+          "value": "Single Page Application with PWA offline support. Replaces manual Excel-based reports with automated forecast generation. Schedule management simplified with drag-and-drop. Real-time updates for pilots. Responsive design for control room large monitors and small mobile devices. Import algorithm extracts data from external sources. Progressive Web App enables offline access and home screen installation. 82% reduction in report preparation time validated through usability testing."
         },
         "link": {
           "label": "website",
@@ -300,7 +310,7 @@
         "title": "Mobile Development",
         "context": "Creating cross-platform native mobile applications for Android and iOS using React Native with shared TypeScript business logic.",
         "applicability": "Delivered 3 mobile applications from scratch: a personal finance app (Bolso Bom) with React Native, PostgreSQL backend, and JWT authentication; the Music Market community marketplace app connecting musicians and producers; and a social podcast app with chat rooms, media management, and user group permissions.",
-        "impact": "Shipped fully functional native apps with cross-platform TypeScript code reuse, secure authentication, push notifications, and REST API integration. Managed the full development lifecycle from UI/UX design through backend architecture and deployment.",
+        "impact": "Developed fully functional native apps with cross-platform TypeScript code reuse, secure authentication, push notifications, and REST API integration. Managed the full development lifecycle from UI/UX design through backend architecture and deployment.",
         "list": {
           "reactNative": { "label": "React Native", "imageSrc": "react.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
@@ -311,7 +321,7 @@
         "title": "DevOps & Infrastructure",
         "context": "Managing self-hosted production infrastructure on VPS environments — container orchestration, observability stacks, CI/CD pipelines, and automated deployments.",
         "applicability": "Designed and maintain a complete LGTM observability platform (Loki, Grafana, Tempo, Prometheus) with 9 containerized services on rootless Podman, 14 alert rules, 8 provisioned dashboards, and SLO-based alerting at 99.5% availability. All 6 production projects run Docker/Podman Compose with GitHub Actions CI/CD, SSH-based deploys, Nginx reverse proxies, and PostgreSQL exporter monitoring.",
-        "impact": "Established a self-healing infrastructure with automatic deploy rollbacks, Telegram + email alert routing, multi-window error budget tracking, and 30-day log/metric retention. Enabled full-stack observability — logs, metrics, and distributed traces — across all deployed applications from a single VPS.",
+        "impact": "Established a self-healing infrastructure with automatic deploy rollbacks, Telegram + email alert routing, multi-window error budget tracking, and 30-day log/metric retention. Enabled full-stack observability — logs, metrics, and distributed traces — across all deployed applications.",
         "list": {
           "docker": { "label": "Docker", "imageSrc": "docker.png" },
           "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
@@ -329,7 +339,7 @@
       "ux-strategy": {
         "title": "UX Strategy & Design",
         "context": "Applying user-centered design methodology from discovery research through high-fidelity prototyping — blending analytical rigor with creative problem-solving.",
-        "applicability": "Led 3 complete freelance UI/UX design projects using the Spiral UX UI Continuous methodology (a Double Diamond abstraction). Conducted user interviews, competitor analysis, proto-personas, journey mapping, CSD matrices, wireframes, usability testing, and delivered high-fidelity prototypes in Figma. Applied this design foundation across all development projects.",
+        "applicability": "Led 3 complete freelance UI/UX design projects using modern methodologies. Conducted user interviews, competitor analysis, proto-personas, journey mapping, CSD matrices, wireframes, usability testing, and delivered high-fidelity prototypes in Figma. Applied this design foundation across all development projects.",
         "impact": "Received consistently positive client feedback for simplified approaches, attention to detail, and actionable research insights. The design methodology now informs all development work — every project begins with user-centered analysis before a single line of code.",
         "list": {
           "ui": { "label": "UI Design", "imageSrc": "design.png" },
@@ -353,11 +363,11 @@
         },
         "work": {
           "label": "work",
-          "value": "I developed three complete projects, starting with research, user interviews, competitor analysis, proto-personas, user journey mapping, CSD matrix, UX metrics, maps and flows, wireframes, usability testing, to branding and high-fidelity prototypes, among other elements."
+          "value": "I developed four complete projects, starting with research, user interviews, competitor analysis, proto-personas, user journey mapping, CSD matrix, UX metrics, maps and flows, wireframes, usability testing, to branding and high-fidelity prototypes, among other elements."
         },
         "tools": {
           "label": "tools",
-          "value": "I adopted the Spiral UX UI Continuous methodology, an abstraction of the Double Diamond method, to conduct my projects, using Figma as the main tool."
+          "value": "I adopted the Design Thinking methodology to conduct my projects, using Figma as one of the main tools."
         },
         "achievements": {
           "label": "achievements",
@@ -391,7 +401,7 @@
         },
         "achievements": {
           "label": "achievements",
-          "value": "My projects include tools implemented in a port movements control room, contributing to daily operations. Developing and maintaining operational a pawn evaluation platform, and a financial control solution. While developing complex tables with selection, filtering, and sorting features, I opted to use the TanStack React Table and React Query libraries for cache management, resulting in significant performance improvements. Additionally, to address slow select inputs due to the large list of items, I implemented React Window to optimize rendering, significantly improving form performance and user experience. All products were delivered before the deadline, allowing for enhancements. Furthermore, I selected the Postgres database for its scalability potential. Also, I just finished developing an application for hiring services in local music market. Despite being my first professional projects, they received praise for attention to details, performance, and professionalism delivered."
+          "value": "My projects include tools under implementation in a port movements control room, contributing to daily operations. Developing and maintaining operational a pawn evaluation platform, a financial control solution, and a local music market service hiring application. While developing complex tables with selection, filtering, and sorting features, I opted to use the TanStack React Table and React Query libraries for cache management, resulting in significant performance improvements. Additionally, to address slow select inputs due to the large list of items, I implemented React Window to optimize rendering, significantly improving form performance and user experience. All products were delivered before the deadline, allowing for enhancements. Despite being my first professional projects, they received the due attention to detail."
         },
         "start": {
           "label": "start",

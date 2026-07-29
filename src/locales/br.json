@@ -4,12 +4,22 @@
   },
   "hero": {
     "title": {
-      "label": "desenvolvedor",
+      "label": "profissional",
       "value": "Aldair Garros"
     },
     "subtitle": {
       "label": "intro",
-      "value": "Desenvolvedor Fullstack especializado em Web e Mobile -- e Especialista em Engenharia de Software pela USP/ESALQ"
+      "value": "Especialista em Engenharia de Software e Desenvolvedor Fullstack com experiência em aplicações Web e Mobile, design UI/UX e desenvolvimento centrado no usuário"
+    },
+    "extras": {
+      "available": {
+        "label": "Disponivel",
+        "value": "Disponível para novas oportunidades"
+      },
+      "artificialIntelligence": {
+        "label": "Preparado para IA",
+        "value": "Pronto para trabalhar com Inteligência Artificial"
+      }
     }
   },
   "education": {
@@ -18,7 +28,7 @@
       "title": "Especialista em Engenharia de Software",
       "institution": "USP/ESALQ",
       "period": "2024 — 2026",
-      "description": "Especialização de pós-graduação em Engenharia de Software pela Universidade de São Paulo (USP/ESALQ). O programa abordou arquitetura de software, padrões de projeto, metodologias ágeis, gerenciamento de projetos e culminou em um projeto de conclusão baseado em Design Thinking: Atalaia Pro — um sistema SPA/PWA em tempo real desenvolvido para a autoridade portuária da Atalaia que reduziu o tempo de preparação de relatórios de manobra em 82%."
+      "description": "Especialização de pós-graduação em Engenharia de Software pela Universidade de São Paulo (USP/ESALQ). O programa abordou arquitetura de software, padrões de projeto, metodologias ágeis, gerenciamento de projetos e culminou em um projeto de conclusão baseado em Design Thinking: Atalaia Pro — um sistema SPA/PWA desenvolvido para qualificar a comunicação no controle portuário, capaz de reduzir o tempo de preparação de relatórios de movimentação em até 82%."
     }
   },
   "projects": {
@@ -209,15 +219,15 @@
         },
         "overview": {
           "label": "visão geral",
-          "value": "Um sistema SPA/PWA moderno para a autoridade portuária da Atalaia que substitui relatórios manuais em Excel por uma plataforma automatizada de previsão de manobras em tempo real para práticos e operadores da Sala de Controle."
+          "value": "Um sistema SPA/PWA moderno para uma estação de controle portuário que substitui relatórios manuais em Excel por uma plataforma automatizada de previsão de manobras em tempo real para práticos de navios."
         },
         "description": {
           "label": "descrição",
-          "value": "O Atalaia Pro otimiza a comunicação operacional na autoridade portuária da Atalaia, substituindo previsões manuais baseadas em planilhas por um sistema automatizado em tempo real. Construído como um Progressive Web App, funciona offline e em dispositivos móveis -- essencial para práticos no mar. Os recursos incluem importação automática de dados dos sistemas internos, gerenciamento dinâmico de escalas com arrastar e soltar, suporte a múltiplos cenários de previsão e atualizações instantâneas. Os testes de usabilidade mostraram redução de 82% no tempo de preparação de relatórios em comparação com o fluxo anterior baseado em Excel."
+          "value": "O Atalaia Pro otimiza a comunicação operacional na sala de controle da Atalaia, substituindo previsões manuais baseadas em planilhas por um sistema automatizado em tempo real. Construído como um Progressive Web App, funciona offline e em dispositivos móveis -- essencial para práticos no mar. Os recursos incluem importação automática de dados, gerenciamento dinâmico de escalas, suporte a múltiplos cenários de previsão e atualizações instantâneas. Os testes de usabilidade mostraram redução de 82% no tempo de preparação de relatórios em comparação com o fluxo anterior baseado em Excel."
         },
         "details": {
           "label": "detalhes",
-          "value": "Single Page Application com suporte offline via PWA. Substitui relatórios manuais em Excel por geração automatizada de previsões. Gerenciamento de escalas com arrastar e soltar. Atualizações em tempo real para práticos. Design responsivo para monitores da Sala de Controle e dispositivos móveis. Algoritmo de importação extrai dados do sistema interno legado. Progressive Web App permite acesso offline e instalação na tela inicial. Redução de 82% no tempo de preparação de relatórios validada por testes de usabilidade com operadores e práticos."
+          "value": "Single Page Application com suporte offline via PWA. Substitui relatórios manuais em Excel por geração automatizada de previsões. Gerenciamento de escalas simplificado com funções como arrastar e soltar. Atualizações em tempo real para práticos. Design responsivo para monitores grandes da Sala de Controle e dispositivos móveis pequenos. Algoritmo de importação extrai dados de fonte externa. Progressive Web App permite acesso offline e instalação na tela inicial. Redução de 82% no tempo de preparação de relatórios validada por testes de usabilidade."
         },
         "link": {
           "label": "website",
@@ -300,7 +310,7 @@
         "title": "Desenvolvimento Mobile",
         "context": "Criação de aplicativos móveis nativos multiplataforma para Android e iOS usando React Native com lógica de negócio compartilhada em TypeScript.",
         "applicability": "Entreguei 3 aplicativos móveis do zero: um app de finanças pessoais (Bolso Bom) com React Native, backend PostgreSQL e autenticação JWT; o app Music Market conectando músicos e produtores em um marketplace comunitário; e um app social de podcast com salas de chat, gestão de mídia e permissões por grupos de usuários.",
-        "impact": "Publiquei apps nativos totalmente funcionais com reuso de código TypeScript entre plataformas, autenticação segura, notificações push e integração com APIs REST. Gerenciei o ciclo completo de desenvolvimento, do design UI/UX à arquitetura backend e deploy.",
+        "impact": "Desenvolvi apps nativos totalmente funcionais com reuso de código TypeScript entre plataformas, autenticação segura, notificações push e integração com APIs REST. Gerenciei o ciclo completo de desenvolvimento, do design UI/UX à arquitetura backend e deploy.",
         "list": {
           "reactNative": { "label": "React Native", "imageSrc": "react.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
@@ -311,7 +321,7 @@
         "title": "DevOps & Infraestrutura",
         "context": "Gestão de infraestrutura auto-hospedada em VPS — orquestração de contêineres, stacks de observabilidade, pipelines CI/CD e deploys automatizados.",
         "applicability": "Projetei e mantenho uma plataforma completa de observabilidade LGTM (Loki, Grafana, Tempo, Prometheus) com 9 serviços conteinerizados em Podman rootless, 14 regras de alerta, 8 dashboards provisionados e alertas baseados em SLO com 99,5% de disponibilidade. Todos os 6 projetos em produção utilizam Docker/Podman Compose com GitHub Actions CI/CD, deploys via SSH, proxies reversos Nginx e monitoramento com PostgreSQL exporter.",
-        "impact": "Estabeleci uma infraestrutura com auto-recuperação usando rollbacks automáticos, roteamento de alertas Telegram + email, rastreamento de orçamento de erro multi-janela e retenção de 30 dias de logs/métricas. Possibilitei observabilidade full-stack — logs, métricas e traces distribuídos — em todas as aplicações a partir de um único VPS.",
+        "impact": "Estabeleci uma infraestrutura com auto-recuperação usando rollbacks automáticos, roteamento de alertas Telegram + email, rastreamento de orçamento de erro multi-janela e retenção de 30 dias de logs/métricas. Possibilitei observabilidade full-stack — logs, métricas e traces distribuídos — em todas as aplicações.",
         "list": {
           "docker": { "label": "Docker", "imageSrc": "docker.png" },
           "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
@@ -329,7 +339,7 @@
       "ux-strategy": {
         "title": "UX Strategy & Design",
         "context": "Aplicação de metodologia de design centrado no usuário, da pesquisa de descoberta à prototipação de alta fidelidade — unindo rigor analítico e resolução criativa de problemas.",
-        "applicability": "Liderei 3 projetos freelance completos de UI/UX usando a metodologia Spiral UX UI Continuous (uma abstração do Duplo Diamante). Conduzi entrevistas com usuários, análise competitiva, proto-personas, mapeamento de jornada, matrizes CSD, wireframes, testes de usabilidade e entreguei protótipos de alta fidelidade no Figma. Apliquei essa base de design em todos os projetos de desenvolvimento.",
+        "applicability": "Liderei 3 projetos freelance completos de UI/UX usando metodologias modernas. Conduzi entrevistas com usuários, análise competitiva, proto-personas, mapeamento de jornada, matrizes CSD, wireframes, testes de usabilidade e entreguei protótipos de alta fidelidade no Figma. Apliquei essa base de design em todos os projetos de desenvolvimento.",
         "impact": "Recebi feedback consistentemente positivo dos clientes pela abordagem simplificada, atenção aos detalhes e insights de pesquisa acionáveis. A metodologia de design agora orienta todo o trabalho de desenvolvimento — cada projeto começa com análise centrada no usuário antes da primeira linha de código.",
         "list": {
           "ui": { "label": "UI Design", "imageSrc": "design.png" },
@@ -353,11 +363,11 @@
         },
         "work": {
           "label": "trabalho",
-          "value": "Desenvolvi três projetos completos, iniciando com pesquisa, entrevistas com usuários, análise de concorrência, criação de proto-personas, mapeamento da jornada do usuário, matriz CSD, métricas de UX, mapas e fluxos, wireframes, testes de usabilidade, até o branding e protótipos de alta fidelidade, entre outros elementos."
+          "value": "Desenvolvi quatro projetos completos, iniciando com pesquisa, entrevistas com usuários, análise de concorrência, criação de proto-personas, mapeamento da jornada do usuário, matriz CSD, métricas de UX, mapas e fluxos, wireframes, testes de usabilidade, até o branding e protótipos de alta fidelidade, entre outros elementos."
         },
         "tools": {
           "label": "ferramentas",
-          "value": "Adotei a metodologia Spiral UX UI Continuous, uma abstração do método Duplo Diamante, para conduzir meus projetos, utilizando o Figma como ferramenta principal."
+          "value": "Adotei a metodologia Design Thinking para conduzir meus projetos, utilizando o Figma como uma das ferramentas principais."
         },
         "achievements": {
           "label": "conquistas",
@@ -391,7 +401,7 @@
         },
         "achievements": {
           "label": "conquistas",
-          "value": "Meus projetos incluem ferramentas implementadas em uma sala de controle de movimentações portuárias. Desenvolvimento e manutenção de uma plataforma de avaliação de penhor, e uma solução de controle financeiro. Durante o desenvolvimento das complexas tabelas com recursos de seleção, filtros e ordenação, optei por utilizar a biblioteca TanStack React Table e React Query para gerenciamento de cache, resultando em melhorias significativas de desempenho. Além disso, para lidar com inputs select que apresentavam lentidão devido à grande quantidade de itens, implementei o React Window para otimizar a renderização, melhorando consideravelmente o desempenho do formulário e a experiência do usuário. Entreguei todos os produtos antes do prazo, permitindo aperfeiçoamentos. Além disso, escolhi o banco de dados Postgres pelo seu potencial de escalabilidade. Também acabei de concluir o desenvolvimento de um aplicativo para contratação de serviços no mercado musical local. Apesar de serem meus primeiros projetos profissionais, receberam elogios pela atenção aos detalhes, desempenho e profissionalismo entregues."
+          "value": "Meus projetos incluem ferramentas em implementação em uma sala de controle de movimentações portuárias. Desenvolvimento e manutenção de uma plataforma para avaliadores de penhor, uma solução de controle financeiro e um aplicativo para contratação de serviços no mercado de música e eventos. Em um projeto, durante o desenvolvimento das complexas tabelas com recursos de seleção, filtros e ordenação, optei por utilizar a biblioteca TanStack React Table e React Query para gerenciamento de cache, resultando em melhorias significativas de desempenho. Além disso, para lidar com inputs select que apresentavam lentidão devido à grande quantidade de itens, implementei o React Window para otimizar a renderização, melhorando consideravelmente o desempenho do formulário e a experiência do usuário. Entreguei todos os produtos antes do prazo, permitindo aperfeiçoamentos. Apesar de serem meus primeiros projetos profissionais, receberam a devida atenção aos detalhes."
         },
         "start": {
           "label": "início",

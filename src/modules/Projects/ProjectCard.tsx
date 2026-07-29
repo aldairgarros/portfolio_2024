@@ -35,7 +35,7 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
     <>
       <GlassCard hover tilt className="overflow-hidden p-0 group" {...rest}>
         <Link to={`/projects/${project}`} className="flex flex-col h-full">
-          <div className="relative overflow-hidden bg-primary-100 dark:bg-primary-800">
+          <div className="relative overflow-hidden">
             <img
               src={t("image.src")}
               alt={t("image.alt")}
@@ -47,16 +47,10 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
           </div>
           <div className="p-6">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-semibold font-heading text-primary-900 dark:text-primary-50">
-                {t("name.value")}
-              </h3>
-              <span className="text-sm font-mono text-primary-500 dark:text-primary-400">
-                {t("date.value")}
-              </span>
+              <h3 className="text-lg font-semibold font-heading text-primary-900 dark:text-primary-50">{t("name.value")}</h3>
+              <span className="text-sm font-mono text-primary-500 dark:text-primary-400">{t("date.value")}</span>
             </div>
-            <p className="text-sm text-primary-600 dark:text-primary-400 line-clamp-3">
-              {t("overview.value")}
-            </p>
+            <p className="text-sm text-primary-600 dark:text-primary-400 line-clamp-3">{t("overview.value")}</p>
             <span className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-accent-600 dark:text-accent-400 group-hover:gap-2 transition-all">
               {tp("open")}
               <ArrowRight size={14} aria-hidden="true" />
@@ -65,13 +59,7 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
         </Link>
       </GlassCard>
 
-      {images.length > 0 && (
-        <Lightbox
-          images={images}
-          open={lightboxOpen}
-          onClose={() => setLightboxOpen(false)}
-        />
-      )}
+      {images.length > 0 && <Lightbox images={images} open={lightboxOpen} onClose={() => setLightboxOpen(false)} />}
     </>
   );
 }

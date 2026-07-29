@@ -17,7 +17,7 @@ const itemVariants = {
 
 export function Projects() {
   const { t } = useTranslation("translation", { keyPrefix: "projects" });
-  const projects = ["penhor", "musicaShow", "bolsobom", "atalaiaPro"];
+  const projects = ["atalaiaPro", "penhor", "bolsobom", "musicaShow"];
 
   return (
     <section id="projects" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
@@ -27,8 +27,7 @@ export function Projects() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-      >
+        viewport={{ once: true, margin: "-80px" }}>
         {projects.map((project) => (
           <motion.div key={project} variants={itemVariants}>
             <ProjectCard project={project} />

@@ -1,9 +1,9 @@
-import { useTranslation } from "react-i18next";
-import { useScroll, useTransform, useMotionValue, useSpring, motion, useReducedMotion } from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export function Hero() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", { keyPrefix: "hero" });
   const prefersReducedMotion = useReducedMotion();
   const isPointerFine = window.matchMedia("(pointer: fine)").matches;
 
@@ -26,31 +26,29 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="flex flex-col items-center justify-center max-h-[1024px] h-screen px-4 text-center"
-      onMouseMove={handleMouseMove}
-    >
+      className="flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center"
+      onMouseMove={handleMouseMove}>
       <motion.div
         style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
-        className="relative"
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-accent-500/10 to-transparent rounded-full blur-3xl" />
+        className="relative">
         <div className="relative">
-          <p className="text-sm sm:text-base font-medium text-accent-600 dark:text-accent-400 mb-4 tracking-widest uppercase">
-            {t("hero.title.label")}
-          </p>
           <motion.h1
             className="text-6xl sm:text-8xl font-bold font-heading tracking-tight text-primary-900 dark:text-primary-50 mb-6"
-            style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}
-          >
-            {t("hero.title.value")}
+            style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
+            {t("title.value")}
           </motion.h1>
-          <p className="text-lg sm:text-xl text-primary-600 dark:text-primary-400 max-w-2xl mx-auto leading-relaxed">
-            {t("hero.subtitle.value")}
-          </p>
           <div className="mt-8 flex justify-center">
+            <p className="text-lg sm:text-xl text-primary-600 dark:text-primary-400 max-w-2xl mx-auto leading-relaxed">
+              {t("subtitle.value")}
+            </p>
+          </div>
+          <div className="mt-8 flex justify-center gap-4 flex-wrap">
+            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-accent-500/30">
+              <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">{t("extras.available.label")}</span>
+            </GlassCard>
             <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-accent-500/30">
               <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">
-                {t("education.course.institution")}
+                {t("extras.artificialIntelligence.label")}
               </span>
             </GlassCard>
           </div>

@@ -1,10 +1,9 @@
-import { Hero } from "@/modules/Hero";
-import { Education } from "@/modules/Education";
-import { Projects } from "@/modules/Projects";
-import { Expertise } from "@/modules/Expertise";
 import { About } from "@/modules/About";
 import { Contact } from "@/modules/Contact";
-import { Sticker } from "@/modules/Sticker";
+import { Education } from "@/modules/Education";
+import { Expertise } from "@/modules/Expertise";
+import { Hero } from "@/modules/Hero";
+import { Projects } from "@/modules/Projects";
 
 export function Home() {
   return (
@@ -15,7 +14,6 @@ export function Home() {
       <Expertise />
       <About />
       <Contact />
-      <Sticker />
     </main>
   );
 }
