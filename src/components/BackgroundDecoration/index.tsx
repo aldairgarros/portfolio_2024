@@ -14,55 +14,55 @@ export function BackgroundDecoration() {
       {/* === Horizontal stripes (scanning vertically) === */}
 
       <L
-        anim="h1 3s linear infinite"
-        bs="100% 54px"
-        bg="repeating-linear-gradient(transparent 0px, transparent 50px, rgb(0 0 0 / 0.10) 50px, rgb(0 0 0 / 0.10) 54px)"
-        dark="repeating-linear-gradient(transparent 0px, transparent 50px, rgb(255 255 255 / 0.07) 50px, rgb(255 255 255 / 0.07) 54px)"
+        anim="h1 5s linear infinite"
+        bs="100% 72px"
+        bg="repeating-linear-gradient(transparent 0px, transparent 70px, rgb(0 0 0 / 0.05) 70px, rgb(0 0 0 / 0.05) 72px)"
+        dark="repeating-linear-gradient(transparent 0px, transparent 70px, rgb(255 255 255 / 0.035) 70px, rgb(255 255 255 / 0.035) 72px)"
       />
       <L
-        anim="h2 5s linear infinite"
-        bs="100% 69px"
-        bg="repeating-linear-gradient(transparent 0px, transparent 65px, rgb(0 0 0 / 0.06) 65px, rgb(0 0 0 / 0.06) 69px)"
-        dark="repeating-linear-gradient(transparent 0px, transparent 65px, rgb(255 255 255 / 0.04) 65px, rgb(255 255 255 / 0.04) 69px)"
+        anim="h2 8s linear infinite"
+        bs="100% 87px"
+        bg="repeating-linear-gradient(transparent 0px, transparent 85px, rgb(0 0 0 / 0.03) 85px, rgb(0 0 0 / 0.03) 87px)"
+        dark="repeating-linear-gradient(transparent 0px, transparent 85px, rgb(255 255 255 / 0.02) 85px, rgb(255 255 255 / 0.02) 87px)"
       />
       <L
-        anim="h3 8s linear infinite"
-        bs="100% 83px"
-        bg="repeating-linear-gradient(transparent 0px, transparent 80px, rgb(0 0 0 / 0.03) 80px, rgb(0 0 0 / 0.03) 83px)"
-        dark="repeating-linear-gradient(transparent 0px, transparent 80px, rgb(255 255 255 / 0.02) 80px, rgb(255 255 255 / 0.02) 83px)"
+        anim="h3 12s linear infinite"
+        bs="100% 111px"
+        bg="repeating-linear-gradient(transparent 0px, transparent 110px, rgb(0 0 0 / 0.015) 110px, rgb(0 0 0 / 0.015) 111px)"
+        dark="repeating-linear-gradient(transparent 0px, transparent 110px, rgb(255 255 255 / 0.01) 110px, rgb(255 255 255 / 0.01) 111px)"
       />
       <L
-        anim="h4 14s linear infinite"
-        bs="100% 102px"
-        bg="repeating-linear-gradient(transparent 0px, transparent 100px, rgb(0 0 0 / 0.015) 100px, rgb(0 0 0 / 0.015) 102px)"
-        dark="repeating-linear-gradient(transparent 0px, transparent 100px, rgb(255 255 255 / 0.01) 100px, rgb(255 255 255 / 0.01) 102px)"
+        anim="h4 20s linear infinite"
+        bs="100% 141px"
+        bg="repeating-linear-gradient(transparent 0px, transparent 140px, rgb(0 0 0 / 0.008) 140px, rgb(0 0 0 / 0.008) 141px)"
+        dark="repeating-linear-gradient(transparent 0px, transparent 140px, rgb(255 255 255 / 0.005) 140px, rgb(255 255 255 / 0.005) 141px)"
       />
 
       {/* === Vertical stripes (scanning horizontally) === */}
 
       <L
-        anim="v1 3s linear infinite"
-        bs="48px 100%"
-        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 45px, rgb(0 0 0 / 0.10) 45px, rgb(0 0 0 / 0.10) 48px)"
-        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 45px, rgb(255 255 255 / 0.07) 45px, rgb(255 255 255 / 0.07) 48px)"
+        anim="v1 5s linear infinite"
+        bs="62px 100%"
+        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 60px, rgb(0 0 0 / 0.05) 60px, rgb(0 0 0 / 0.05) 62px)"
+        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 60px, rgb(255 255 255 / 0.035) 60px, rgb(255 255 255 / 0.035) 62px)"
       />
       <L
-        anim="v2 5s linear infinite"
-        bs="63px 100%"
-        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 60px, rgb(0 0 0 / 0.06) 60px, rgb(0 0 0 / 0.06) 63px)"
-        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 60px, rgb(255 255 255 / 0.04) 60px, rgb(255 255 255 / 0.04) 63px)"
+        anim="v2 8s linear infinite"
+        bs="76px 100%"
+        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 75px, rgb(0 0 0 / 0.03) 75px, rgb(0 0 0 / 0.03) 76px)"
+        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 75px, rgb(255 255 255 / 0.02) 75px, rgb(255 255 255 / 0.02) 76px)"
       />
       <L
-        anim="v3 8s linear infinite"
-        bs="77px 100%"
-        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 75px, rgb(0 0 0 / 0.03) 75px, rgb(0 0 0 / 0.03) 77px)"
-        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 75px, rgb(255 255 255 / 0.02) 75px, rgb(255 255 255 / 0.02) 77px)"
+        anim="v3 12s linear infinite"
+        bs="101px 100%"
+        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 100px, rgb(0 0 0 / 0.015) 100px, rgb(0 0 0 / 0.015) 101px)"
+        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 100px, rgb(255 255 255 / 0.01) 100px, rgb(255 255 255 / 0.01) 101px)"
       />
       <L
-        anim="v4 14s linear infinite"
-        bs="92px 100%"
-        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 90px, rgb(0 0 0 / 0.015) 90px, rgb(0 0 0 / 0.015) 92px)"
-        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 90px, rgb(255 255 255 / 0.01) 90px, rgb(255 255 255 / 0.01) 92px)"
+        anim="v4 20s linear infinite"
+        bs="121px 100%"
+        bg="repeating-linear-gradient(90deg, transparent 0px, transparent 120px, rgb(0 0 0 / 0.008) 120px, rgb(0 0 0 / 0.008) 121px)"
+        dark="repeating-linear-gradient(90deg, transparent 0px, transparent 120px, rgb(255 255 255 / 0.005) 120px, rgb(255 255 255 / 0.005) 121px)"
       />
     </div>
   );
