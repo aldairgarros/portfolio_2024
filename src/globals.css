@@ -108,14 +108,22 @@
 }
 
 /* Scan line keyframes */
-@keyframes h1 { to { background-position: 0 -72px; } }
-@keyframes h2 { to { background-position: 0 87px; } }
-@keyframes h3 { to { background-position: 0 -111px; } }
-@keyframes h4 { to { background-position: 0 141px; } }
-@keyframes v1 { to { background-position: -62px 0; } }
-@keyframes v2 { to { background-position: 76px 0; } }
-@keyframes v3 { to { background-position: -101px 0; } }
-@keyframes v4 { to { background-position: 121px 0; } }
+@keyframes h1a { to { background-position: 0 -200px; } }
+@keyframes h1b { to { background-position: 0 240px; } }
+@keyframes h2a { to { background-position: 0 -280px; } }
+@keyframes h2b { to { background-position: 0 320px; } }
+@keyframes h3a { to { background-position: 0 -360px; } }
+@keyframes h3b { to { background-position: 0 400px; } }
+@keyframes h4a { to { background-position: 0 -450px; } }
+@keyframes h4b { to { background-position: 0 500px; } }
+@keyframes v1a { to { background-position: -180px 0; } }
+@keyframes v1b { to { background-position: 220px 0; } }
+@keyframes v2a { to { background-position: -260px 0; } }
+@keyframes v2b { to { background-position: 300px 0; } }
+@keyframes v3a { to { background-position: -340px 0; } }
+@keyframes v3b { to { background-position: 380px 0; } }
+@keyframes v4a { to { background-position: -420px 0; } }
+@keyframes v4b { to { background-position: 460px 0; } }
 
 @media (prefers-color-scheme: dark) {
   :root {
