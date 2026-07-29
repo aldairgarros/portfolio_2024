@@ -1,90 +1,17 @@
-import { useScroll, useTransform, useMotionValue, useSpring, motion, useReducedMotion } from "framer-motion";
-import { useEffect } from "react";
-
-function useMousePosition() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      x.set((e.clientX / window.innerWidth - 0.5) * 2);
-      y.set((e.clientY / window.innerHeight - 0.5) * 2);
-    };
-    if (window.matchMedia("(pointer: fine)").matches) {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [x, y]);
-
-  return { x, y };
-}
-
-interface BuildingData {
-  left: string;
-  width: number;
-  height: string;
-  tapered: boolean;
-}
-
-const BUILDINGS_BG: BuildingData[] = [
-  { left: "3%", width: 28, height: "100%", tapered: false },
-  { left: "15%", width: 32, height: "100%", tapered: false },
-  { left: "28%", width: 26, height: "100%", tapered: false },
-  { left: "40%", width: 30, height: "100%", tapered: false },
-  { left: "52%", width: 28, height: "100%", tapered: false },
-  { left: "64%", width: 32, height: "100%", tapered: false },
-  { left: "76%", width: 26, height: "100%", tapered: false },
-  { left: "88%", width: 30, height: "100%", tapered: false },
-];
-
-const BUILDINGS_MID: BuildingData[] = [
-  { left: "8%", width: 55, height: "100%", tapered: false },
-  { left: "23%", width: 60, height: "100%", tapered: false },
-  { left: "38%", width: 55, height: "100%", tapered: false },
-  { left: "53%", width: 65, height: "100%", tapered: false },
-  { left: "68%", width: 55, height: "100%", tapered: false },
-  { left: "83%", width: 60, height: "100%", tapered: false },
-];
-
-const BUILDINGS_FG: BuildingData[] = [
-  { left: "1%", width: 100, height: "100%", tapered: false },
-  { left: "25%", width: 120, height: "100%", tapered: false },
-  { left: "47%", width: 110, height: "100%", tapered: false },
-  { left: "67%", width: 130, height: "100%", tapered: false },
-  { left: "88%", width: 100, height: "100%", tapered: false },
-];
-
-function Building({ data }: { data: BuildingData }) {
-  const clipPath = data.tapered ? "polygon(0% 100%, 0% 50%, 50% 3%, 100% 50%, 100% 100%)" : undefined;
-
-  return (
-    <div className="absolute bottom-0" style={{ left: data.left, width: data.width, height: data.height }}>
-      <div className="w-full h-full dark:hidden" style={{ background: "var(--color-primary-400)", clipPath }} />
-      <div className="w-full h-full hidden dark:block" style={{ background: "var(--color-primary-600)", clipPath }} />
-    </div>
-  );
-}
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 export function BackgroundDecoration() {
   const prefersReducedMotion = useReducedMotion();
-  const mouseX = useMousePosition().x;
 
   const { scrollYProgress } = useScroll();
   const gridY = useTransform(scrollYProgress, [0, 1], [0, 15]);
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 6]);
-  const midY = useTransform(scrollYProgress, [0, 1], [0, 18]);
-  const fgY = useTransform(scrollYProgress, [0, 1], [0, 35]);
-
-  const bgX = useSpring(useTransform(mouseX, [-1, 1], [-5, 5]), { stiffness: 40, damping: 25 });
-  const midX = useSpring(useTransform(mouseX, [-1, 1], [-14, 14]), { stiffness: 50, damping: 20 });
-  const fgX = useSpring(useTransform(mouseX, [-1, 1], [-28, 28]), { stiffness: 60, damping: 18 });
 
   const gridStyle = {
     transform: "rotateX(72deg)",
     width: "300%",
     height: "400%",
     position: "absolute" as const,
-    top: "20%",
+    top: "0%",
     left: "-100%",
     backgroundSize: "60px 60px",
   };
@@ -113,37 +40,7 @@ export function BackgroundDecoration() {
         />
       </div>
 
-      {/* Layer 2: Forest — Background (most fog) */}
-      {!prefersReducedMotion && (
-        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: bgX, y: bgY, opacity: 0.35 }}>
-          {BUILDINGS_BG.map((b, i) => <Building key={i} data={b} />)}
-        </motion.div>
-      )}
-
-      {/* Layer 2: Forest — Midground (medium fog) */}
-      {!prefersReducedMotion && (
-        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: midX, y: midY, opacity: 0.65 }}>
-          {BUILDINGS_MID.map((b, i) => <Building key={i} data={b} />)}
-        </motion.div>
-      )}
-
-      {/* Layer 2: Forest — Foreground (no fog) */}
-      {!prefersReducedMotion && (
-        <motion.div className="absolute inset-x-0 bottom-0 h-full" style={{ x: fgX, y: fgY }}>
-          {BUILDINGS_FG.map((b, i) => <Building key={i} data={b} />)}
-        </motion.div>
-      )}
-
-      {/* Layer 3: Metallic Grain */}
-      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.04 }}>
-        <filter id="mesh-noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#mesh-noise)" />
-      </svg>
-
-      {/* Layer 4: Scan Lines */}
+      {/* Scan line — horizontal stripes scanning downward */}
       {!prefersReducedMotion && (
         <motion.div
           className="absolute inset-0"
@@ -156,6 +53,29 @@ export function BackgroundDecoration() {
           }}
         />
       )}
+
+      {/* Scan line — vertical stripes scanning leftward */}
+      {!prefersReducedMotion && (
+        <motion.div
+          className="absolute inset-0"
+          animate={{ x: ["0%", "-60px"] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(90deg, transparent 0px, transparent 57px, rgb(128 128 128 / 0.015) 57px, rgb(128 128 128 / 0.015) 60px)",
+            backgroundSize: "60px 100%",
+          }}
+        />
+      )}
+
+      {/* Grain */}
+      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.04 }}>
+        <filter id="mesh-noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#mesh-noise)" />
+      </svg>
     </div>
   );
 }
