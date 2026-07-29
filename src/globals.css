@@ -108,14 +108,14 @@
 }
 
 /* Scan line keyframes */
-@keyframes h1 { to { background-position: 0 -130px; } }
-@keyframes h2 { to { background-position: 0 180px; } }
-@keyframes h3 { to { background-position: 0 -230px; } }
-@keyframes h4 { to { background-position: 0 300px; } }
-@keyframes v1 { to { background-position: -115px 0; } }
-@keyframes v2 { to { background-position: 165px 0; } }
-@keyframes v3 { to { background-position: -215px 0; } }
-@keyframes v4 { to { background-position: 285px 0; } }
+@keyframes h1 { to { background-position: 0 -35px; } }
+@keyframes h2 { to { background-position: 0 45px; } }
+@keyframes h3 { to { background-position: 0 -55px; } }
+@keyframes h4 { to { background-position: 0 70px; } }
+@keyframes v1 { to { background-position: -30px 0; } }
+@keyframes v2 { to { background-position: 40px 0; } }
+@keyframes v3 { to { background-position: -50px 0; } }
+@keyframes v4 { to { background-position: 60px 0; } }
 
 @media (prefers-color-scheme: dark) {
   :root {
