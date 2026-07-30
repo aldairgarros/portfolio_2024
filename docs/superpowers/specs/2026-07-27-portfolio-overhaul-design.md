@@ -44,26 +44,26 @@ App
 
 ### Deleted files
 
-| File | Reason |
-|------|--------|
-| `src/components/Container/index.tsx` | Replaced by glass card pattern |
-| `src/components/Section/index.tsx` | Replaced by simple section wrapper |
-| `src/components/LinkButton/index.tsx` | Dead code — never imported |
-| `src/components/Attribute/Link.tsx` | Dead code — never imported |
-| `src/components/Attribute/Images.tsx` | Folded into new project detail |
-| `src/components/TextBox/index.tsx` | Broken animation, unused |
-| `src/interfaces/item-interface.tsx` | Dead code |
-| `src/interfaces/skill-interface.tsx` | Dead code |
-| `src/interfaces/attribute-interface.tsx` | Dead code |
-| `src/interfaces/image-interface.tsx` | Dead code |
-| `src/pages/about/index.tsx` | Unreachable route |
-| `src/pages/projects/index.tsx` | Unused separate page |
+| File                                     | Reason                             |
+| ---------------------------------------- | ---------------------------------- |
+| `src/components/Container/index.tsx`     | Replaced by glass card pattern     |
+| `src/components/Section/index.tsx`       | Replaced by simple section wrapper |
+| `src/components/LinkButton/index.tsx`    | Dead code — never imported         |
+| `src/components/Attribute/Link.tsx`      | Dead code — never imported         |
+| `src/components/Attribute/Images.tsx`    | Folded into new project detail     |
+| `src/components/TextBox/index.tsx`       | Broken animation, unused           |
+| `src/interfaces/item-interface.tsx`      | Dead code                          |
+| `src/interfaces/skill-interface.tsx`     | Dead code                          |
+| `src/interfaces/attribute-interface.tsx` | Dead code                          |
+| `src/interfaces/image-interface.tsx`     | Dead code                          |
+| `src/pages/about/index.tsx`              | Unreachable route                  |
+| `src/pages/projects/index.tsx`           | Unused separate page               |
 
 ### New files
 
-| File | Purpose |
-|------|---------|
-| `src/components/GlassCard/index.tsx` | Reusable glass-morphism card |
+| File                                    | Purpose                                        |
+| --------------------------------------- | ---------------------------------------------- |
+| `src/components/GlassCard/index.tsx`    | Reusable glass-morphism card                   |
 | `src/components/SectionTitle/index.tsx` | Reusable section title with gradient underline |
 
 ---
@@ -73,22 +73,24 @@ App
 ### Glassmorphism pattern
 
 All content containers use:
+
 ```
 backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-2xl shadow-xl
 ```
 
 Hover states add subtle lift:
+
 ```
 hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300
 ```
 
 ### Color palette
 
-| Token | Tailwind | Usage |
-|-------|----------|-------|
-| `primary` | zinc | Backgrounds, text, neutral elements |
-| `secondary` | rose | Accents, links, hover states, gradient |
-| Removed: `off`, `warning`, `danger`, `success` | | Never used |
+| Token                                          | Tailwind | Usage                                  |
+| ---------------------------------------------- | -------- | -------------------------------------- |
+| `primary`                                      | zinc     | Backgrounds, text, neutral elements    |
+| `secondary`                                    | rose     | Accents, links, hover states, gradient |
+| Removed: `off`, `warning`, `danger`, `success` |          | Never used                             |
 
 ### Typography
 
@@ -330,7 +332,7 @@ hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300
 
 ```
 ┌──────────────────┐
-│ info@aldairgc.com │
+│ dev@aldairgarros.com │
 └──────────────────┘
   (fixed, bottom-left)
 ```
@@ -399,6 +401,7 @@ Under a new `education` top-level section in both `en.json` and `br.json`:
 ### Hash navigation IDs
 
 Section `id` attributes use fixed English identifiers regardless of active language:
+
 - `id="hero"`, `id="education"`, `id="projects"`, `id="expertise"`, `id="about"`, `id="contact"`
 
 MenuBar links always point to `/#education`, `/#projects`, etc. — no localization in URL hashes.
