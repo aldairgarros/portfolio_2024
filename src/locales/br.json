@@ -431,23 +431,23 @@
       },
       "phone": {
         "label": "telefone",
-        "value": "+55 98 988692991",
+        "value": "+55 98 98869 2991",
         "href": "tel:5598988692991"
       },
       "whatsApp": {
         "label": "whatsApp",
-        "value": "5598988692991",
+        "value": "wa.me/5598988692991/",
         "href": "https://wa.me/5598988692991/"
       },
       "linkedIn": {
         "label": "linkedIn",
-        "value": "aldairgc",
-        "href": "https://www.linkedin.com/in/aldairgc/"
+        "value": "linkedin.com/in/aldairgarros/",
+        "href": "https://www.linkedin.com/in/aldairgarros/"
       },
       "github": {
         "label": "github",
-        "value": "aldair-gc",
-        "href": "https://github.com/aldair-gc"
+        "value": "github.com/aldairgarros",
+        "href": "https://github.com/aldairgarros"
       }
     }
   }
