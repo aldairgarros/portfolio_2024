@@ -436,13 +436,13 @@
       },
       "whatsApp": {
         "label": "whatsApp",
-        "value": "wa.me/5598988692991/",
-        "href": "https://wa.me/5598988692991/"
+        "value": "wa.me/5598988692991",
+        "href": "https://wa.me/5598988692991"
       },
       "linkedIn": {
         "label": "linkedIn",
-        "value": "linkedin.com/in/aldairgarros/",
-        "href": "https://www.linkedin.com/in/aldairgarros/"
+        "value": "linkedin.com/in/aldairgarros",
+        "href": "https://www.linkedin.com/in/aldairgarros"
       },
       "github": {
         "label": "github",
