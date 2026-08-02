@@ -178,7 +178,7 @@ Port `3070` chosen per user preference. Exporter uses host port `3071` to avoid 
 - `LongTaskInstrumentation` registered separately (removed from meta package in v2)
 - Web vitals reported as **spans** (`web-vitals.<name>` with rating/value/delta/navigation_type attributes) via a separate `web-vitals.ts` module using Google's `web-vitals` package — Tempo's metrics-generator derives metrics from them
 - OTLP HTTP trace exporter, endpoint `https://aldairgarros.com/v1/traces`
-- `BatchSpanProcessor` (5s interval, 512 max queue) passed via the `WebTracerProvider` constructor `spanProcessors` array (v2 API)
+- `BatchSpanProcessor` (defaults: 5s scheduled delay, 512 max export batch size, 2048 max queue) passed via the `WebTracerProvider` constructor `spanProcessors` array (v2 API)
 - Session ID generated via `crypto.randomUUID()`, attached to every span via a custom `SpanProcessor` (`onStart`), first in the array
 - Dev mode (`import.meta.env.DEV`): console exporter only — no traffic to production Tempo
 
