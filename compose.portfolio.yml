@@ -1,0 +1,28 @@
+services:
+  portfolio:
+    image: ghcr.io/aldairgarros/portfolio:${IMAGE_TAG:-latest}
+    container_name: portfolio
+    ports:
+      - "127.0.0.1:3070:3070"
+    restart: unless-stopped
+    networks:
+      - monitoring
+    labels:
+      app: portfolio
+    logging:
+      driver: k8s-file
+
+  portfolio-nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.4.1
+    container_name: portfolio-nginx-exporter
+    command:
+      - -nginx.scrape-uri=http://portfolio:3070/stub_status
+    ports:
+      - "127.0.0.1:3071:9113"
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    external: true
