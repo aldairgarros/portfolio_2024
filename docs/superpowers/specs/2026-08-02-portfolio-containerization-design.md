@@ -63,11 +63,15 @@ Browser:
 | `@opentelemetry/instrumentation` | `registerInstrumentations` helper |
 | `@opentelemetry/sdk-trace-base` | `BatchSpanProcessor`, `ConsoleSpanExporter`, `SpanProcessor` |
 | `@opentelemetry/sdk-trace-web` | Browser trace SDK (`WebTracerProvider`) |
-| `@opentelemetry/auto-instrumentations-web` | Unified auto-instrumentation (document load, fetch/xhr, user interaction, long task, web vitals) |
+| `@opentelemetry/auto-instrumentations-web` | Unified auto-instrumentation (document load, fetch/xhr, user interaction) |
+| `@opentelemetry/instrumentation-long-task` | Long-task instrumentation (removed from meta package in v2) |
 | `@opentelemetry/exporter-trace-otlp-http` | Traces → Tempo via OTLP HTTP |
 | `@sentry/react` | GlitchTip-compatible error tracking SDK |
+| `web-vitals` | Core Web Vitals measurement (reported manually as spans; OTel web-vitals instrumentation removed in v2) |
 
-**Metrics note:** Tempo's OTLP receiver ingests **traces only** — raw OTLP metrics are rejected. Web vitals are therefore exported as **spans** (`webVitalsInstrumentationConfig.mode: "span"`); Tempo's metrics-generator (already enabled with `span-metrics` processor) derives RED metrics from them and remote-writes to Prometheus. No metrics exporter package is needed.
+**OTel v2 note:** Installed OTel is the v2 release train (`sdk-trace-web@2.x`, `auto-instrumentations-web@0.66.x`). Span processors are passed via the `WebTracerProvider` constructor (`spanProcessors` array) — `addSpanProcessor` no longer exists.
+
+**Metrics note:** Tempo's OTLP receiver ingests **traces only** — raw OTLP metrics are rejected. Web vitals are therefore reported as **spans** (`web-vitals.<name>` with rating/value/delta attributes); Tempo's metrics-generator (already enabled with `span-metrics` processor) derives RED metrics from them and remote-writes to Prometheus. No metrics exporter package is needed.
 
 ~45KB gzipped total bundle increase.
 
@@ -170,12 +174,17 @@ Port `3070` chosen per user preference. Exporter uses host port `3071` to avoid 
 ### `src/observability/otel.ts`
 
 - `initOpenTelemetry()` called in `main.tsx` **before** React renders (captures full page-load span)
-- `getWebAutoInstrumentations()`: document load, fetch/xhr, user interaction, long task, web vitals
-- Web vitals exported as **spans** (`webVitalsInstrumentationConfig.mode: "span"`) — Tempo's metrics-generator derives metrics from them
+- `getWebAutoInstrumentations()`: document load, fetch/xhr, user interaction (v2 meta package)
+- `LongTaskInstrumentation` registered separately (removed from meta package in v2)
+- Web vitals reported as **spans** (`web-vitals.<name>` with rating/value/delta/navigation_type attributes) via a separate `web-vitals.ts` module using Google's `web-vitals` package — Tempo's metrics-generator derives metrics from them
 - OTLP HTTP trace exporter, endpoint `https://aldairgarros.com/v1/traces`
-- `BatchSpanProcessor` (5s interval, 512 max queue)
-- Session ID generated via `crypto.randomUUID()`, attached to every span via a custom `SpanProcessor` (`onStart`)
+- `BatchSpanProcessor` (5s interval, 512 max queue) passed via the `WebTracerProvider` constructor `spanProcessors` array (v2 API)
+- Session ID generated via `crypto.randomUUID()`, attached to every span via a custom `SpanProcessor` (`onStart`), first in the array
 - Dev mode (`import.meta.env.DEV`): console exporter only — no traffic to production Tempo
+
+### `src/observability/web-vitals.ts`
+
+- New module: `initWebVitalsSpans()` registers `onCLS`/`onFCP`/`onINP`/`onLCP`/`onTTFB` callbacks that emit one span per metric (OTel's own web-vitals instrumentation was removed in the v2 release train)
 
 ### `src/observability/glitchtip.ts`
 
@@ -187,7 +196,7 @@ Port `3070` chosen per user preference. Exporter uses host port `3071` to avoid 
 ### `src/observability/ErrorBoundary.tsx`
 
 - Separate file (react-refresh lint rule requires component-only files)
-- `Sentry.ErrorBoundary` wrapping the app tree, fallback `null`
+- `Sentry.ErrorBoundary` wrapping the app tree, `fallback={undefined}` (Sentry v10 type; renders `null` on error)
 
 ### `src/main.tsx` (modify)
 

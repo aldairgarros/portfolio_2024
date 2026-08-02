@@ -70,12 +70,14 @@ git commit -m "feat: add OpenTelemetry and Sentry observability dependencies"
 
 ```ts
 import { Span } from "@opentelemetry/api";
+import { getWebAutoInstrumentations } from "@opentelemetry/auto-instrumentations-web";
 import { ZoneContextManager } from "@opentelemetry/context-zone";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { LongTaskInstrumentation } from "@opentelemetry/instrumentation-long-task";
 import { BatchSpanProcessor, ConsoleSpanExporter, SpanProcessor } from "@opentelemetry/sdk-trace-base";
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
-import { getWebAutoInstrumentations } from "@opentelemetry/auto-instrumentations-web";
+import { initWebVitalsSpans } from "./web-vitals.ts";
 
 const SESSION_ID = crypto.randomUUID();
 
@@ -96,37 +98,75 @@ class SessionIdSpanProcessor implements SpanProcessor {
 }
 
 export function initOpenTelemetry(): void {
-  const provider = new WebTracerProvider();
-
-  provider.addSpanProcessor(new SessionIdSpanProcessor());
+  const spanProcessors: SpanProcessor[] = [new SessionIdSpanProcessor()];
 
   if (import.meta.env.DEV) {
-    provider.addSpanProcessor(new BatchSpanProcessor(new ConsoleSpanExporter()));
+    spanProcessors.push(new BatchSpanProcessor(new ConsoleSpanExporter()));
   } else {
-    provider.addSpanProcessor(
+    spanProcessors.push(
       new BatchSpanProcessor(
         new OTLPTraceExporter({ url: "https://aldairgarros.com/v1/traces" }),
       ),
     );
   }
 
+  const provider = new WebTracerProvider({ spanProcessors });
+
   provider.register({ contextManager: new ZoneContextManager() });
 
   registerInstrumentations({
     tracerProvider: provider,
     instrumentations: [
-      getWebAutoInstrumentations({
-        webVitalsInstrumentationConfig: { mode: "span" },
-      }),
+      getWebAutoInstrumentations(),
+      new LongTaskInstrumentation(),
     ],
   });
+
+  initWebVitalsSpans();
 }
 ```
 
+**v2 API note:** Installed OTel is the v2 release train (`sdk-trace-web@2.x`). Span processors go in the constructor (`spanProcessors` array, order preserved by MultiSpanProcessor), NOT `addSpanProcessor`. `getWebAutoInstrumentations()` needs no config — web-vitals and long-task instrumentations were removed from the meta package; long-task is added separately and web vitals are reported manually (see Step 2a below).
+
 Notes:
-- `SessionIdSpanProcessor` must be added **first** so its `onStart` runs before the batch processor exports.
-- Web vitals exported as spans (`mode: "span"`) — Tempo's metrics-generator derives Prometheus metrics from them.
+- `SessionIdSpanProcessor` must be first in the array so its `onStart` runs before the batch processor exports.
 - Dev mode uses the console exporter only — no traffic to production Tempo.
+
+- [ ] **Step 1a: Create `src/observability/web-vitals.ts`**
+
+Web-vitals instrumentation no longer exists in the OTel meta package (v2). Report each Core Web Vital as a span manually using Google's `web-vitals` package — Tempo's metrics-generator derives Prometheus metrics from these spans.
+
+```ts
+import { trace } from "@opentelemetry/api";
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
+import type { Metric } from "web-vitals";
+
+function reportWebVital(metric: Metric): void {
+  const span = trace
+    .getTracer("portfolio")
+    .startSpan(`web-vitals.${metric.name.toLowerCase()}`);
+
+  span.setAttribute("web_vitals.rating", metric.rating);
+  span.setAttribute("web_vitals.value", metric.value);
+  span.setAttribute("web_vitals.delta", metric.delta);
+  span.setAttribute("web_vitals.navigation_type", metric.navigationType);
+  span.end();
+}
+
+export function initWebVitalsSpans(): void {
+  onCLS(reportWebVital);
+  onFCP(reportWebVital);
+  onINP(reportWebVital);
+  onLCP(reportWebVital);
+  onTTFB(reportWebVital);
+}
+```
+
+- [ ] **Step 1b: Install the two extra packages**
+
+```bash
+npm install web-vitals @opentelemetry/instrumentation-long-task
+```
 
 - [ ] **Step 2: Verify typecheck + lint**
 
@@ -205,11 +245,11 @@ import type { ReactNode } from "react";
 import * as Sentry from "@sentry/react";
 
 export function GlitchTipErrorBoundary({ children }: { children: ReactNode }): React.JSX.Element {
-  return <Sentry.ErrorBoundary fallback={null}>{children}</Sentry.ErrorBoundary>;
+  return <Sentry.ErrorBoundary fallback={undefined}>{children}</Sentry.ErrorBoundary>;
 }
 ```
 
-Note: kept in its own file — the eslint react-refresh rule requires component-only exports per file.
+Note: kept in its own file — the eslint react-refresh rule requires component-only exports per file. `fallback={undefined}` satisfies `@sentry/react` v10's type (`ReactElement | FallbackRender | undefined`); Sentry renders `null` on error when no valid fallback exists, preserving the "render nothing" behavior.
 
 - [ ] **Step 3: Verify typecheck + lint**
 
