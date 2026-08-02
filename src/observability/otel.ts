@@ -1,10 +1,12 @@
 import { Span } from "@opentelemetry/api";
+import { getWebAutoInstrumentations } from "@opentelemetry/auto-instrumentations-web";
 import { ZoneContextManager } from "@opentelemetry/context-zone";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
+import { LongTaskInstrumentation } from "@opentelemetry/instrumentation-long-task";
 import { BatchSpanProcessor, ConsoleSpanExporter, SpanProcessor } from "@opentelemetry/sdk-trace-base";
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
-import { getWebAutoInstrumentations } from "@opentelemetry/auto-instrumentations-web";
+import { initWebVitalsSpans } from "./web-vitals.ts";
 
 const SESSION_ID = crypto.randomUUID();
 
@@ -25,28 +27,29 @@ class SessionIdSpanProcessor implements SpanProcessor {
 }
 
 export function initOpenTelemetry(): void {
-  const provider = new WebTracerProvider();
-
-  provider.addSpanProcessor(new SessionIdSpanProcessor());
+  const spanProcessors: SpanProcessor[] = [new SessionIdSpanProcessor()];
 
   if (import.meta.env.DEV) {
-    provider.addSpanProcessor(new BatchSpanProcessor(new ConsoleSpanExporter()));
+    spanProcessors.push(new BatchSpanProcessor(new ConsoleSpanExporter()));
   } else {
-    provider.addSpanProcessor(
+    spanProcessors.push(
       new BatchSpanProcessor(
         new OTLPTraceExporter({ url: "https://aldairgarros.com/v1/traces" }),
       ),
     );
   }
 
+  const provider = new WebTracerProvider({ spanProcessors });
+
   provider.register({ contextManager: new ZoneContextManager() });
 
   registerInstrumentations({
     tracerProvider: provider,
     instrumentations: [
-      getWebAutoInstrumentations({
-        webVitalsInstrumentationConfig: { mode: "span" },
-      }),
+      getWebAutoInstrumentations(),
+      new LongTaskInstrumentation(),
     ],
   });
+
+  initWebVitalsSpans();
 }
