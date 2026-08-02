@@ -114,12 +114,13 @@ server {
         add_header Cache-Control "public, immutable";
     }
 
-    # Metrics endpoint (scraped by nginx-exporter sidecar on the
-    # podman network — NOT loopback, so allow private ranges)
+    # Metrics endpoint: exporter sidecar connects over the podman
+    # network (10.0.0.0/8); host-local checks connect from loopback.
     location /stub_status {
         stub_status;
         access_log off;
         allow 10.0.0.0/8;
+        allow 127.0.0.1;
         deny all;
     }
 }
