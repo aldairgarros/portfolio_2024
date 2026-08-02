@@ -397,6 +397,7 @@ server {
         allow 127.0.0.1;
         deny all;
     }
+}
 ```
 
 Note: the portfolio port already binds `127.0.0.1` on the host, so stub_status is only reachable by host-local processes and the exporter container — this is defense in depth.
