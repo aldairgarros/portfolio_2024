@@ -58,12 +58,16 @@ Browser:
 
 | Package | Purpose |
 |---------|---------|
-| `@opentelemetry/sdk-trace-web` | Browser trace SDK |
-| `@opentelemetry/sdk-metrics` | Browser metrics SDK |
-| `@opentelemetry/auto-instrumentations-web` | Unified auto-instrumentation (document load, fetch/xhr, user interaction, long task) |
+| `@opentelemetry/api` | OTel API (trace context access for error correlation) |
+| `@opentelemetry/context-zone` | Zone.js context manager (required by user-interaction instrumentation) |
+| `@opentelemetry/instrumentation` | `registerInstrumentations` helper |
+| `@opentelemetry/sdk-trace-base` | `BatchSpanProcessor`, `ConsoleSpanExporter`, `SpanProcessor` |
+| `@opentelemetry/sdk-trace-web` | Browser trace SDK (`WebTracerProvider`) |
+| `@opentelemetry/auto-instrumentations-web` | Unified auto-instrumentation (document load, fetch/xhr, user interaction, long task, web vitals) |
 | `@opentelemetry/exporter-trace-otlp-http` | Traces → Tempo via OTLP HTTP |
-| `@opentelemetry/exporter-metrics-otlp-http` | Metrics → Tempo metrics-generator via OTLP HTTP |
 | `@sentry/react` | GlitchTip-compatible error tracking SDK |
+
+**Metrics note:** Tempo's OTLP receiver ingests **traces only** — raw OTLP metrics are rejected. Web vitals are therefore exported as **spans** (`webVitalsInstrumentationConfig.mode: "span"`); Tempo's metrics-generator (already enabled with `span-metrics` processor) derives RED metrics from them and remote-writes to Prometheus. No metrics exporter package is needed.
 
 ~45KB gzipped total bundle increase.
 
@@ -110,10 +114,12 @@ server {
         add_header Cache-Control "public, immutable";
     }
 
-    # Metrics endpoint (scraped by nginx-exporter sidecar)
+    # Metrics endpoint (scraped by nginx-exporter sidecar on the
+    # podman network — NOT loopback, so allow private ranges)
     location /stub_status {
         stub_status;
-        allow 127.0.0.1;
+        access_log off;
+        allow 10.0.0.0/8;
         deny all;
     }
 }
@@ -121,10 +127,12 @@ server {
 
 ### `compose.portfolio.yml`
 
+Image is built in CI and pushed to GHCR (`ghcr.io/aldairgarros/portfolio`); the VPS pulls it. `IMAGE_TAG` is injected at deploy time via env interpolation, defaulting to `latest` for manual runs.
+
 ```yaml
 services:
   portfolio:
-    build: .
+    image: ghcr.io/aldairgarros/portfolio:${IMAGE_TAG:-latest}
     container_name: portfolio
     ports:
       - "127.0.0.1:3070:3070"
@@ -161,19 +169,24 @@ Port `3070` chosen per user preference. Exporter uses host port `3071` to avoid 
 ### `src/observability/otel.ts`
 
 - `initOpenTelemetry()` called in `main.tsx` **before** React renders (captures full page-load span)
-- `getWebAutoInstrumentations()`: document load, fetch/xhr, user interaction, long task
-- OTLP HTTP exporters for traces + metrics, endpoint `https://aldairgarros.com/v1/traces`
-- BatchSpanProcessor (5s interval, 512 max queue)
-- Session ID generated and attached as span attribute for correlation
-- Dev mode: console exporter via SimpleSpanProcessor (`import.meta.env.DEV`)
-- Core Web Vitals (LCP, CLS, INP, FCP, TTFB) collected via web-vitals instrumentation
+- `getWebAutoInstrumentations()`: document load, fetch/xhr, user interaction, long task, web vitals
+- Web vitals exported as **spans** (`webVitalsInstrumentationConfig.mode: "span"`) — Tempo's metrics-generator derives metrics from them
+- OTLP HTTP trace exporter, endpoint `https://aldairgarros.com/v1/traces`
+- `BatchSpanProcessor` (5s interval, 512 max queue)
+- Session ID generated via `crypto.randomUUID()`, attached to every span via a custom `SpanProcessor` (`onStart`)
+- Dev mode (`import.meta.env.DEV`): console exporter only — no traffic to production Tempo
 
 ### `src/observability/glitchtip.ts`
 
 - `initGlitchTip()` called second in `main.tsx`
-- DSN configured to GlitchTip, endpoint `https://aldairgarros.com/glitchtip`
-- `ErrorBoundary` component wrapping the app tree
+- DSN from `import.meta.env.VITE_SENTRY_DSN` (CI secret, passed as Docker build-arg), endpoint `https://aldairgarros.com/glitchtip`
+- `tracesSampleRate: 0` (traces live in Tempo, not GlitchTip)
 - `beforeSend` hook: inject OTel `traceId`/`spanId` into error events for cross-tool correlation
+
+### `src/observability/ErrorBoundary.tsx`
+
+- Separate file (react-refresh lint rule requires component-only files)
+- `Sentry.ErrorBoundary` wrapping the app tree, fallback `null`
 
 ### `src/main.tsx` (modify)
 
@@ -217,14 +230,14 @@ Old: build dist → SCP to `/var/www/aldairgarros` → reload nginx
 
 New:
 1. `quality` job unchanged (lint + typecheck)
-2. `build-and-deploy`: `npm run build` (fast fail before image build)
-3. `docker build -t portfolio:$COMMIT_SHA .` (runs `npm ci` + `npm run build` inside the image)
-4. SCP `compose.portfolio.yml` to VPS
-5. SSH: `podman-compose -f compose.portfolio.yml up -d --build`
-6. Health check: `curl http://localhost:3070` → 200
-7. Remove old SCP, backup, and `systemctl reload nginx` steps
+2. `build-and-deploy`: `docker build` with `--build-arg VITE_SENTRY_DSN` → tagged `ghcr.io/aldairgarros/portfolio:$GITHUB_SHA` + `latest`
+3. Push both tags to GHCR (using `GITHUB_TOKEN`, `packages: write` permission)
+4. SCP `compose.portfolio.yml` to VPS `~/portfolio/compose.yml`
+5. SSH: `podman pull ghcr.io/...:$GITHUB_SHA` → `IMAGE_TAG=$GITHUB_SHA podman-compose up -d`
+6. Health check: `curl http://127.0.0.1:3070` → 200
+7. Record SHA in `~/portfolio/.previous_sha`; on failure, roll back with previous SHA and exit 1
 
-Rollback: keep previous image tag, re-run `podman-compose -f compose.portfolio.yml up -d` with prior tag on health-check failure.
+Image build happens inside Docker (`npm ci` + `npm run build` + `tsc -b` typecheck). The old SCP, backup, and `systemctl reload nginx` steps are removed.
 
 ---
 
