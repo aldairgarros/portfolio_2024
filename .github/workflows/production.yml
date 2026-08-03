@@ -14,6 +14,10 @@ permissions:
   contents: read
   packages: write
 
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -29,6 +33,7 @@ jobs:
 
   build-and-deploy:
     needs: quality
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -62,16 +67,27 @@ jobs:
           cd ~/portfolio
           PREV_SHA=\$(cat .previous_sha 2>/dev/null || true)
           podman pull ghcr.io/aldairgarros/portfolio:$GITHUB_SHA
-          IMAGE_TAG=$GITHUB_SHA podman-compose up -d
+          IMAGE_TAG=$GITHUB_SHA podman-compose up -d || { echo "Error: podman-compose up failed"; IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"; exit 1; }
           sleep 5
-          if curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null; then
+          HEALTHY=""
+          for i in 1 2 3 4 5; do
+            if curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null; then
+              HEALTHY="yes"
+              break
+            fi
+            echo "Health check attempt \$i failed, retrying..."
+            sleep 2
+          done
+          if [ -n "\$HEALTHY" ]; then
             echo "Application is healthy"
             echo "$GITHUB_SHA" > .previous_sha
           else
             echo "Error: Application is not accessible"
             if [ -n "\$PREV_SHA" ]; then
               echo "Rolling back to \$PREV_SHA"
-              IMAGE_TAG=\$PREV_SHA podman-compose up -d
+              IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"
+              sleep 5
+              curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null && echo "Rollback healthy" || echo "Error: rollback health check failed"
             else
               echo "Warning: No previous SHA to roll back to"
             fi
