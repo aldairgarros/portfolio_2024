@@ -9,9 +9,17 @@ import "@fontsource/space-grotesk/600.css";
 import "@fontsource/space-grotesk/700.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/600.css";
+import { GlitchTipErrorBoundary } from "./observability/ErrorBoundary.tsx";
+import { initGlitchTip } from "./observability/glitchtip.ts";
+import { initOpenTelemetry } from "./observability/otel.ts";
+
+initOpenTelemetry();
+initGlitchTip();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <GlitchTipErrorBoundary>
+      <App />
+    </GlitchTipErrorBoundary>
   </StrictMode>
 );

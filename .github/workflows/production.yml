@@ -10,6 +10,14 @@ on:
     types:
       - closed
 
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -25,18 +33,26 @@ jobs:
 
   build-and-deploy:
     needs: quality
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "23"
-          cache: "npm"
-      - run: npm ci --legacy-peer-deps --no-audit --no-fund
-      - run: npm run build
 
-      - name: Prepare deployment on VPS
-        id: pre_deployment
+      - name: Build container image
+        run: |
+          docker build \
+            --build-arg VITE_SENTRY_DSN="${{ secrets.VITE_SENTRY_DSN }}" \
+            -t ghcr.io/aldairgarros/portfolio:${{ github.sha }} \
+            -t ghcr.io/aldairgarros/portfolio:latest \
+            .
+
+      - name: Push image to GHCR
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker push ghcr.io/aldairgarros/portfolio:${{ github.sha }}
+          docker push ghcr.io/aldairgarros/portfolio:latest
+
+      - name: Deploy to VPS
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -44,58 +60,36 @@ jobs:
         run: |
           eval "$(ssh-agent -s)"
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p /var/www/aldairgarros"
-          export BACKUP_DIR="/var/www/aldairgarros.backup.$(date +%Y%m%d_%H%M%S)"
-          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p $BACKUP_DIR && cp -r /var/www/aldairgarros/* $BACKUP_DIR 2>/dev/null || true"
-          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "rm -rf /var/www/aldairgarros/*"
-          echo "backup_dir=$BACKUP_DIR" >> $GITHUB_OUTPUT
-
-      - name: Copy files to VPS and set permissions
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-        run: |
-          eval "$(ssh-agent -s)"
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p ~/aldairgarros"
-          scp -o StrictHostKeyChecking=no -r ./dist/* $VPS_USER@$VPS_HOST:~/aldairgarros/
+          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST "mkdir -p ~/portfolio"
+          scp -o StrictHostKeyChecking=no compose.portfolio.yml $VPS_USER@$VPS_HOST:~/portfolio/compose.yml
           ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST << EOF
           set -e
-          mv ~/aldairgarros/* /var/www/aldairgarros/
-          chgrp -R www-data /var/www/aldairgarros/
-          chmod -R 775 /var/www/aldairgarros/
-          EOF
-
-      - name: Restart web server and verify deployment
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-        run: |
-          eval "$(ssh-agent -s)"
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-          ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST << 'EOF'
-          set -e
-          sudo systemctl reload nginx || { echo 'Error: Failed to reload Nginx'; exit 1; }
+          cd ~/portfolio
+          PREV_SHA=\$(cat .previous_sha 2>/dev/null || true)
+          podman pull ghcr.io/aldairgarros/portfolio:$GITHUB_SHA
+          IMAGE_TAG=$GITHUB_SHA podman-compose up -d || { echo "Error: podman-compose up failed"; if [ -n "\$PREV_SHA" ]; then IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"; sleep 5; curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null && echo "Rollback healthy" || echo "Error: rollback health check failed"; else echo "Warning: No previous SHA to roll back to"; fi; exit 1; }
           sleep 5
-          if systemctl is-active --quiet nginx; then echo "Nginx is running"
-          else echo "Error: Nginx is not running"; exit 1; fi
-          BACKUP_DIR="${{ steps.pre_deployment.outputs.backup_dir }}"
-          if curl -s --head https://aldairgarros.com | grep "200 OK" > /dev/null; then
-            echo "Application is accessible"
-            if [ -n "$(ls -A "$BACKUP_DIR" 2>/dev/null)" ]; then
-              rm -rf "$BACKUP_DIR"
+          HEALTHY=""
+          for i in 1 2 3 4 5; do
+            if curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null; then
+              HEALTHY="yes"
+              break
             fi
+            echo "Health check attempt \$i failed, retrying..."
+            sleep 2
+          done
+          if [ -n "\$HEALTHY" ]; then
+            echo "Application is healthy"
+            echo "$GITHUB_SHA" > .previous_sha
           else
             echo "Error: Application is not accessible"
-            if [ -n "$(ls -A "$BACKUP_DIR" 2>/dev/null)" ]; then
-              echo "Restoring from backup..."
-              rm -rf /var/www/aldairgarros
-              mv "$BACKUP_DIR" /var/www/aldairgarros
-              sudo systemctl reload nginx
+            if [ -n "\$PREV_SHA" ]; then
+              echo "Rolling back to \$PREV_SHA"
+              IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"
+              sleep 5
+              curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null && echo "Rollback healthy" || echo "Error: rollback health check failed"
             else
-              echo "Warning: No backup to restore. Keeping deployed files."
+              echo "Warning: No previous SHA to roll back to"
             fi
             exit 1
           fi
