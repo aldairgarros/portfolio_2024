@@ -9,6 +9,7 @@ on:
       - main
     types:
       - closed
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -33,7 +34,7 @@ jobs:
 
   build-and-deploy:
     needs: quality
-    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
