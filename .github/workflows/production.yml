@@ -57,6 +57,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.actor }}
         run: |
           eval "$(ssh-agent -s)"
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
@@ -66,6 +68,8 @@ jobs:
           set -e
           cd ~/portfolio
           PREV_SHA=\$(cat .previous_sha 2>/dev/null || true)
+          echo "Logging into GitHub Container Registry..."
+          echo "$GH_TOKEN" | podman login ghcr.io -u $GH_ACTOR --password-stdin || { echo "Error: Failed to log in to registry"; exit 1; }
           podman pull ghcr.io/aldairgarros/portfolio:$GITHUB_SHA
           IMAGE_TAG=$GITHUB_SHA podman-compose up -d || { echo "Error: podman-compose up failed"; if [ -n "\$PREV_SHA" ]; then IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"; sleep 5; curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null && echo "Rollback healthy" || echo "Error: rollback health check failed"; else echo "Warning: No previous SHA to roll back to"; fi; exit 1; }
           sleep 5
