@@ -67,7 +67,7 @@ jobs:
           cd ~/portfolio
           PREV_SHA=\$(cat .previous_sha 2>/dev/null || true)
           podman pull ghcr.io/aldairgarros/portfolio:$GITHUB_SHA
-          IMAGE_TAG=$GITHUB_SHA podman-compose up -d || { echo "Error: podman-compose up failed"; IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"; exit 1; }
+          IMAGE_TAG=$GITHUB_SHA podman-compose up -d || { echo "Error: podman-compose up failed"; if [ -n "\$PREV_SHA" ]; then IMAGE_TAG=\$PREV_SHA podman-compose up -d || echo "Error: rollback also failed"; sleep 5; curl -s --head http://127.0.0.1:3070 | grep "200 OK" > /dev/null && echo "Rollback healthy" || echo "Error: rollback health check failed"; else echo "Warning: No previous SHA to roll back to"; fi; exit 1; }
           sleep 5
           HEALTHY=""
           for i in 1 2 3 4 5; do
