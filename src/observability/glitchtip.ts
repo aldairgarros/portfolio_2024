@@ -12,7 +12,7 @@ export function initGlitchTip(): void {
   Sentry.init({
     dsn,
     environment: import.meta.env.PROD ? "production" : "development",
-    tracesSampleRate: 0,
+    tracesSampleRate: 1.0,
     beforeSend(event) {
       const spanContext = trace.getSpan(context.active())?.spanContext();
 
