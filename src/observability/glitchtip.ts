@@ -14,14 +14,18 @@ export function initGlitchTip(): void {
     environment: import.meta.env.PROD ? "production" : "development",
     tracesSampleRate: 1.0,
     beforeSend(event) {
-      const spanContext = trace.getSpan(context.active())?.spanContext();
+      try {
+        const spanContext = trace.getSpan(context.active())?.spanContext();
 
-      if (spanContext) {
-        event.tags = {
-          ...event.tags,
-          trace_id: spanContext.traceId,
-          span_id: spanContext.spanId,
-        };
+        if (spanContext) {
+          event.tags = {
+            ...event.tags,
+            trace_id: spanContext.traceId,
+            span_id: spanContext.spanId,
+          };
+        }
+      } catch (error) {
+        console.warn("[observability] failed to attach trace context", error);
       }
 
       return event;
