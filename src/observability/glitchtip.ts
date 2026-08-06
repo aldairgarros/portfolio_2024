@@ -1,5 +1,5 @@
 import { context, trace } from "@opentelemetry/api";
-import * as Sentry from "@sentry/react";
+import { browserTracingIntegration, init } from "@sentry/react";
 
 export function initGlitchTip(): void {
   const dsn = import.meta.env.VITE_SENTRY_DSN as string | undefined;
@@ -9,9 +9,10 @@ export function initGlitchTip(): void {
     return;
   }
 
-  Sentry.init({
+  init({
     dsn,
     environment: import.meta.env.PROD ? "production" : "development",
+    integrations: [browserTracingIntegration()],
     tracesSampleRate: 1.0,
     beforeSend(event) {
       try {
