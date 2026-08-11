@@ -14,7 +14,7 @@ export function Home() {
       <About />
       <Expertise />
       {PROJECTS.map((project, index) => (
-        <ProjectDetail key={project} project={project} tinted={index % 2 !== 0} />
+        <ProjectDetail key={project} project={project} flip={index % 2 !== 0} />
       ))}
       <Education />
       <Contact />
