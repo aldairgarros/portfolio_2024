@@ -19,7 +19,7 @@ export function Education() {
           <div className="flex items-start gap-4">
             <GraduationCap size={28} className="text-emerald-400 shrink-0 mt-1" />
             <div>
-              <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50">{t("course.title")}</h3>
+              <h3 className="text-xl font-semibold font-mono text-primary-900 dark:text-primary-50">{t("course.title")}</h3>
               <p className="text-sm text-accent-600 dark:text-accent-400 mt-1">
                 {t("course.institution")} &mdash; {t("course.period")}
               </p>

@@ -33,7 +33,7 @@ export function Expertise() {
         {expertise.map((capability) => (
           <motion.div key={capability.id} variants={itemVariants}>
             <GlassCard hover>
-              <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50 mb-4">
+              <h3 className="text-xl font-semibold font-mono text-primary-900 dark:text-primary-50 mb-4">
                 {t(`list.${capability.id}.title`)}
               </h3>
               <div className="space-y-3 text-sm">

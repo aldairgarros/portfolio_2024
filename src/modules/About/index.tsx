@@ -28,7 +28,7 @@ export function About() {
           >
             <GlassCard hover className="p-8 border-l-2 border-l-emerald-400/40">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50 flex items-center gap-2">
+                <h3 className="text-xl font-semibold font-mono text-primary-900 dark:text-primary-50 flex items-center gap-2">
                   <Briefcase size={20} className="text-emerald-400 shrink-0" />
                   {t(`list.${item}.title.value`)}
                 </h3>

@@ -90,7 +90,7 @@ export function Hero() {
         className="relative z-10">
         <div className="relative">
           <motion.h1
-            className="text-7xl sm:text-9xl font-bold font-heading tracking-tight text-primary-900 dark:text-primary-50 mb-6"
+            className="text-7xl sm:text-9xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6"
             style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
             {t("title.value")}
           </motion.h1>

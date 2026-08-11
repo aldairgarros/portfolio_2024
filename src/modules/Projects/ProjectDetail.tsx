@@ -63,7 +63,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
 
             <div className="flex flex-col justify-center gap-5">
               <div className="flex items-center justify-between gap-4">
-                <h3 className="text-2xl font-bold font-heading text-primary-900 dark:text-primary-50">
+                <h3 className="text-2xl font-bold font-mono text-primary-900 dark:text-primary-50">
                   {p("name.value")}
                 </h3>
                 <span className="text-sm font-mono text-primary-500 dark:text-primary-400 shrink-0">
