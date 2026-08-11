@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { MenuBar, type NavItem } from "@/modules/MenuBar";
 import { BackgroundDecoration } from "@/components/BackgroundDecoration";
 import { ContactFooter } from "@/modules/Contact";
+import { ActiveSectionProvider } from "@/context/ActiveSectionContext";
 
 export function RootLayout() {
   const { t } = useTranslation("translation");
@@ -22,11 +23,13 @@ export function RootLayout() {
   ];
 
   return (
-    <div className="flex items-center justify-center">
-      <MenuBar links={links} />
-      <BackgroundDecoration />
-      <Outlet />
-      <ContactFooter />
-    </div>
+    <ActiveSectionProvider>
+      <div className="flex items-center justify-center">
+        <MenuBar links={links} />
+        <BackgroundDecoration />
+        <Outlet />
+        <ContactFooter />
+      </div>
+    </ActiveSectionProvider>
   );
 }

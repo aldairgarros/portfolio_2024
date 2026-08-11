@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, ScrollRestoration } from "react-router-dom";
 import { TerminalFrame, TerminalSeparator } from "@/components/TerminalFrame";
+import { useActivePath } from "@/context/ActiveSectionContext";
 
 export interface NavItem {
   label: string;
@@ -18,6 +19,7 @@ export function MenuBar({ links }: Props) {
   const menuRef = useRef<HTMLDivElement>(null);
   const { i18n, t } = useTranslation();
   const { language, changeLanguage } = i18n;
+  const activePath = useActivePath();
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -54,8 +56,8 @@ export function MenuBar({ links }: Props) {
         <div className="max-w-6xl mx-auto h-14 flex items-center justify-between px-4 sm:px-8 font-mono text-base">
           <Link
             to={{ pathname: "/", hash: "hero" }}
-            className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none">
-            @{t("hero.title.value")}:~
+            className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none min-w-0 truncate">
+            @{t("hero.title.value")}:<span key={activePath ?? "~"} className="animate-fade-in">{activePath ?? "~"}</span>
           </Link>
 
           <div className="flex items-center gap-3">
