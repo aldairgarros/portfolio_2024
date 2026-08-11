@@ -60,8 +60,8 @@ export function Hero() {
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 15 });
-  const springY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 15 });
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), { stiffness: 120, damping: 20 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 120, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (prefersReducedMotion || !isPointerFine) return;
@@ -75,29 +75,35 @@ export function Hero() {
       id="hero"
       className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden"
       onMouseMove={handleMouseMove}>
-      {/* CSS 3D cubes */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/2 left-[6%] -translate-y-1/2 opacity-70 hidden sm:block">
-          <Cube size={220} speedX={0} speedY={45} />
-        </div>
-        <div className="absolute top-1/2 right-[6%] -translate-y-1/2 opacity-70 hidden sm:block">
-          <Cube size={280} speedX={35} speedY={55} />
-        </div>
-        <div className="absolute bottom-[16%] left-[30%] opacity-70 hidden md:block">
-          <Cube size={170} speedX={-25} speedY={40} />
-        </div>
-      </div>
+      <motion.div
+        style={{
+          y: prefersReducedMotion ? 0 : heroY,
+          opacity: prefersReducedMotion ? 1 : heroOpacity,
+          rotateX: prefersReducedMotion ? 0 : rotateX,
+          rotateY: prefersReducedMotion ? 0 : rotateY,
+          transformPerspective: 1200,
+        }}
+        className="relative z-10 w-full max-w-5xl">
+        <TerminalFrame
+          title="~"
+          className="relative overflow-hidden bg-white/25! dark:bg-primary-900/25! backdrop-blur-none! shadow-none!">
+          {/* CSS 3D cubes — contained inside the frame */}
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="absolute top-1/2 left-[6%] -translate-y-1/2 opacity-70 hidden sm:block">
+              <Cube size={220} speedX={0} speedY={45} />
+            </div>
+            <div className="absolute top-1/2 right-[6%] -translate-y-1/2 opacity-70 hidden sm:block">
+              <Cube size={280} speedX={35} speedY={55} />
+            </div>
+            <div className="absolute bottom-[16%] left-[30%] opacity-70 hidden md:block">
+              <Cube size={170} speedX={-25} speedY={40} />
+            </div>
+          </div>
 
-      <div className="relative z-10 w-full max-w-5xl">
-        <TerminalFrame title="~" className="bg-white/25! dark:bg-primary-900/25! backdrop-blur-none! shadow-none!">
-          <motion.div
-            style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
-            className="py-16 sm:py-20 px-4 sm:px-8 text-center">
-            <motion.h1
-              className="text-6xl sm:text-9xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6"
-              style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
+          <div className="relative z-10 py-16 sm:py-20 px-4 sm:px-8">
+            <h1 className="text-6xl sm:text-9xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6">
               {t("title.value")}
-            </motion.h1>
+            </h1>
             <div className="mt-8 flex justify-center">
               <p className="font-sans text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed">
                 {t("subtitle.value")}
@@ -111,9 +117,9 @@ export function Hero() {
                 {t("extras.artificialIntelligence.label")}
               </span>
             </div>
-          </motion.div>
+          </div>
         </TerminalFrame>
-      </div>
+      </motion.div>
     </section>
   );
 }
