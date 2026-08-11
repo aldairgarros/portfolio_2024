@@ -53,7 +53,7 @@ export function MenuBar({ links }: Props) {
                       : "text-primary-600 dark:text-primary-400 hover:text-emerald-500 dark:hover:text-emerald-400"
                   }`}
                   onClick={() => handleLanguageChange(lang)}
-                  aria-label={lang === "en" ? "Switch to English" : "Mudar para português"}
+                  aria-label={lang === "en" ? t("home.langEn") : t("home.langBr")}
                   aria-pressed={language === lang}>
                   {lang.toUpperCase()}
                 </button>

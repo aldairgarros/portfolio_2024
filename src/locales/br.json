@@ -2,7 +2,9 @@
   "home": {
     "title": "início",
     "menuOpen": "Abrir menu",
-    "menuClose": "Fechar menu"
+    "menuClose": "Fechar menu",
+    "langEn": "Mudar para inglês",
+    "langBr": "Mudar para português"
   },
   "hero": {
     "title": {

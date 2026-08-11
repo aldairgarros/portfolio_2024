@@ -31,7 +31,7 @@ function Cube({ size, speedX, speedY }: CubeProps) {
 
   return (
     <motion.div
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d", width: size, height: size }}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d", transformPerspective: 1000, width: size, height: size }}
       aria-hidden="true">
       {faces.map((transform, index) => (
         <div

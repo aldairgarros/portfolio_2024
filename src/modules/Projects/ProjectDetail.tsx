@@ -26,7 +26,10 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
       }));
   })();
 
-  const lightboxImages: LightboxImage[] = imageData.map(({ src, alt }) => ({ src, alt }));
+  const mainSrc = p("image.src");
+  const mainAlt = p("image.alt");
+
+  const lightboxImages: LightboxImage[] = [{ src: mainSrc, alt: mainAlt }, ...imageData.map(({ src, alt }) => ({ src, alt }))];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -38,8 +41,6 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
 
   const linkHref = p("link.href");
   const linkValue = p("link.value");
-  const mainSrc = p("image.src");
-  const mainAlt = p("image.alt");
 
   return (
     <section id={project} className="py-24 px-4 sm:px-8">
@@ -78,7 +79,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
                 {p("details.value")}
               </p>
 
-              {linkHref && (
+              {linkHref.startsWith("http") && (
                 <a
                   href={linkHref}
                   target="_blank"
@@ -100,7 +101,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
                       height={+img.height}
                       className="rounded-lg object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
                       loading="lazy"
-                      onClick={() => openLightbox(index)}
+                      onClick={() => openLightbox(index + 1)}
                     />
                   ))}
                 </div>
