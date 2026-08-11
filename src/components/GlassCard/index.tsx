@@ -27,8 +27,8 @@ export function GlassCard({ children, hover = false, tilt = false, className = "
     y.set(0);
   };
 
-  const baseClasses = `relative backdrop-blur-lg bg-white/10 dark:bg-white/5 rounded-2xl border border-zinc-200/30 dark:border-zinc-700/20 shadow-lg dark:shadow-[0_0_30px_rgba(5,150,105,0.05)] p-6 ${
-    hover ? "hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300" : ""
+  const baseClasses = `relative backdrop-blur-lg bg-white/10 dark:bg-white/5 rounded-none border border-zinc-200/30 dark:border-zinc-700/20 shadow-md p-6 ${
+    hover ? "hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300" : ""
   } ${className}`;
 
   if (tilt) {

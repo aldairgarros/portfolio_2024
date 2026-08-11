@@ -15,7 +15,7 @@ export function SectionTitle({ title, id, icon: Icon }: Props) {
         {Icon && <Icon size={28} className="text-emerald-400 shrink-0" />}
         {title}
       </h2>
-      <div className="mt-3 h-1 w-16 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full" />
+      <div className="mt-3 h-1 w-16 bg-emerald-400" />
     </div>
   );
 }
