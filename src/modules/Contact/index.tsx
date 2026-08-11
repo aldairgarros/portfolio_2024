@@ -19,7 +19,7 @@ export function ContactFooter() {
 
   return (
     <footer className="fixed bottom-0 w-full z-20 backdrop-blur-lg bg-white/10 dark:bg-white/5">
-      <div className="flex items-center font-mono text-xs sm:text-sm leading-none overflow-x-auto">
+      <div className="flex items-center font-mono text-xs sm:text-sm leading-none overflow-x-auto min-h-[26px] sm:min-h-[32px] py-1.5 sm:py-2">
         <span aria-hidden className={`select-none ${GLYPH}`}>└</span>
         <span aria-hidden className={`select-none ${GLYPH}`}>─</span>
         <span className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap text-primary-500 dark:text-primary-400 select-none">

@@ -12,7 +12,7 @@ export function Home() {
   const { t } = useTranslation("translation", { keyPrefix: "projects" });
 
   return (
-    <main className="flex min-h-screen flex-col pb-14">
+    <main className="flex min-h-screen flex-col pb-10">
       <Hero />
       <About />
       <Expertise />

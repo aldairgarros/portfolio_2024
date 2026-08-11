@@ -86,12 +86,12 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 w-full max-w-5xl">
-        <TerminalFrame>
+        <TerminalFrame title="~">
           <motion.div
             style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
-            className="py-16 sm:py-20">
+            className="py-16 sm:py-20 px-4 sm:px-8 text-center">
             <motion.h1
-              className="text-5xl sm:text-8xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6"
+              className="text-6xl sm:text-9xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6"
               style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
               {t("title.value")}
             </motion.h1>

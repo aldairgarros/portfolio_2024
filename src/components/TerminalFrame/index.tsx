@@ -10,7 +10,7 @@ interface TerminalFrameProps {
 
 function Title({ title }: { title: ReactNode }) {
   return (
-    <span className={`${GLYPH} font-semibold whitespace-nowrap flex-none max-w-[55%] overflow-hidden text-ellipsis`}>
+    <span className={`${GLYPH} font-semibold whitespace-nowrap flex-none min-w-0 max-w-[55%] overflow-hidden text-ellipsis`}>
       <span className="px-1">`</span>
       {title}
       <span className="px-1">`</span>
@@ -30,19 +30,19 @@ export function TerminalFrame({ title, className = "", children }: TerminalFrame
         </span>
         <span className={GLYPH}>┐</span>
       </div>
-      <div className="flex items-stretch">
+      <div className="relative flex">
         <span
           aria-hidden
-          className={`flex-none w-[1.5ch] overflow-hidden text-center select-none text-sm leading-none ${GLYPH}`}
-          style={{ writingMode: "vertical-rl" }}>
-          {"│".repeat(600)}
+          className={`absolute top-0 bottom-0 left-0 w-[2ch] overflow-hidden select-none text-sm leading-none ${GLYPH}`}
+          style={{ wordBreak: "break-all" }}>
+          {"│".repeat(999)}
         </span>
-        <div className="flex-1 min-w-0">{children}</div>
+        <div className="flex-1 min-w-0 ml-[2ch] mr-[2ch]">{children}</div>
         <span
           aria-hidden
-          className={`flex-none w-[1.5ch] overflow-hidden text-center select-none text-sm leading-none ${GLYPH}`}
-          style={{ writingMode: "vertical-rl" }}>
-          {"│".repeat(600)}
+          className={`absolute top-0 bottom-0 right-0 w-[2ch] overflow-hidden select-none text-sm leading-none ${GLYPH}`}
+          style={{ wordBreak: "break-all" }}>
+          {"│".repeat(999)}
         </span>
       </div>
       <div aria-hidden className="flex items-center select-none text-sm leading-none">
