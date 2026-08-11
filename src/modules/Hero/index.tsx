@@ -99,20 +99,16 @@ export function Hero() {
               {t("title.value")}
             </motion.h1>
             <div className="mt-8 flex justify-center">
-              <p className="text-base sm:text-lg text-primary-600 dark:text-primary-400 max-w-2xl mx-auto leading-relaxed">
+              <p className="font-sans text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed">
                 {t("subtitle.value")}
               </p>
             </div>
             <div className="mt-8 flex justify-center gap-4 flex-wrap">
-              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-                <span aria-hidden className="text-emerald-500">[</span>
+              <span className="font-mono text-sm font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5">
                 {t("extras.available.label")}
-                <span aria-hidden className="text-emerald-500">]</span>
               </span>
-              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-                <span aria-hidden className="text-emerald-500">[</span>
+              <span className="font-mono text-sm font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5">
                 {t("extras.artificialIntelligence.label")}
-                <span aria-hidden className="text-emerald-500">]</span>
               </span>
             </div>
           </motion.div>

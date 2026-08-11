@@ -16,7 +16,7 @@ export function Home() {
       <Hero />
       <About />
       <Expertise />
-      <section id="projects" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+      <section id="projects" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <h2 className="sr-only">{t("title")}</h2>
         <TerminalFrame title={t("title")}>
           <div className="flex flex-col gap-6 p-6 sm:p-8">

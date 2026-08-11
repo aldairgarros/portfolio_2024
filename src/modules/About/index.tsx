@@ -13,7 +13,7 @@ export function About() {
   const LIST = ["experience1", "experience2"];
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
+    <section id="about" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
         <div className="flex flex-col gap-6 p-6 sm:p-8">
@@ -27,35 +27,35 @@ export function About() {
               transition={{ delay: index * 0.15 }}
             >
             <TerminalPanel title={t(`list.${item}.title.value`)}>
-              <div className="flex items-center gap-2 text-sm font-mono text-primary-500 dark:text-primary-400 mb-4">
-                <Calendar size={14} className="text-emerald-400 shrink-0" aria-hidden="true" />
+              <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 dark:text-zinc-400 mb-4">
+                <Calendar size={14} className="text-emerald-500 shrink-0" aria-hidden="true" />
                 {t(`list.${item}.start.value`)} &mdash; {t(`list.${item}.end.value`)}
               </div>
-              <p className="text-primary-700 dark:text-primary-300 leading-relaxed mb-4">
+              <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
                 {t(`list.${item}.description.value`)}
               </p>
               <div className="space-y-3 text-sm">
                 <p>
-                  <span className="font-medium text-primary-900 dark:text-primary-50">
+                  <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
                     {t(`list.${item}.work.label`)}:
                   </span>{" "}
-                  <span className="text-primary-600 dark:text-primary-400">
+                  <span className="text-zinc-600 dark:text-zinc-400">
                     {t(`list.${item}.work.value`)}
                   </span>
                 </p>
                 <p>
-                  <span className="font-medium text-primary-900 dark:text-primary-50">
+                  <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
                     {t(`list.${item}.tools.label`)}:
                   </span>{" "}
-                  <span className="text-primary-600 dark:text-primary-400">
+                  <span className="text-zinc-600 dark:text-zinc-400">
                     {t(`list.${item}.tools.value`)}
                   </span>
                 </p>
                 <p>
-                  <span className="font-medium text-primary-900 dark:text-primary-50">
+                  <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
                     {t(`list.${item}.achievements.label`)}:
                   </span>{" "}
-                  <span className="text-primary-600 dark:text-primary-400">
+                  <span className="text-zinc-600 dark:text-zinc-400">
                     {t(`list.${item}.achievements.value`)}
                   </span>
                 </p>

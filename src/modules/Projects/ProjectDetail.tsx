@@ -44,7 +44,7 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
     <div id={project}>
       <h3 className="sr-only">{p("name.value")}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center order-2 md:order-1">
           <img
             src={mainSrc}
             alt={mainAlt}
@@ -56,12 +56,12 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
           />
         </div>
 
-        <div className="flex flex-col justify-center gap-5">
-          <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
+        <div className="flex flex-col justify-center gap-5 order-1 md:order-2">
+          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
             {p("description.value")}
           </p>
 
-          <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
+          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
             {p("details.value")}
           </p>
 
@@ -70,7 +70,7 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
               href={linkHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start px-6 py-3 border border-emerald-400/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+              className="inline-flex items-center gap-2 self-start px-6 py-3 bg-emerald-500 text-white hover:bg-emerald-600 transition-colors font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
               {linkValue || tProjects("open")}
               <ExternalLink size={16} aria-hidden="true" />
             </a>

@@ -20,7 +20,7 @@ export function Expertise() {
   const { t } = useTranslation("translation", { keyPrefix: "expertise" });
 
   return (
-    <section id="expertise" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
+    <section id="expertise" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
         <div className="flex flex-col gap-6 p-6 sm:p-8">
@@ -36,26 +36,26 @@ export function Expertise() {
               <TerminalPanel title={t(`list.${capability.id}.title`)}>
                 <div className="space-y-3 text-sm">
                   <p>
-                    <span className="font-medium text-primary-900 dark:text-primary-50">
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
                       {t("contextLabel")}:
                     </span>{" "}
-                    <span className="text-primary-600 dark:text-primary-400">
+                    <span className="text-zinc-600 dark:text-zinc-400">
                       {t(`list.${capability.id}.context`)}
                     </span>
                   </p>
                   <p>
-                    <span className="font-medium text-primary-900 dark:text-primary-50">
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
                       {t("applicabilityLabel")}:
                     </span>{" "}
-                    <span className="text-primary-600 dark:text-primary-400">
+                    <span className="text-zinc-600 dark:text-zinc-400">
                       {t(`list.${capability.id}.applicability`)}
                     </span>
                   </p>
                   <p>
-                    <span className="font-medium text-primary-900 dark:text-primary-50">
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
                       {t("impactLabel")}:
                     </span>{" "}
-                    <span className="text-primary-600 dark:text-primary-400">
+                    <span className="text-zinc-600 dark:text-zinc-400">
                       {t(`list.${capability.id}.impact`)}
                     </span>
                   </p>

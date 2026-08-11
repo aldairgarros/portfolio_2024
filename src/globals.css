@@ -78,6 +78,7 @@
   --color-danger-950: var(--color-red-950);
 
   /* Typography */
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
@@ -98,7 +99,7 @@
 }
 
 :root {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--font-sans);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
