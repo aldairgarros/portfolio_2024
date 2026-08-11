@@ -27,7 +27,7 @@ export function GlassCard({ children, hover = false, tilt = false, className = "
     y.set(0);
   };
 
-  const baseClasses = `backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-2xl shadow-md p-6 ${
+  const baseClasses = `relative backdrop-blur-lg bg-white/10 dark:bg-white/5 rounded-3xl shadow-md p-8 ${
     hover ? "hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300" : ""
   } ${className}`;
 
