@@ -28,7 +28,7 @@ export function Contact() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6 }}
       >
-        <GlassCard className="flex items-center border-l-2 border-l-amber-400/60">
+        <GlassCard className="flex items-center border-l-2 border-l-emerald-400/40">
           <p className="text-primary-700 dark:text-primary-300 leading-relaxed text-lg">
             {t("message")}
           </p>
@@ -49,7 +49,7 @@ export function Contact() {
                 key={key}
                 href={href}
                 {...extraProps}
-                className="inline-flex items-center gap-3 px-4 py-3 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-gradient-to-r hover:from-amber-400 hover:to-rose-400 hover:text-white hover:border-transparent transition-all focus:ring-2 focus:ring-amber-400 focus:outline-none"
+                className="inline-flex items-center gap-3 px-4 py-3 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all focus:ring-2 focus:ring-emerald-400 focus:outline-none"
               >
                 <Icon size={18} className="shrink-0" />
                 {value}
