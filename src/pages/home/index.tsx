@@ -5,24 +5,40 @@ import { Expertise } from "@/modules/Expertise";
 import { Hero } from "@/modules/Hero";
 import { ProjectDetail } from "@/modules/Projects/ProjectDetail";
 import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
+import { useActiveSection } from "@/context/ActiveSectionContext";
 
-const PROJECTS = ["atalaiaPro", "penhor", "bolsobom", "musicaShow"];
+const PROJECTS = ["atalaiaPro", "penhor", "bolsobom", "musicaShow"] as const;
+
+const PROJECT_PATHS: Record<(typeof PROJECTS)[number], string> = {
+  atalaiaPro: "~/projects/atalaia-pro",
+  penhor: "~/projects/penhor",
+  bolsobom: "~/projects/bolso-bom",
+  musicaShow: "~/projects/musica-show",
+};
 
 export function Home() {
   const { t } = useTranslation("translation", { keyPrefix: "projects" });
+  const projectsRef = useActiveSection("~/projects");
+  const projectRefs = {
+    atalaiaPro: useActiveSection(PROJECT_PATHS.atalaiaPro),
+    penhor: useActiveSection(PROJECT_PATHS.penhor),
+    bolsobom: useActiveSection(PROJECT_PATHS.bolsobom),
+    musicaShow: useActiveSection(PROJECT_PATHS.musicaShow),
+  };
 
   return (
     <main className="flex min-h-screen flex-col pb-10">
       <Hero />
       <About />
       <Expertise />
-      <section id="projects" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+      <section id="projects" ref={projectsRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <h2 className="sr-only">{t("title")}</h2>
         <TerminalFrame title={t("title")}>
           <div className="flex flex-col gap-6 p-6 sm:p-8">
             {PROJECTS.map((project) => (
               <TerminalPanel
                 key={project}
+                ref={projectRefs[project]}
                 title={(
                   <span className="inline-flex items-center gap-3">
                     {t(`list.${project}.name.value`)}
