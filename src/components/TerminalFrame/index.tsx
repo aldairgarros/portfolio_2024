@@ -27,6 +27,10 @@ export function TerminalFrame({ title, className = "", children }: TerminalFrame
   );
 }
 
+const PANEL =
+  "border border-zinc-300/70 dark:border-zinc-700/60 bg-white/60 dark:bg-primary-900/50 backdrop-blur-md " +
+  "shadow-[0_2px_12px_rgba(0,0,0,0.07)] dark:shadow-[0_2px_16px_rgba(0,0,0,0.32)]";
+
 interface TerminalPanelProps {
   title: ReactNode;
   className?: string;
@@ -35,8 +39,8 @@ interface TerminalPanelProps {
 
 export function TerminalPanel({ title, className = "", children }: TerminalPanelProps) {
   return (
-    <div className={className}>
-      <div className="flex items-center gap-2 min-w-0 px-1 pt-1">
+    <div className={`font-mono ${PANEL} ${className}`}>
+      <div className="flex items-center gap-2 border-b border-zinc-300/70 dark:border-zinc-700/60 px-4 py-2.5 min-w-0">
         <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
           <span className="text-emerald-500">`</span>
           {title}
@@ -44,7 +48,7 @@ export function TerminalPanel({ title, className = "", children }: TerminalPanel
         </span>
         <span className="flex-1 border-t border-zinc-300/70 dark:border-zinc-700/60" aria-hidden="true" />
       </div>
-      <div className="px-1 py-5">{children}</div>
+      <div className="p-5 sm:p-6">{children}</div>
     </div>
   );
 }

@@ -40,8 +40,9 @@ function Cube({ size, speedX, speedY }: CubeProps) {
           style={{
             transform,
             backfaceVisibility: "hidden",
-            border: "1px solid rgb(16 185 129 / 0.55)",
-            background: "rgb(16 185 129 / 0.08)",
+            border: "1px solid rgb(16 185 129 / 0.7)",
+            background: "linear-gradient(rgb(16 185 129 / 0.22), rgb(16 185 129 / 0.08))",
+            boxShadow: "inset 0 0 18px rgb(16 185 129 / 0.15)",
           }}
         />
       ))}
@@ -77,16 +78,16 @@ export function Hero() {
       onMouseMove={handleMouseMove}>
       {/* CSS 3D cubes */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/2 left-[12%] -translate-y-1/2 opacity-40 hidden sm:block">
+        <div className="absolute top-1/2 left-[8%] -translate-y-1/2 opacity-60 hidden sm:block">
           <Cube size={140} speedX={0} speedY={45} />
         </div>
-        <div className="absolute top-1/2 right-[12%] -translate-y-1/2 opacity-40 hidden sm:block">
+        <div className="absolute top-1/2 right-[8%] -translate-y-1/2 opacity-60 hidden sm:block">
           <Cube size={180} speedX={35} speedY={55} />
         </div>
       </div>
 
       <div className="relative z-10 w-full max-w-5xl">
-        <TerminalFrame title="~">
+        <TerminalFrame title="~" className="bg-white/25! dark:bg-primary-900/25! backdrop-blur-none! shadow-none!">
           <motion.div
             style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
             className="py-16 sm:py-20 px-4 sm:px-8 text-center">

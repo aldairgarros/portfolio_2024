@@ -16,15 +16,16 @@ export function About() {
     <section id="about" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
-        {LIST.map((item, index) => (
-          <motion.div
-            key={item}
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ delay: index * 0.15 }}
-          >
+        <div className="flex flex-col gap-6 p-6 sm:p-8">
+          {LIST.map((item, index) => (
+            <motion.div
+              key={item}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ delay: index * 0.15 }}
+            >
             <TerminalPanel title={t(`list.${item}.title.value`)}>
               <div className="flex items-center gap-2 text-sm font-mono text-primary-500 dark:text-primary-400 mb-4">
                 <Calendar size={14} className="text-emerald-400 shrink-0" aria-hidden="true" />
@@ -60,8 +61,9 @@ export function About() {
                 </p>
               </div>
             </TerminalPanel>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </TerminalFrame>
     </section>
   );

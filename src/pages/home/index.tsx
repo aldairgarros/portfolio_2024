@@ -19,20 +19,22 @@ export function Home() {
       <section id="projects" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <h2 className="sr-only">{t("title")}</h2>
         <TerminalFrame title={t("title")}>
-          {PROJECTS.map((project, index) => (
-            <TerminalPanel
-              key={project}
-              title={(
-                <span className="inline-flex items-center gap-3">
-                  {t(`list.${project}.name.value`)}
-                  <span className="text-xs text-primary-500 dark:text-primary-400">
-                    {t(`list.${project}.date.value`)}
+          <div className="flex flex-col gap-6 p-6 sm:p-8">
+            {PROJECTS.map((project, index) => (
+              <TerminalPanel
+                key={project}
+                title={(
+                  <span className="inline-flex items-center gap-3">
+                    {t(`list.${project}.name.value`)}
+                    <span className="text-xs text-primary-500 dark:text-primary-400">
+                      {t(`list.${project}.date.value`)}
+                    </span>
                   </span>
-                </span>
-              )}>
-              <ProjectDetail project={project} flip={index % 2 !== 0} />
-            </TerminalPanel>
-          ))}
+                )}>
+                <ProjectDetail project={project} flip={index % 2 !== 0} />
+              </TerminalPanel>
+            ))}
+          </div>
         </TerminalFrame>
       </section>
       <Education />
