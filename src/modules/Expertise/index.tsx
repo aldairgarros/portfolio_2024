@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { SectionTitle } from "@/components/SectionTitle";
-import { GlassCard } from "@/components/GlassCard";
+import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
 import { Skill } from "@/modules/Expertise/Skill";
 import expertise from "@/assets/expertise.json";
 
@@ -22,55 +21,53 @@ export function Expertise() {
 
   return (
     <section id="expertise" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
-      <SectionTitle title={t("title")} />
-      <motion.div
-        className="flex flex-col gap-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-      >
-        {expertise.map((capability) => (
-          <motion.div key={capability.id} variants={itemVariants}>
-            <GlassCard hover>
-              <h3 className="text-xl font-semibold font-mono text-primary-900 dark:text-primary-50 mb-4">
-                {t(`list.${capability.id}.title`)}
-              </h3>
-              <div className="space-y-3 text-sm">
-                <p>
-                  <span className="font-medium text-primary-900 dark:text-primary-50">
-                    {t("contextLabel")}:
-                  </span>{" "}
-                  <span className="text-primary-600 dark:text-primary-400">
-                    {t(`list.${capability.id}.context`)}
-                  </span>
-                </p>
-                <p>
-                  <span className="font-medium text-primary-900 dark:text-primary-50">
-                    {t("applicabilityLabel")}:
-                  </span>{" "}
-                  <span className="text-primary-600 dark:text-primary-400">
-                    {t(`list.${capability.id}.applicability`)}
-                  </span>
-                </p>
-                <p>
-                  <span className="font-medium text-primary-900 dark:text-primary-50">
-                    {t("impactLabel")}:
-                  </span>{" "}
-                  <span className="text-primary-600 dark:text-primary-400">
-                    {t(`list.${capability.id}.impact`)}
-                  </span>
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-x-8 gap-y-4 mt-8 border-t border-zinc-200/30 dark:border-zinc-700/20 pt-6">
-                {capability.tech.map((tech) => (
-                  <Skill key={tech} expertise={capability.id} skill={tech} />
-                ))}
-              </div>
-            </GlassCard>
-          </motion.div>
-        ))}
-      </motion.div>
+      <h2 className="sr-only">{t("title")}</h2>
+      <TerminalFrame title={t("title")}>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+        >
+          {expertise.map((capability, index) => (
+            <motion.div key={capability.id} variants={itemVariants} transition={{ delay: index * 0.1 }}>
+              <TerminalPanel title={t(`list.${capability.id}.title`)}>
+                <div className="space-y-3 text-sm">
+                  <p>
+                    <span className="font-medium text-primary-900 dark:text-primary-50">
+                      {t("contextLabel")}:
+                    </span>{" "}
+                    <span className="text-primary-600 dark:text-primary-400">
+                      {t(`list.${capability.id}.context`)}
+                    </span>
+                  </p>
+                  <p>
+                    <span className="font-medium text-primary-900 dark:text-primary-50">
+                      {t("applicabilityLabel")}:
+                    </span>{" "}
+                    <span className="text-primary-600 dark:text-primary-400">
+                      {t(`list.${capability.id}.applicability`)}
+                    </span>
+                  </p>
+                  <p>
+                    <span className="font-medium text-primary-900 dark:text-primary-50">
+                      {t("impactLabel")}:
+                    </span>{" "}
+                    <span className="text-primary-600 dark:text-primary-400">
+                      {t(`list.${capability.id}.impact`)}
+                    </span>
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-x-8 gap-y-4 mt-6">
+                  {capability.tech.map((tech) => (
+                    <Skill key={tech} expertise={capability.id} skill={tech} />
+                  ))}
+                </div>
+              </TerminalPanel>
+            </motion.div>
+          ))}
+        </motion.div>
+      </TerminalFrame>
     </section>
   );
 }

@@ -4,7 +4,7 @@ import { Education } from "@/modules/Education";
 import { Expertise } from "@/modules/Expertise";
 import { Hero } from "@/modules/Hero";
 import { ProjectDetail } from "@/modules/Projects/ProjectDetail";
-import { SectionTitle } from "@/components/SectionTitle";
+import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
 
 const PROJECTS = ["atalaiaPro", "penhor", "bolsobom", "musicaShow"];
 
@@ -17,16 +17,23 @@ export function Home() {
       <About />
       <Expertise />
       <section id="projects" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
-        <SectionTitle title={t("title")} />
-        <div className="flex flex-col">
+        <h2 className="sr-only">{t("title")}</h2>
+        <TerminalFrame title={t("title")}>
           {PROJECTS.map((project, index) => (
-            <div
+            <TerminalPanel
               key={project}
-              className={index > 0 ? "border-t border-zinc-200/30 dark:border-zinc-700/20 mt-16 pt-16" : ""}>
+              title={(
+                <span className="inline-flex items-center gap-3">
+                  {t(`list.${project}.name.value`)}
+                  <span className="text-xs text-primary-500 dark:text-primary-400">
+                    {t(`list.${project}.date.value`)}
+                  </span>
+                </span>
+              )}>
               <ProjectDetail project={project} flip={index % 2 !== 0} />
-            </div>
+            </TerminalPanel>
           ))}
-        </div>
+        </TerminalFrame>
       </section>
       <Education />
     </main>

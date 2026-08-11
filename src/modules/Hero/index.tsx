@@ -1,6 +1,6 @@
-import { GlassCard } from "@/components/GlassCard";
 import { motion, useAnimationFrame, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { TerminalFrame } from "@/components/TerminalFrame";
 
 interface CubeProps {
   size: number;
@@ -85,32 +85,36 @@ export function Hero() {
         </div>
       </div>
 
-      <motion.div
-        style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
-        className="relative z-10">
-        <div className="relative">
-          <motion.h1
-            className="text-7xl sm:text-9xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6"
-            style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
-            {t("title.value")}
-          </motion.h1>
-          <div className="mt-8 flex justify-center">
-            <p className="text-lg sm:text-xl text-primary-600 dark:text-primary-400 max-w-2xl mx-auto leading-relaxed">
-              {t("subtitle.value")}
-            </p>
-          </div>
-          <div className="mt-8 flex justify-center gap-4 flex-wrap">
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-emerald-400/40 dark:border-emerald-500/40">
-              <span className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold">{t("extras.available.label")}</span>
-            </GlassCard>
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-emerald-400/40 dark:border-emerald-500/40">
-              <span className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
-                {t("extras.artificialIntelligence.label")}
+      <div className="relative z-10 w-full max-w-5xl">
+        <TerminalFrame>
+          <motion.div
+            style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
+            className="py-16 sm:py-20">
+            <motion.h1
+              className="text-5xl sm:text-8xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6"
+              style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
+              {t("title.value")}
+            </motion.h1>
+            <div className="mt-8 flex justify-center">
+              <p className="text-base sm:text-lg text-primary-600 dark:text-primary-400 max-w-2xl mx-auto leading-relaxed">
+                {t("subtitle.value")}
+              </p>
+            </div>
+            <div className="mt-8 flex justify-center gap-4 flex-wrap">
+              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                <span aria-hidden className="text-emerald-500">[</span>
+                {t("extras.available.label")}
+                <span aria-hidden className="text-emerald-500">]</span>
               </span>
-            </GlassCard>
-          </div>
-        </div>
-      </motion.div>
+              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
+                <span aria-hidden className="text-emerald-500">[</span>
+                {t("extras.artificialIntelligence.label")}
+                <span aria-hidden className="text-emerald-500">]</span>
+              </span>
+            </div>
+          </motion.div>
+        </TerminalFrame>
+      </div>
     </section>
   );
 }

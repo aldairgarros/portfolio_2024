@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Briefcase, Calendar } from "lucide-react";
-import { SectionTitle } from "@/components/SectionTitle";
-import { GlassCard } from "@/components/GlassCard";
+import { Calendar } from "lucide-react";
+import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
 import { useTranslation } from "react-i18next";
 
 const itemVariants = {
@@ -15,8 +14,8 @@ export function About() {
 
   return (
     <section id="about" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
-      <SectionTitle title={t("title")} icon={Briefcase} />
-      <div className="flex flex-col gap-8">
+      <h2 className="sr-only">{t("title")}</h2>
+      <TerminalFrame title={t("title")}>
         {LIST.map((item, index) => (
           <motion.div
             key={item}
@@ -26,16 +25,10 @@ export function About() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ delay: index * 0.15 }}
           >
-            <GlassCard hover className="p-8 border-l-2 border-l-emerald-400/40">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                <h3 className="text-xl font-semibold font-mono text-primary-900 dark:text-primary-50 flex items-center gap-2">
-                  <Briefcase size={20} className="text-emerald-400 shrink-0" />
-                  {t(`list.${item}.title.value`)}
-                </h3>
-                <span className="text-sm font-mono text-primary-500 dark:text-primary-400 mt-1 sm:mt-0 flex items-center gap-1">
-                  <Calendar size={14} />
-                  {t(`list.${item}.start.value`)} &mdash; {t(`list.${item}.end.value`)}
-                </span>
+            <TerminalPanel title={t(`list.${item}.title.value`)}>
+              <div className="flex items-center gap-2 text-sm font-mono text-primary-500 dark:text-primary-400 mb-4">
+                <Calendar size={14} className="text-emerald-400 shrink-0" aria-hidden="true" />
+                {t(`list.${item}.start.value`)} &mdash; {t(`list.${item}.end.value`)}
               </div>
               <p className="text-primary-700 dark:text-primary-300 leading-relaxed mb-4">
                 {t(`list.${item}.description.value`)}
@@ -66,10 +59,10 @@ export function About() {
                   </span>
                 </p>
               </div>
-            </GlassCard>
+            </TerminalPanel>
           </motion.div>
         ))}
-      </div>
+      </TerminalFrame>
     </section>
   );
 }

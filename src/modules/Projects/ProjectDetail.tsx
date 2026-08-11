@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { ExternalLink } from "lucide-react";
-import { SectionTitle } from "@/components/SectionTitle";
 import { Lightbox, type LightboxImage } from "@/components/Lightbox";
 
 interface Props {
@@ -44,70 +43,56 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
 
   return (
     <div id={project}>
-      <div className="max-w-6xl mx-auto">
-        <SectionTitle title={p("name.value")} />
+      <h3 className="sr-only">{p("name.value")}</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className={`flex flex-col justify-center ${flip ? "md:order-2" : ""}`}>
+          <img
+            src={mainSrc}
+            alt={mainAlt}
+            width={600}
+            height={400}
+            className="w-full h-auto object-contain bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
+            loading="lazy"
+            onClick={() => openLightbox(0)}
+          />
+        </div>
 
-        <div className="rounded-none backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-zinc-200/30 dark:border-zinc-700/20 border-t-2 border-t-zinc-400/50 dark:border-t-zinc-600/50 shadow-md overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
-            <div className={`flex flex-col justify-center ${flip ? "md:order-2" : ""}`}>
-              <img
-                src={mainSrc}
-                alt={mainAlt}
-                width={600}
-                height={400}
-                className="w-full h-auto object-contain rounded-none bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
-                loading="lazy"
-                onClick={() => openLightbox(0)}
-              />
+        <div className="flex flex-col justify-center gap-5">
+          <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
+            {p("description.value")}
+          </p>
+
+          <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
+            {p("details.value")}
+          </p>
+
+          {linkHref.startsWith("http") && (
+            <a
+              href={linkHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 self-start px-6 py-3 border border-emerald-400/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+              {linkValue || tProjects("open")}
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
+          )}
+
+          {imageData.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {imageData.map((img, index) => (
+                <img
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  width={+img.width}
+                  height={+img.height}
+                  className="object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
+                  loading="lazy"
+                  onClick={() => openLightbox(index + 1)}
+                />
+              ))}
             </div>
-
-            <div className="flex flex-col justify-center gap-5">
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="text-2xl font-bold font-mono text-primary-900 dark:text-primary-50">
-                  {p("name.value")}
-                </h3>
-                <span className="text-sm font-mono text-primary-500 dark:text-primary-400 shrink-0">
-                  {p("date.value")}
-                </span>
-              </div>
-
-              <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
-                {p("description.value")}
-              </p>
-
-              <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
-                {p("details.value")}
-              </p>
-
-              {linkHref.startsWith("http") && (
-                <a
-                  href={linkHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-none border border-emerald-400/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
-                  {linkValue || tProjects("open")}
-                  <ExternalLink size={16} aria-hidden="true" />
-                </a>
-              )}
-
-              {imageData.length > 0 && (
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {imageData.map((img, index) => (
-                    <img
-                      key={img.src}
-                      src={img.src}
-                      alt={img.alt}
-                      width={+img.width}
-                      height={+img.height}
-                      className="rounded-none object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
-                      loading="lazy"
-                      onClick={() => openLightbox(index + 1)}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
