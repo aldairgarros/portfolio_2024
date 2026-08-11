@@ -40,9 +40,8 @@ function Cube({ size, speedX, speedY }: CubeProps) {
           style={{
             transform,
             backfaceVisibility: "hidden",
-            border: "1px solid rgb(16 185 129 / 0.7)",
-            background: "linear-gradient(rgb(16 185 129 / 0.22), rgb(16 185 129 / 0.08))",
-            boxShadow: "inset 0 0 18px rgb(16 185 129 / 0.15)",
+            border: "2px solid rgb(16 185 129 / 0.8)",
+            background: "transparent",
           }}
         />
       ))}
@@ -78,11 +77,14 @@ export function Hero() {
       onMouseMove={handleMouseMove}>
       {/* CSS 3D cubes */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/2 left-[8%] -translate-y-1/2 opacity-60 hidden sm:block">
-          <Cube size={140} speedX={0} speedY={45} />
+        <div className="absolute top-1/2 left-[6%] -translate-y-1/2 opacity-70 hidden sm:block">
+          <Cube size={220} speedX={0} speedY={45} />
         </div>
-        <div className="absolute top-1/2 right-[8%] -translate-y-1/2 opacity-60 hidden sm:block">
-          <Cube size={180} speedX={35} speedY={55} />
+        <div className="absolute top-1/2 right-[6%] -translate-y-1/2 opacity-70 hidden sm:block">
+          <Cube size={280} speedX={35} speedY={55} />
+        </div>
+        <div className="absolute bottom-[16%] left-[30%] opacity-70 hidden md:block">
+          <Cube size={170} speedX={-25} speedY={40} />
         </div>
       </div>
 
