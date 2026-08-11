@@ -44,7 +44,7 @@ export function ProjectDetail({ project, tinted = false }: Props): React.JSX.Ele
   return (
     <section
       id={project}
-      className={`py-24 px-4 sm:px-8 ${tinted ? "bg-accent-500/5" : ""}`}>
+      className={`py-24 px-4 sm:px-8 ${tinted ? "bg-amber-500/5" : ""}`}>
       <div className="max-w-6xl mx-auto">
         <SectionTitle title={p("name.value")} />
 

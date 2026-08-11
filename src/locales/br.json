@@ -1,6 +1,8 @@
 {
   "home": {
-    "title": "início"
+    "title": "início",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu"
   },
   "hero": {
     "title": {

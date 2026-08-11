@@ -15,7 +15,7 @@ interface Props {
 
 export function MenuBar({ links }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { language, changeLanguage } = i18n;
 
   const updateHtmlLang = (lang: string) => {
@@ -34,7 +34,7 @@ export function MenuBar({ links }: Props) {
         <button
           className="flex items-center justify-center w-12 h-12 cursor-pointer select-none focus:ring-2 focus:ring-amber-400 focus:outline-none rounded-full m-4 backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10"
           onClick={() => setIsMenuOpen((state) => !state)}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? t("home.menuClose") : t("home.menuOpen")}
           aria-expanded={isMenuOpen}>
           {isMenuOpen ? (
             <X size={20} className="text-primary-900 dark:text-primary-50" />
