@@ -11,25 +11,18 @@ const ICON_MAP: Record<string, typeof Mail> = {
 
 const EXTERNAL_KEYS = ["whatsApp", "linkedIn", "github"];
 
-const GLYPH = "text-emerald-500 dark:text-emerald-400";
-
 export function ContactFooter() {
   const { t } = useTranslation("translation", { keyPrefix: "contact" });
   const keys = ["email", "phone", "whatsApp", "linkedIn", "github"] as const;
 
   return (
-    <footer className="fixed bottom-0 w-full z-20 backdrop-blur-lg bg-white/10 dark:bg-white/5">
-      <div className="flex items-center font-mono text-sm sm:text-base leading-none overflow-x-auto min-h-[32px] sm:min-h-[38px] py-2 sm:py-2.5">
-        <span aria-hidden className={`select-none ${GLYPH}`}>└</span>
-        <span aria-hidden className={`select-none ${GLYPH}`}>─</span>
-        <span className="hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap text-primary-500 dark:text-primary-400 select-none">
+    <footer className="fixed bottom-0 w-full z-20 backdrop-blur-md bg-white/60 dark:bg-primary-900/60 border-t border-zinc-300/70 dark:border-zinc-700/60 shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+      <div className="max-w-6xl mx-auto h-12 flex items-center justify-center sm:justify-between gap-3 px-4 sm:px-8 font-mono text-sm">
+        <span className="hidden sm:flex items-center gap-1.5 whitespace-nowrap text-primary-500 dark:text-primary-400 select-none">
           <span className="text-emerald-500">contact:</span>
           <span className="animate-pulse text-emerald-500">█</span>
         </span>
-        <span aria-hidden className={`flex-1 min-w-0 overflow-hidden whitespace-nowrap select-none ${GLYPH}`}>
-          {"─".repeat(600)}
-        </span>
-        <div className="flex items-center gap-2 sm:gap-3 px-1">
+        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto">
           {keys.map((key, index) => {
             const href = t(`list.${key}.href`);
             const value = t(`list.${key}.value`);
@@ -55,10 +48,6 @@ export function ContactFooter() {
             );
           })}
         </div>
-        <span aria-hidden className={`flex-1 min-w-0 overflow-hidden whitespace-nowrap select-none ${GLYPH}`}>
-          {"─".repeat(600)}
-        </span>
-        <span aria-hidden className={`select-none ${GLYPH}`}>┘</span>
       </div>
     </footer>
   );
