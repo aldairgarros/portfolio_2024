@@ -1,13 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MenuBar } from "@/modules/MenuBar";
+import { MenuBar, type NavItem } from "@/modules/MenuBar";
 import { BackgroundDecoration } from "@/components/BackgroundDecoration";
-
-interface NavItem {
-  label: string;
-  hash: string;
-  children?: NavItem[];
-}
 
 export function RootLayout() {
   const { t } = useTranslation("translation");

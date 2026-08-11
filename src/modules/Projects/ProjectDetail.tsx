@@ -47,7 +47,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
       <div className="max-w-6xl mx-auto">
         <SectionTitle title={p("name.value")} />
 
-        <div className="rounded-none backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-zinc-200/30 dark:border-zinc-700/20 shadow-lg dark:shadow-[0_0_30px_rgba(5,150,105,0.05)] overflow-hidden">
+        <div className="rounded-none backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-zinc-200/30 dark:border-zinc-700/20 shadow-md overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
             <div className={`flex flex-col justify-center ${flip ? "md:order-2" : ""}`}>
               <img

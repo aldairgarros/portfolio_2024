@@ -19,9 +19,13 @@ export function Home() {
       <Expertise />
       <section id="projects" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <SectionTitle title={t("title")} />
-        <div className="flex flex-col gap-16">
+        <div className="flex flex-col">
           {PROJECTS.map((project, index) => (
-            <ProjectDetail key={project} project={project} flip={index % 2 !== 0} />
+            <div
+              key={project}
+              className={index > 0 ? "border-t border-zinc-200/30 dark:border-zinc-700/20 mt-16 pt-16" : ""}>
+              <ProjectDetail project={project} flip={index % 2 !== 0} />
+            </div>
           ))}
         </div>
       </section>
