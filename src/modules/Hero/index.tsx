@@ -39,7 +39,7 @@ function Cube({ size, speedX, speedY }: CubeProps) {
           className="absolute inset-0"
           style={{
             transform,
-            backfaceVisibility: "hidden",
+            backfaceVisibility: "visible",
             border: "2px solid rgb(16 185 129 / 0.8)",
             background: "transparent",
           }}
