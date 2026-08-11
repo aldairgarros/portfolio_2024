@@ -1,12 +1,14 @@
 import { useTranslation } from "react-i18next";
 import { GraduationCap } from "lucide-react";
 import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
+import { useActiveSection } from "@/context/ActiveSectionContext";
 
 export function Education() {
   const { t } = useTranslation("translation", { keyPrefix: "education" });
+  const sectionRef = useActiveSection("~/education");
 
   return (
-    <section id="education" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
+    <section id="education" ref={sectionRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
         <div className="p-6 sm:p-8">

@@ -1,6 +1,7 @@
 import { motion, useAnimationFrame, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { TerminalFrame } from "@/components/TerminalFrame";
+import { useActiveSection } from "@/context/ActiveSectionContext";
 
 interface CubeProps {
   size: number;
@@ -53,6 +54,7 @@ export function Hero() {
   const { t } = useTranslation("translation", { keyPrefix: "hero" });
   const prefersReducedMotion = useReducedMotion();
   const isPointerFine = window.matchMedia("(pointer: fine)").matches;
+  const sectionRef = useActiveSection("~");
 
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.4], [0, -120]);
@@ -73,6 +75,7 @@ export function Hero() {
   return (
     <section
       id="hero"
+      ref={sectionRef}
       className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden"
       onMouseMove={handleMouseMove}>
       {/* CSS 3D cubes — spread behind the container */}

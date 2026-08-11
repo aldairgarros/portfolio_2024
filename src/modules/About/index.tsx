@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
+import { useActiveSection } from "@/context/ActiveSectionContext";
 import { useTranslation } from "react-i18next";
 
 const itemVariants = {
@@ -11,9 +12,10 @@ const itemVariants = {
 export function About() {
   const { t } = useTranslation("translation", { keyPrefix: "about" });
   const LIST = ["experience1", "experience2"];
+  const sectionRef = useActiveSection("~/about");
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
+    <section id="about" ref={sectionRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
         <div className="flex flex-col gap-6 p-6 sm:p-8">
