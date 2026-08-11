@@ -1,7 +1,4 @@
-import { motion } from "framer-motion";
 import { Mail, Phone, MessageCircle, Globe, GitBranch } from "lucide-react";
-import { SectionTitle } from "@/components/SectionTitle";
-import { GlassCard } from "@/components/GlassCard";
 import { useTranslation } from "react-i18next";
 
 const ICON_MAP: Record<string, typeof Mail> = {
@@ -14,27 +11,19 @@ const ICON_MAP: Record<string, typeof Mail> = {
 
 const EXTERNAL_KEYS = ["whatsApp", "linkedIn", "github"];
 
-export function Contact() {
+export function ContactFooter() {
   const { t } = useTranslation("translation", { keyPrefix: "contact" });
   const keys = ["email", "phone", "whatsApp", "linkedIn", "github"] as const;
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-8 max-w-6xl mx-auto">
-      <SectionTitle title={t("title")} />
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-8"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <GlassCard className="flex items-center border-l-2 border-l-emerald-400/40">
-          <p className="text-primary-700 dark:text-primary-300 leading-relaxed text-lg">
-            {t("message")}
-          </p>
-        </GlassCard>
-        <div className="flex flex-col gap-3">
-          {keys.map((key) => {
+    <footer className="fixed bottom-0 w-full z-20 backdrop-blur-lg bg-white/10 dark:bg-white/5 border-t-2 border-t-zinc-400/50 dark:border-t-zinc-600/50">
+      <div className="max-w-6xl mx-auto h-12 flex items-center justify-center sm:justify-between px-4 sm:px-8 font-mono text-xs sm:text-sm overflow-x-auto">
+        <div className="hidden sm:flex items-center gap-2 text-primary-500 dark:text-primary-400">
+          <span className="text-emerald-500">contact:</span>
+          <span className="animate-pulse">█</span>
+        </div>
+        <div className="flex items-center gap-2 sm:gap-4">
+          {keys.map((key, index) => {
             const href = t(`list.${key}.href`);
             const value = t(`list.${key}.value`);
             const isExternal = EXTERNAL_KEYS.includes(key);
@@ -45,19 +34,20 @@ export function Contact() {
               : {};
 
             return (
-              <a
-                key={key}
-                href={href}
-                {...extraProps}
-                className="inline-flex items-center gap-3 px-4 py-3 rounded-none border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all focus:ring-2 focus:ring-emerald-400 focus:outline-none"
-              >
-                <Icon size={18} className="shrink-0" />
-                {value}
-              </a>
+              <span key={key} className="flex items-center gap-2 sm:gap-3">
+                {index > 0 && <span className="text-primary-400 dark:text-primary-500" aria-hidden="true">|</span>}
+                <a
+                  href={href}
+                  {...extraProps}
+                  className="inline-flex items-center gap-1.5 text-primary-700 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                  <Icon size={14} className="shrink-0" />
+                  <span className="hidden md:inline">{value}</span>
+                </a>
+              </span>
             );
           })}
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </footer>
   );
 }

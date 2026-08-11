@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { About } from "@/modules/About";
-import { Contact } from "@/modules/Contact";
 import { Education } from "@/modules/Education";
 import { Expertise } from "@/modules/Expertise";
 import { Hero } from "@/modules/Hero";
@@ -13,7 +12,7 @@ export function Home() {
   const { t } = useTranslation("translation", { keyPrefix: "projects" });
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col pb-14">
       <Hero />
       <About />
       <Expertise />
@@ -30,7 +29,6 @@ export function Home() {
         </div>
       </section>
       <Education />
-      <Contact />
     </main>
   );
 }

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MenuBar, type NavItem } from "@/modules/MenuBar";
 import { BackgroundDecoration } from "@/components/BackgroundDecoration";
+import { ContactFooter } from "@/modules/Contact";
 
 export function RootLayout() {
   const { t } = useTranslation("translation");
@@ -18,7 +19,6 @@ export function RootLayout() {
       })),
     },
     { label: t("education.title"), hash: "education" },
-    { label: t("contact.title"), hash: "contact" },
   ];
 
   return (
@@ -26,6 +26,7 @@ export function RootLayout() {
       <MenuBar links={links} />
       <BackgroundDecoration />
       <Outlet />
+      <ContactFooter />
     </div>
   );
 }
