@@ -5,10 +5,9 @@ import { Lightbox, type LightboxImage } from "@/components/Lightbox";
 
 interface Props {
   project: string;
-  flip?: boolean;
 }
 
-export function ProjectDetail({ project, flip = false }: Props): React.JSX.Element {
+export function ProjectDetail({ project }: Props): React.JSX.Element {
   const { t: p } = useTranslation("translation", { keyPrefix: `projects.list.${project}` });
   const { t: tProjects } = useTranslation("translation", { keyPrefix: "projects" });
 
@@ -45,13 +44,13 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
     <div id={project}>
       <h3 className="sr-only">{p("name.value")}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className={`flex flex-col justify-center ${flip ? "md:order-2" : ""}`}>
+        <div className="flex flex-col justify-center">
           <img
             src={mainSrc}
             alt={mainAlt}
-            width={600}
-            height={400}
-            className="w-full h-auto object-contain bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
+            width={640}
+            height={480}
+            className="w-full h-auto aspect-[4/3] object-contain bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
             loading="lazy"
             onClick={() => openLightbox(0)}
           />

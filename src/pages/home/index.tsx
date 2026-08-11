@@ -20,7 +20,7 @@ export function Home() {
         <h2 className="sr-only">{t("title")}</h2>
         <TerminalFrame title={t("title")}>
           <div className="flex flex-col gap-6 p-6 sm:p-8">
-            {PROJECTS.map((project, index) => (
+            {PROJECTS.map((project) => (
               <TerminalPanel
                 key={project}
                 title={(
@@ -31,7 +31,7 @@ export function Home() {
                     </span>
                   </span>
                 )}>
-                <ProjectDetail project={project} flip={index % 2 !== 0} />
+                <ProjectDetail project={project} />
               </TerminalPanel>
             ))}
           </div>
