@@ -15,9 +15,9 @@ export function Education() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6 }}>
-        <GlassCard hover className="max-w-2xl">
+        <GlassCard hover className="max-w-2xl border-l-2 border-l-amber-400/60">
           <div className="flex items-start gap-4">
-            <GraduationCap size={28} className="text-accent-500 shrink-0 mt-1" />
+            <GraduationCap size={28} className="text-amber-400 shrink-0 mt-1" />
             <div>
               <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50">{t("course.title")}</h3>
               <p className="text-sm text-accent-600 dark:text-accent-400 mt-1">

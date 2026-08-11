@@ -38,7 +38,7 @@ export function Expertise() {
             <motion.div key={capability.id} variants={itemVariants}>
               <GlassCard
                 hover
-                className={`p-8 ${isLastOdd ? "md:col-span-2" : ""}`}>
+                className={`p-8 border-t-2 border-t-amber-400/60 ${isLastOdd ? "md:col-span-2" : ""}`}>
                 <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50 mb-4">
                   {t(`list.${capability.id}.title`)}
                 </h3>
