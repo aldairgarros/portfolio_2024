@@ -131,7 +131,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full"
+        className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
         aria-label="Close lightbox"
       >
         <X size={28} />
@@ -146,7 +146,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       {images.length > 1 && (
         <button
           onClick={prev}
-          className="absolute left-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full"
+          className="absolute left-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
           aria-label="Previous image"
         >
           <ChevronLeft size={28} />
@@ -187,7 +187,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       {images.length > 1 && (
         <button
           onClick={next}
-          className="absolute right-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full"
+          className="absolute right-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
           aria-label="Next image"
         >
           <ChevronRight size={28} />
