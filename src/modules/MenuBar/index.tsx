@@ -48,7 +48,7 @@ export function MenuBar({ links }: Props) {
     <>
       <ScrollRestoration />
       <nav
-        className="fixed top-0 w-full z-30 border-b border-zinc-200/30 dark:border-zinc-700/20 backdrop-blur-lg bg-white/10 dark:bg-white/5"
+        className="fixed top-0 w-full z-30 border border-zinc-200/30 dark:border-zinc-700/20 border-t-2 border-t-zinc-400/50 dark:border-t-zinc-600/50 backdrop-blur-lg bg-white/10 dark:bg-white/5"
         role="navigation">
         <div className="max-w-6xl mx-auto h-14 flex items-center justify-between px-4 sm:px-8">
           <Link

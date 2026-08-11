@@ -39,6 +39,7 @@ export function ContactFooter() {
                 <a
                   href={href}
                   {...extraProps}
+                  aria-label={t(`list.${key}.label`)}
                   className="inline-flex items-center gap-1.5 text-primary-700 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none">
                   <Icon size={14} className="shrink-0" />
                   <span className="hidden md:inline">{value}</span>
