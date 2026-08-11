@@ -96,6 +96,14 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-full: 9999px;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.2s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 }
 
 :root {
@@ -125,11 +133,6 @@
 @keyframes v3b { to { background-position: 380px 0; } }
 @keyframes v4a { to { background-position: -420px 0; } }
 @keyframes v4b { to { background-position: 460px 0; } }
-
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
