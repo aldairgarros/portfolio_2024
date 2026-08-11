@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { type ReactNode, type Ref } from "react";
 
 const FRAME =
   "border border-zinc-400/80 dark:border-zinc-600/70 bg-white/80 dark:bg-zinc-900/60 backdrop-blur-md " +
@@ -14,7 +14,7 @@ export function TerminalFrame({ title, className = "", children }: TerminalFrame
   return (
     <div className={`font-mono ${FRAME} ${className}`}>
       {title && (
-        <div className="flex items-center border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 sticky top-14 z-20 backdrop-blur-md">
+        <div className="flex items-center border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5">
           <span className="font-bold text-base text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
             <span className="text-emerald-500">`</span>
             {title}
@@ -35,12 +35,13 @@ interface TerminalPanelProps {
   title: ReactNode;
   className?: string;
   children: ReactNode;
+  ref?: Ref<HTMLDivElement>;
 }
 
-export function TerminalPanel({ title, className = "", children }: TerminalPanelProps) {
+export function TerminalPanel({ title, className = "", children, ref }: TerminalPanelProps) {
   return (
-    <div className={`font-mono ${PANEL} ${className}`}>
-      <div className="flex items-center gap-2 border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 min-w-0 sticky top-[6.25rem] z-10 backdrop-blur-md">
+    <div ref={ref} className={`font-mono ${PANEL} ${className}`}>
+      <div className="flex items-center gap-2 border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 min-w-0">
         <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
           <span className="text-emerald-500">`</span>
           {title}
