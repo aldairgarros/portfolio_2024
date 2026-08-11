@@ -43,11 +43,11 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
   const linkValue = p("link.value");
 
   return (
-    <section id={project} className="py-24 px-4 sm:px-8">
+    <div id={project}>
       <div className="max-w-6xl mx-auto">
         <SectionTitle title={p("name.value")} />
 
-        <div className="rounded-2xl backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-zinc-200/30 dark:border-zinc-700/20 shadow-lg dark:shadow-[0_0_30px_rgba(5,150,105,0.05)] overflow-hidden">
+        <div className="rounded-none backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-zinc-200/30 dark:border-zinc-700/20 shadow-lg dark:shadow-[0_0_30px_rgba(5,150,105,0.05)] overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 sm:p-8">
             <div className={`flex flex-col justify-center ${flip ? "md:order-2" : ""}`}>
               <img
@@ -55,7 +55,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
                 alt={mainAlt}
                 width={600}
                 height={400}
-                className="w-full h-auto object-contain rounded-xl bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
+                className="w-full h-auto object-contain rounded-none bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
                 loading="lazy"
                 onClick={() => openLightbox(0)}
               />
@@ -84,7 +84,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
                   href={linkHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-emerald-400/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                  className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-none border border-emerald-400/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
                   {linkValue || tProjects("open")}
                   <ExternalLink size={16} aria-hidden="true" />
                 </a>
@@ -99,7 +99,7 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
                       alt={img.alt}
                       width={+img.width}
                       height={+img.height}
-                      className="rounded-lg object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
+                      className="rounded-none object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
                       loading="lazy"
                       onClick={() => openLightbox(index + 1)}
                     />
@@ -119,6 +119,6 @@ export function ProjectDetail({ project, flip = false }: Props): React.JSX.Eleme
           onClose={() => setLightboxOpen(false)}
         />
       )}
-    </section>
+    </div>
   );
 }
