@@ -49,7 +49,7 @@ export function Contact() {
                 key={key}
                 href={href}
                 {...extraProps}
-                className="inline-flex items-center gap-3 px-4 py-3 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+                className="inline-flex items-center gap-3 px-4 py-3 rounded-none border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-emerald-500 hover:text-white hover:border-transparent transition-all focus:ring-2 focus:ring-emerald-400 focus:outline-none"
               >
                 <Icon size={18} className="shrink-0" />
                 {value}
