@@ -10,7 +10,7 @@ interface TerminalFrameProps {
 
 function Title({ title }: { title: ReactNode }) {
   return (
-    <span className={`${GLYPH} font-semibold whitespace-nowrap flex-none min-w-0 max-w-[55%] overflow-hidden text-ellipsis`}>
+    <span className={`${GLYPH} font-bold whitespace-nowrap flex-none min-w-0 max-w-[55%] overflow-hidden text-ellipsis`}>
       <span className="px-1">`</span>
       {title}
       <span className="px-1">`</span>
@@ -21,7 +21,7 @@ function Title({ title }: { title: ReactNode }) {
 export function TerminalFrame({ title, className = "", children }: TerminalFrameProps) {
   return (
     <div className={`font-mono ${className}`}>
-      <div aria-hidden className="flex items-center select-none text-sm leading-none">
+      <div aria-hidden className="flex items-center select-none text-base leading-none">
         <span className={GLYPH}>┌</span>
         <span className={GLYPH}>─</span>
         {title && <Title title={title} />}
@@ -33,19 +33,19 @@ export function TerminalFrame({ title, className = "", children }: TerminalFrame
       <div className="relative flex">
         <span
           aria-hidden
-          className={`absolute top-0 bottom-0 left-0 w-[2ch] overflow-hidden select-none text-sm leading-none ${GLYPH}`}
+          className={`absolute top-0 bottom-0 left-0 w-[1ch] overflow-hidden select-none text-base leading-none ${GLYPH}`}
           style={{ wordBreak: "break-all" }}>
           {"│".repeat(999)}
         </span>
-        <div className="flex-1 min-w-0 ml-[2ch] mr-[2ch]">{children}</div>
+        <div className="flex-1 min-w-0 ml-[1ch] mr-[1ch]">{children}</div>
         <span
           aria-hidden
-          className={`absolute top-0 bottom-0 right-0 w-[2ch] overflow-hidden select-none text-sm leading-none ${GLYPH}`}
+          className={`absolute top-0 bottom-0 right-0 w-[1ch] overflow-hidden select-none text-base leading-none ${GLYPH}`}
           style={{ wordBreak: "break-all" }}>
           {"│".repeat(999)}
         </span>
       </div>
-      <div aria-hidden className="flex items-center select-none text-sm leading-none">
+      <div aria-hidden className="flex items-center select-none text-base leading-none">
         <span className={GLYPH}>└</span>
         <span className={`flex-1 min-w-0 overflow-hidden whitespace-nowrap ${GLYPH}`}>
           {"─".repeat(600)}
@@ -65,7 +65,7 @@ interface TerminalPanelProps {
 export function TerminalPanel({ title, className = "", children }: TerminalPanelProps) {
   return (
     <div className={className}>
-      <div aria-hidden className="flex items-center select-none text-sm leading-none">
+      <div aria-hidden className="flex items-center select-none text-base leading-none">
         <span className={GLYPH}>├</span>
         <span className={GLYPH}>─</span>
         <Title title={title} />
@@ -81,7 +81,7 @@ export function TerminalPanel({ title, className = "", children }: TerminalPanel
 
 export function TerminalSeparator() {
   return (
-    <div aria-hidden className="flex items-center select-none text-sm leading-none">
+    <div aria-hidden className="flex items-center select-none text-base leading-none">
       <span className={GLYPH}>├</span>
       <span className={`flex-1 min-w-0 overflow-hidden whitespace-nowrap ${GLYPH}`}>
         {"─".repeat(600)}

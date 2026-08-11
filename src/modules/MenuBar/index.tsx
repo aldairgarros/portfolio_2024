@@ -53,12 +53,12 @@ export function MenuBar({ links }: Props) {
       <nav
         className="fixed top-0 w-full z-30 backdrop-blur-lg bg-white/10 dark:bg-white/5"
         role="navigation">
-        <div className="flex items-center font-mono text-sm leading-none">
+        <div className="flex items-center font-mono text-base leading-none">
           <span aria-hidden className={`select-none ${GLYPH}`}>┌</span>
           <span aria-hidden className={`select-none ${GLYPH}`}>─</span>
           <Link
             to={{ pathname: "/", hash: "hero" }}
-            className="px-2 py-3 font-semibold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+            className="px-2 py-3 font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none">
             @{t("hero.title.value")}:~
           </Link>
           <span aria-hidden className={`flex-1 min-w-0 overflow-hidden whitespace-nowrap select-none ${GLYPH}`}>
@@ -84,7 +84,7 @@ export function MenuBar({ links }: Props) {
 
           <div className="relative" ref={menuRef}>
             <button
-              className="flex items-center gap-1 px-3 py-3 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 transition-colors cursor-pointer select-none focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+              className="flex items-center gap-1 px-3 py-3 text-base text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 transition-colors cursor-pointer select-none focus:ring-2 focus:ring-emerald-400 focus:outline-none"
               onClick={() => setIsMenuOpen((state) => !state)}
               aria-label={isMenuOpen ? t("home.menuClose") : t("home.menuOpen")}
               aria-expanded={isMenuOpen}
