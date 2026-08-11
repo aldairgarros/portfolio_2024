@@ -53,13 +53,8 @@ export function MenuBar({ links }: Props) {
         <div className="max-w-6xl mx-auto h-14 flex items-center justify-between px-4 sm:px-8">
           <Link
             to={{ pathname: "/", hash: "hero" }}
-            className="flex items-center gap-2 focus:ring-2 focus:ring-emerald-400 focus:outline-none rounded-none">
-            <span className="font-mono text-sm font-semibold text-emerald-500 dark:text-emerald-400">
-              @...:~
-            </span>
-            <span className="font-heading font-medium text-primary-900 dark:text-primary-50">
-              {t("hero.title.value")}
-            </span>
+            className="flex items-center gap-2 font-mono text-sm font-semibold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 dark:hover:text-emerald-300 focus:ring-2 focus:ring-emerald-400 focus:outline-none rounded-none">
+            @{t("hero.title.value")}:~
           </Link>
 
           <div className="flex items-center gap-3">
@@ -87,7 +82,7 @@ export function MenuBar({ links }: Props) {
                 aria-label={isMenuOpen ? t("home.menuClose") : t("home.menuOpen")}
                 aria-expanded={isMenuOpen}
                 aria-haspopup="menu">
-                <span>@...:~</span>
+                <span>&gt;_</span>
                 <span className={isMenuOpen ? "" : "animate-pulse"}>█</span>
               </button>
 
