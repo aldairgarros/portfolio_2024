@@ -78,7 +78,6 @@ Each section/card registers with `useActiveSection`:
 | Each expertise capability TerminalPanel | `~/expertise/{slug}` |
 | About section | `~/about` |
 | Education section | `~/education` |
-| Contact section | `~/contact` |
 
 Path segments are slugified, lowercase, hyphenated — file-system-like, language-independent (same in both locales).
 
@@ -89,6 +88,7 @@ Path segments are slugified, lowercase, hyphenated — file-system-like, languag
 - **Fast scrolling** → path updates per observer callback, no debounce needed
 - **MenuBar dropdown** — TerminalFrame without title, unaffected
 - **Contact bar** — unchanged
+- **ContactFooter** — deliberately not registered: it is `fixed` and always visible, so its intersection ratio would be permanently 1.0 and it would dominate the ratio race, pinning the path to `~/contact`. Scrolled to the page bottom, the last section (Education) remains the active path.
 
 ## Revert
 

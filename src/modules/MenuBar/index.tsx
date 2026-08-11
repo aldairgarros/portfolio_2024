@@ -20,6 +20,7 @@ export function MenuBar({ links }: Props) {
   const { i18n, t } = useTranslation();
   const { language, changeLanguage } = i18n;
   const activePath = useActivePath();
+  const displayPath = activePath ?? "~";
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -57,7 +58,7 @@ export function MenuBar({ links }: Props) {
           <Link
             to={{ pathname: "/", hash: "hero" }}
             className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none min-w-0 truncate">
-            @{t("hero.title.value")}:<span key={activePath ?? "~"} className="animate-fade-in">{activePath ?? "~"}</span>
+            @{t("hero.title.value")}:<span key={displayPath} className="animate-fade-in">{displayPath}</span>
           </Link>
 
           <div className="flex items-center gap-3">

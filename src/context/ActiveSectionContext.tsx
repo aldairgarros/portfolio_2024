@@ -2,6 +2,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -59,6 +60,10 @@ export function ActiveSectionProvider({ children }: { children: ReactNode }) {
     },
     [handleIntersect],
   );
+
+  useEffect(() => {
+    return () => observerRef.current?.disconnect();
+  }, []);
 
   const value = useMemo(() => ({ activePath, register }), [activePath, register]);
 

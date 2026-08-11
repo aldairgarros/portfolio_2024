@@ -1,3 +1,4 @@
+import { type RefCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
@@ -21,13 +22,21 @@ export function Expertise() {
   const { t } = useTranslation("translation", { keyPrefix: "expertise" });
 
   const sectionRef = useActiveSection("~/expertise");
-  const capabilityRefs = {
+  type CapabilityId = (typeof expertise)[number]["id"];
+  const capabilityRefs: Record<CapabilityId, RefCallback<HTMLElement>> = {
     "api-backend": useActiveSection("~/expertise/api-backend"),
     "frontend-engineering": useActiveSection("~/expertise/frontend-engineering"),
     mobile: useActiveSection("~/expertise/mobile"),
     devops: useActiveSection("~/expertise/devops"),
     "ux-strategy": useActiveSection("~/expertise/ux-strategy"),
   };
+  if (import.meta.env.DEV) {
+    for (const capability of expertise) {
+      if (!(capability.id in capabilityRefs)) {
+        console.warn(`Missing menubar path ref for expertise capability: ${capability.id}`);
+      }
+    }
+  }
 
   return (
     <section id="expertise" ref={sectionRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
@@ -42,7 +51,7 @@ export function Expertise() {
             className="flex flex-col gap-6"
           >
           {expertise.map((capability, index) => (
-            <motion.div key={capability.id} ref={capabilityRefs[capability.id as keyof typeof capabilityRefs]} variants={itemVariants} transition={{ delay: index * 0.1 }}>
+            <motion.div key={capability.id} ref={capabilityRefs[capability.id]} variants={itemVariants} transition={{ delay: index * 0.1 }}>
               <TerminalPanel title={t(`list.${capability.id}.title`)}>
                 <div className="space-y-3 text-sm">
                   <p>
