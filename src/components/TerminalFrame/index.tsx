@@ -14,7 +14,7 @@ export function TerminalFrame({ title, className = "", children }: TerminalFrame
   return (
     <div className={`font-mono ${FRAME} ${className}`}>
       {title && (
-        <div className="flex items-center border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5">
+        <div className="flex items-center border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 sticky top-14 z-20 backdrop-blur-md">
           <span className="font-bold text-base text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
             <span className="text-emerald-500">`</span>
             {title}
@@ -40,7 +40,7 @@ interface TerminalPanelProps {
 export function TerminalPanel({ title, className = "", children }: TerminalPanelProps) {
   return (
     <div className={`font-mono ${PANEL} ${className}`}>
-      <div className="flex items-center gap-2 border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 min-w-0">
+      <div className="flex items-center gap-2 border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 min-w-0 sticky top-[6.25rem] z-10 backdrop-blur-md">
         <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
           <span className="text-emerald-500">`</span>
           {title}
