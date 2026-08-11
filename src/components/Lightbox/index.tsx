@@ -19,7 +19,6 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
   const [index, setIndex] = useState(initialIndex);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [direction, setDirection] = useState(0);
   const touchRef = useRef<{ startX: number; startDist: number; startZoom: number } | null>(null);
 
   /* eslint-disable react-hooks/set-state-in-effect */
@@ -34,7 +33,6 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
 
   const prev = useCallback(() => {
     if (images.length <= 1) return;
-    setDirection(-1);
     setIndex((i) => (i - 1 + images.length) % images.length);
     setZoom(1);
     setPan({ x: 0, y: 0 });
@@ -42,7 +40,6 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
 
   const next = useCallback(() => {
     if (images.length <= 1) return;
-    setDirection(1);
     setIndex((i) => (i + 1) % images.length);
     setZoom(1);
     setPan({ x: 0, y: 0 });
@@ -124,7 +121,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
@@ -154,34 +151,19 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       )}
 
       {/* Image */}
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.div
-          key={index}
-          custom={direction}
-          variants={{
-            enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
-            center: { x: 0, opacity: 1 },
-            exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
-          }}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ type: "spring", stiffness: 200, damping: 25 }}
-          className="flex items-center justify-center w-full h-full p-16"
-        >
-          <img
-            src={images[index].src}
-            alt={images[index].alt ?? ""}
-            className="max-w-[90vw] max-h-[85vh] object-contain select-none"
-            style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`, cursor: zoom > 1 ? "grab" : "zoom-in" }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onDoubleClick={handleDoubleClick}
-            draggable={false}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div className="flex items-center justify-center w-full h-full p-16">
+        <img
+          src={images[index].src}
+          alt={images[index].alt ?? ""}
+          className="max-w-[90vw] max-h-[85vh] object-contain select-none"
+          style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`, cursor: zoom > 1 ? "grab" : "zoom-in" }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onDoubleClick={handleDoubleClick}
+          draggable={false}
+        />
+      </div>
 
       {/* Next button */}
       {images.length > 1 && (
