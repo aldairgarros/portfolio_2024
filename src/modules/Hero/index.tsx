@@ -1,6 +1,53 @@
 import { GlassCard } from "@/components/GlassCard";
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
+
+interface CubeProps {
+  size: number;
+  speedX: number;
+  speedY: number;
+}
+
+function Cube({ size, speedX, speedY }: CubeProps) {
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const prefersReducedMotion = useReducedMotion();
+
+  useAnimationFrame((time) => {
+    if (prefersReducedMotion) return;
+    rotateX.set((time / 1000) * speedX);
+    rotateY.set((time / 1000) * speedY);
+  });
+
+  const half = size / 2;
+  const faces = [
+    `rotateY(0deg) translateZ(${half}px)`,
+    `rotateY(180deg) translateZ(${half}px)`,
+    `rotateY(90deg) translateZ(${half}px)`,
+    `rotateY(-90deg) translateZ(${half}px)`,
+    `rotateX(90deg) translateZ(${half}px)`,
+    `rotateX(-90deg) translateZ(${half}px)`,
+  ];
+
+  return (
+    <motion.div
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d", width: size, height: size }}
+      aria-hidden="true">
+      {faces.map((transform, index) => (
+        <div
+          key={index}
+          className="absolute inset-0"
+          style={{
+            transform,
+            backfaceVisibility: "hidden",
+            border: "1px solid rgb(16 185 129 / 0.4)",
+            background: "rgb(16 185 129 / 0.04)",
+          }}
+        />
+      ))}
+    </motion.div>
+  );
+}
 
 export function Hero() {
   const { t } = useTranslation("translation", { keyPrefix: "hero" });
@@ -28,11 +75,14 @@ export function Hero() {
       id="hero"
       className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden"
       onMouseMove={handleMouseMove}>
-      {/* Gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-400/20 dark:bg-amber-500/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-rose-400/20 dark:bg-rose-500/15 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-300/10 dark:bg-amber-400/10 rounded-full blur-3xl" />
+      {/* CSS 3D cubes */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-[12%] -translate-y-1/2 opacity-20 blur-[1px] hidden sm:block">
+          <Cube size={80} speedX={0} speedY={45} />
+        </div>
+        <div className="absolute top-1/2 right-[12%] -translate-y-1/2 opacity-20 blur-[1px] hidden sm:block">
+          <Cube size={110} speedX={35} speedY={55} />
+        </div>
       </div>
 
       <motion.div
@@ -50,11 +100,11 @@ export function Hero() {
             </p>
           </div>
           <div className="mt-8 flex justify-center gap-4 flex-wrap">
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-amber-400/40 dark:border-amber-500/40">
-              <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">{t("extras.available.label")}</span>
+            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-emerald-400/40 dark:border-emerald-500/40">
+              <span className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold">{t("extras.available.label")}</span>
             </GlassCard>
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-amber-400/40 dark:border-amber-500/40">
-              <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">
+            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-emerald-400/40 dark:border-emerald-500/40">
+              <span className="text-emerald-600 dark:text-emerald-400 text-sm font-semibold">
                 {t("extras.artificialIntelligence.label")}
               </span>
             </GlassCard>
