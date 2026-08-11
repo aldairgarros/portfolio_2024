@@ -26,14 +26,21 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center"
+      className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden"
       onMouseMove={handleMouseMove}>
+      {/* Gradient orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-400/20 dark:bg-amber-500/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-rose-400/20 dark:bg-rose-500/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-amber-300/10 dark:bg-amber-400/10 rounded-full blur-3xl" />
+      </div>
+
       <motion.div
         style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
-        className="relative">
+        className="relative z-10">
         <div className="relative">
           <motion.h1
-            className="text-6xl sm:text-8xl font-bold font-heading tracking-tight text-primary-900 dark:text-primary-50 mb-6"
+            className="text-7xl sm:text-9xl font-bold font-heading tracking-tight text-primary-900 dark:text-primary-50 mb-6"
             style={{ x: prefersReducedMotion ? 0 : springX, y: prefersReducedMotion ? 0 : springY }}>
             {t("title.value")}
           </motion.h1>
@@ -43,10 +50,10 @@ export function Hero() {
             </p>
           </div>
           <div className="mt-8 flex justify-center gap-4 flex-wrap">
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-accent-500/30">
+            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-amber-400/40 dark:border-amber-500/40">
               <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">{t("extras.available.label")}</span>
             </GlassCard>
-            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-accent-500/30">
+            <GlassCard className="inline-flex items-center gap-2 px-5 py-2 border-amber-400/40 dark:border-amber-500/40">
               <span className="text-accent-600 dark:text-accent-400 text-sm font-semibold">
                 {t("extras.artificialIntelligence.label")}
               </span>
