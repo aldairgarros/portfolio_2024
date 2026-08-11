@@ -85,7 +85,7 @@ export function Hero() {
         }}
         className="relative z-10 w-full max-w-5xl">
         <TerminalFrame
-          title="~"
+          title={<span className="text-xl sm:text-3xl">{t("title.value")}</span>}
           className="relative overflow-hidden bg-white/25! dark:bg-primary-900/25! backdrop-blur-none! shadow-none!">
           {/* CSS 3D cubes — contained inside the frame */}
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -100,15 +100,14 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative z-10 py-16 sm:py-20 px-4 sm:px-8">
-            <h1 className="text-6xl sm:text-9xl font-bold font-mono tracking-tight text-primary-900 dark:text-primary-50 mb-6">
-              {t("title.value")}
-            </h1>
-            <div className="mt-8 flex justify-center">
-              <p className="font-sans text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed">
-                {t("subtitle.value")}
-              </p>
-            </div>
+          <div className="relative z-10 py-10 sm:py-14 px-4 sm:px-8">
+            <p className="font-mono text-sm sm:text-base text-emerald-600 dark:text-emerald-400 mb-5">
+              <span aria-hidden className="text-zinc-400 dark:text-zinc-500">~/portfolio</span>
+              <span aria-hidden className="text-emerald-500">&gt;</span> _
+            </p>
+            <p className="font-sans text-lg sm:text-2xl text-zinc-700 dark:text-zinc-200 max-w-3xl mx-auto leading-relaxed">
+              {t("subtitle.value")}
+            </p>
             <div className="mt-8 flex justify-center gap-4 flex-wrap">
               <span className="font-mono text-sm font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5">
                 {t("extras.available.label")}

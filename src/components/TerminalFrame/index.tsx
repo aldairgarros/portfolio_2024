@@ -5,7 +5,7 @@ const FRAME =
   "shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.35),0_0_24px_rgba(16,185,129,0.06)]";
 
 interface TerminalFrameProps {
-  title?: string;
+  title?: ReactNode;
   className?: string;
   children: ReactNode;
 }
