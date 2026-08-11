@@ -83,9 +83,9 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
                   key={img.src}
                   src={img.src}
                   alt={img.alt}
-                  width={+img.width}
-                  height={+img.height}
-                  className="object-contain w-full h-auto cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
+                  width={240}
+                  height={320}
+                  className="object-contain w-full h-auto aspect-[3/4] cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
                   loading="lazy"
                   onClick={() => openLightbox(index + 1)}
                 />
