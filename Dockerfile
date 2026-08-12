@@ -1,12 +1,12 @@
 # Stage 1: Build
-FROM node:23-alpine AS builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 
 ARG VITE_SENTRY_DSN
 ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN
 
 COPY package.json package-lock.json ./
-RUN npm ci --legacy-peer-deps --no-audit --no-fund
+RUN npm ci --no-audit --no-fund
 
 COPY . .
 RUN npm run build
