@@ -9,7 +9,8 @@
   "hero": {
     "title": {
       "label": "profissional",
-      "value": "Aldair Garros"
+      "value": "Aldair Garros",
+      "handle": "aldair"
     },
     "subtitle": {
       "label": "intro",
@@ -440,12 +441,12 @@
       },
       "whatsApp": {
         "label": "whatsApp",
-        "value": "wa.me/5598988692991",
+        "value": "WhatsApp",
         "href": "https://wa.me/5598988692991"
       },
       "linkedIn": {
         "label": "linkedIn",
-        "value": "linkedin.com/in/aldairgarros",
+        "value": "/aldairgarros",
         "href": "https://www.linkedin.com/in/aldairgarros"
       },
       "github": {
