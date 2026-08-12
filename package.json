@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "commit": "cz",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.3.0",
