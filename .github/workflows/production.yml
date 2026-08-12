@@ -50,7 +50,7 @@ jobs:
             .
 
       - name: Scan image for vulnerabilities
-        uses: aquasecurity/trivy-action@v0.24.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: ghcr.io/aldairgarros/portfolio:${{ github.sha }}
           severity: CRITICAL,HIGH
