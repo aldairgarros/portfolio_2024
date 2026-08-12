@@ -5,20 +5,26 @@
 - `npm run dev` — start Vite dev server with HMR
 - `npm run build` — typecheck (`tsc -b`) then build (`vite build`); type errors fail the build
 - `npm run lint` — ESLint (flat config) on the whole repo
+- `npm run typecheck` — check types via `tsc -b` (project references)
+- `npm test` — run tests once (Vitest)
+- `npm run test:watch` — run tests in watch mode
+- `npm run test:coverage` — run tests with coverage report
+- `npm run format` — format the whole repo with Prettier
+- `npm run format:check` — verify formatting without writing
 - `npm run preview` — preview the production build locally
 - `npm run commit` — interactive conventional commit via commitizen
 
-No test suite exists — there is no test runner or test script.
+No e2e/Playwright suite — unit + component tests via Vitest + React Testing Library + jsdom.
 
 ## Architecture
 
 React 19 + TypeScript + Vite SPA. Pages → Modules → Components:
 
-| Layer      | Path              | Role                                                                                    |
-| ---------- | ----------------- | --------------------------------------------------------------------------------------- |
-| Pages      | `src/pages/`      | Route-level entry points (home, projects, project, about)                               |
-| Modules    | `src/modules/`    | Feature-specific sections (Hero, Projects, Expertise, About, Contact, MenuBar, Sticker) |
-| Components | `src/components/` | Generic reusable UI (Container, Section, TextBox, LinkButton, Attribute)                |
+| Layer      | Path              | Role                                                                                      |
+| ---------- | ----------------- | ----------------------------------------------------------------------------------------- |
+| Pages      | `src/pages/`      | Route-level entry points (Layout, home)                                                   |
+| Modules    | `src/modules/`    | Feature-specific sections (Hero, About, Expertise, Education, Projects, Contact, MenuBar) |
+| Components | `src/components/` | Generic reusable UI (TerminalFrame, Lightbox, BackgroundDecoration)                       |
 
 Routing via react-router-dom v7 in `src/router.tsx`. Home page uses hash-based section navigation (`/#projects`, `/#contact`, etc.).
 
@@ -33,7 +39,7 @@ Routing via react-router-dom v7 in `src/router.tsx`. Home page uses hash-based s
 - **Translation files**: `src/locales/en.json` and `src/locales/br.json`
 - **Usage**: `useTranslation("translation", { keyPrefix: "section.subsection" })` then `t("key")`
 - **Switching**: `i18n.changeLanguage("en"|"br")` — controlled in MenuBar
-- Debug mode is **on** in `src/i18n.ts`
+- Debug mode is on only in dev (`debug: import.meta.env.DEV` in `src/i18n.ts`)
 
 ## Styling
 
@@ -52,7 +58,7 @@ Dark mode uses `prefers-color-scheme` media query. No class-based toggle.
 
 ## Key Conventions
 
-- **Code-as-UI aesthetic**: Components like Container and Section render bracket decorations (`{`, `}`, `(`, `)`) as visual elements — do not remove or refactor these away.
+- **Code-as-UI aesthetic**: Components like TerminalFrame and TerminalPanel render terminal-window chrome (mono fonts, emerald accents, separators) as visual elements — do not remove or refactor these away.
 - **Translation-driven content**: Nearly all user-facing text is in JSON locale files. Content changes = JSON edits, not component edits.
 - **TypeScript strict mode**: `noUnusedLocals` and `noUnusedParameters` are enabled.
 - **Static data**: `src/assets/expertise.json` holds skill categories and values.
