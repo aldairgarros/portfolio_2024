@@ -468,5 +468,10 @@
     "close": "Fechar lightbox",
     "previous": "Imagem anterior",
     "next": "Próxima imagem"
+  },
+  "error": {
+    "title": "Algo deu errado",
+    "message": "Ocorreu um erro inesperado. Recarregue a página.",
+    "reload": "Recarregar"
   }
 }

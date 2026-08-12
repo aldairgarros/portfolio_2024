@@ -468,5 +468,10 @@
     "close": "Close lightbox",
     "previous": "Previous image",
     "next": "Next image"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please reload the page.",
+    "reload": "Reload"
   }
 }
