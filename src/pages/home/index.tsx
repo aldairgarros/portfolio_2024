@@ -27,7 +27,7 @@ export function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col pb-10">
+    <main className="flex min-h-screen flex-col pb-10 min-w-0">
       <Hero />
       <About />
       <Expertise />
