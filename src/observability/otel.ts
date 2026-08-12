@@ -40,11 +40,11 @@ export function initOpenTelemetry(): void {
   if (import.meta.env.DEV) {
     spanProcessors.push(new BatchSpanProcessor(new ConsoleSpanExporter()));
   } else {
-    spanProcessors.push(
-      new BatchSpanProcessor(
-        new OTLPTraceExporter({ url: import.meta.env.VITE_OTLP_ENDPOINT as string }),
-      ),
-    );
+    const endpoint = import.meta.env.VITE_OTLP_ENDPOINT as string | undefined;
+
+    if (endpoint) {
+      spanProcessors.push(new BatchSpanProcessor(new OTLPTraceExporter({ url: endpoint })));
+    }
   }
 
   const provider = new WebTracerProvider({

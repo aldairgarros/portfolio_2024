@@ -6,3 +6,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+- Re-check eslint `overrides` block when eslint major version is bumped (eslint-plugin-react / jsx-a11y peer ranges lag eslint 10).
