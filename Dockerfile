@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve
-FROM nginx:1.27-alpine
+FROM nginx:1.31.3-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 3070
