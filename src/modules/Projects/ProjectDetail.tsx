@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { Lightbox, type LightboxImage } from "@/components/Lightbox";
 
 interface Props {
@@ -40,30 +40,74 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
   const linkHref = p("link.href");
   const linkValue = p("link.value");
 
+  const stripRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollState = useCallback(() => {
+    const el = stripRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  }, []);
+
+  const scrollByCard = useCallback((dir: 1 | -1) => {
+    const el = stripRef.current;
+    if (!el) return;
+    const card = el.querySelector("img");
+    const step = card ? card.getBoundingClientRect().width + 12 : el.clientWidth;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    updateScrollState();
+    window.addEventListener("resize", updateScrollState);
+    return () => window.removeEventListener("resize", updateScrollState);
+  }, [updateScrollState]);
+
   return (
     <div id={project}>
       <h3 className="sr-only">{p("name.value")}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col justify-center order-2 md:order-1">
-          <img
-            src={mainSrc}
-            alt={mainAlt}
-            width={640}
-            height={480}
-            className="w-full h-auto aspect-[4/3] object-contain bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
-            loading="lazy"
-            onClick={() => openLightbox(0)}
-          />
+        <div className="order-2 md:order-1 relative flex flex-col justify-center">
+          <div
+            ref={stripRef}
+            onScroll={updateScrollState}
+            className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div aria-hidden="true" className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]" />
+            {lightboxImages.map((img, index) => (
+              <img
+                key={img.src}
+                src={img.src}
+                alt={img.alt ?? ""}
+                loading="lazy"
+                onClick={() => openLightbox(index)}
+                className="shrink-0 snap-center h-60 sm:h-72 w-[85%] sm:w-[70%] md:w-[82%] object-contain bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
+              />
+            ))}
+            <div aria-hidden="true" className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]" />
+          </div>
+
+          <button
+            onClick={() => scrollByCard(-1)}
+            aria-label="Previous images"
+            disabled={!canScrollLeft}
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300">
+            <ChevronLeft size={20} aria-hidden="true" />
+          </button>
+          <button
+            onClick={() => scrollByCard(1)}
+            aria-label="Next images"
+            disabled={!canScrollRight}
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300">
+            <ChevronRight size={20} aria-hidden="true" />
+          </button>
         </div>
 
         <div className="flex flex-col justify-center gap-5 order-1 md:order-2">
-          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
-            {p("description.value")}
-          </p>
+          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p("description.value")}</p>
 
-          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
-            {p("details.value")}
-          </p>
+          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p("details.value")}</p>
 
           {linkHref.startsWith("http") && (
             <a
@@ -74,23 +118,6 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
               {linkValue || tProjects("open")}
               <ExternalLink size={16} aria-hidden="true" />
             </a>
-          )}
-
-          {imageData.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {imageData.map((img, index) => (
-                <img
-                  key={img.src}
-                  src={img.src}
-                  alt={img.alt}
-                  width={240}
-                  height={320}
-                  className="object-contain w-full h-auto aspect-[3/4] cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 bg-white dark:bg-transparent"
-                  loading="lazy"
-                  onClick={() => openLightbox(index + 1)}
-                />
-              ))}
-            </div>
           )}
         </div>
       </div>
