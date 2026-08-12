@@ -16,9 +16,7 @@ export function TerminalFrame({ title, className = "", children }: TerminalFrame
       {title && (
         <div className="flex items-center border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5">
           <span className="font-bold text-base text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
-            <span className="text-emerald-500">`</span>
             {title}
-            <span className="text-emerald-500">`</span>
           </span>
         </div>
       )}
@@ -43,9 +41,7 @@ export function TerminalPanel({ title, className = "", children, ref }: Terminal
     <div ref={ref} className={`font-mono ${PANEL} ${className}`}>
       <div className="flex items-center gap-2 border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 min-w-0">
         <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
-          <span className="text-emerald-500">`</span>
           {title}
-          <span className="text-emerald-500">`</span>
         </span>
         <span className="flex-1 border-t border-zinc-400/60 dark:border-zinc-600/50" aria-hidden="true" />
       </div>

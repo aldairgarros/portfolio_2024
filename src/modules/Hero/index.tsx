@@ -103,12 +103,9 @@ export function Hero() {
           transformPerspective: 1200,
         }}
         className="relative z-10 w-full max-w-5xl">
-        <TerminalFrame title={<span className="text-xl sm:text-3xl">{t("title.value")}</span>} className="relative overflow-hidden">
+        <TerminalFrame title={<span className="text-xl sm:text-3xl">~</span>} className="relative overflow-hidden">
           <div className="relative z-10 py-10 sm:py-14 px-4 sm:px-8">
-            <p className="font-mono text-sm sm:text-base text-emerald-600 dark:text-emerald-400 mb-5">
-              <span aria-hidden className="text-zinc-400 dark:text-zinc-500">~/portfolio</span>
-              <span aria-hidden className="text-emerald-500">&gt;</span> _
-            </p>
+            <p className="font-mono text-3xl sm:text-6xl text-emerald-600 dark:text-emerald-400 mb-5">{t("title.value")}</p>
             <p className="font-sans text-lg sm:text-2xl text-zinc-700 dark:text-zinc-200 max-w-3xl mx-auto leading-relaxed">
               {t("subtitle.value")}
             </p>
