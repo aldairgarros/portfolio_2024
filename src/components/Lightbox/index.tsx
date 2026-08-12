@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export interface LightboxImage {
   src: string;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
+  const { t } = useTranslation("translation", { keyPrefix: "lightbox" });
   const [index, setIndex] = useState(initialIndex);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -129,7 +131,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       <button
         onClick={onClose}
         className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
-        aria-label="Close lightbox"
+        aria-label={t("close")}
       >
         <X size={28} />
       </button>
@@ -144,7 +146,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
         <button
           onClick={prev}
           className="absolute left-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
-          aria-label="Previous image"
+          aria-label={t("previous")}
         >
           <ChevronLeft size={28} />
         </button>
@@ -170,7 +172,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
         <button
           onClick={next}
           className="absolute right-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
-          aria-label="Next image"
+          aria-label={t("next")}
         >
           <ChevronRight size={28} />
         </button>

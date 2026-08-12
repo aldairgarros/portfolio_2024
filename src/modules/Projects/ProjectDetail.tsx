@@ -76,28 +76,34 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
             className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div aria-hidden="true" className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]" />
             {lightboxImages.map((img, index) => (
-              <img
+              <button
                 key={img.src}
-                src={img.src}
-                alt={img.alt ?? ""}
-                loading="lazy"
+                type="button"
+                aria-label={img.alt ?? p("image.alt")}
                 onClick={() => openLightbox(index)}
-                className="shrink-0 snap-center h-60 sm:h-72 w-[85%] sm:w-[70%] md:w-[82%] object-contain bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200"
-              />
+                className="shrink-0 snap-center h-60 sm:h-72 w-[85%] sm:w-[70%] md:w-[82%] block bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+                <img
+                  src={img.src}
+                  alt={img.alt ?? ""}
+                  loading="lazy"
+                  draggable={false}
+                  className="w-full h-full object-contain pointer-events-none"
+                />
+              </button>
             ))}
             <div aria-hidden="true" className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]" />
           </div>
 
           <button
             onClick={() => scrollByCard(-1)}
-            aria-label="Previous images"
+            aria-label={p("image.prevLabel")}
             disabled={!canScrollLeft}
             className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300">
             <ChevronLeft size={20} aria-hidden="true" />
           </button>
           <button
             onClick={() => scrollByCard(1)}
-            aria-label="Next images"
+            aria-label={p("image.nextLabel")}
             disabled={!canScrollRight}
             className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300">
             <ChevronRight size={20} aria-hidden="true" />

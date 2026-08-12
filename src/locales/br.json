@@ -43,7 +43,9 @@
       "penhor": {
         "image": {
           "src": "/images/penhor-display.png",
-          "alt": "Image do projeto Penhor"
+          "alt": "Image do projeto Penhor",
+          "prevLabel": "Imagens anteriores",
+          "nextLabel": "Próximas imagens"
         },
         "name": {
           "label": "nome",
@@ -92,7 +94,9 @@
       "musicaShow": {
         "image": {
           "src": "/images/musicashow-display.png",
-          "alt": "Imagem do projeto Musical Show"
+          "alt": "Imagem do projeto Musical Show",
+          "prevLabel": "Imagens anteriores",
+          "nextLabel": "Próximas imagens"
         },
         "name": {
           "label": "nome",
@@ -152,7 +156,9 @@
       "bolsobom": {
         "image": {
           "src": "/images/bolsobom-display.png",
-          "alt": "Imagem do projeto Bolso Bom"
+          "alt": "Imagem do projeto Bolso Bom",
+          "prevLabel": "Imagens anteriores",
+          "nextLabel": "Próximas imagens"
         },
         "name": {
           "label": "nome",
@@ -212,7 +218,9 @@
       "atalaiaPro": {
         "image": {
           "src": "/images/atalaiapro-display.png",
-          "alt": "Imagem do projeto Atalaia Pro"
+          "alt": "Imagem do projeto Atalaia Pro",
+          "prevLabel": "Imagens anteriores",
+          "nextLabel": "Próximas imagens"
         },
         "name": {
           "label": "nome",
@@ -455,5 +463,10 @@
         "href": "https://github.com/aldairgarros"
       }
     }
+  },
+  "lightbox": {
+    "close": "Fechar lightbox",
+    "previous": "Imagem anterior",
+    "next": "Próxima imagem"
   }
 }
