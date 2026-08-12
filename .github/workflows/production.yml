@@ -49,6 +49,14 @@ jobs:
             -t ghcr.io/aldairgarros/portfolio:latest \
             .
 
+      - name: Scan image for vulnerabilities
+        uses: aquasecurity/trivy-action@v0.24.0
+        with:
+          image-ref: ghcr.io/aldairgarros/portfolio:${{ github.sha }}
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          ignore-unfixed: true
+
       - name: Push image to GHCR
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
