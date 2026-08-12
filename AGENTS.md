@@ -1,6 +1,7 @@
 # AGENTS.md
 
 ## Commands
+
 - `npm run dev` — start Vite dev server with HMR
 - `npm run build` — typecheck (`tsc -b`) then build (`vite build`); type errors fail the build
 - `npm run lint` — ESLint (flat config) on the whole repo
@@ -13,11 +14,11 @@ No test suite exists — there is no test runner or test script.
 
 React 19 + TypeScript + Vite SPA. Pages → Modules → Components:
 
-| Layer | Path | Role |
-|-------|------|------|
-| Pages | `src/pages/` | Route-level entry points (home, projects, project, about) |
-| Modules | `src/modules/` | Feature-specific sections (Hero, Projects, Expertise, About, Contact, MenuBar, Sticker) |
-| Components | `src/components/` | Generic reusable UI (Container, Section, TextBox, LinkButton, Attribute) |
+| Layer      | Path              | Role                                                                                    |
+| ---------- | ----------------- | --------------------------------------------------------------------------------------- |
+| Pages      | `src/pages/`      | Route-level entry points (home, projects, project, about)                               |
+| Modules    | `src/modules/`    | Feature-specific sections (Hero, Projects, Expertise, About, Contact, MenuBar, Sticker) |
+| Components | `src/components/` | Generic reusable UI (Container, Section, TextBox, LinkButton, Attribute)                |
 
 Routing via react-router-dom v7 in `src/router.tsx`. Home page uses hash-based section navigation (`/#projects`, `/#contact`, etc.).
 
@@ -39,6 +40,7 @@ Routing via react-router-dom v7 in `src/router.tsx`. Home page uses hash-based s
 Tailwind CSS v4 via `@tailwindcss/vite` Vite plugin. Configuration is in `src/globals.css` using `@theme`. No `tailwind.config.js` or `postcss.config.js`.
 
 Custom color aliases (map Tailwind palettes):
+
 - `primary` → zinc
 - `secondary` → rose
 - `off` → neutral

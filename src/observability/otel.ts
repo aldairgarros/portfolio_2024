@@ -5,7 +5,11 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { LongTaskInstrumentation } from "@opentelemetry/instrumentation-long-task";
 import { resourceFromAttributes } from "@opentelemetry/resources";
-import { BatchSpanProcessor, ConsoleSpanExporter, SpanProcessor } from "@opentelemetry/sdk-trace-base";
+import {
+  BatchSpanProcessor,
+  ConsoleSpanExporter,
+  SpanProcessor,
+} from "@opentelemetry/sdk-trace-base";
 import { SEMRESATTRS_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
 import { initWebVitalsSpans } from "./web-vitals.ts";
@@ -56,10 +60,7 @@ export function initOpenTelemetry(): void {
 
   registerInstrumentations({
     tracerProvider: provider,
-    instrumentations: [
-      getWebAutoInstrumentations(),
-      new LongTaskInstrumentation(),
-    ],
+    instrumentations: [getWebAutoInstrumentations(), new LongTaskInstrumentation()],
   });
 
   initWebVitalsSpans();

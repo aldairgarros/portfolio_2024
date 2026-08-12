@@ -19,14 +19,15 @@
 
 ## 2. Dependencies
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `framer-motion` | ^12.x | Scroll/mouse parallax, spring animations, `AnimatePresence`, `whileInView` |
-| `@fontsource/space-grotesk` | ^5.x | Heading font (weights 400-700, self-hosted) |
-| `@fontsource/jetbrains-mono` | ^5.x | Mono font (weights 400-600, self-hosted) |
-| `lucide-react` | ^0.x | Icon library (tree-shakeable, 900+ icons) |
+| Package                      | Version | Purpose                                                                    |
+| ---------------------------- | ------- | -------------------------------------------------------------------------- |
+| `framer-motion`              | ^12.x   | Scroll/mouse parallax, spring animations, `AnimatePresence`, `whileInView` |
+| `@fontsource/space-grotesk`  | ^5.x    | Heading font (weights 400-700, self-hosted)                                |
+| `@fontsource/jetbrains-mono` | ^5.x    | Mono font (weights 400-600, self-hosted)                                   |
+| `lucide-react`               | ^0.x    | Icon library (tree-shakeable, 900+ icons)                                  |
 
 **Removed**:
+
 - Google Fonts `<link>` tag in `index.html` (replaced by `@fontsource` self-hosting via Vite)
 
 ---
@@ -35,15 +36,16 @@
 
 ### Font Assignments
 
-| Role | Font | Weights | Tailwind Class |
-|------|------|---------|---------------|
-| Headings | Space Grotesk | 400-700 | `font-heading` |
-| Body | Inter | 400-600 | `font-sans` (default) |
-| Mono | JetBrains Mono | 400-600 | `font-mono` |
+| Role     | Font           | Weights | Tailwind Class        |
+| -------- | -------------- | ------- | --------------------- |
+| Headings | Space Grotesk  | 400-700 | `font-heading`        |
+| Body     | Inter          | 400-600 | `font-sans` (default) |
+| Mono     | JetBrains Mono | 400-600 | `font-mono`           |
 
 ### Tailwind Config
 
 Extend `@theme` in `src/globals.css`:
+
 ```css
 @theme {
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -54,6 +56,7 @@ Extend `@theme` in `src/globals.css`:
 ### Import Strategy
 
 Import in `src/main.tsx` or `src/globals.css`:
+
 ```ts
 import "@fontsource/space-grotesk/400.css";
 import "@fontsource/space-grotesk/500.css";
@@ -65,13 +68,13 @@ import "@fontsource/jetbrains-mono/600.css";
 
 ### Type Scale Changes
 
-| Element | Before | After |
-|---------|--------|-------|
-| Hero name | `text-5xl sm:text-7xl font-bold` | `text-6xl sm:text-8xl font-bold tracking-tight font-heading` |
-| Section titles | `text-3xl sm:text-4xl font-bold` | `text-4xl sm:text-5xl font-bold font-heading` |
-| Project card titles | current size | `font-heading font-semibold` |
-| Dates/metadata | current size | `font-mono` |
-| Body text | current sizes | unchanged (Inter) |
+| Element             | Before                           | After                                                        |
+| ------------------- | -------------------------------- | ------------------------------------------------------------ |
+| Hero name           | `text-5xl sm:text-7xl font-bold` | `text-6xl sm:text-8xl font-bold tracking-tight font-heading` |
+| Section titles      | `text-3xl sm:text-4xl font-bold` | `text-4xl sm:text-5xl font-bold font-heading`                |
+| Project card titles | current size                     | `font-heading font-semibold`                                 |
+| Dates/metadata      | current size                     | `font-mono`                                                  |
+| Body text           | current sizes                    | unchanged (Inter)                                            |
 
 ---
 
@@ -79,22 +82,22 @@ import "@fontsource/jetbrains-mono/600.css";
 
 ### Replacements
 
-| Current | New (Lucide) | Location |
-|---------|-------------|----------|
-| `🎓` emoji | `<GraduationCap size={28} />` | Education section |
-| `☰` / `✕` | `<Menu />` / `<X />` | MenuBar hamburger |
-| `→` / `←` | `<ArrowRight />` / `<ArrowLeft />` | Project cards, back links |
-| `↗` | `<ExternalLink />` | External link buttons |
+| Current    | New (Lucide)                       | Location                  |
+| ---------- | ---------------------------------- | ------------------------- |
+| `🎓` emoji | `<GraduationCap size={28} />`      | Education section         |
+| `☰` / `✕` | `<Menu />` / `<X />`               | MenuBar hamburger         |
+| `→` / `←`  | `<ArrowRight />` / `<ArrowLeft />` | Project cards, back links |
+| `↗`        | `<ExternalLink />`                 | External link buttons     |
 
 ### New Icon Placements
 
-| Icon | Location |
-|------|----------|
-| `Code2`, `Server`, `Palette`, `Smartphone`, `Globe` | Section header decorative prefixes |
-| `Calendar`, `Briefcase`, `MapPin` | About section timeline |
-| `Mail`, `Phone`, `MessageCircle` | Contact buttons |
-| `ChevronLeft`, `ChevronRight`, `X`, `Download` | Lightbox controls |
-| `Github`, `Linkedin` | Contact section (replaces text labels) |
+| Icon                                                | Location                               |
+| --------------------------------------------------- | -------------------------------------- |
+| `Code2`, `Server`, `Palette`, `Smartphone`, `Globe` | Section header decorative prefixes     |
+| `Calendar`, `Briefcase`, `MapPin`                   | About section timeline                 |
+| `Mail`, `Phone`, `MessageCircle`                    | Contact buttons                        |
+| `ChevronLeft`, `ChevronRight`, `X`, `Download`      | Lightbox controls                      |
+| `Github`, `Linkedin`                                | Contact section (replaces text labels) |
 
 ### Conventions
 
@@ -124,25 +127,25 @@ const PARALLAX_MULTIPLIER = 0.3;
 
 ### 5.1 Scroll-Based Parallax
 
-| Element | Effect | Implementation |
-|---------|--------|---------------|
-| Hero section | Name slides up + fades out | `useScroll` on section ref → `useTransform(scrollYProgress, [0, 0.4], [0, -100])` (y), `[1, 0]` (opacity) |
-| Background blobs | Drift at 0.2-0.3x scroll | `useScroll` → `useTransform(scrollYProgress, [0, 1], ["0%", "30%"])` on blob `y` |
-| Section reveals | Fade-in + slide-up on scroll into view | `<motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }}>` |
-| Project cards | Staggered reveals | Parent `<motion.div>` with `variants` using `staggerChildren: 0.15`, children via `variants` |
-| Expertise cards | Same staggered pattern | Same approach |
-| About cards | Sequential reveal | Same `whileInView` with increasing delay per card |
-| Contact | Scale-up reveal | `initial={{ scale: 0.95 }}` → `whileInView={{ scale: 1 }}` |
+| Element          | Effect                                 | Implementation                                                                                                                                              |
+| ---------------- | -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hero section     | Name slides up + fades out             | `useScroll` on section ref → `useTransform(scrollYProgress, [0, 0.4], [0, -100])` (y), `[1, 0]` (opacity)                                                   |
+| Background blobs | Drift at 0.2-0.3x scroll               | `useScroll` → `useTransform(scrollYProgress, [0, 1], ["0%", "30%"])` on blob `y`                                                                            |
+| Section reveals  | Fade-in + slide-up on scroll into view | `<motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.6 }}>` |
+| Project cards    | Staggered reveals                      | Parent `<motion.div>` with `variants` using `staggerChildren: 0.15`, children via `variants`                                                                |
+| Expertise cards  | Same staggered pattern                 | Same approach                                                                                                                                               |
+| About cards      | Sequential reveal                      | Same `whileInView` with increasing delay per card                                                                                                           |
+| Contact          | Scale-up reveal                        | `initial={{ scale: 0.95 }}` → `whileInView={{ scale: 1 }}`                                                                                                  |
 
 ### 5.2 Mouse-Tracking Parallax
 
-| Element | Effect | Range | Implementation |
-|---------|--------|-------|---------------|
-| Hero text | Follows cursor with spring lag | ±15px x/y | `useMotionValue` + `useSpring` on mousemove |
-| GlassCards (hover) | 3D tilt toward cursor | ±3deg rotation | `useMotionValue` + `useSpring` → `rotateX/Y` transform |
-| Skill badges | Float on hover | ±2deg rotation | Same approach, lighter spring |
-| Project thumbnails | Tilt + lift | ±4deg rotation, ±5px y | Same approach |
-| Background blobs | Shift opposite cursor | ±2% position | `useMotionValue` mapped to `translateX/Y` |
+| Element            | Effect                         | Range                  | Implementation                                         |
+| ------------------ | ------------------------------ | ---------------------- | ------------------------------------------------------ |
+| Hero text          | Follows cursor with spring lag | ±15px x/y              | `useMotionValue` + `useSpring` on mousemove            |
+| GlassCards (hover) | 3D tilt toward cursor          | ±3deg rotation         | `useMotionValue` + `useSpring` → `rotateX/Y` transform |
+| Skill badges       | Float on hover                 | ±2deg rotation         | Same approach, lighter spring                          |
+| Project thumbnails | Tilt + lift                    | ±4deg rotation, ±5px y | Same approach                                          |
+| Background blobs   | Shift opposite cursor          | ±2% position           | `useMotionValue` mapped to `translateX/Y`              |
 
 ### 5.3 Performance Guard
 
@@ -230,18 +233,18 @@ interface LightboxProps {
 
 ### Behavior
 
-| Feature | Implementation |
-|---------|---------------|
-| Mount | `ReactDOM.createPortal` to `document.body`, z-50 |
-| Backdrop | `bg-black/90 backdrop-blur-md`, fades in via `AnimatePresence` |
-| Image enter | Fade + directional slide (spring), direction depends on navigation direction |
-| Image exit | Fade + slide opposite direction |
-| Counter | Bottom center: `"2 / 5"` in JetBrains Mono, `text-sm text-white/60` |
+| Feature           | Implementation                                                                                             |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| Mount             | `ReactDOM.createPortal` to `document.body`, z-50                                                           |
+| Backdrop          | `bg-black/90 backdrop-blur-md`, fades in via `AnimatePresence`                                             |
+| Image enter       | Fade + directional slide (spring), direction depends on navigation direction                               |
+| Image exit        | Fade + slide opposite direction                                                                            |
+| Counter           | Bottom center: `"2 / 5"` in JetBrains Mono, `text-sm text-white/60`                                        |
 | Navigation arrows | Translucent `<ChevronLeft>` / `<ChevronRight>` buttons at edges, appear on hover, always visible on mobile |
-| Close button | Top-right `<X>` icon, `text-white/80 hover:text-white` |
-| Keyboard | `Escape` → close, `ArrowLeft` → prev, `ArrowRight` → next |
-| Mouse | Click backdrop → close, click arrows → navigate |
-| Touch | Swipe left/right → navigate (±50px threshold), pinch-to-zoom |
+| Close button      | Top-right `<X>` icon, `text-white/80 hover:text-white`                                                     |
+| Keyboard          | `Escape` → close, `ArrowLeft` → prev, `ArrowRight` → next                                                  |
+| Mouse             | Click backdrop → close, click arrows → navigate                                                            |
+| Touch             | Swipe left/right → navigate (±50px threshold), pinch-to-zoom                                               |
 
 ### Pinch-to-Zoom
 
@@ -259,11 +262,11 @@ interface LightboxProps {
 
 ### Integration Points
 
-| Location | Trigger | Behavior |
-|----------|---------|----------|
-| ProjectCard | Click thumbnail image | Opens lightbox with all images from that project, starting at index 0. `event.stopPropagation()` prevents the surrounding `<Link>` from navigating. |
-| Project detail | Click any image in grid | Opens lightbox with all project images, starting at clicked index |
-| Lightbox state | Owned by parent page | Each card/page has `<Lightbox>` with its own `open`/`onClose` state |
+| Location       | Trigger                 | Behavior                                                                                                                                            |
+| -------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ProjectCard    | Click thumbnail image   | Opens lightbox with all images from that project, starting at index 0. `event.stopPropagation()` prevents the surrounding `<Link>` from navigating. |
+| Project detail | Click any image in grid | Opens lightbox with all project images, starting at clicked index                                                                                   |
+| Lightbox state | Owned by parent page    | Each card/page has `<Lightbox>` with its own `open`/`onClose` state                                                                                 |
 
 ### State Per Project
 
@@ -275,50 +278,51 @@ Data already exists in translation files under `projects.<key>.images.list` — 
 
 ### New Files
 
-| File | Purpose |
-|------|---------|
-| `src/components/Lightbox/index.tsx` | Fullscreen image lightbox with pinch-to-zoom and navigation |
-| `src/components/BackgroundDecoration/index.tsx` | Triple-layer animated background |
+| File                                            | Purpose                                                     |
+| ----------------------------------------------- | ----------------------------------------------------------- |
+| `src/components/Lightbox/index.tsx`             | Fullscreen image lightbox with pinch-to-zoom and navigation |
+| `src/components/BackgroundDecoration/index.tsx` | Triple-layer animated background                            |
 
 ### Modified Files
 
-| File | Changes |
-|------|---------|
-| `index.html` | Remove Google Fonts `<link>` tag |
-| `src/main.tsx` | Import `@fontsource/space-grotesk` and `@fontsource/jetbrains-mono` |
-| `src/globals.css` | Add `--font-heading` and `--font-mono` to `@theme`, add noise SVG filter CSS, dot grid pattern CSS |
-| `src/pages/Layout.tsx` | Replace gradient blob with `<BackgroundDecoration />`, adjust z-index of outer wrapper |
-| `src/modules/Hero/index.tsx` | Add `font-heading`, bump text sizes, add motion (scroll parallax + mouse tracking), remove unicode emoji |
-| `src/modules/Education/index.tsx` | Replace `🎓` emoji with `<GraduationCap />`, wrap in motion for reveal |
-| `src/modules/Projects/ProjectCard.tsx` | Add `font-heading` to title, add `font-mono` to date, add mouse-tracking tilt effect, thumbnail click → open lightbox |
-| `src/modules/Projects/index.tsx` | Wrap cards in motion grid with stagger, pass project images to lightbox |
-| `src/modules/Expertise/index.tsx` | Wrap cards in motion grid with stagger |
-| `src/modules/Expertise/Skill.tsx` | Add mouse-tracking float effect (subtle) |
-| `src/modules/About/index.tsx` | Add reveal animations, use Lucide icons for timeline markers |
-| `src/modules/Contact/index.tsx` | Replace text labels with Lucide icons in buttons, add reveal animation |
-| `src/modules/MenuBar/index.tsx` | Replace `☰`/`✕` with `<Menu />`/`<X />`, bump z-index |
-| `src/modules/MenuBar/FullScreenMenu.tsx` | Replace unicode arrows with Lucide icons |
-| `src/modules/Sticker/index.tsx` | Add `Mail` icon, bump z-index |
-| `src/pages/project/index.tsx` | Add image click → lightbox, `font-heading` on title, `font-mono` on date |
-| `src/components/SectionTitle/index.tsx` | Accept optional `icon` prop (Lucide `Icon` type), use `font-heading` |
-| `src/components/GlassCard/index.tsx` | Add mouse-tracking tilt effect variant (optional, controlled by prop) |
+| File                                     | Changes                                                                                                               |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `index.html`                             | Remove Google Fonts `<link>` tag                                                                                      |
+| `src/main.tsx`                           | Import `@fontsource/space-grotesk` and `@fontsource/jetbrains-mono`                                                   |
+| `src/globals.css`                        | Add `--font-heading` and `--font-mono` to `@theme`, add noise SVG filter CSS, dot grid pattern CSS                    |
+| `src/pages/Layout.tsx`                   | Replace gradient blob with `<BackgroundDecoration />`, adjust z-index of outer wrapper                                |
+| `src/modules/Hero/index.tsx`             | Add `font-heading`, bump text sizes, add motion (scroll parallax + mouse tracking), remove unicode emoji              |
+| `src/modules/Education/index.tsx`        | Replace `🎓` emoji with `<GraduationCap />`, wrap in motion for reveal                                                |
+| `src/modules/Projects/ProjectCard.tsx`   | Add `font-heading` to title, add `font-mono` to date, add mouse-tracking tilt effect, thumbnail click → open lightbox |
+| `src/modules/Projects/index.tsx`         | Wrap cards in motion grid with stagger, pass project images to lightbox                                               |
+| `src/modules/Expertise/index.tsx`        | Wrap cards in motion grid with stagger                                                                                |
+| `src/modules/Expertise/Skill.tsx`        | Add mouse-tracking float effect (subtle)                                                                              |
+| `src/modules/About/index.tsx`            | Add reveal animations, use Lucide icons for timeline markers                                                          |
+| `src/modules/Contact/index.tsx`          | Replace text labels with Lucide icons in buttons, add reveal animation                                                |
+| `src/modules/MenuBar/index.tsx`          | Replace `☰`/`✕` with `<Menu />`/`<X />`, bump z-index                                                                |
+| `src/modules/MenuBar/FullScreenMenu.tsx` | Replace unicode arrows with Lucide icons                                                                              |
+| `src/modules/Sticker/index.tsx`          | Add `Mail` icon, bump z-index                                                                                         |
+| `src/pages/project/index.tsx`            | Add image click → lightbox, `font-heading` on title, `font-mono` on date                                              |
+| `src/components/SectionTitle/index.tsx`  | Accept optional `icon` prop (Lucide `Icon` type), use `font-heading`                                                  |
+| `src/components/GlassCard/index.tsx`     | Add mouse-tracking tilt effect variant (optional, controlled by prop)                                                 |
 
 ### Not Modified
 
-| File | Reason |
-|------|--------|
-| `src/locales/en.json` | No content changes needed |
-| `src/locales/br.json` | No content changes needed |
-| `src/assets/expertise.json` | No data changes needed |
-| `src/i18n.ts` | No config changes |
-| `src/router.tsx` | No route changes |
-| All skill and project images | No image changes |
+| File                         | Reason                    |
+| ---------------------------- | ------------------------- |
+| `src/locales/en.json`        | No content changes needed |
+| `src/locales/br.json`        | No content changes needed |
+| `src/assets/expertise.json`  | No data changes needed    |
+| `src/i18n.ts`                | No config changes         |
+| `src/router.tsx`             | No route changes          |
+| All skill and project images | No image changes          |
 
 ---
 
 ## 9. Constraints & Non-Goals
 
 ### Constraints
+
 - Must typecheck cleanly (`tsc -b`) — `noUnusedLocals` and `noUnusedParameters` enforced
 - Must lint cleanly (`npm run lint`)
 - Must build (`npm run build`)
@@ -328,6 +332,7 @@ Data already exists in translation files under `projects.<key>.images.list` — 
 - No test suite exists — visual verification only
 
 ### Non-Goals
+
 - No class-based dark mode toggle
 - No Next.js migration
 - No new animation library beyond Framer Motion

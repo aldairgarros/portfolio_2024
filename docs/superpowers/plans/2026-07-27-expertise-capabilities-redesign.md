@@ -22,23 +22,25 @@
 
 ## File Structure
 
-| File | Action | Responsibility |
-|---|---|---|
-| `src/assets/expertise.json` | Rewrite | Capability data: 5 entries with id, title, context, applicability, impact, tech[] |
-| `src/modules/Expertise/index.tsx` | Rewrite | Component: 2-col grid of GlassCards with narrative + tech badges |
-| `src/modules/Expertise/Skill.tsx` | Unchanged | Tech badge renderer (image + label from translations) |
-| `src/locales/en.json` | Modify | Replace `expertise.list` with 5 capability entries + attribute labels |
-| `src/locales/br.json` | Modify | Same structure, Brazilian Portuguese translations |
+| File                              | Action    | Responsibility                                                                    |
+| --------------------------------- | --------- | --------------------------------------------------------------------------------- |
+| `src/assets/expertise.json`       | Rewrite   | Capability data: 5 entries with id, title, context, applicability, impact, tech[] |
+| `src/modules/Expertise/index.tsx` | Rewrite   | Component: 2-col grid of GlassCards with narrative + tech badges                  |
+| `src/modules/Expertise/Skill.tsx` | Unchanged | Tech badge renderer (image + label from translations)                             |
+| `src/locales/en.json`             | Modify    | Replace `expertise.list` with 5 capability entries + attribute labels             |
+| `src/locales/br.json`             | Modify    | Same structure, Brazilian Portuguese translations                                 |
 
 ---
 
 ### Task 1: Add capability label translations
 
 **Files:**
+
 - Modify: `src/locales/en.json:253-380`
 - Modify: `src/locales/br.json:253-380`
 
 **Interfaces:**
+
 - Produces: Translation keys `expertise.contextLabel`, `expertise.applicabilityLabel`, `expertise.impactLabel` + 5 capability entries under `expertise.list.<id>` with `title`, `context`, `applicability`, `impact` + nested `list.<techKey>` objects with `label` and `imageSrc`
 
 - [ ] **Step 1: Replace the expertise section in en.json**
@@ -232,9 +234,11 @@ git commit -m "feat: add 5 capability translations for expertise section"
 ### Task 2: Restructure expertise.json with capability data
 
 **Files:**
+
 - Modify: `src/assets/expertise.json`
 
 **Interfaces:**
+
 - Produces: Array of `{id: string, title: string, context: string, applicability: string, impact: string, tech: string[]}`
 
 - [ ] **Step 1: Replace the file content**
@@ -257,7 +261,17 @@ Replace `src/assets/expertise.json` entirely with:
     "context": "Building performant, accessible, and visually refined single-page applications using component-driven architecture, type-safe development, and modern tooling.",
     "applicability": "Leveraged across 4 frontend projects: a React 19 PWA with offline IndexedDB cache, TypeScript 6, Zustand, and TanStack Query/Table (Atalaia Pro — 12 pages, 60+ components, dual router trees for auth); a Next.js 16 app with Prisma 7 and full audit trail (Penhor — 14 pages, 24 DB tables); a React 18 admin dashboard with Zustand and Tailwind 3 (Music Market — 12 routes); and this bilingual portfolio with i18next and code-as-UI aesthetic.",
     "impact": "Delivered PWAs with offline support, role-based UI filtering, drag-and-drop UX, and consistent design systems. Established reusable component libraries, type-safe API contracts, and automated CI/CD builds across projects.",
-    "tech": ["react", "nextjs", "typescript", "tailwind", "redux", "vite", "html", "css", "javascript"]
+    "tech": [
+      "react",
+      "nextjs",
+      "typescript",
+      "tailwind",
+      "redux",
+      "vite",
+      "html",
+      "css",
+      "javascript"
+    ]
   },
   {
     "id": "mobile",
@@ -298,9 +312,11 @@ git commit -m "feat: restructure expertise.json with 5 capability entries"
 ### Task 3: Add fastify skill image
 
 **Files:**
+
 - Need: `public/skill_images/fastify.png`
 
 **Interfaces:**
+
 - Produces: `public/skill_images/fastify.png` — 40×40px PNG icon for the Fastify tech badge
 
 - [ ] **Step 1: Check if fastify image exists**
@@ -342,9 +358,11 @@ Or skip if the image wasn't created.
 ### Task 4: Rewrite Expertise component
 
 **Files:**
+
 - Modify: `src/modules/Expertise/index.tsx`
 
 **Interfaces:**
+
 - Consumes: `expertise` array from `@/assets/expertise.json` (Task 2), translation keys from `expertise.*` namespace (Task 1), `Skill` component (existing, unchanged)
 - Produces: Exported `Expertise` component rendering a 2-col grid of GlassCards
 
@@ -367,14 +385,14 @@ export function Expertise() {
       <SectionTitle title={t("title")} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {expertise.map((capability, index) => {
-          const isLastOdd =
-            index === expertise.length - 1 && expertise.length % 2 !== 0;
+          const isLastOdd = index === expertise.length - 1 && expertise.length % 2 !== 0;
 
           return (
             <GlassCard
               key={capability.id}
               hover
-              className={`p-8 ${isLastOdd ? "md:col-span-2" : ""}`}>
+              className={`p-8 ${isLastOdd ? "md:col-span-2" : ""}`}
+            >
               <h3 className="text-xl font-semibold text-primary-900 dark:text-primary-50 mb-4">
                 {t(`list.${capability.id}.title`)}
               </h3>
@@ -457,6 +475,7 @@ git commit -m "feat: rewrite Expertise section with 5 capability narrative cards
 ### Task 5: Build verification
 
 **Files:**
+
 - No new files — verifies all changes work together
 
 - [ ] **Step 1: Run full build (typecheck + vite build)**

@@ -54,7 +54,8 @@ export function MenuBar({ links }: Props) {
       <ScrollRestoration />
       <nav
         className="fixed top-0 w-full z-30 backdrop-blur-md bg-white/60 dark:bg-primary-900/60 border-b border-zinc-300/70 dark:border-zinc-700/60 shadow-sm"
-        role="navigation">
+        role="navigation"
+      >
         <div className="flex max-w-6xl mx-auto h-14 items-center justify-between gap-4 px-4 sm:px-8 font-mono text-base">
           <div className="relative flex-1 min-w-0" ref={menuRef}>
             <button
@@ -63,8 +64,10 @@ export function MenuBar({ links }: Props) {
               onClick={() => setIsMenuOpen((state) => !state)}
               aria-label={isMenuOpen ? t("home.menuClose") : t("home.menuOpen")}
               aria-expanded={isMenuOpen}
-              aria-haspopup="menu">
-              @<span className="sm:hidden">{t("hero.title.handle")}</span><span className="hidden sm:inline">{t("hero.title.value")}</span>:
+              aria-haspopup="menu"
+            >
+              @<span className="sm:hidden">{t("hero.title.handle")}</span>
+              <span className="hidden sm:inline">{t("hero.title.value")}</span>:
               <span key={displayPath} className="animate-fade-in flex-1 text-left truncate min-w-0">
                 {displayPath}
               </span>
@@ -83,7 +86,8 @@ export function MenuBar({ links }: Props) {
                           to={{ pathname: "/", hash: item.hash }}
                           className="flex items-center gap-2 px-4 py-2 text-primary-700 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-emerald-500/5 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none"
                           role="menuitem"
-                          onClick={() => setIsMenuOpen(false)}>
+                          onClick={() => setIsMenuOpen(false)}
+                        >
                           <span className="text-emerald-500">&gt;</span>
                           {item.label}
                         </Link>
@@ -95,7 +99,8 @@ export function MenuBar({ links }: Props) {
                                   to={{ pathname: "/", hash: child.hash }}
                                   className="flex items-center gap-2 pl-10 pr-4 py-1.5 text-primary-600 dark:text-primary-400 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-emerald-500/5 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none"
                                   role="menuitem"
-                                  onClick={() => setIsMenuOpen(false)}>
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
                                   <span className="text-emerald-500/70">&gt;</span>
                                   {child.label}
                                 </Link>
@@ -122,7 +127,8 @@ export function MenuBar({ links }: Props) {
                 }`}
                 onClick={() => handleLanguageChange(lang)}
                 aria-label={t(lang === "en" ? "home.langEn" : "home.langBr")}
-                aria-pressed={language === lang}>
+                aria-pressed={language === lang}
+              >
                 {lang.toUpperCase()}
               </button>
             ))}

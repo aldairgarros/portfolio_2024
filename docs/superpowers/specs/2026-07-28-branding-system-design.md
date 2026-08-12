@@ -9,14 +9,14 @@ Monochromatic — black, white, and shades of gray. No color accents. The portfo
 
 ## Color System
 
-| Token | Maps to | Role |
-|-------|---------|------|
-| `primary` | **zinc** | Everything — backgrounds, text, borders, surfaces |
-| `accent` | **stone** (replaces rose) | Hover states, section underlines, active indicators |
-| `off` | **neutral** | Secondary surfaces, background variants |
-| `success` | **green** | Future semantic use |
-| `warning` | **orange** | Future semantic use |
-| `danger` | **red** | Future semantic use |
+| Token     | Maps to                   | Role                                                |
+| --------- | ------------------------- | --------------------------------------------------- |
+| `primary` | **zinc**                  | Everything — backgrounds, text, borders, surfaces   |
+| `accent`  | **stone** (replaces rose) | Hover states, section underlines, active indicators |
+| `off`     | **neutral**               | Secondary surfaces, background variants             |
+| `success` | **green**                 | Future semantic use                                 |
+| `warning` | **orange**                | Future semantic use                                 |
+| `danger`  | **red**                   | Future semantic use                                 |
 
 The `secondary` (rose) alias is removed entirely. All `secondary-*` references become `accent-*` (stone).
 
@@ -26,23 +26,23 @@ Already implemented (Space Grotesk headings + Inter body + JetBrains Mono dates/
 
 ## Shadows
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--shadow-sm` | `0 1px 2px rgb(0 0 0 / 0.04)` | Skill badges |
-| `--shadow-md` | `0 2px 8px rgb(0 0 0 / 0.06)` | GlassCard default (replaces shadow-xl) |
-| `--shadow-lg` | `0 4px 16px rgb(0 0 0 / 0.08)` | GlassCard hover (replaces shadow-2xl) |
-| `--shadow-xl` | `0 8px 32px rgb(0 0 0 / 0.10)` | Modals, lightbox |
+| Token         | Value                          | Usage                                  |
+| ------------- | ------------------------------ | -------------------------------------- |
+| `--shadow-sm` | `0 1px 2px rgb(0 0 0 / 0.04)`  | Skill badges                           |
+| `--shadow-md` | `0 2px 8px rgb(0 0 0 / 0.06)`  | GlassCard default (replaces shadow-xl) |
+| `--shadow-lg` | `0 4px 16px rgb(0 0 0 / 0.08)` | GlassCard hover (replaces shadow-2xl)  |
+| `--shadow-xl` | `0 8px 32px rgb(0 0 0 / 0.10)` | Modals, lightbox                       |
 
 ## Border Radius
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--radius-sm` | `0.25rem` | Small badges |
-| `--radius-md` | `0.5rem` | Buttons |
-| `--radius-lg` | `0.75rem` | Skill badges (was rounded-xl) |
-| `--radius-xl` | `1rem` | GlassCard (was rounded-2xl) |
-| `--radius-2xl` | `1.5rem` | Large feature cards |
-| `--radius-full` | `9999px` | Pills, language toggle |
+| Token           | Value     | Usage                         |
+| --------------- | --------- | ----------------------------- |
+| `--radius-sm`   | `0.25rem` | Small badges                  |
+| `--radius-md`   | `0.5rem`  | Buttons                       |
+| `--radius-lg`   | `0.75rem` | Skill badges (was rounded-xl) |
+| `--radius-xl`   | `1rem`    | GlassCard (was rounded-2xl)   |
+| `--radius-2xl`  | `1.5rem`  | Large feature cards           |
+| `--radius-full` | `9999px`  | Pills, language toggle        |
 
 ## BackgroundDecoration Fixes
 
@@ -52,18 +52,18 @@ Already implemented (Space Grotesk headings + Inter body + JetBrains Mono dates/
 
 ## File Changes
 
-| File | Change |
-|------|--------|
-| `src/globals.css` | Replace `secondary` (rose) with `accent` (stone); add `off`, `success`, `warning`, `danger` aliases; add shadow tokens; add radius tokens |
-| `src/components/SectionTitle/index.tsx` | `secondary-500` → `accent-500` |
-| `src/components/GlassCard/index.tsx` | `shadow-xl` → `shadow-md`, `shadow-2xl` → `shadow-lg` |
-| `src/components/BackgroundDecoration/index.tsx` | Add `absolute` to blob divs |
-| `src/modules/Education/index.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/Hero/index.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/About/index.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/Contact/index.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/Projects/ProjectCard.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/MenuBar/index.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/MenuBar/FullScreenMenu.tsx` | `secondary-*` → `accent-*` |
-| `src/modules/Sticker/index.tsx` | `secondary-*` → `accent-*` |
-| `src/pages/project/index.tsx` | `secondary-*` → `accent-*` |
+| File                                            | Change                                                                                                                                    |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/globals.css`                               | Replace `secondary` (rose) with `accent` (stone); add `off`, `success`, `warning`, `danger` aliases; add shadow tokens; add radius tokens |
+| `src/components/SectionTitle/index.tsx`         | `secondary-500` → `accent-500`                                                                                                            |
+| `src/components/GlassCard/index.tsx`            | `shadow-xl` → `shadow-md`, `shadow-2xl` → `shadow-lg`                                                                                     |
+| `src/components/BackgroundDecoration/index.tsx` | Add `absolute` to blob divs                                                                                                               |
+| `src/modules/Education/index.tsx`               | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/Hero/index.tsx`                    | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/About/index.tsx`                   | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/Contact/index.tsx`                 | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/Projects/ProjectCard.tsx`          | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/MenuBar/index.tsx`                 | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/MenuBar/FullScreenMenu.tsx`        | `secondary-*` → `accent-*`                                                                                                                |
+| `src/modules/Sticker/index.tsx`                 | `secondary-*` → `accent-*`                                                                                                                |
+| `src/pages/project/index.tsx`                   | `secondary-*` → `accent-*`                                                                                                                |

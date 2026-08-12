@@ -25,7 +25,9 @@ export function ContactFooter() {
             const isExternal = EXTERNAL_KEYS.includes(key);
             const Icon = ICON_MAP[key];
 
-            const extraProps = isExternal ? { target: "_blank" as const, rel: "noopener noreferrer" as const } : {};
+            const extraProps = isExternal
+              ? { target: "_blank" as const, rel: "noopener noreferrer" as const }
+              : {};
 
             return (
               <span key={key} className="flex items-center gap-3 sm:gap-5">
@@ -38,7 +40,8 @@ export function ContactFooter() {
                   href={href}
                   {...extraProps}
                   aria-label={t(`list.${key}.label`)}
-                  className="inline-flex items-center gap-2 whitespace-nowrap text-zinc-700 dark:text-zinc-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                  className="inline-flex items-center gap-2 whitespace-nowrap text-zinc-700 dark:text-zinc-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+                >
                   <Icon size={16} className="shrink-0" />
                   <span className="hidden md:inline">{value}</span>
                 </a>

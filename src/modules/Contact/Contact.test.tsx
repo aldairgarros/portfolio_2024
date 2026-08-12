@@ -22,10 +22,7 @@ describe("ContactFooter", () => {
         <ContactFooter />
       </I18nextProvider>,
     );
-    expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
-      "target",
-      "_blank",
-    );
+    expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute("target", "_blank");
     expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
       "rel",
       "noopener noreferrer",

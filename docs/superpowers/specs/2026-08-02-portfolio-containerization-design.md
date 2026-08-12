@@ -19,7 +19,7 @@
 
 ## 2. Architecture
 
-```
+````
                         VPS Host
 ┌───────────────────────────────────────────────────────────┐
 │ Host Nginx (TLS:443)                                      │
@@ -97,7 +97,7 @@ FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist /usr/share/nginx/html
 EXPOSE 3070
-```
+````
 
 ### `nginx.conf`
 
@@ -201,6 +201,7 @@ Port `3070` chosen per user preference. Exporter uses host port `3071` to avoid 
 ### `src/main.tsx` (modify)
 
 Order:
+
 1. `initOpenTelemetry()`
 2. `initGlitchTip()`
 3. `<StrictMode><App/></StrictMode>`
@@ -239,6 +240,7 @@ location /glitchtip/ {
 Old: build dist → SCP to `/var/www/aldairgarros` → reload nginx
 
 New:
+
 1. `quality` job unchanged (lint + typecheck)
 2. `build-and-deploy`: `docker build` with `--build-arg VITE_SENTRY_DSN` → tagged `ghcr.io/aldairgarros/portfolio:$GITHUB_SHA` + `latest`
 3. Push both tags to GHCR (using `GITHUB_TOKEN`, `packages: write` permission)
@@ -283,6 +285,7 @@ Applies to the `vps-infrastructure` repo (separate from this repo).
 ## 10. Cleanup
 
 After successful transition:
+
 - Remove `/var/www/aldairgarros` from VPS
 - Remove SCP + backup + nginx-reload logic from CI workflow
 - `dist/` stays gitignored (build happens inside Docker)

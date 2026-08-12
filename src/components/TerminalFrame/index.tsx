@@ -43,7 +43,10 @@ export function TerminalPanel({ title, className = "", children, ref }: Terminal
         <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
           {title}
         </span>
-        <span className="flex-1 border-t border-zinc-400/60 dark:border-zinc-600/50" aria-hidden="true" />
+        <span
+          className="flex-1 border-t border-zinc-400/60 dark:border-zinc-600/50"
+          aria-hidden="true"
+        />
       </div>
       <div className="p-5 sm:p-6 font-sans">{children}</div>
     </div>

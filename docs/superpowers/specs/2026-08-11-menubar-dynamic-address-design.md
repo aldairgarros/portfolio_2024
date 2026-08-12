@@ -20,25 +20,27 @@ ActiveSectionProvider (IntersectionObserver)
 
 ## Files
 
-| Action | File | Change |
-|--------|------|--------|
-| Revert | `src/components/TerminalFrame/index.tsx` | Remove sticky classes from title bars |
-| Create | `src/context/ActiveSectionContext.tsx` | Context, Provider, IntersectionObserver |
-| Modify | `src/modules/MenuBar/index.tsx` | Dynamic path rendering with animation |
-| Modify | `src/pages/home/index.tsx` | Register sections/cards with `useActiveSection` |
-| Modify | `src/pages/Layout.tsx` | Wrap with `<ActiveSectionProvider>` |
-| Modify | `src/globals.css` | Add `fade-in` keyframe |
+| Action | File                                     | Change                                          |
+| ------ | ---------------------------------------- | ----------------------------------------------- |
+| Revert | `src/components/TerminalFrame/index.tsx` | Remove sticky classes from title bars           |
+| Create | `src/context/ActiveSectionContext.tsx`   | Context, Provider, IntersectionObserver         |
+| Modify | `src/modules/MenuBar/index.tsx`          | Dynamic path rendering with animation           |
+| Modify | `src/pages/home/index.tsx`               | Register sections/cards with `useActiveSection` |
+| Modify | `src/pages/Layout.tsx`                   | Wrap with `<ActiveSectionProvider>`             |
+| Modify | `src/globals.css`                        | Add `fade-in` keyframe                          |
 
 ## Components
 
 ### ActiveSectionContext (new file: `src/context/ActiveSectionContext.tsx`)
 
 **Exports:**
+
 - `<ActiveSectionProvider>` — wraps children, runs one `IntersectionObserver`, provides `activePath` via context
 - `useActiveSection(path: string)` — returns a `RefCallback<HTMLElement>`; registers element with observer on mount, unregisters on unmount
 - `useActivePath()` — returns `activePath: string | null` for consumers like MenuBar
 
 **Observer config:**
+
 - `threshold`: `[0, 0.25, 0.5, 0.75, 1.0]` — granular ratio tracking
 - `rootMargin`: `"0px 0px -10% 0px"` — slight bottom margin to favor elements near top
 - Tracks `Map<Element, { path, ratio }>`; on intersection callback updates ratio; sets `activePath` to the entry with the highest ratio > 0, or `null` when no element is visible
@@ -57,8 +59,14 @@ The `key={activePath}` forces a remount on every path change, re-triggering the 
 
 ```css
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 ```
 
@@ -66,18 +74,18 @@ The `key={activePath}` forces a remount on every path change, re-triggering the 
 
 Each section/card registers with `useActiveSection`:
 
-| Element | Path |
-|---|---|
-| Hero section | `null` → renders `~` |
-| Projects section (TerminalFrame) | `~/projects` |
+| Element                                    | Path                     |
+| ------------------------------------------ | ------------------------ |
+| Hero section                               | `null` → renders `~`     |
+| Projects section (TerminalFrame)           | `~/projects`             |
 | Project card "Atalaia Pro" (TerminalPanel) | `~/projects/atalaia-pro` |
-| Project card "Penhor" | `~/projects/penhor` |
-| Project card "Bolso Bom" | `~/projects/bolso-bom` |
-| Project card "Musica Show" | `~/projects/musica-show` |
-| Expertise section (TerminalFrame) | `~/expertise` |
-| Each expertise capability TerminalPanel | `~/expertise/{slug}` |
-| About section | `~/about` |
-| Education section | `~/education` |
+| Project card "Penhor"                      | `~/projects/penhor`      |
+| Project card "Bolso Bom"                   | `~/projects/bolso-bom`   |
+| Project card "Musica Show"                 | `~/projects/musica-show` |
+| Expertise section (TerminalFrame)          | `~/expertise`            |
+| Each expertise capability TerminalPanel    | `~/expertise/{slug}`     |
+| About section                              | `~/about`                |
+| Education section                          | `~/education`            |
 
 Path segments are slugified, lowercase, hyphenated — file-system-like, language-independent (same in both locales).
 
@@ -93,5 +101,6 @@ Path segments are slugified, lowercase, hyphenated — file-system-like, languag
 ## Revert
 
 Undo commit `7e8b624` by removing:
+
 - `sticky top-14 z-20 backdrop-blur-md` from TerminalFrame title bar
 - `sticky top-[6.25rem] z-10 backdrop-blur-md` from TerminalPanel title bar

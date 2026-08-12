@@ -74,7 +74,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
     if (e.touches.length === 2) {
       const dist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
+        e.touches[0].clientY - e.touches[1].clientY,
       );
       touchRef.current = { startX: 0, startDist: dist, startZoom: zoom };
     } else if (e.touches.length === 1) {
@@ -87,9 +87,12 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
     if (e.touches.length === 2 && touchRef.current.startDist > 0) {
       const dist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
+        e.touches[0].clientY - e.touches[1].clientY,
       );
-      const newZoom = Math.max(1, Math.min(3, touchRef.current.startZoom * (dist / touchRef.current.startDist)));
+      const newZoom = Math.max(
+        1,
+        Math.min(3, touchRef.current.startZoom * (dist / touchRef.current.startDist)),
+      );
       setZoom(newZoom);
     }
   };
@@ -118,68 +121,73 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
   return createPortal(
     <AnimatePresence>
       {open && (
-    <motion.div
-      key="lightbox"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    >
-      {/* Close button */}
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
-        aria-label={t("close")}
-      >
-        <X size={28} />
-      </button>
-
-      {/* Counter */}
-      <span className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-sm text-white/60 font-mono">
-        {index + 1} / {images.length}
-      </span>
-
-      {/* Previous button */}
-      {images.length > 1 && (
-        <button
-          onClick={prev}
-          className="absolute left-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
-          aria-label={t("previous")}
+        <motion.div
+          key="lightbox"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose();
+          }}
         >
-          <ChevronLeft size={28} />
-        </button>
-      )}
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
+            aria-label={t("close")}
+          >
+            <X size={28} />
+          </button>
 
-      {/* Image */}
-      <div className="flex items-center justify-center w-full h-full p-16">
-        <img
-          src={images[index].src}
-          alt={images[index].alt ?? ""}
-          className="max-w-[90vw] max-h-[85vh] object-contain select-none"
-          style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`, cursor: zoom > 1 ? "grab" : "zoom-in" }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          onDoubleClick={handleDoubleClick}
-          draggable={false}
-        />
-      </div>
+          {/* Counter */}
+          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-sm text-white/60 font-mono">
+            {index + 1} / {images.length}
+          </span>
 
-      {/* Next button */}
-      {images.length > 1 && (
-        <button
-          onClick={next}
-          className="absolute right-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
-          aria-label={t("next")}
-        >
-          <ChevronRight size={28} />
-        </button>
-      )}
-    </motion.div>
+          {/* Previous button */}
+          {images.length > 1 && (
+            <button
+              onClick={prev}
+              className="absolute left-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
+              aria-label={t("previous")}
+            >
+              <ChevronLeft size={28} />
+            </button>
+          )}
+
+          {/* Image */}
+          <div className="flex items-center justify-center w-full h-full p-16">
+            <img
+              src={images[index].src}
+              alt={images[index].alt ?? ""}
+              className="max-w-[90vw] max-h-[85vh] object-contain select-none"
+              style={{
+                transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`,
+                cursor: zoom > 1 ? "grab" : "zoom-in",
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onDoubleClick={handleDoubleClick}
+              draggable={false}
+            />
+          </div>
+
+          {/* Next button */}
+          {images.length > 1 && (
+            <button
+              onClick={next}
+              className="absolute right-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
+              aria-label={t("next")}
+            >
+              <ChevronRight size={28} />
+            </button>
+          )}
+        </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 }

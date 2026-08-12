@@ -27,7 +27,10 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
   const mainSrc = p("image.src");
   const mainAlt = p("image.alt");
 
-  const lightboxImages: LightboxImage[] = [{ src: mainSrc, alt: mainAlt }, ...imageData.map(({ src, alt }) => ({ src, alt }))];
+  const lightboxImages: LightboxImage[] = [
+    { src: mainSrc, alt: mainAlt },
+    ...imageData.map(({ src, alt }) => ({ src, alt })),
+  ];
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -73,15 +76,20 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
           <div
             ref={stripRef}
             onScroll={updateScrollState}
-            className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div aria-hidden="true" className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]" />
+            className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <div
+              aria-hidden="true"
+              className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]"
+            />
             {lightboxImages.map((img, index) => (
               <button
                 key={img.src}
                 type="button"
                 aria-label={img.alt ?? p("image.alt")}
                 onClick={() => openLightbox(index)}
-                className="shrink-0 snap-center h-60 sm:h-72 w-[85%] sm:w-[70%] md:w-[82%] block bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+                className="shrink-0 snap-center h-60 sm:h-72 w-[85%] sm:w-[70%] md:w-[82%] block bg-white dark:bg-transparent cursor-zoom-in hover:ring-2 hover:ring-emerald-400/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              >
                 <img
                   src={img.src}
                   alt={img.alt ?? ""}
@@ -91,27 +99,34 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
                 />
               </button>
             ))}
-            <div aria-hidden="true" className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]" />
+            <div
+              aria-hidden="true"
+              className="shrink-0 w-[calc(7.5%-0.75rem)] sm:w-[calc(15%-0.75rem)] md:w-[calc(9%-0.75rem)]"
+            />
           </div>
 
           <button
             onClick={() => scrollByCard(-1)}
             aria-label={p("image.prevLabel")}
             disabled={!canScrollLeft}
-            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300">
+            className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300"
+          >
             <ChevronLeft size={20} aria-hidden="true" />
           </button>
           <button
             onClick={() => scrollByCard(1)}
             aria-label={p("image.nextLabel")}
             disabled={!canScrollRight}
-            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300">
+            className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300"
+          >
             <ChevronRight size={20} aria-hidden="true" />
           </button>
         </div>
 
         <div className="flex flex-col justify-center gap-5 order-1 md:order-2">
-          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p("description.value")}</p>
+          <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            {p("description.value")}
+          </p>
 
           <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">{p("details.value")}</p>
 
@@ -120,7 +135,8 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
               href={linkHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start px-6 py-3 bg-emerald-500 text-white hover:bg-emerald-600 transition-colors font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+              className="inline-flex items-center gap-2 self-start px-6 py-3 bg-emerald-500 text-white hover:bg-emerald-600 transition-colors font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+            >
               {linkValue || tProjects("open")}
               <ExternalLink size={16} aria-hidden="true" />
             </a>

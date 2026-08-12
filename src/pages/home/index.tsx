@@ -31,7 +31,11 @@ export function Home() {
       <Hero />
       <About />
       <Expertise />
-      <section id="projects" ref={projectsRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+      <section
+        id="projects"
+        ref={projectsRef}
+        className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full"
+      >
         <h2 className="sr-only">{t("title")}</h2>
         <TerminalFrame title={t("title")}>
           <div className="flex flex-col gap-6 p-6 sm:p-8">
@@ -39,14 +43,15 @@ export function Home() {
               <TerminalPanel
                 key={project}
                 ref={projectRefs[project]}
-                title={(
+                title={
                   <span className="inline-flex items-center gap-3">
                     {t(`list.${project}.name.value`)}
                     <span className="text-xs text-primary-500 dark:text-primary-400">
                       {t(`list.${project}.date.value`)}
                     </span>
                   </span>
-                )}>
+                }
+              >
                 <ProjectDetail project={project} />
               </TerminalPanel>
             ))}

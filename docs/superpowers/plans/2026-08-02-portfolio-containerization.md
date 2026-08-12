@@ -27,9 +27,11 @@
 ### Task 1: Install Observability Dependencies
 
 **Files:**
+
 - Modify: `package.json`, `package-lock.json` (via npm)
 
 **Interfaces:**
+
 - Produces: packages consumed by Tasks 2, 3, 4.
 
 - [ ] **Step 1: Install packages**
@@ -60,9 +62,11 @@ git commit -m "feat: add OpenTelemetry and Sentry observability dependencies"
 ### Task 2: OpenTelemetry Browser Setup
 
 **Files:**
+
 - Create: `src/observability/otel.ts`
 
 **Interfaces:**
+
 - Consumes: packages from Task 1.
 - Produces: `initOpenTelemetry(): void` — called by Task 4 in `src/main.tsx` before React renders. Reads no env vars; prod/console behavior switches on `import.meta.env.DEV`.
 
@@ -75,7 +79,11 @@ import { ZoneContextManager } from "@opentelemetry/context-zone";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { LongTaskInstrumentation } from "@opentelemetry/instrumentation-long-task";
-import { BatchSpanProcessor, ConsoleSpanExporter, SpanProcessor } from "@opentelemetry/sdk-trace-base";
+import {
+  BatchSpanProcessor,
+  ConsoleSpanExporter,
+  SpanProcessor,
+} from "@opentelemetry/sdk-trace-base";
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
 import { initWebVitalsSpans } from "./web-vitals.ts";
 
@@ -104,9 +112,7 @@ export function initOpenTelemetry(): void {
     spanProcessors.push(new BatchSpanProcessor(new ConsoleSpanExporter()));
   } else {
     spanProcessors.push(
-      new BatchSpanProcessor(
-        new OTLPTraceExporter({ url: "https://aldairgarros.com/v1/traces" }),
-      ),
+      new BatchSpanProcessor(new OTLPTraceExporter({ url: "https://aldairgarros.com/v1/traces" })),
     );
   }
 
@@ -116,10 +122,7 @@ export function initOpenTelemetry(): void {
 
   registerInstrumentations({
     tracerProvider: provider,
-    instrumentations: [
-      getWebAutoInstrumentations(),
-      new LongTaskInstrumentation(),
-    ],
+    instrumentations: [getWebAutoInstrumentations(), new LongTaskInstrumentation()],
   });
 
   initWebVitalsSpans();
@@ -129,6 +132,7 @@ export function initOpenTelemetry(): void {
 **v2 API note:** Installed OTel is the v2 release train (`sdk-trace-web@2.x`). Span processors go in the constructor (`spanProcessors` array, order preserved by MultiSpanProcessor), NOT `addSpanProcessor`. `getWebAutoInstrumentations()` needs no config — web-vitals and long-task instrumentations were removed from the meta package; long-task is added separately and web vitals are reported manually (see Step 2a below).
 
 Notes:
+
 - `SessionIdSpanProcessor` must be first in the array so its `onStart` runs before the batch processor exports.
 - Dev mode uses the console exporter only — no traffic to production Tempo.
 
@@ -142,9 +146,7 @@ import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
 import type { Metric } from "web-vitals";
 
 function reportWebVital(metric: Metric): void {
-  const span = trace
-    .getTracer("portfolio")
-    .startSpan(`web-vitals.${metric.name.toLowerCase()}`);
+  const span = trace.getTracer("portfolio").startSpan(`web-vitals.${metric.name.toLowerCase()}`);
 
   span.setAttribute("web_vitals.rating", metric.rating);
   span.setAttribute("web_vitals.value", metric.value);
@@ -196,10 +198,12 @@ git commit -m "feat: add OpenTelemetry browser RUM setup"
 ### Task 3: GlitchTip Error Tracking
 
 **Files:**
+
 - Create: `src/observability/glitchtip.ts`
 - Create: `src/observability/ErrorBoundary.tsx`
 
 **Interfaces:**
+
 - Consumes: `@sentry/react` from Task 1; `@opentelemetry/api` (transitive) for trace context.
 - Produces: `initGlitchTip(): void` and `GlitchTipErrorBoundary({ children }: { children: React.ReactNode }): React.JSX.Element` — consumed by Task 4.
 - Reads `import.meta.env.VITE_SENTRY_DSN` (DSN string, injected at build time; empty/undefined disables error tracking).
@@ -271,9 +275,11 @@ git commit -m "feat: add GlitchTip error tracking with OTel trace correlation"
 ### Task 4: Wire Instrumentation into App Entry
 
 **Files:**
+
 - Modify: `src/main.tsx`
 
 **Interfaces:**
+
 - Consumes: `initOpenTelemetry()` (Task 2), `initGlitchTip()` + `GlitchTipErrorBoundary` (Task 3).
 - Produces: instrumented app entry.
 
@@ -305,7 +311,7 @@ createRoot(document.getElementById("root")!).render(
     <GlitchTipErrorBoundary>
       <App />
     </GlitchTipErrorBoundary>
-  </StrictMode>
+  </StrictMode>,
 );
 ```
 
@@ -339,11 +345,13 @@ git commit -m "feat: initialize observability before app render"
 ### Task 5: Dockerfile + Nginx Config + .dockerignore
 
 **Files:**
+
 - Create: `Dockerfile`
 - Create: `nginx.conf`
 - Create: `.dockerignore`
 
 **Interfaces:**
+
 - Produces: `Dockerfile` (builds `dist/` and serves it on port 3070), `nginx.conf` (SPA fallback, cache headers, stub_status), `.dockerignore`. Consumed by Task 6 (compose) and Task 7 (CI build).
 - `VITE_SENTRY_DSN` build-arg: `ARG VITE_SENTRY_DSN` + `ENV VITE_SENTRY_DSN=$VITE_SENTRY_DSN` in the builder stage so Vite inlines it at build time.
 
@@ -445,9 +453,11 @@ git commit -m "feat: add container image with nginx serving and metrics endpoint
 ### Task 6: Compose File for the VPS
 
 **Files:**
+
 - Create: `compose.portfolio.yml`
 
 **Interfaces:**
+
 - Consumes: Task 5 image (`ghcr.io/aldairgarros/portfolio`, tag via `IMAGE_TAG` env), external `monitoring` network.
 - Produces: `compose.portfolio.yml` — SCP'd to the VPS and run with `podman-compose` in Task 7.
 
@@ -485,6 +495,7 @@ networks:
 ```
 
 Notes:
+
 - Ports bind loopback only; host Nginx proxies to `127.0.0.1:3070`.
 - `IMAGE_TAG` defaults to `latest` when unset (manual deploys).
 - `k8s-file` log driver ensures the existing Promtail picks up logs with `service="portfolio"` (from `container_name`).
@@ -509,9 +520,11 @@ git commit -m "feat: add podman-compose stack for portfolio on monitoring networ
 ### Task 7: Rewrite CI/CD Workflow for Container Deployment
 
 **Files:**
+
 - Modify: `.github/workflows/production.yml`
 
 **Interfaces:**
+
 - Consumes: `Dockerfile` (Task 5), `compose.portfolio.yml` (Task 6).
 - Produces: deployment pipeline — build image in CI, push to GHCR, deploy on VPS with rollback.
 
@@ -603,6 +616,7 @@ jobs:
 ```
 
 Notes:
+
 - Adds `permissions.packages: write` (required for GHCR push via `GITHUB_TOKEN`).
 - New secret needed: `VITE_SENTRY_DSN` (GlitchTip DSN, `https://PUBLIC_KEY@aldairgarros.com/glitchtip/PROJECT_ID` — set in GitHub repo secrets).
 - Existing secrets `SSH_PRIVATE_KEY`, `VPS_HOST`, `VPS_USER` are reused.
@@ -642,9 +656,11 @@ git commit -m "ci: deploy portfolio via GHCR container with rollback"
 ### Task 8: Register Portfolio Scrape Target in vps-infrastructure
 
 **Files (in `/Users/aldairgarros/Projects/vps-infrastructure`, NOT this repo):**
+
 - Modify: `prometheus/prometheus.yml`
 
 **Interfaces:**
+
 - Consumes: Task 6 exporter service (container name `portfolio-nginx-exporter`, port 9113 on `monitoring` network).
 - Produces: Prometheus scraping portfolio nginx metrics → Grafana dashboards + existing app alerts.
 
@@ -653,10 +669,10 @@ git commit -m "ci: deploy portfolio via GHCR container with rollback"
 Append a new job after the `avapa_postgres` job (line ~41):
 
 ```yaml
-  - job_name: portfolio
-    scrape_interval: 30s
-    static_configs:
-      - targets: ["portfolio-nginx-exporter:9113"]
+- job_name: portfolio
+  scrape_interval: 30s
+  static_configs:
+    - targets: ["portfolio-nginx-exporter:9113"]
 ```
 
 - [ ] **Step 2: Validate and deploy**
@@ -698,6 +714,7 @@ git commit -m "feat: add portfolio nginx scrape target"
 **Location:** On the VPS itself — `/etc/nginx/sites-available/` config for `aldairgarros.com` (existing TLS config). Not stored in either repo.
 
 **Interfaces:**
+
 - Consumes: Task 6 (portfolio on `127.0.0.1:3070`), Tempo on `127.0.0.1:4318`, GlitchTip on `127.0.0.1:3001`.
 - Produces: TLS entry for `/` → portfolio, `/v1/traces` → Tempo, `/glitchtip/` → GlitchTip.
 
@@ -764,6 +781,7 @@ sudo rm -rf /var/www/aldairgarros
 **Files:** none (operational checks).
 
 **Interfaces:**
+
 - Consumes: everything deployed by Tasks 7–9.
 - Produces: evidence that the full observability pipeline works.
 

@@ -25,11 +25,13 @@
 ### Task 1: Dependencies + Font Setup
 
 **Files:**
+
 - Modify: `index.html`
 - Modify: `src/main.tsx`
 - Modify: `src/globals.css`
 
 **Interfaces:**
+
 - Consumes: existing project structure
 - Produces: font theme tokens `--font-heading` and `--font-mono` available in tailwind via `font-heading` / `font-mono`
 
@@ -50,7 +52,10 @@ Edit `index.html`: remove lines 8-10 (the two `<link rel="preconnect">` tags and
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aldair Garros — Fullstack Developer & Software Engineering Specialist. Portfolio showcasing web and mobile development projects." />
+    <meta
+      name="description"
+      content="Aldair Garros — Fullstack Developer & Software Engineering Specialist. Portfolio showcasing web and mobile development projects."
+    />
     <title>Aldair Garros — Developer & Software Engineering Specialist</title>
   </head>
   <body>
@@ -80,7 +85,7 @@ import "@fontsource/jetbrains-mono/600.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );
 ```
 
@@ -149,10 +154,12 @@ Expected: Build succeeds with no errors. New font theme tokens are available.
 ### Task 2: BackgroundDecoration Component
 
 **Files:**
+
 - Create: `src/components/BackgroundDecoration/index.tsx`
 - Modify: `src/pages/Layout.tsx`
 
 **Interfaces:**
+
 - Exports: `BackgroundDecoration` (no props, renders fixed triple-layer background)
 - Consumes: framer-motion `useScroll`, `useTransform`, `useMotionValue`, `useSpring`
 
@@ -161,7 +168,14 @@ Expected: Build succeeds with no errors. New font theme tokens are available.
 Create `src/components/BackgroundDecoration/index.tsx`:
 
 ```tsx
-import { useScroll, useTransform, useMotionValue, useSpring, motion, useReducedMotion } from "framer-motion";
+import {
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+  motion,
+  useReducedMotion,
+} from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 function useMousePosition() {
@@ -195,43 +209,82 @@ export function BackgroundDecoration() {
 
   const blob1X = useSpring(useTransform(mouseX, [-1, 1], [-2, 2]), { stiffness: 80, damping: 20 });
   const blob1Y = useSpring(useTransform(mouseY, [-1, 1], [-2, 2]), { stiffness: 80, damping: 20 });
-  const blob2X = useSpring(useTransform(mouseX, [-1, 1], [1.5, -1.5]), { stiffness: 80, damping: 20 });
-  const blob2Y = useSpring(useTransform(mouseY, [-1, 1], [1.5, -1.5]), { stiffness: 80, damping: 20 });
+  const blob2X = useSpring(useTransform(mouseX, [-1, 1], [1.5, -1.5]), {
+    stiffness: 80,
+    damping: 20,
+  });
+  const blob2Y = useSpring(useTransform(mouseY, [-1, 1], [1.5, -1.5]), {
+    stiffness: 80,
+    damping: 20,
+  });
 
   const scrollOffset = useParallaxOffset(-0.2);
 
   const blobs = [
-    { color: "bg-primary-400/10", size: "w-[600px] h-[600px]", top: "-10%", left: "-5%", x: blob1X, y: blob1Y, animDuration: 12 },
-    { color: "bg-success-400/10", size: "w-[500px] h-[500px]", top: "40%", right: "-10%", x: blob2X, y: blob2Y, animDuration: 15 },
-    { color: "bg-danger-400/10", size: "w-[400px] h-[400px]", top: "60%", left: "30%", x: blob1X, y: blob2Y, animDuration: 10 },
-    { color: "bg-warning-400/10", size: "w-[350px] h-[350px]", top: "15%", right: "25%", x: blob2X, y: blob1Y, animDuration: 14 },
+    {
+      color: "bg-primary-400/10",
+      size: "w-[600px] h-[600px]",
+      top: "-10%",
+      left: "-5%",
+      x: blob1X,
+      y: blob1Y,
+      animDuration: 12,
+    },
+    {
+      color: "bg-success-400/10",
+      size: "w-[500px] h-[500px]",
+      top: "40%",
+      right: "-10%",
+      x: blob2X,
+      y: blob2Y,
+      animDuration: 15,
+    },
+    {
+      color: "bg-danger-400/10",
+      size: "w-[400px] h-[400px]",
+      top: "60%",
+      left: "30%",
+      x: blob1X,
+      y: blob2Y,
+      animDuration: 10,
+    },
+    {
+      color: "bg-warning-400/10",
+      size: "w-[350px] h-[350px]",
+      top: "15%",
+      right: "25%",
+      x: blob2X,
+      y: blob1Y,
+      animDuration: 14,
+    },
   ];
 
   return (
     <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden">
       {/* Layer 1: Animated blobs */}
-      {!prefersReducedMotion && blobs.map((blob, i) => (
-        <motion.div
-          key={i}
-          className={`absolute ${blob.size} ${blob.color} blur-3xl rounded-full`}
-          style={{
-            top: blob.top,
-            left: "left" in blob ? blob.left : undefined,
-            right: "right" in blob ? blob.right : undefined,
-            x: blob.x,
-            y: blob.y,
-          }}
-          animate={{
-            x: [0, 30, -20, 10, 0],
-            y: [0, -20, 30, -10, 0],
-          }}
-          transition={{
-            duration: blob.animDuration,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+      {!prefersReducedMotion &&
+        blobs.map((blob, i) => (
+          <motion.div
+            key={i}
+            className={`absolute ${blob.size} ${blob.color} blur-3xl rounded-full`}
+            style={{
+              top: blob.top,
+              left: "left" in blob ? blob.left : undefined,
+              right: "right" in blob ? blob.right : undefined,
+              x: blob.x,
+              y: blob.y,
+            }}
+            animate={{
+              x: [0, 30, -20, 10, 0],
+              y: [0, -20, 30, -10, 0],
+            }}
+            transition={{
+              duration: blob.animDuration,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
 
       {/* Layer 2: Dot grid */}
       <div
@@ -244,9 +297,17 @@ export function BackgroundDecoration() {
       />
 
       {/* Layer 3: Noise grain */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.035 }}>
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ opacity: 0.035 }}
+      >
         <filter id="noise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="3"
+            stitchTiles="stitch"
+          />
           <feColorMatrix type="saturate" values="0" />
         </filter>
         <rect width="100%" height="100%" filter="url(#noise)" />
@@ -292,9 +353,11 @@ Expected: Build succeeds. No type errors. Background component compiles cleanly.
 ### Task 3: Lightbox Component
 
 **Files:**
+
 - Create: `src/components/Lightbox/index.tsx`
 
 **Interfaces:**
+
 - Exports: `LightboxProps` type, `Lightbox` component
 - Consumes: `images: LightboxImage[]`, `initialIndex: number`, `open: boolean`, `onClose: () => void`
 - Produces: fullscreen portal with image navigation and pinch-to-zoom
@@ -366,7 +429,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
     if (e.touches.length === 2) {
       const dist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
+        e.touches[0].clientY - e.touches[1].clientY,
       );
       touchRef.current = { startX: 0, startDist: dist, startZoom: zoom };
     } else if (e.touches.length === 1) {
@@ -379,9 +442,12 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
     if (e.touches.length === 2 && touchRef.current.startDist > 0) {
       const dist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
+        e.touches[0].clientY - e.touches[1].clientY,
       );
-      const newZoom = Math.max(1, Math.min(3, touchRef.current.startZoom * (dist / touchRef.current.startDist)));
+      const newZoom = Math.max(
+        1,
+        Math.min(3, touchRef.current.startZoom * (dist / touchRef.current.startDist)),
+      );
       setZoom(newZoom);
     }
   };
@@ -416,7 +482,9 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
       {/* Close button */}
       <button
@@ -464,7 +532,10 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
             src={images[index].src}
             alt={images[index].alt ?? ""}
             className="max-w-[90vw] max-h-[85vh] object-contain select-none"
-            style={{ transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`, cursor: zoom > 1 ? "grab" : "zoom-in" }}
+            style={{
+              transform: `scale(${zoom}) translate(${pan.x}px, ${pan.y}px)`,
+              cursor: zoom > 1 ? "grab" : "zoom-in",
+            }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -485,7 +556,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
         </button>
       )}
     </motion.div>,
-    document.body
+    document.body,
   );
 }
 ```
@@ -501,10 +572,12 @@ Expected: Build succeeds. Lightbox component compiles.
 ### Task 4: Shared Components Upgrade — SectionTitle + GlassCard
 
 **Files:**
+
 - Modify: `src/components/SectionTitle/index.tsx`
 - Modify: `src/components/GlassCard/index.tsx`
 
 **Interfaces:**
+
 - Produces: `SectionTitle` gains optional `icon` prop (Lucide icon component) and `font-heading`
 - Produces: `GlassCard` gains optional `tilt` prop for 3D hover effect
 
@@ -526,7 +599,8 @@ export function SectionTitle({ title, id, icon: Icon }: Props) {
     <div className="mb-12">
       <h2
         id={id}
-        className="text-4xl sm:text-5xl font-bold font-heading text-primary-900 dark:text-primary-50 flex items-center gap-3">
+        className="text-4xl sm:text-5xl font-bold font-heading text-primary-900 dark:text-primary-50 flex items-center gap-3"
+      >
         {Icon && <Icon size={28} className="text-secondary-500 shrink-0" />}
         {title}
       </h2>
@@ -549,7 +623,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   tilt?: boolean;
 }
 
-export function GlassCard({ children, hover = false, tilt = false, className = "", ...rest }: Props) {
+export function GlassCard({
+  children,
+  hover = false,
+  tilt = false,
+  className = "",
+  ...rest
+}: Props) {
   const prefersReducedMotion = useReducedMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -607,6 +687,7 @@ Expected: Build succeeds.
 ### Task 5: Hero Section Enhancement
 
 **Files:**
+
 - Modify: `src/modules/Hero/index.tsx`
 
 - [ ] **Step 1: Rewrite Hero with motion, fonts, and mouse tracking**
@@ -615,7 +696,14 @@ Edit `src/modules/Hero/index.tsx`:
 
 ```tsx
 import { useTranslation } from "react-i18next";
-import { useScroll, useTransform, useMotionValue, useSpring, motion, useReducedMotion } from "framer-motion";
+import {
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+  motion,
+  useReducedMotion,
+} from "framer-motion";
 import { GlassCard } from "@/components/GlassCard";
 
 export function Hero() {
@@ -630,8 +718,14 @@ export function Hero() {
   // Mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 15 });
-  const springY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-12, 12]), { stiffness: 80, damping: 15 });
+  const springX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 80,
+    damping: 15,
+  });
+  const springY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 80,
+    damping: 15,
+  });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (prefersReducedMotion) return;
@@ -647,7 +741,10 @@ export function Hero() {
       onMouseMove={handleMouseMove}
     >
       <motion.div
-        style={{ y: prefersReducedMotion ? 0 : heroY, opacity: prefersReducedMotion ? 1 : heroOpacity }}
+        style={{
+          y: prefersReducedMotion ? 0 : heroY,
+          opacity: prefersReducedMotion ? 1 : heroOpacity,
+        }}
         className="relative"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-secondary-500/10 to-transparent rounded-full blur-3xl" />
@@ -689,6 +786,7 @@ Expected: Build succeeds.
 ### Task 6: Education Section — Icon + Reveal
 
 **Files:**
+
 - Modify: `src/modules/Education/index.tsx`
 
 - [ ] **Step 1: Add Lucide icon and motion reveal**
@@ -747,6 +845,7 @@ Expected: Build succeeds.
 ### Task 7: Projects Section — Grid, Card Tilt, Lightbox
 
 **Files:**
+
 - Modify: `src/modules/Projects/index.tsx`
 - Modify: `src/modules/Projects/ProjectCard.tsx`
 
@@ -823,11 +922,7 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
       </GlassCard>
 
       {images.length > 0 && (
-        <Lightbox
-          images={images}
-          open={lightboxOpen}
-          onClose={() => setLightboxOpen(false)}
-        />
+        <Lightbox images={images} open={lightboxOpen} onClose={() => setLightboxOpen(false)} />
       )}
     </>
   );
@@ -892,6 +987,7 @@ Expected: Build succeeds.
 ### Task 8: Expertise Section — Stagger Grid + Skill Float
 
 **Files:**
+
 - Modify: `src/modules/Expertise/index.tsx`
 - Modify: `src/modules/Expertise/Skill.tsx`
 
@@ -933,14 +1029,11 @@ export function Expertise() {
         viewport={{ once: true, margin: "-80px" }}
       >
         {expertise.map((capability, index) => {
-          const isLastOdd =
-            index === expertise.length - 1 && expertise.length % 2 !== 0;
+          const isLastOdd = index === expertise.length - 1 && expertise.length % 2 !== 0;
 
           return (
             <motion.div key={capability.id} variants={itemVariants}>
-              <GlassCard
-                hover
-                className={`p-8 ${isLastOdd ? "md:col-span-2" : ""}`}>
+              <GlassCard hover className={`p-8 ${isLastOdd ? "md:col-span-2" : ""}`}>
                 <h3 className="text-xl font-semibold font-heading text-primary-900 dark:text-primary-50 mb-4">
                   {t(`list.${capability.id}.title`)}
                 </h3>
@@ -1026,7 +1119,8 @@ export function Skill({ expertise, skill, ...rest }: Props) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="flex flex-col items-center gap-2 p-3 rounded-xl backdrop-blur-sm bg-white/10 dark:bg-white/5 border border-white/10 dark:border-white/5 hover:scale-110 transition-transform cursor-default w-20"
-      {...rest}>
+      {...rest}
+    >
       <img
         src={`skill_images/${t(`list.${expertise}.list.${skill}.imageSrc`)}`}
         alt={t(`list.${expertise}.list.${skill}.label`)}
@@ -1053,6 +1147,7 @@ Expected: Build succeeds.
 ### Task 9: About Section — Lucide Icons + Reveal Animations
 
 **Files:**
+
 - Modify: `src/modules/About/index.tsx`
 
 - [ ] **Step 1: Rewrite About with icons and reveal**
@@ -1148,6 +1243,7 @@ Expected: Build succeeds.
 ### Task 10: Contact Section — Lucide Icons + Reveal
 
 **Files:**
+
 - Modify: `src/modules/Contact/index.tsx`
 
 - [ ] **Step 1: Rewrite Contact with Lucide icons and reveal**
@@ -1231,6 +1327,7 @@ Expected: Build succeeds.
 ### Task 11: MenuBar, FullScreenMenu, Sticker — Icons + z-index
 
 **Files:**
+
 - Modify: `src/modules/MenuBar/index.tsx`
 - Modify: `src/modules/MenuBar/FullScreenMenu.tsx`
 - Modify: `src/modules/Sticker/index.tsx`
@@ -1275,26 +1372,34 @@ export function MenuBar({ links }: Props) {
       <nav
         className="fixed top-0 flex justify-end w-full backdrop-blur-md bg-white/70 dark:bg-primary-900/70 z-30"
         role="navigation"
-        aria-label="Main navigation">
+        aria-label="Main navigation"
+      >
         <button
           className="sm:hidden flex items-center justify-center w-12 h-12 cursor-pointer select-none focus:ring-2 focus:ring-secondary-500 focus:outline-none"
           onClick={() => setIsMenuOpen((state) => !state)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}>
-          {isMenuOpen ? <X size={20} className="text-primary-900 dark:text-primary-50" /> : <Menu size={20} className="text-primary-900 dark:text-primary-50" />}
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? (
+            <X size={20} className="text-primary-900 dark:text-primary-50" />
+          ) : (
+            <Menu size={20} className="text-primary-900 dark:text-primary-50" />
+          )}
         </button>
         <div className="hidden sm:flex w-full max-w-6xl h-12 mx-auto items-center justify-between px-4">
           <div className="flex items-center gap-1">
             <Link
               to="/"
-              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded"
+            >
               AG
             </Link>
             {links.map((link) => (
               <Link
                 key={link.hash}
                 className="px-3 py-1 text-sm font-medium text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors rounded focus:ring-2 focus:ring-secondary-500 focus:outline-none"
-                to={{ pathname: "/", hash: link.hash }}>
+                to={{ pathname: "/", hash: link.hash }}
+              >
                 {link.label}
               </Link>
             ))}
@@ -1309,7 +1414,8 @@ export function MenuBar({ links }: Props) {
                 }`}
                 onClick={() => handleLanguageChange("en")}
                 aria-label="Switch to English"
-                aria-pressed={language === "en"}>
+                aria-pressed={language === "en"}
+              >
                 EN
               </button>
               <button
@@ -1320,7 +1426,8 @@ export function MenuBar({ links }: Props) {
                 }`}
                 onClick={() => handleLanguageChange("br")}
                 aria-label="Mudar para português"
-                aria-pressed={language === "br"}>
+                aria-pressed={language === "br"}
+              >
                 BR
               </button>
             </div>
@@ -1365,7 +1472,8 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
       className={`fixed inset-0 top-12 bg-white/95 dark:bg-primary-900/95 backdrop-blur-md z-40 overscroll-contain overflow-hidden transition-opacity duration-300 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
-      {...rest}>
+      {...rest}
+    >
       <div className="flex flex-col gap-6 w-full h-full p-8 pt-12">
         <div className="flex flex-col gap-2">
           {links.map((link, ind) => (
@@ -1375,7 +1483,8 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               }`}
               style={{ transitionDelay: `${ind * 50}ms` }}
-              to={{ pathname: "/", hash: link.hash }}>
+              to={{ pathname: "/", hash: link.hash }}
+            >
               {link.label}
             </Link>
           ))}
@@ -1393,7 +1502,8 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
               }`}
               style={{ transitionDelay: `${(links.length + ind) * 50}ms` }}
               onClick={() => onLanguageChange(lang)}
-              aria-label={lang === "en" ? "Switch to English" : "Mudar para português"}>
+              aria-label={lang === "en" ? "Switch to English" : "Mudar para português"}
+            >
               {lang === "en" ? "English" : "Português"}
             </button>
           ))}
@@ -1421,7 +1531,8 @@ export function Sticker() {
       <GlassCard className="px-4 py-2 text-sm">
         <a
           href={`mailto:${t("contact.list.email.value")}`}
-          className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          className="inline-flex items-center gap-2 text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded"
+        >
           <Mail size={16} />
           {t("contact.list.email.value")}
         </a>
@@ -1442,6 +1553,7 @@ Expected: Build succeeds.
 ### Task 12: Project Detail Page — Fonts + Lightbox Integration
 
 **Files:**
+
 - Modify: `src/pages/project/index.tsx`
 
 - [ ] **Step 1: Add fonts and lightbox to project detail page**
@@ -1498,7 +1610,8 @@ export function Project() {
       <div className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <Link
           to="/#projects"
-          className="inline-flex items-center gap-1 text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 transition-colors mb-12 focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          className="inline-flex items-center gap-1 text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 transition-colors mb-12 focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded"
+        >
           <ArrowLeft size={16} aria-hidden="true" />
           {tProjects("title")}
         </Link>
@@ -1529,7 +1642,8 @@ export function Project() {
               href={linkHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-secondary-500/30 text-secondary-600 dark:text-secondary-400 hover:bg-secondary-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-secondary-500/30 text-secondary-600 dark:text-secondary-400 hover:bg-secondary-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+            >
               {linkValue || "Visit project"}
               <ExternalLink size={16} aria-hidden="true" />
             </a>
@@ -1661,6 +1775,7 @@ Expected: `tsc -b` succeeds, `vite build` succeeds. No errors.
 Run: `npm run dev`
 
 Expected: Dev server starts. Open browser to verify:
+
 - Animated gradient blobs visible behind content
 - Fonts render: Space Grotesk on headings, JetBrains Mono on dates/metadata
 - Hero text has parallax effect on scroll

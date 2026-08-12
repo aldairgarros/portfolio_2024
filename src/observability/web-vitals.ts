@@ -3,9 +3,7 @@ import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
 import type { Metric } from "web-vitals";
 
 function reportWebVital(metric: Metric): void {
-  const span = trace
-    .getTracer("portfolio")
-    .startSpan(`web-vitals.${metric.name.toLowerCase()}`);
+  const span = trace.getTracer("portfolio").startSpan(`web-vitals.${metric.name.toLowerCase()}`);
 
   span.setAttribute("web_vitals.rating", metric.rating);
   span.setAttribute("web_vitals.value", metric.value);

@@ -24,6 +24,7 @@
 ### Task 1: Foundation — GlassCard, SectionTitle, globals.css, index.html, i18n
 
 **Files:**
+
 - Create: `src/components/GlassCard/index.tsx`
 - Create: `src/components/SectionTitle/index.tsx`
 - Modify: `src/globals.css:3-92`
@@ -31,12 +32,14 @@
 - Modify: `src/i18n.ts:17`
 
 **Interfaces:**
+
 - Produces: `GlassCard` — accepts `children: React.ReactNode`, optional `className?: string`, optional `hover?: boolean`; renders a glass card div
 - Produces: `SectionTitle` — accepts `title: string`, optional `id?: string`; renders an h2 with gradient underline and id
 
 - [ ] **Step 1: Create GlassCard component**
 
 Write `src/components/GlassCard/index.tsx`:
+
 ```tsx
 import { HTMLAttributes } from "react";
 
@@ -50,7 +53,8 @@ export function GlassCard({ children, hover = false, className = "", ...rest }: 
       className={`backdrop-blur-lg bg-white/10 dark:bg-white/5 border border-white/20 dark:border-white/10 rounded-2xl shadow-xl p-6 ${
         hover ? "hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300" : ""
       } ${className}`}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </div>
   );
@@ -60,6 +64,7 @@ export function GlassCard({ children, hover = false, className = "", ...rest }: 
 - [ ] **Step 2: Create SectionTitle component**
 
 Write `src/components/SectionTitle/index.tsx`:
+
 ```tsx
 interface Props {
   title: string;
@@ -69,9 +74,7 @@ interface Props {
 export function SectionTitle({ title, id }: Props) {
   return (
     <div className="mb-12">
-      <h2
-        id={id}
-        className="text-3xl sm:text-4xl font-bold text-primary-900 dark:text-primary-50">
+      <h2 id={id} className="text-3xl sm:text-4xl font-bold text-primary-900 dark:text-primary-50">
         {title}
       </h2>
       <div className="mt-3 h-1 w-16 bg-gradient-to-r from-secondary-500 to-secondary-400 rounded-full" />
@@ -83,6 +86,7 @@ export function SectionTitle({ title, id }: Props) {
 - [ ] **Step 3: Update globals.css — remove unused color aliases, add Inter font, fix section padding**
 
 Replace `src/globals.css` entirely:
+
 ```css
 @import "tailwindcss";
 
@@ -133,6 +137,7 @@ Replace `src/globals.css` entirely:
 - [ ] **Step 4: Add Inter font to index.html**
 
 Replace `index.html`:
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -140,10 +145,16 @@ Replace `index.html`:
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Aldair Garros — Fullstack Developer & Software Engineering Specialist. Portfolio showcasing web and mobile development projects." />
+    <meta
+      name="description"
+      content="Aldair Garros — Fullstack Developer & Software Engineering Specialist. Portfolio showcasing web and mobile development projects."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Aldair Garros — Developer & Software Engineering Specialist</title>
   </head>
   <body>
@@ -156,10 +167,13 @@ Replace `index.html`:
 - [ ] **Step 5: Fix i18n debug mode**
 
 In `src/i18n.ts:17`, change:
+
 ```
 debug: true,
 ```
+
 to:
+
 ```
 debug: import.meta.env.DEV,
 ```
@@ -181,16 +195,19 @@ git commit -m "feat: add GlassCard, SectionTitle, Inter font, fix i18n debug mod
 ### Task 2: Locale files — fix accents, add Education, remove dead keys, fix contact for external links
 
 **Files:**
+
 - Modify: `src/locales/en.json:1-471`
 - Modify: `src/locales/br.json:1-471`
 
 **Interfaces:**
+
 - Consumes: Locale files must match the structures consumed by upcoming module tasks
 - Produces: Fixed Portuguese accents, new `education` section, removed `extra.openToWork`, external link URLs with `isExternal` flags
 
 - [ ] **Step 1: Fix Portuguese accents in br.json**
 
 Use `edit` tool to fix all accent issues:
+
 - `"visao geral"` → `"visão geral"`
 - `"descriçao"` → `"descrição"`
 - `"detalhes"` → `"detalhes"` (already ok)
@@ -208,6 +225,7 @@ Use `edit` tool to fix all accent issues:
 - [ ] **Step 2: Add Education section to en.json**
 
 After the hero section and before the projects section, insert:
+
 ```json
   "education": {
     "title": "Education",
@@ -223,6 +241,7 @@ After the hero section and before the projects section, insert:
 - [ ] **Step 3: Add Education section to br.json**
 
 After the hero section and before the projects section, insert:
+
 ```json
   "education": {
     "title": "Formação",
@@ -242,6 +261,7 @@ In both `en.json` and `br.json`, remove the line `"openToWork": ...` from the `e
 - [ ] **Step 5: Fix contact links — add `isExternal` flag to en.json contact entries**
 
 For LinkedIn and GitHub entries (which are external URLs), add `"isExternal": true`:
+
 ```json
 "linkedIn": {
   "label": "linkedIn",
@@ -256,7 +276,9 @@ For LinkedIn and GitHub entries (which are external URLs), add `"isExternal": tr
   "isExternal": true
 }
 ```
+
 For WhatsApp, add `"isExternal": true`:
+
 ```json
 "whatsApp": {
   "label": "whatsApp",
@@ -265,6 +287,7 @@ For WhatsApp, add `"isExternal": true`:
   "isExternal": true
 }
 ```
+
 Email and phone have `mailto:` and `tel:` protocols — these already work with `<a>` tags, no `isExternal` needed (they don't open new tabs).
 
 - [ ] **Step 6: Apply same `isExternal` flags to br.json contact entries**
@@ -288,6 +311,7 @@ git commit -m "fix: correct Portuguese accents, add Education section, add isExt
 ### Task 3: Router simplification + dead code cleanup + Layout fix
 
 **Files:**
+
 - Modify: `src/router.tsx:1-20`
 - Modify: `src/pages/Layout.tsx:1-25`
 - Delete: `src/components/Container/index.tsx`
@@ -307,6 +331,7 @@ git commit -m "fix: correct Portuguese accents, add Education section, add isExt
 - [ ] **Step 1: Simplify router.tsx**
 
 Replace `src/router.tsx`:
+
 ```tsx
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RootLayout } from "./pages/Layout";
@@ -331,6 +356,7 @@ export default function AppRouter() {
 - [ ] **Step 2: Update Layout.tsx — fix gradient to use primary alias, pass fixed English links**
 
 Replace `src/pages/Layout.tsx`:
+
 ```tsx
 import { Outlet } from "react-router-dom";
 import { MenuBar } from "@/modules/MenuBar";
@@ -351,7 +377,8 @@ export function RootLayout() {
       <Outlet />
       <div
         aria-hidden="true"
-        className="fixed inset-0 -z-10 transform-gpu overflow-hidden blur-3xl">
+        className="fixed inset-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+      >
         <div
           style={{
             clipPath: "polygon(0% 70%, 20% 20%, 0% 0%, 30% 100%, 100% 10%, 20% 50%, 100% 50%)",
@@ -367,6 +394,7 @@ export function RootLayout() {
 - [ ] **Step 3: Delete all dead files**
 
 Run:
+
 ```bash
 rm src/components/Container/index.tsx
 rm src/components/Section/index.tsx
@@ -402,16 +430,19 @@ git commit -m "refactor: simplify router, remove dead code, update Layout gradie
 ### Task 4: MenuBar redesign — pill language switcher, fix mobile bug, fixed hash IDs
 
 **Files:**
+
 - Modify: `src/modules/MenuBar/index.tsx:1-59`
 - Modify: `src/modules/MenuBar/FullScreenMenu.tsx:1-60`
 
 **Interfaces:**
+
 - Consumes: `links` prop from Layout — array of `{ label: string, hash: string }`
 - Produces: Working language switcher on both mobile and desktop, hash nav using fixed English IDs
 
 - [ ] **Step 1: Redesign MenuBar**
 
 Replace `src/modules/MenuBar/index.tsx`:
+
 ```tsx
 import { useState } from "react";
 import { FullScreenMenu } from "./FullScreenMenu";
@@ -447,12 +478,14 @@ export function MenuBar({ links }: Props) {
       <nav
         className="fixed top-0 flex justify-end w-full backdrop-blur-md bg-white/70 dark:bg-primary-900/70 z-20"
         role="navigation"
-        aria-label="Main navigation">
+        aria-label="Main navigation"
+      >
         <button
           className="sm:hidden flex items-center justify-center w-12 h-12 cursor-pointer select-none focus:ring-2 focus:ring-secondary-500 focus:outline-none"
           onClick={() => setIsMenuOpen((state) => !state)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}>
+          aria-expanded={isMenuOpen}
+        >
           <span className="text-xl font-bold text-primary-900 dark:text-primary-50">
             {isMenuOpen ? "✕" : "☰"}
           </span>
@@ -461,14 +494,16 @@ export function MenuBar({ links }: Props) {
           <div className="flex items-center gap-1">
             <Link
               to="/"
-              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+              className="text-lg font-bold text-primary-900 dark:text-primary-50 mr-6 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded"
+            >
               AG
             </Link>
             {links.map((link) => (
               <Link
                 key={link.hash}
                 className="px-3 py-1 text-sm font-medium text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors rounded focus:ring-2 focus:ring-secondary-500 focus:outline-none"
-                to={{ pathname: "/", hash: link.hash }}>
+                to={{ pathname: "/", hash: link.hash }}
+              >
                 {link.label}
               </Link>
             ))}
@@ -483,7 +518,8 @@ export function MenuBar({ links }: Props) {
                 }`}
                 onClick={() => handleLanguageChange("en")}
                 aria-label="Switch to English"
-                aria-pressed={language === "en"}>
+                aria-pressed={language === "en"}
+              >
                 EN
               </button>
               <button
@@ -494,7 +530,8 @@ export function MenuBar({ links }: Props) {
                 }`}
                 onClick={() => handleLanguageChange("br")}
                 aria-label="Mudar para português"
-                aria-pressed={language === "br"}>
+                aria-pressed={language === "br"}
+              >
                 BR
               </button>
             </div>
@@ -516,6 +553,7 @@ export function MenuBar({ links }: Props) {
 - [ ] **Step 2: Redesign FullScreenMenu — fix mobile language switcher**
 
 Replace `src/modules/MenuBar/FullScreenMenu.tsx`:
+
 ```tsx
 import { HTMLAttributes } from "react";
 import { Link } from "react-router-dom";
@@ -538,7 +576,8 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
       className={`fixed inset-0 top-12 bg-white/95 dark:bg-primary-900/95 backdrop-blur-md z-30 overscroll-contain overflow-hidden transition-opacity duration-300 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
-      {...rest}>
+      {...rest}
+    >
       <div className="flex flex-col gap-6 w-full h-full p-8 pt-12">
         <div className="flex flex-col gap-2">
           {links.map((link, ind) => (
@@ -548,7 +587,8 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
                 open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
               }`}
               style={{ transitionDelay: `${ind * 50}ms` }}
-              to={{ pathname: "/", hash: link.hash }}>
+              to={{ pathname: "/", hash: link.hash }}
+            >
               {link.label}
             </Link>
           ))}
@@ -566,7 +606,8 @@ export function FullScreenMenu({ open, links, currentLanguage, onLanguageChange,
               }`}
               style={{ transitionDelay: `${(links.length + ind) * 50}ms` }}
               onClick={() => onLanguageChange(lang)}
-              aria-label={lang === "en" ? "Switch to English" : "Mudar para português"}>
+              aria-label={lang === "en" ? "Switch to English" : "Mudar para português"}
+            >
               {lang === "en" ? "English" : "Português"}
             </button>
           ))}
@@ -594,17 +635,20 @@ git commit -m "refactor: redesign MenuBar with pill language switcher, fix mobil
 ### Task 5: Hero redesign + Education section
 
 **Files:**
+
 - Modify: `src/modules/Hero/index.tsx:1-36`
 - Create: `src/modules/Education/index.tsx`
 - Modify: `src/pages/home/index.tsx:1-24`
 
 **Interfaces:**
+
 - Consumes: `GlassCard`, `SectionTitle` from Task 1; new `education` locale keys from Task 2
 - Produces: Redesigned Hero with glass badge, new Education module
 
 - [ ] **Step 1: Redesign Hero**
 
 Replace `src/modules/Hero/index.tsx`:
+
 ```tsx
 import { useTranslation } from "react-i18next";
 import { GlassCard } from "@/components/GlassCard";
@@ -615,7 +659,8 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="flex flex-col items-center justify-center max-h-[1024px] h-screen px-4 text-center">
+      className="flex flex-col items-center justify-center max-h-[1024px] h-screen px-4 text-center"
+    >
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-b from-secondary-500/10 to-transparent rounded-full blur-3xl" />
         <div className="relative">
@@ -645,6 +690,7 @@ export function Hero() {
 - [ ] **Step 2: Create Education module**
 
 Write `src/modules/Education/index.tsx`:
+
 ```tsx
 import { useTranslation } from "react-i18next";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -680,6 +726,7 @@ export function Education() {
 - [ ] **Step 3: Update Home page to include Education**
 
 Replace `src/pages/home/index.tsx`:
+
 ```tsx
 import { Hero } from "@/modules/Hero";
 import { Education } from "@/modules/Education";
@@ -721,17 +768,20 @@ git commit -m "feat: redesign Hero with glass badge, add Education section"
 ### Task 6: Projects module + ProjectCard + ProjectList redesign
 
 **Files:**
+
 - Modify: `src/modules/Projects/index.tsx:1-48`
 - Modify: `src/modules/Projects/ProjectCard.tsx:1-29`
 - Modify: `src/modules/Projects/ProjectList.tsx:1-28`
 
 **Interfaces:**
+
 - Consumes: `GlassCard`, `SectionTitle` from Task 1; `projects` locale keys from locale files
 - Produces: Redesigned project grid, cards, and list
 
 - [ ] **Step 1: Redesign ProjectCard**
 
 Replace `src/modules/Projects/ProjectCard.tsx`:
+
 ```tsx
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -782,6 +832,7 @@ export function ProjectCard({ project, ...rest }: ProjectProps) {
 - [ ] **Step 2: Redesign Projects index (home page version)**
 
 Replace `src/modules/Projects/index.tsx`:
+
 ```tsx
 import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectCard } from "./ProjectCard";
@@ -808,6 +859,7 @@ export function Projects() {
 - [ ] **Step 3: Redesign ProjectList**
 
 Replace `src/modules/Projects/ProjectList.tsx`:
+
 ```tsx
 import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectCard } from "./ProjectCard";
@@ -852,15 +904,18 @@ git commit -m "refactor: redesign Projects, ProjectCard, ProjectList with glass 
 ### Task 7: Project detail page — fix image limit, external links, back link
 
 **Files:**
+
 - Modify: `src/pages/project/index.tsx:1-53`
 
 **Interfaces:**
+
 - Consumes: `GlassCard`, `SectionTitle` from Task 1; `ProjectList` from Task 6; locale keys with `isExternal` flags
 - Produces: Proper project detail with all images, working external links, back-to-home link
 
 - [ ] **Step 1: Rewrite project detail page**
 
 Replace `src/pages/project/index.tsx`:
+
 ```tsx
 import { ScrollRestoration, useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -884,7 +939,7 @@ export function Project() {
   const { t: tProjects } = useTranslation("translation", { keyPrefix: "projects" });
 
   const imageKeys = Object.keys(
-    (p("images.list", { returnObjects: true }) as Record<string, unknown>) || {}
+    (p("images.list", { returnObjects: true }) as Record<string, unknown>) || {},
   ).filter((k) => k.startsWith("image"));
 
   const images: ImageData[] = imageKeys.map((key: string) => ({
@@ -903,7 +958,8 @@ export function Project() {
       <div className="py-24 px-4 sm:px-8 max-w-6xl mx-auto w-full">
         <Link
           to="/#projects"
-          className="inline-flex items-center gap-1 text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 transition-colors mb-12 focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          className="inline-flex items-center gap-1 text-sm text-secondary-600 dark:text-secondary-400 hover:text-secondary-800 dark:hover:text-secondary-200 transition-colors mb-12 focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded"
+        >
           <span aria-hidden="true">&larr;</span>
           {tProjects("title")}
         </Link>
@@ -934,7 +990,8 @@ export function Project() {
               href={linkHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-secondary-500/30 text-secondary-600 dark:text-secondary-400 hover:bg-secondary-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+              className="inline-flex items-center gap-2 self-start px-6 py-3 rounded-full border border-secondary-500/30 text-secondary-600 dark:text-secondary-400 hover:bg-secondary-500 hover:text-white transition-colors font-medium text-sm focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+            >
               {linkValue || "Visit project"}
               <span aria-hidden="true">&nearr;</span>
             </a>
@@ -992,16 +1049,19 @@ git commit -m "fix: project detail — dynamic images, external links, back-to-h
 ### Task 8: Expertise + Skill redesign, fix drop-shadow bug
 
 **Files:**
+
 - Modify: `src/modules/Expertise/index.tsx:1-39`
 - Modify: `src/modules/Expertise/Skill.tsx:1-28`
 
 **Interfaces:**
+
 - Consumes: `GlassCard`, `SectionTitle` from Task 1; `expertise.json` and locale keys
 - Produces: Redesigned expertise section with glass skill pills, no broken CSS
 
 - [ ] **Step 1: Redesign Expertise**
 
 Replace `src/modules/Expertise/index.tsx`:
+
 ```tsx
 import { useTranslation } from "react-i18next";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -1039,6 +1099,7 @@ export function Expertise() {
 - [ ] **Step 2: Redesign Skill — fix dark:drop-shadow-light bug**
 
 Replace `src/modules/Expertise/Skill.tsx`:
+
 ```tsx
 import { HTMLAttributes } from "react";
 import { useTranslation } from "react-i18next";
@@ -1054,7 +1115,8 @@ export function Skill({ expertise, skill, ...rest }: Props) {
   return (
     <div
       className="flex flex-col items-center gap-2 p-3 rounded-xl backdrop-blur-sm bg-white/10 dark:bg-white/5 border border-white/10 dark:border-white/5 hover:scale-110 transition-transform cursor-default w-20"
-      {...rest}>
+      {...rest}
+    >
       <img
         src={`skill_images/${t(`list.${expertise}.list.${skill}.imageSrc`)}`}
         alt={t(`list.${expertise}.list.${skill}.label`)}
@@ -1087,17 +1149,20 @@ git commit -m "refactor: redesign Expertise with glass cards, fix drop-shadow bu
 ### Task 9: About, Contact, Sticker — fix bugs, complete redesign
 
 **Files:**
+
 - Modify: `src/modules/About/index.tsx:1-30`
 - Modify: `src/modules/Contact/index.tsx:1-41`
 - Modify: `src/modules/Sticker/index.tsx:1-21`
 
 **Interfaces:**
+
 - Consumes: `GlassCard`, `SectionTitle` from Task 1; contact locale keys with `isExternal` flags
 - Produces: All modules working, all bugs fixed, glassmorphism throughout
 
 - [ ] **Step 1: Redesign About**
 
 Replace `src/modules/About/index.tsx`:
+
 ```tsx
 import { SectionTitle } from "@/components/SectionTitle";
 import { GlassCard } from "@/components/GlassCard";
@@ -1161,6 +1226,7 @@ export function About() {
 - [ ] **Step 2: Redesign Contact — fix external links**
 
 Replace `src/modules/Contact/index.tsx`:
+
 ```tsx
 import { SectionTitle } from "@/components/SectionTitle";
 import { GlassCard } from "@/components/GlassCard";
@@ -1175,9 +1241,7 @@ export function Contact() {
       <SectionTitle title={t("title")} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <GlassCard className="flex items-center">
-          <p className="text-primary-700 dark:text-primary-300 leading-relaxed">
-            {t("message")}
-          </p>
+          <p className="text-primary-700 dark:text-primary-300 leading-relaxed">{t("message")}</p>
         </GlassCard>
         <GlassCard>
           <div className="flex flex-wrap gap-3">
@@ -1193,7 +1257,8 @@ export function Contact() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-secondary-500 hover:text-white hover:border-secondary-500 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+                    className="px-4 py-2 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-secondary-500 hover:text-white hover:border-secondary-500 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+                  >
                     {value}
                   </a>
                 );
@@ -1203,7 +1268,8 @@ export function Contact() {
                 <a
                   key={key}
                   href={href}
-                  className="px-4 py-2 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-secondary-500 hover:text-white hover:border-secondary-500 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+                  className="px-4 py-2 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-secondary-500 hover:text-white hover:border-secondary-500 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+                >
                   {value}
                 </a>
               );
@@ -1225,11 +1291,13 @@ Let me also add the `message` key to both locale files. The message should be th
 - [ ] **Step 3: Add `message` key to contact section in both locale files**
 
 In `en.json`, under `contact`, add before `list`:
+
 ```json
 "message": "I'm open to new opportunities, so feel free to contact me.",
 ```
 
 In `br.json`, under `contact`, add before `list`:
+
 ```json
 "message": "Estou disponível para novas oportunidades. Entre em contato comigo.",
 ```
@@ -1239,6 +1307,7 @@ And remove the `extra` section entirely from both files (only `imOpenToNewOpport
 Now replace Contact with the correct version that hardcodes external keys:
 
 Replace `src/modules/Contact/index.tsx`:
+
 ```tsx
 import { SectionTitle } from "@/components/SectionTitle";
 import { GlassCard } from "@/components/GlassCard";
@@ -1274,7 +1343,8 @@ export function Contact() {
                 key={key}
                 href={href}
                 {...extraProps}
-                className="px-4 py-3 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-secondary-500 hover:text-white hover:border-secondary-500 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none">
+                className="px-4 py-3 rounded-full border border-primary-200 dark:border-primary-700 text-sm text-primary-700 dark:text-primary-300 hover:bg-secondary-500 hover:text-white hover:border-secondary-500 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none"
+              >
                 {value}
               </a>
             );
@@ -1289,6 +1359,7 @@ export function Contact() {
 - [ ] **Step 4: Redesign Sticker**
 
 Replace `src/modules/Sticker/index.tsx`:
+
 ```tsx
 import { GlassCard } from "@/components/GlassCard";
 import { useTranslation } from "react-i18next";
@@ -1301,7 +1372,8 @@ export function Sticker() {
       <GlassCard className="px-4 py-2 text-sm">
         <a
           href={`mailto:${t("contact.list.email.value")}`}
-          className="text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded">
+          className="text-primary-700 dark:text-primary-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors focus:ring-2 focus:ring-secondary-500 focus:outline-none rounded"
+        >
           {t("contact.list.email.value")}
         </a>
       </GlassCard>
@@ -1333,6 +1405,7 @@ git commit -m "refactor: redesign About, Contact, Sticker with glass cards, fix 
 ### Task 10: Final verification and cleanup
 
 **Files:**
+
 - Verify: All files
 
 - [ ] **Step 1: Run full build**

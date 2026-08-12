@@ -28,41 +28,41 @@ export function About() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: index * 0.15 }}
             >
-            <TerminalPanel title={t(`list.${item}.title.value`)}>
-              <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 dark:text-zinc-400 mb-4">
-                <Calendar size={14} className="text-emerald-500 shrink-0" aria-hidden="true" />
-                {t(`list.${item}.start.value`)} &mdash; {t(`list.${item}.end.value`)}
-              </div>
-              <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
-                {t(`list.${item}.description.value`)}
-              </p>
-              <div className="space-y-3 text-sm">
-                <p>
-                  <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
-                    {t(`list.${item}.work.label`)}:
-                  </span>{" "}
-                  <span className="text-zinc-600 dark:text-zinc-400">
-                    {t(`list.${item}.work.value`)}
-                  </span>
+              <TerminalPanel title={t(`list.${item}.title.value`)}>
+                <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 dark:text-zinc-400 mb-4">
+                  <Calendar size={14} className="text-emerald-500 shrink-0" aria-hidden="true" />
+                  {t(`list.${item}.start.value`)} &mdash; {t(`list.${item}.end.value`)}
+                </div>
+                <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+                  {t(`list.${item}.description.value`)}
                 </p>
-                <p>
-                  <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
-                    {t(`list.${item}.tools.label`)}:
-                  </span>{" "}
-                  <span className="text-zinc-600 dark:text-zinc-400">
-                    {t(`list.${item}.tools.value`)}
-                  </span>
-                </p>
-                <p>
-                  <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
-                    {t(`list.${item}.achievements.label`)}:
-                  </span>{" "}
-                  <span className="text-zinc-600 dark:text-zinc-400">
-                    {t(`list.${item}.achievements.value`)}
-                  </span>
-                </p>
-              </div>
-            </TerminalPanel>
+                <div className="space-y-3 text-sm">
+                  <p>
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
+                      {t(`list.${item}.work.label`)}:
+                    </span>{" "}
+                    <span className="text-zinc-600 dark:text-zinc-400">
+                      {t(`list.${item}.work.value`)}
+                    </span>
+                  </p>
+                  <p>
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
+                      {t(`list.${item}.tools.label`)}:
+                    </span>{" "}
+                    <span className="text-zinc-600 dark:text-zinc-400">
+                      {t(`list.${item}.tools.value`)}
+                    </span>
+                  </p>
+                  <p>
+                    <span className="font-mono font-semibold text-zinc-900 dark:text-zinc-100">
+                      {t(`list.${item}.achievements.label`)}:
+                    </span>{" "}
+                    <span className="text-zinc-600 dark:text-zinc-400">
+                      {t(`list.${item}.achievements.value`)}
+                    </span>
+                  </p>
+                </div>
+              </TerminalPanel>
             </motion.div>
           ))}
         </div>

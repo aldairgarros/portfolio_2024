@@ -1,4 +1,12 @@
-import { motion, useAnimationFrame, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { TerminalFrame } from "@/components/TerminalFrame";
 import { useActiveSection } from "@/context/ActiveSectionContext";
@@ -32,8 +40,16 @@ function Cube({ size, speedX, speedY }: CubeProps) {
 
   return (
     <motion.div
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d", transformPerspective: 1000, width: size, height: size }}
-      aria-hidden="true">
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        transformPerspective: 1000,
+        width: size,
+        height: size,
+      }}
+      aria-hidden="true"
+    >
       {faces.map((transform, index) => (
         <div
           key={index}
@@ -62,8 +78,14 @@ export function Hero() {
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), { stiffness: 120, damping: 20 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 120, damping: 20 });
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+    stiffness: 120,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
+    stiffness: 120,
+    damping: 20,
+  });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (prefersReducedMotion || !isPointerFine) return;
@@ -77,7 +99,8 @@ export function Hero() {
       id="hero"
       ref={sectionRef}
       className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden"
-      onMouseMove={handleMouseMove}>
+      onMouseMove={handleMouseMove}
+    >
       {/* CSS 3D cubes — spread behind the container */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[12%] left-[10%] opacity-70 hidden sm:block">
@@ -102,10 +125,16 @@ export function Hero() {
           rotateY: prefersReducedMotion ? 0 : rotateY,
           transformPerspective: 1200,
         }}
-        className="relative z-10 w-full max-w-5xl">
-        <TerminalFrame title={<span className="text-xl sm:text-3xl">~</span>} className="relative overflow-hidden">
+        className="relative z-10 w-full max-w-5xl"
+      >
+        <TerminalFrame
+          title={<span className="text-xl sm:text-3xl">~</span>}
+          className="relative overflow-hidden"
+        >
           <div className="relative z-10 py-10 sm:py-14 px-4 sm:px-8">
-            <p className="font-mono text-3xl sm:text-6xl text-emerald-600 dark:text-emerald-400 mb-5">{t("title.value")}</p>
+            <p className="font-mono text-3xl sm:text-6xl text-emerald-600 dark:text-emerald-400 mb-5">
+              {t("title.value")}
+            </p>
             <p className="font-sans text-lg sm:text-2xl text-zinc-700 dark:text-zinc-200 max-w-3xl mx-auto leading-relaxed">
               {t("subtitle.value")}
             </p>

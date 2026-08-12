@@ -21,9 +21,11 @@
 ### Task 1: Revert sticky titles and add ref support to TerminalPanel
 
 **Files:**
+
 - Modify: `src/components/TerminalFrame/index.tsx`
 
 **Interfaces:**
+
 - Consumes: (none)
 - Produces: `TerminalPanel` accepts an optional `ref?: Ref<HTMLDivElement>` prop. `TerminalFrame` title bar no longer sticky.
 
@@ -107,9 +109,11 @@ git commit -m "revert: remove sticky terminal titles, add ref support to Termina
 ### Task 2: Create ActiveSectionContext
 
 **Files:**
+
 - Create: `src/context/ActiveSectionContext.tsx`
 
 **Interfaces:**
+
 - Consumes: (none — standalone)
 - Produces:
   - `<ActiveSectionProvider>` — wraps children; must wrap both MenuBar and the page outlet in `RootLayout`
@@ -226,11 +230,13 @@ git commit -m "feat: add ActiveSectionContext with IntersectionObserver path tra
 ### Task 3: Wrap layout in provider, render dynamic path in MenuBar
 
 **Files:**
+
 - Modify: `src/pages/Layout.tsx`
 - Modify: `src/modules/MenuBar/index.tsx`
 - Modify: `src/globals.css`
 
 **Interfaces:**
+
 - Consumes: `ActiveSectionProvider`, `useActivePath` from Task 2
 - Produces: MenuBar renders `@{username}:<path>` where `<path>` is `~` when no section is active; adds `fade-in` animation utility `animate-fade-in`
 
@@ -260,29 +266,29 @@ import { ActiveSectionProvider } from "@/context/ActiveSectionContext";
 Change the JSX (lines 24-31):
 
 ```tsx
-  return (
+return (
+  <div className="flex items-center justify-center">
+    <MenuBar links={links} />
+    <BackgroundDecoration />
+    <Outlet />
+    <ContactFooter />
+  </div>
+);
+```
+
+to:
+
+```tsx
+return (
+  <ActiveSectionProvider>
     <div className="flex items-center justify-center">
       <MenuBar links={links} />
       <BackgroundDecoration />
       <Outlet />
       <ContactFooter />
     </div>
-  );
-```
-
-to:
-
-```tsx
-  return (
-    <ActiveSectionProvider>
-      <div className="flex items-center justify-center">
-        <MenuBar links={links} />
-        <BackgroundDecoration />
-        <Outlet />
-        <ContactFooter />
-      </div>
-    </ActiveSectionProvider>
-  );
+  </ActiveSectionProvider>
+);
 ```
 
 - [ ] **Step 2: Add fade-in keyframe to globals.css**
@@ -291,8 +297,14 @@ Edit `src/globals.css`. After the scan line keyframes block (after line 127), ad
 
 ```css
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 ```
 
@@ -314,27 +326,32 @@ import { useActivePath } from "@/context/ActiveSectionContext";
 Inside the component, after `const { language, changeLanguage } = i18n;` (line 21), add:
 
 ```tsx
-  const activePath = useActivePath();
+const activePath = useActivePath();
 ```
 
 Change the brand Link (lines 55-59):
 
 ```tsx
-          <Link
-            to={{ pathname: "/", hash: "hero" }}
-            className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none">
-            @{t("hero.title.value")}:~
-          </Link>
+<Link
+  to={{ pathname: "/", hash: "hero" }}
+  className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none"
+>
+  @{t("hero.title.value")}:~
+</Link>
 ```
 
 to:
 
 ```tsx
-          <Link
-            to={{ pathname: "/", hash: "hero" }}
-            className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none min-w-0 truncate">
-            @{t("hero.title.value")}:<span key={activePath ?? "~"} className="animate-fade-in">{activePath ?? "~"}</span>
-          </Link>
+<Link
+  to={{ pathname: "/", hash: "hero" }}
+  className="font-bold text-emerald-500 dark:text-emerald-400 hover:text-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:outline-none min-w-0 truncate"
+>
+  @{t("hero.title.value")}:
+  <span key={activePath ?? "~"} className="animate-fade-in">
+    {activePath ?? "~"}
+  </span>
+</Link>
 ```
 
 - [ ] **Step 4: Verify**
@@ -356,11 +373,13 @@ git commit -m "feat: show active section path in menubar with fade animation"
 ### Task 4: Register section-level tracking (Hero, About, Education)
 
 **Files:**
+
 - Modify: `src/modules/Hero/index.tsx`
 - Modify: `src/modules/About/index.tsx`
 - Modify: `src/modules/Education/index.tsx`
 
 **Interfaces:**
+
 - Consumes: `useActiveSection(path: string)` from Task 2
 - Produces: Hero registers `"~"`, About registers `"~/about"`, Education registers `"~/education"`
 
@@ -382,7 +401,7 @@ import { useActiveSection } from "@/context/ActiveSectionContext";
 Inside the component, after `const isPointerFine = window.matchMedia("(pointer: fine)").matches;` (line 55), add:
 
 ```tsx
-  const sectionRef = useActiveSection("~");
+const sectionRef = useActiveSection("~");
 ```
 
 Change the section element (lines 74-77):
@@ -422,7 +441,7 @@ import { useActiveSection } from "@/context/ActiveSectionContext";
 Inside the component, after `const LIST = ["experience1", "experience2"];` (line 13), add:
 
 ```tsx
-  const sectionRef = useActiveSection("~/about");
+const sectionRef = useActiveSection("~/about");
 ```
 
 Change the section element (line 16):
@@ -455,7 +474,7 @@ import { useActiveSection } from "@/context/ActiveSectionContext";
 Inside the component, after `const { t } = useTranslation("translation", { keyPrefix: "education" });` (line 6), add:
 
 ```tsx
-  const sectionRef = useActiveSection("~/education");
+const sectionRef = useActiveSection("~/education");
 ```
 
 Change the section element (line 9):
@@ -489,9 +508,11 @@ git commit -m "feat: track hero, about and education sections in menubar path"
 ### Task 5: Register projects section and project panels
 
 **Files:**
+
 - Modify: `src/pages/home/index.tsx`
 
 **Interfaces:**
+
 - Consumes: `useActiveSection(path: string)` from Task 2, `TerminalPanel` `ref` prop from Task 1
 - Produces: Projects section registers `"~/projects"`; each project panel registers `~/projects/<slug>` (`atalaia-pro`, `penhor`, `bolso-bom`, `musica-show`)
 
@@ -545,54 +566,56 @@ export function Home() {
 Change the projects section (lines 19-38):
 
 ```tsx
-      <section id="projects" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
-        <h2 className="sr-only">{t("title")}</h2>
-        <TerminalFrame title={t("title")}>
-          <div className="flex flex-col gap-6 p-6 sm:p-8">
-            {PROJECTS.map((project) => (
-              <TerminalPanel
-                key={project}
-                title={(
-                  <span className="inline-flex items-center gap-3">
-                    {t(`list.${project}.name.value`)}
-                    <span className="text-xs text-primary-500 dark:text-primary-400">
-                      {t(`list.${project}.date.value`)}
-                    </span>
-                  </span>
-                )}>
-                <ProjectDetail project={project} />
-              </TerminalPanel>
-            ))}
-          </div>
-        </TerminalFrame>
-      </section>
+<section id="projects" className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+  <h2 className="sr-only">{t("title")}</h2>
+  <TerminalFrame title={t("title")}>
+    <div className="flex flex-col gap-6 p-6 sm:p-8">
+      {PROJECTS.map((project) => (
+        <TerminalPanel
+          key={project}
+          title={
+            <span className="inline-flex items-center gap-3">
+              {t(`list.${project}.name.value`)}
+              <span className="text-xs text-primary-500 dark:text-primary-400">
+                {t(`list.${project}.date.value`)}
+              </span>
+            </span>
+          }
+        >
+          <ProjectDetail project={project} />
+        </TerminalPanel>
+      ))}
+    </div>
+  </TerminalFrame>
+</section>
 ```
 
 to:
 
 ```tsx
-      <section id="projects" ref={projectsRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
-        <h2 className="sr-only">{t("title")}</h2>
-        <TerminalFrame title={t("title")}>
-          <div className="flex flex-col gap-6 p-6 sm:p-8">
-            {PROJECTS.map((project) => (
-              <TerminalPanel
-                key={project}
-                ref={projectRefs[project]}
-                title={(
-                  <span className="inline-flex items-center gap-3">
-                    {t(`list.${project}.name.value`)}
-                    <span className="text-xs text-primary-500 dark:text-primary-400">
-                      {t(`list.${project}.date.value`)}
-                    </span>
-                  </span>
-                )}>
-                <ProjectDetail project={project} />
-              </TerminalPanel>
-            ))}
-          </div>
-        </TerminalFrame>
-      </section>
+<section id="projects" ref={projectsRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+  <h2 className="sr-only">{t("title")}</h2>
+  <TerminalFrame title={t("title")}>
+    <div className="flex flex-col gap-6 p-6 sm:p-8">
+      {PROJECTS.map((project) => (
+        <TerminalPanel
+          key={project}
+          ref={projectRefs[project]}
+          title={
+            <span className="inline-flex items-center gap-3">
+              {t(`list.${project}.name.value`)}
+              <span className="text-xs text-primary-500 dark:text-primary-400">
+                {t(`list.${project}.date.value`)}
+              </span>
+            </span>
+          }
+        >
+          <ProjectDetail project={project} />
+        </TerminalPanel>
+      ))}
+    </div>
+  </TerminalFrame>
+</section>
 ```
 
 - [ ] **Step 2: Verify**
@@ -614,9 +637,11 @@ git commit -m "feat: track projects section and cards in menubar path"
 ### Task 6: Register expertise section and capability panels
 
 **Files:**
+
 - Modify: `src/modules/Expertise/index.tsx`
 
 **Interfaces:**
+
 - Consumes: `useActiveSection(path: string)` from Task 2, `TerminalPanel` `ref` prop from Task 1
 - Produces: Expertise section registers `"~/expertise"`; each capability panel registers `~/expertise/<id>` (ids from `src/assets/expertise.json`: `api-backend`, `frontend-engineering`, `mobile`, `devops`, `ux-strategy`)
 
@@ -638,14 +663,14 @@ import { useActiveSection } from "@/context/ActiveSectionContext";
 Inside the component, after `const { t } = useTranslation("translation", { keyPrefix: "expertise" });` (line 20), add:
 
 ```tsx
-  const sectionRef = useActiveSection("~/expertise");
-  const capabilityRefs = {
-    "api-backend": useActiveSection("~/expertise/api-backend"),
-    "frontend-engineering": useActiveSection("~/expertise/frontend-engineering"),
-    mobile: useActiveSection("~/expertise/mobile"),
-    devops: useActiveSection("~/expertise/devops"),
-    "ux-strategy": useActiveSection("~/expertise/ux-strategy"),
-  };
+const sectionRef = useActiveSection("~/expertise");
+const capabilityRefs = {
+  "api-backend": useActiveSection("~/expertise/api-backend"),
+  "frontend-engineering": useActiveSection("~/expertise/frontend-engineering"),
+  mobile: useActiveSection("~/expertise/mobile"),
+  devops: useActiveSection("~/expertise/devops"),
+  "ux-strategy": useActiveSection("~/expertise/ux-strategy"),
+};
 ```
 
 Change the section element (line 23):
@@ -695,6 +720,7 @@ git commit -m "feat: track expertise section and categories in menubar path"
 ### Task 7: Manual end-to-end verification
 
 **Files:**
+
 - (none)
 
 - [ ] **Step 1: Run the dev server**
