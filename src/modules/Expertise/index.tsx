@@ -39,7 +39,7 @@ export function Expertise() {
   }
 
   return (
-    <section id="expertise" ref={sectionRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto">
+    <section id="expertise" ref={sectionRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
         <div className="flex flex-col gap-6 p-6 sm:p-8">
@@ -79,7 +79,7 @@ export function Expertise() {
                     </span>
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-x-8 gap-y-4 mt-6">
+                <div className="flex flex-wrap gap-2 mt-6">
                   {capability.tech.map((tech) => (
                     <Skill key={tech} expertise={capability.id} skill={tech} />
                   ))}
