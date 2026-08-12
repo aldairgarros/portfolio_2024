@@ -6,17 +6,22 @@ MotionGlobalConfig.skipAnimations = true;
 class MockIntersectionObserver implements IntersectionObserver {
   readonly root: Element | Document | null = null;
   readonly rootMargin = "";
-  readonly thresholds: ReadonlyArray<number> = [];
-  disconnect(): void {}
-  observe(): void {}
+  readonly thresholds: readonly number[] = [];
+  disconnect(): void {
+    /* no-op */
+  }
+  observe(): void {
+    /* no-op */
+  }
   takeRecords(): IntersectionObserverEntry[] {
     return [];
   }
-  unobserve(): void {}
+  unobserve(): void {
+    /* no-op */
+  }
 }
 
-globalThis.IntersectionObserver =
-  MockIntersectionObserver as unknown as typeof IntersectionObserver;
+globalThis.IntersectionObserver = MockIntersectionObserver;
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -24,10 +29,18 @@ Object.defineProperty(window, "matchMedia", {
     matches: false,
     media: query,
     onchange: null,
-    addListener: () => {},
-    removeListener: () => {},
-    addEventListener: () => {},
-    removeEventListener: () => {},
+    addListener: () => {
+      /* no-op */
+    },
+    removeListener: () => {
+      /* no-op */
+    },
+    addEventListener: () => {
+      /* no-op */
+    },
+    removeEventListener: () => {
+      /* no-op */
+    },
     dispatchEvent: () => false,
   }),
 });

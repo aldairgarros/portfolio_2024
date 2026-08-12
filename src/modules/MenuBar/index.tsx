@@ -19,7 +19,7 @@ export function MenuBar({ links }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { i18n, t } = useTranslation();
-  const { language, changeLanguage } = i18n;
+  const language = i18n.language;
   const activePath = useActivePath();
   const displayPath = activePath ?? "~";
 
@@ -46,7 +46,7 @@ export function MenuBar({ links }: Props) {
   }, [isMenuOpen]);
 
   const handleLanguageChange = (lang: string) => {
-    changeLanguage(lang);
+    void i18n.changeLanguage(lang);
   };
 
   return (

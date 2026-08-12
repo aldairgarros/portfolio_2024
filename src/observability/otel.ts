@@ -17,7 +17,9 @@ class SessionIdSpanProcessor implements SpanProcessor {
     span.setAttribute("session.id", SESSION_ID);
   }
 
-  onEnd(): void {}
+  onEnd(): void {
+    /* no-op */
+  }
 
   forceFlush(): Promise<void> {
     return Promise.resolve();

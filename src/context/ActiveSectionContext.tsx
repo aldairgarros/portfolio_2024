@@ -45,13 +45,11 @@ export function ActiveSectionProvider({ children }: { children: ReactNode }) {
 
   const register = useCallback(
     (element: HTMLElement, path: string) => {
-      if (!observerRef.current) {
-        observerRef.current = new IntersectionObserver(handleIntersect, {
-          root: null,
-          rootMargin: ROOT_MARGIN,
-          threshold: THRESHOLDS,
-        });
-      }
+      observerRef.current ??= new IntersectionObserver(handleIntersect, {
+        root: null,
+        rootMargin: ROOT_MARGIN,
+        threshold: THRESHOLDS,
+      });
       entriesRef.current.set(element, { path, ratio: 0 });
       observerRef.current.observe(element);
       return () => {
