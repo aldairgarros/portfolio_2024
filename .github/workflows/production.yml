@@ -44,6 +44,7 @@ jobs:
         run: |
           docker build \
             --build-arg VITE_SENTRY_DSN="${{ secrets.VITE_SENTRY_DSN }}" \
+            --build-arg VITE_OTLP_ENDPOINT="${{ secrets.VITE_OTLP_ENDPOINT }}" \
             -t ghcr.io/aldairgarros/portfolio:${{ github.sha }} \
             -t ghcr.io/aldairgarros/portfolio:latest \
             .

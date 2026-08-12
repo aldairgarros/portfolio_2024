@@ -38,7 +38,7 @@ export function initOpenTelemetry(): void {
   } else {
     spanProcessors.push(
       new BatchSpanProcessor(
-        new OTLPTraceExporter({ url: "https://aldairgarros.com/v1/traces" }),
+        new OTLPTraceExporter({ url: import.meta.env.VITE_OTLP_ENDPOINT as string }),
       ),
     );
   }
