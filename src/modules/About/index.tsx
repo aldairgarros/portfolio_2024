@@ -12,12 +12,12 @@ const itemVariants = {
 
 export function About() {
   const { t } = useTranslation("translation", { keyPrefix: "about" });
-  const LIST = ["experience1", "experience2"] as const;
+  const LIST = ["experience-ui-ux", "experience-full-stack"] as const;
   const sectionRef = useActiveSection("~/about");
   type ExperienceId = (typeof LIST)[number];
   const experienceRefs: Record<ExperienceId, RefCallback<HTMLElement>> = {
-    experience1: useActiveSection("~/about/experience1"),
-    experience2: useActiveSection("~/about/experience2"),
+    "experience-ui-ux": useActiveSection("~/about/experience-ui-ux"),
+    "experience-full-stack": useActiveSection("~/about/experience-full-stack"),
   };
 
   return (

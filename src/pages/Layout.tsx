@@ -12,7 +12,7 @@ export function RootLayout() {
     {
       label: t("about.title"),
       hash: "about",
-      children: (["experience1", "experience2"] as const).map((id) => ({
+      children: (["experience-ui-ux", "experience-full-stack"] as const).map((id) => ({
         label: t(`about.list.${id}.title.value`),
         hash: id,
       })),

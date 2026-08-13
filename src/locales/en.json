@@ -25,7 +25,8 @@
         "label": "AI Ready",
         "value": "Ready to work with Artificial Intelligence"
       }
-    }
+    },
+    "scrollDown": "Scroll down"
   },
   "education": {
     "title": "Education",
@@ -371,7 +372,7 @@
   "about": {
     "title": "about",
     "list": {
-      "experience1": {
+      "experience-ui-ux": {
         "title": {
           "label": "title",
           "value": "Experience as UI/UX Designer (Freelance)"
@@ -401,7 +402,7 @@
           "value": "current"
         }
       },
-      "experience2": {
+      "experience-full-stack": {
         "title": {
           "label": "title",
           "value": "Experience as Full Stack Developer (Freelance)"

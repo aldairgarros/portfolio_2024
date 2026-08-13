@@ -28,6 +28,7 @@ export function MenuBar({ links }: Props) {
   const language = i18n.language;
   const activePath = useActivePath();
   const displayPath = activePath ?? "~";
+  const isAtTop = displayPath === "~";
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -65,8 +66,8 @@ export function MenuBar({ links }: Props) {
         <div className="flex max-w-6xl mx-auto h-14 items-center justify-between gap-4 px-4 sm:px-8 font-mono text-base">
           <div className="relative flex-1 min-w-0" ref={menuRef}>
             <button
-              className="font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 focus:ring-2 focus:ring-emerald-400 focus:outline-none w-full
-              flex items-center justify-between gap-1 px-3 py-2 border border-emerald-500/40 dark:border-emerald-500/40 transition-colors cursor-pointer select-none shadow-sm"
+              className={`font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 focus:ring-2 focus:ring-emerald-400 focus:outline-none w-full
+              flex items-center justify-between gap-1 px-3 py-2 border transition-colors cursor-pointer select-none border-emerald-500/40 dark:border-emerald-500/40 shadow-sm bg-zinc-400/10 dark:bg-zinc-600/10`}
               onClick={() => setIsMenuOpen((state) => !state)}
               aria-label={isMenuOpen ? t("home.menuClose") : t("home.menuOpen")}
               aria-expanded={isMenuOpen}
@@ -74,9 +75,18 @@ export function MenuBar({ links }: Props) {
             >
               @<span className="sm:hidden">{t("hero.title.handle")}</span>
               <span className="hidden sm:inline">{t("hero.title.value")}</span>:
-              <span key={displayPath} className="animate-fade-in flex-1 text-left truncate min-w-0">
-                {displayPath}
-              </span>
+              {isAtTop ? (
+                <span className="animate-menu-blink mr-auto text-emerald-500" aria-hidden="true">
+                  ▋
+                </span>
+              ) : (
+                <span
+                  key={displayPath}
+                  className="animate-fade-in flex-1 text-left truncate min-w-0"
+                >
+                  {displayPath}
+                </span>
+              )}
               <span>
                 <LuChevronDown size={16} />
               </span>

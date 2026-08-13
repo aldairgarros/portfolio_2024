@@ -25,7 +25,8 @@
         "label": "Preparado para IA",
         "value": "Pronto para trabalhar com Inteligência Artificial"
       }
-    }
+    },
+    "scrollDown": "Rolar para baixo"
   },
   "education": {
     "title": "Formação",
@@ -371,7 +372,7 @@
   "about": {
     "title": "sobre",
     "list": {
-      "experience1": {
+      "experience-ui-ux": {
         "title": {
           "label": "título",
           "value": "Experiência como UI/UX Designer (Freelance)"
@@ -401,7 +402,7 @@
           "value": "atual"
         }
       },
-      "experience2": {
+      "experience-full-stack": {
         "title": {
           "label": "título",
           "value": "Experiência como Desenvolvedor Full Stack (Freelance)"
