@@ -103,16 +103,16 @@ export function Hero() {
       {/* CSS 3D cubes — spread behind the container */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-[12%] left-[10%] opacity-70 hidden sm:block">
-          <Cube size={220} speedX={0} speedY={45} />
+          <Cube size={220} speedX={0} speedY={20} />
         </div>
         <div className="absolute top-[10%] right-[12%] opacity-70 hidden sm:block">
-          <Cube size={280} speedX={35} speedY={55} />
+          <Cube size={280} speedX={15} speedY={5} />
         </div>
         <div className="absolute bottom-[10%] left-[28%] opacity-70 hidden md:block">
-          <Cube size={170} speedX={-25} speedY={40} />
+          <Cube size={170} speedX={-5} speedY={15} />
         </div>
         <div className="absolute bottom-[14%] right-[22%] opacity-60 hidden lg:block">
-          <Cube size={120} speedX={20} speedY={-30} />
+          <Cube size={120} speedX={10} speedY={-10} />
         </div>
       </div>
 

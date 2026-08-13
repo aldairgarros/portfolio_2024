@@ -9,8 +9,24 @@ export function RootLayout() {
   const { t } = useTranslation("translation");
 
   const links: NavItem[] = [
-    { label: t("about.title"), hash: "about" },
-    { label: t("expertise.title"), hash: "expertise" },
+    {
+      label: t("about.title"),
+      hash: "about",
+      children: (["experience1", "experience2"] as const).map((id) => ({
+        label: t(`about.list.${id}.title.value`),
+        hash: id,
+      })),
+    },
+    {
+      label: t("expertise.title"),
+      hash: "expertise",
+      children: (
+        ["api-backend", "frontend-engineering", "mobile", "devops", "ux-strategy"] as const
+      ).map((id) => ({
+        label: t(`expertise.list.${id}.title`),
+        hash: id,
+      })),
+    },
     {
       label: t("projects.title"),
       hash: "projects",
@@ -19,7 +35,11 @@ export function RootLayout() {
         hash: id,
       })),
     },
-    { label: t("education.title"), hash: "education" },
+    {
+      label: t("education.title"),
+      hash: "education",
+      children: [{ label: t("education.course.title"), hash: "course" }],
+    },
   ];
 
   return (

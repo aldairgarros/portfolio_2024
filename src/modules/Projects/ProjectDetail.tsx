@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { LuChevronLeft, LuChevronRight, LuExternalLink } from "react-icons/lu";
 import { Lightbox, type LightboxImage } from "@/components/Lightbox";
 
 interface Props {
@@ -69,14 +69,14 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
   }, [updateScrollState]);
 
   return (
-    <div id={project}>
+    <div>
       <h3 className="sr-only">{p("name.value")}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="order-2 md:order-1 relative flex flex-col justify-center">
           <div
             ref={stripRef}
             onScroll={updateScrollState}
-            className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-none [&::-webkit-scrollbar]:hidden"
           >
             <div
               aria-hidden="true"
@@ -111,7 +111,7 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
             disabled={!canScrollLeft}
             className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300"
           >
-            <ChevronLeft size={20} aria-hidden="true" />
+            <LuChevronLeft size={20} aria-hidden="true" />
           </button>
           <button
             onClick={() => scrollByCard(1)}
@@ -119,7 +119,7 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
             disabled={!canScrollRight}
             className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1.5 bg-white/80 dark:bg-zinc-900/80 border border-zinc-300/70 dark:border-zinc-700/60 text-primary-600 dark:text-primary-300 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors focus:ring-2 focus:ring-emerald-400 focus:outline-none disabled:opacity-40 disabled:cursor-default disabled:hover:text-primary-600 dark:disabled:hover:text-primary-300"
           >
-            <ChevronRight size={20} aria-hidden="true" />
+            <LuChevronRight size={20} aria-hidden="true" />
           </button>
         </div>
 
@@ -138,7 +138,7 @@ export function ProjectDetail({ project }: Props): React.JSX.Element {
               className="inline-flex items-center gap-2 self-start px-6 py-3 bg-emerald-500 text-white hover:bg-emerald-600 transition-colors font-medium text-sm focus:ring-2 focus:ring-emerald-400 focus:outline-none"
             >
               {linkValue || tProjects("open")}
-              <ExternalLink size={16} aria-hidden="true" />
+              <LuExternalLink size={16} aria-hidden="true" />
             </a>
           )}
         </div>

@@ -42,7 +42,7 @@ export function Expertise() {
     <section
       id="expertise"
       ref={sectionRef}
-      className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full"
+      className="pb-20 px-4 sm:px-8 max-w-6xl mx-auto w-full scroll-mt-16"
     >
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
@@ -57,9 +57,11 @@ export function Expertise() {
             {expertise.map((capability, index) => (
               <motion.div
                 key={capability.id}
+                id={capability.id}
                 ref={capabilityRefs[capability.id]}
                 variants={itemVariants}
                 transition={{ delay: index * 0.1 }}
+                className="scroll-mt-16"
               >
                 <TerminalPanel title={t(`list.${capability.id}.title`)}>
                   <div className="space-y-3 text-sm">

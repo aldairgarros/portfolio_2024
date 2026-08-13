@@ -34,7 +34,7 @@ export function Home() {
       <section
         id="projects"
         ref={projectsRef}
-        className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full"
+        className="pb-20 px-4 sm:px-8 max-w-6xl mx-auto w-full scroll-mt-16"
       >
         <h2 className="sr-only">{t("title")}</h2>
         <TerminalFrame title={t("title")}>
@@ -43,6 +43,8 @@ export function Home() {
               <TerminalPanel
                 key={project}
                 ref={projectRefs[project]}
+                id={project}
+                className="scroll-mt-16"
                 title={
                   <span className="inline-flex items-center gap-3">
                     {t(`list.${project}.name.value`)}

@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { LuChevronLeft, LuChevronRight, LuX } from "react-icons/lu";
 import { useTranslation } from "react-i18next";
 
 export interface LightboxImage {
@@ -138,7 +138,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
             className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
             aria-label={t("close")}
           >
-            <X size={28} />
+            <LuX size={28} />
           </button>
 
           {/* Counter */}
@@ -153,7 +153,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
               className="absolute left-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
               aria-label={t("previous")}
             >
-              <ChevronLeft size={28} />
+              <LuChevronLeft size={28} />
             </button>
           )}
 
@@ -182,7 +182,7 @@ export function Lightbox({ images, initialIndex = 0, open, onClose }: Props) {
               className="absolute right-4 z-10 p-2 text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded-none"
               aria-label={t("next")}
             >
-              <ChevronRight size={28} />
+              <LuChevronRight size={28} />
             </button>
           )}
         </motion.div>

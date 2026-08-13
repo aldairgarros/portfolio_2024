@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Calendar } from "lucide-react";
+import { type RefCallback } from "react";
+import { LuCalendar } from "react-icons/lu";
 import { TerminalFrame, TerminalPanel } from "@/components/TerminalFrame";
 import { useActiveSection } from "@/context/ActiveSectionContext";
 import { useTranslation } from "react-i18next";
@@ -11,26 +12,38 @@ const itemVariants = {
 
 export function About() {
   const { t } = useTranslation("translation", { keyPrefix: "about" });
-  const LIST = ["experience1", "experience2"];
+  const LIST = ["experience1", "experience2"] as const;
   const sectionRef = useActiveSection("~/about");
+  type ExperienceId = (typeof LIST)[number];
+  const experienceRefs: Record<ExperienceId, RefCallback<HTMLElement>> = {
+    experience1: useActiveSection("~/about/experience1"),
+    experience2: useActiveSection("~/about/experience2"),
+  };
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 px-4 sm:px-8 max-w-6xl mx-auto w-full">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="pb-20 px-4 sm:px-8 max-w-6xl mx-auto w-full scroll-mt-16"
+    >
       <h2 className="sr-only">{t("title")}</h2>
       <TerminalFrame title={t("title")}>
         <div className="flex flex-col gap-6 p-6 sm:p-8">
           {LIST.map((item, index) => (
             <motion.div
               key={item}
+              id={item}
+              ref={experienceRefs[item]}
               variants={itemVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
               transition={{ delay: index * 0.15 }}
+              className="scroll-mt-16"
             >
               <TerminalPanel title={t(`list.${item}.title.value`)}>
                 <div className="flex items-center gap-2 text-sm font-mono text-zinc-500 dark:text-zinc-400 mb-4">
-                  <Calendar size={14} className="text-emerald-500 shrink-0" aria-hidden="true" />
+                  <LuCalendar size={14} className="text-emerald-500 shrink-0" aria-hidden="true" />
                   {t(`list.${item}.start.value`)} &mdash; {t(`list.${item}.end.value`)}
                 </div>
                 <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">

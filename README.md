@@ -11,7 +11,7 @@ Personal portfolio and résumé site — a bilingual (English / Brazilian Portug
 | Routing       | react-router-dom v7 (hash-based section navigation)                                 |
 | i18n          | i18next + react-i18next + browser language detector (`en` default/fallback, `br`)   |
 | Animation     | framer-motion                                                                       |
-| Icons         | lucide-react                                                                        |
+| Icons         | react-icons (`lu` set for UI icons, `fa6` for brand logos)                          |
 | Observability | OpenTelemetry web auto-instrumentation + web-vitals + Sentry (GlitchTip-compatible) |
 | Testing       | Vitest + React Testing Library + jsdom                                              |
 | Tooling       | ESLint (type-aware flat config), Prettier, husky + lint-staged, Commitizen          |
