@@ -1,3 +1,5 @@
+import { TerminalFrame } from "@/components/TerminalFrame";
+import { useActiveSection } from "@/context/ActiveSectionContext";
 import {
   motion,
   useAnimationFrame,
@@ -8,8 +10,6 @@ import {
   useTransform,
 } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { TerminalFrame } from "@/components/TerminalFrame";
-import { useActiveSection } from "@/context/ActiveSectionContext";
 
 interface CubeProps {
   size: number;
@@ -74,7 +74,6 @@ export function Hero() {
 
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.4], [0, -120]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -120,7 +119,6 @@ export function Hero() {
       <motion.div
         style={{
           y: prefersReducedMotion ? 0 : heroY,
-          opacity: prefersReducedMotion ? 1 : heroOpacity,
           rotateX: prefersReducedMotion ? 0 : rotateX,
           rotateY: prefersReducedMotion ? 0 : rotateY,
           transformPerspective: 1200,
