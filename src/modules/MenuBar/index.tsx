@@ -77,9 +77,6 @@ export function MenuBar({ links }: Props) {
               <span key={displayPath} className="animate-fade-in text-left truncate min-w-0">
                 {displayPath}
               </span>
-              <span className="animate-menu-blink mr-auto text-emerald-500" aria-hidden="true">
-                ▋
-              </span>
               <div className="ml-auto">
                 <LuChevronDown size={16} />
               </div>
