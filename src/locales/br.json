@@ -319,7 +319,13 @@
         "list": {
           "reactNative": { "label": "React Native", "imageSrc": "react.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
-          "jest": { "label": "Jest", "imageSrc": "jest.png" }
+          "jest": { "label": "Jest", "imageSrc": "jest.png" },
+          "swift": { "label": "Swift", "imageSrc": "swift.svg" },
+          "kotlin": { "label": "Kotlin", "imageSrc": "kotlin.svg" },
+          "java": { "label": "Java", "imageSrc": "java.svg" },
+          "xcode": { "label": "Xcode", "imageSrc": "xcode.svg" },
+          "androidStudio": { "label": "Android Studio", "imageSrc": "android-studio.svg" },
+          "firebase": { "label": "Firebase", "imageSrc": "firebase.svg" }
         }
       },
       "devops": {

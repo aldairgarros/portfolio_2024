@@ -33,7 +33,20 @@
       "javascript"
     ]
   },
-  { "id": "mobile", "tech": ["reactNative", "typescript", "jest"] },
+  {
+    "id": "mobile",
+    "tech": [
+      "reactNative",
+      "typescript",
+      "jest",
+      "swift",
+      "kotlin",
+      "java",
+      "xcode",
+      "androidStudio",
+      "firebase"
+    ]
+  },
   {
     "id": "devops",
     "tech": [
