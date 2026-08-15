@@ -42,51 +42,47 @@
     "title": "projects",
     "open": "open",
     "list": {
-      "penhor": {
+      "avape": {
         "image": {
-          "src": "/images/penhor-display.png",
-          "alt": "Project Penhor screenshot",
+          "src": "/images/avape-display.png",
+          "alt": "Project Avape screenshot",
           "prevLabel": "Previous images",
           "nextLabel": "Next images"
         },
         "name": {
           "label": "name",
-          "value": "Penhor"
+          "value": "Avape"
         },
         "date": {
           "label": "date",
           "value": "2022"
         },
-        "overview": {
-          "label": "overview",
-          "value": "System for pawn evaluators to work with gemology, watchmaking, and high-value pens. Developed with Typescript, Next.js, Postgres, JWT, and React Query. Responsive design for desktop and mobile."
-        },
         "description": {
           "label": "description",
-          "value": "Project of a system for pawn evaluators, currently encompassing three sectors of pawn: gemology, watchmaking, and high-value pens. The gemology section includes tools for calculating the qualities and characteristics of gems. The watchmaking and pens sections allow users to update databases with details and images of each item."
+          "value": "I built Avape, a pawn-evaluation platform for assessors across three sectors: gemology, watchmaking, and high-value pens. The gemology module offers tools for calculating gem qualities and characteristics, while the watchmaking and pens modules let users maintain item databases with detailed records and images."
         },
         "details": {
           "label": "details",
-          "value": "The system, developed with Typescript using Next.js and supported by Postgres database managed with Prisma, integrates JWT authentication for access control, TanStack Query (React Query) to manage cache and request of data and TanStack Table (React Table) to easy and fast implementation of the tables for the user. Additionally, it maintains a content change log for audit purposes. And it is fully operational and responsive, ensuring seamless operation on the small screens of mobile devices."
+          "value": "Developed with TypeScript on Next.js and a PostgreSQL database managed with Prisma, the system integrates JWT authentication for access control, TanStack Query for data fetching and caching, and TanStack Table for fast, responsive data tables. It keeps a full content-change log for auditing and is fully operational and responsive on desktop and mobile."
         },
         "images": {
           "label": "images",
           "list": {
             "image1": {
-              "src": "/images/penhor-desktop.png",
-              "alt": "Screenshot of project Penhor",
+              "src": "/images/avape-desktop.png",
+              "alt": "Screenshot of project Avape",
               "width": "1280",
               "height": "1017"
             },
             "image2": {
-              "src": "/images/penhor-mobile.jpeg",
-              "alt": "Screenshot of project Penhor",
+              "src": "/images/avape-mobile.jpeg",
+              "alt": "Screenshot of project Avape",
               "width": "393",
               "height": "852"
             },
             "image3": {
-              "src": "/images/penhor-mobile2.jpeg",
-              "alt": "Screenshot of project Penhor",
+              "src": "/images/avape-mobile2.jpeg",
+              "alt": "Screenshot of project Avape",
               "width": "393",
               "height": "852"
             }
@@ -96,7 +92,7 @@
       "musicaShow": {
         "image": {
           "src": "/images/musicashow-display.png",
-          "alt": "Project Musical Show screenshot",
+          "alt": "Project Musica Show screenshot",
           "prevLabel": "Previous images",
           "nextLabel": "Next images"
         },
@@ -108,17 +104,13 @@
           "label": "date",
           "value": "2023"
         },
-        "overview": {
-          "label": "overview",
-          "value": "App project designed for music artists, service and equipment providers and potential hirers. It covers UI/UX, frontend, database, and backend. Developed using Typescript, React Native, Postgres and JWT. Compatible with Android and iOS platforms."
-        },
         "description": {
           "label": "description",
-          "value": "An app created to facilitate communication between music artists and potential hirers, providing a platform for artists to showcase their talents and for event producers to articulate their needs for finding suitable performers. Additionally, it serves as a platform for service and equipment providers to showcase their offerings."
+          "value": "I designed and developed Musica Show, an app that connects music artists with event producers and potential hirers, while giving service and equipment providers a place to showcase their offerings."
         },
         "details": {
           "label": "details",
-          "value": "The project covers UI/UX research, designing, prototyping, frontend and backend development and database architecture. Developed using Typescript within React Native, with Postgres as a primary database solution. The authentication system relies on JWT (JSON Web Tokens). The application is optimized for speed, lightweight functionality, and is operational on both Android and iOS platforms, ensuring a flawless user experience."
+          "value": "The project covered UI/UX research, design, and prototyping, as well as frontend and backend development and database architecture. Built with TypeScript on React Native, with PostgreSQL as the primary database and JWT-based authentication, the app is optimized for speed and lightweight functionality, running on both Android and iOS with a seamless user experience."
         },
         "link": {
           "label": "UI/UX Project",
@@ -129,25 +121,25 @@
           "label": "images",
           "list": {
             "image1": {
-              "src": "/images/musicalshow.png",
+              "src": "/images/musicashow.png",
               "alt": "Screenshot of project Musica Show",
               "width": "393",
               "height": "852"
             },
             "image2": {
-              "src": "/images/musicalshow2.png",
+              "src": "/images/musicashow2.png",
               "alt": "Screenshot of project Musica Show",
               "width": "393",
               "height": "852"
             },
             "image3": {
-              "src": "/images/musicalshow3.png",
+              "src": "/images/musicashow3.png",
               "alt": "Screenshot of project Musica Show",
               "width": "393",
               "height": "852"
             },
             "image4": {
-              "src": "/images/musicalshow4.png",
+              "src": "/images/musicashow4.png",
               "alt": "Screenshot of project Musica Show",
               "width": "393",
               "height": "852"
@@ -170,17 +162,13 @@
           "label": "date",
           "value": "2023"
         },
-        "overview": {
-          "label": "overview",
-          "value": "Personal project of a finance app designed for ease and efficiency, covering UI/UX, frontend, database, and backend. Developed using Typescript, React Native, Postgres and JWT, it operates on both Android and iOS platforms."
-        },
         "description": {
           "label": "description",
-          "value": "This personal project aimed to replace traditional paper-based financial notes with an easy and optimized solution. The objective was to create a simple, straightforward, and user-friendly tool to facilitating efficient financial organization."
+          "value": "I built Bolso Bom as a personal project to replace paper-based financial notes with a simple, fast, and user-friendly app for efficient money management."
         },
         "details": {
           "label": "details",
-          "value": "The complete project encompassed UI/UX research, design, prototyping, frontend and backend development, and database architecture. Developed using Typescript in React Native, with Postgres serving as the primary database solution and employing JWT authentication. The application is optimized for speed, lightweight functionality, and seamless operation on both Android and iOS platforms, ensuring and optimal user experience."
+          "value": "The project covered UI/UX research, design, and prototyping, as well as frontend and backend development and database architecture. Developed with TypeScript on React Native, with PostgreSQL as the primary database and JWT authentication, the app is optimized for speed and lightweight functionality, running seamlessly on both Android and iOS."
         },
         "links": {
           "label": "UI/UX Project",
@@ -192,25 +180,25 @@
           "list": {
             "image1": {
               "src": "/images/bolsobom.png",
-              "alt": "Screenshot of project Musica Show",
+              "alt": "Screenshot of project Bolso Bom",
               "width": "393",
               "height": "852"
             },
             "image2": {
               "src": "/images/bolsobom2.png",
-              "alt": "Screenshot of project Musica Show",
+              "alt": "Screenshot of project Bolso Bom",
               "width": "393",
               "height": "852"
             },
             "image3": {
               "src": "/images/bolsobom3.png",
-              "alt": "Screenshot of project Musica Show",
+              "alt": "Screenshot of project Bolso Bom",
               "width": "393",
               "height": "852"
             },
             "image4": {
               "src": "/images/bolsobom4.png",
-              "alt": "Screenshot of project Musica Show",
+              "alt": "Screenshot of project Bolso Bom",
               "width": "393",
               "height": "852"
             }
@@ -232,13 +220,9 @@
           "label": "date",
           "value": "2026"
         },
-        "overview": {
-          "label": "overview",
-          "value": "A modern SPA/PWA system for a port control station that replaces error-prone manual Excel reports with an automated, real-time maneuver forecast platform for maritime pilots."
-        },
         "description": {
           "label": "description",
-          "value": "Atalaia Pro streamlines operational communication at the Atalaia control room by replacing manual spreadsheet-based maneuver forecasts with an automated, real-time system. Built as a Progressive Web App, it works offline and on mobile devices -- essential for maritime pilots at sea. Features include automatic data import, dynamic schedule management, multi-scenario forecast support, and instant updates. Usability testing showed an 82% reduction in report preparation time compared to the previous Excel-based workflow."
+          "value": "I designed and built Atalaia Pro to streamline operational communication in the Atalaia control room, replacing manual spreadsheet-based maneuver forecasts with an automated, real-time system. Built as a Progressive Web App, it works offline and on mobile devices -- essential for maritime pilots at sea. Features include automatic data import, dynamic schedule management, multi-scenario forecast support, and instant updates. Usability testing showed an 82% reduction in report preparation time compared to the previous Excel-based workflow."
         },
         "details": {
           "label": "details",
@@ -290,8 +274,8 @@
       "api-backend": {
         "title": "API & Backend Systems",
         "context": "Designing and implementing reliable server-side architectures — REST APIs, database modeling, authentication systems, and observability pipelines.",
-        "applicability": "Applied across 4 backend projects: Fastify 5 APIs with Drizzle ORM on PostgreSQL (Atalaia Pro — 80+ endpoints, role-based auth with 6 user groups), Koa 2 with raw SQL and Firebase OAuth (Music Market — 19 tables, 80+ endpoints), Express with Sequelize on MariaDB (Budget), and a Fastify podcast API with full Zod schema validation and auto-generated Swagger docs.",
-        "impact": "Delivered production APIs handling authentication, soft deletes, pagination, filtering, and multi-tenant operations. All projects include CI/CD pipelines, Docker Compose orchestration, and observability via OpenTelemetry and Sentry.",
+        "applicability": "I designed and built the backends for all 6 of my production projects: Atalaia Pro (Fastify 5 with Drizzle ORM on PostgreSQL — 80+ endpoints and role-based auth across 6 user groups), Musica Show (Koa 2 with raw SQL and Firebase OAuth — 19 tables, 80+ endpoints), Avape (Next.js with Prisma 7 on PostgreSQL — 24 tables with a full audit trail), Bolso Bom (PostgreSQL with JWT), Budget (Express with Sequelize on MariaDB), and a podcast platform (Fastify with full Zod schema validation and auto-generated Swagger docs).",
+        "impact": "I delivered 6 production backends, all live behind CI/CD with automated testing and role-based access control.",
         "list": {
           "node": { "label": "Node", "imageSrc": "nodejs.png" },
           "express": { "label": "Express", "imageSrc": "expressjs.png" },
@@ -308,8 +292,8 @@
       "frontend-engineering": {
         "title": "Modern Frontend Engineering",
         "context": "Building performant, accessible, and visually refined single-page applications using component-driven architecture, type-safe development, and modern tooling.",
-        "applicability": "Leveraged across 4 frontend projects: a React 19 PWA with offline IndexedDB cache, TypeScript 6, Zustand, and TanStack Query/Table (Atalaia Pro — 12 pages, 60+ components, dual router trees for auth); a Next.js 16 app with Prisma 7 and full audit trail (Penhor — 14 pages, 24 DB tables); a React 18 admin dashboard with Zustand and Tailwind 3 (Music Market — 12 routes); and this bilingual portfolio with i18next and code-as-UI aesthetic.",
-        "impact": "Delivered PWAs with offline support, role-based UI filtering, drag-and-drop UX, and consistent design systems. Established reusable component libraries, type-safe API contracts, and automated CI/CD builds across projects.",
+        "applicability": "I leveraged this across 4 frontend projects: a React 19 PWA with offline IndexedDB cache, TypeScript 6, Zustand, and TanStack Query/Table (Atalaia Pro — 12 pages, 60+ components, dual router trees for auth); a Next.js 16 app with Prisma 7 and full audit trail (Avape — 14 pages, 24 DB tables); a React 18 admin dashboard with Zustand and Tailwind 3 (Musica Show — 12 routes); and this bilingual portfolio with i18next and code-as-UI aesthetic.",
+        "impact": "I cut select rendering from over 3 seconds to instant using React Window virtualization and TanStack Query caching, and shipped offline-capable PWAs with role-based UI filtering.",
         "list": {
           "react": { "label": "React", "imageSrc": "react.png" },
           "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
@@ -330,8 +314,8 @@
       "mobile": {
         "title": "Mobile Development",
         "context": "Creating cross-platform native mobile applications for Android and iOS using React Native with shared TypeScript business logic.",
-        "applicability": "Delivered 3 mobile applications from scratch: a personal finance app (Bolso Bom) with React Native, PostgreSQL backend, and JWT authentication; the Music Market community marketplace app connecting musicians and producers; and a social podcast app with chat rooms, media management, and user group permissions.",
-        "impact": "Developed fully functional native apps with cross-platform TypeScript code reuse, secure authentication, push notifications, and REST API integration. Managed the full development lifecycle from UI/UX design through backend architecture and deployment.",
+        "applicability": "I delivered 3 mobile applications from scratch: a personal finance app (Bolso Bom) with React Native, a PostgreSQL backend, and JWT authentication; the Musica Show community marketplace app connecting musicians and producers; and a social podcast app with chat rooms, media management, and user group permissions.",
+        "impact": "I shipped 3 native apps live on both Android and iOS from a single TypeScript codebase, with secure authentication and push notifications.",
         "list": {
           "reactNative": { "label": "React Native", "imageSrc": "react.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
@@ -341,8 +325,8 @@
       "devops": {
         "title": "DevOps & Infrastructure",
         "context": "Managing self-hosted production infrastructure on VPS environments — container orchestration, observability stacks, CI/CD pipelines, and automated deployments.",
-        "applicability": "Designed and maintain a complete LGTM observability platform (Loki, Grafana, Tempo, Prometheus) with 9 containerized services on rootless Podman, 14 alert rules, 8 provisioned dashboards, and SLO-based alerting at 99.5% availability. All 6 production projects run Docker/Podman Compose with GitHub Actions CI/CD, SSH-based deploys, Nginx reverse proxies, and PostgreSQL exporter monitoring.",
-        "impact": "Established a self-healing infrastructure with automatic deploy rollbacks, Telegram + email alert routing, multi-window error budget tracking, and 30-day log/metric retention. Enabled full-stack observability — logs, metrics, and distributed traces — across all deployed applications.",
+        "applicability": "I designed and maintain a complete LGTM observability platform (Loki, Grafana, Tempo, Prometheus) with 9 containerized services on rootless Podman, 14 alert rules, 8 provisioned dashboards, and SLO-based alerting with a 99.5% availability target. All 6 of my production projects run Docker/Podman Compose with GitHub Actions CI/CD, SSH-based deploys, Nginx reverse proxies, and PostgreSQL exporter monitoring.",
+        "impact": "I maintain 100% measured availability (against a 99.5% SLO target) across 9 self-hosted services, with about 8 deploys per month, 14 alert rules, 8 dashboards, and 30-day log/metric retention.",
         "list": {
           "docker": { "label": "Docker", "imageSrc": "docker.png" },
           "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
@@ -360,11 +344,27 @@
       "ux-strategy": {
         "title": "UX Strategy & Design",
         "context": "Applying user-centered design methodology from discovery research through high-fidelity prototyping — blending analytical rigor with creative problem-solving.",
-        "applicability": "Led 3 complete freelance UI/UX design projects using modern methodologies. Conducted user interviews, competitor analysis, proto-personas, journey mapping, CSD matrices, wireframes, usability testing, and delivered high-fidelity prototypes in Figma. Applied this design foundation across all development projects.",
-        "impact": "Received consistently positive client feedback for simplified approaches, attention to detail, and actionable research insights. The design methodology now informs all development work — every project begins with user-centered analysis before a single line of code.",
+        "applicability": "I led 4 complete freelance UI/UX design projects using modern methodologies. I conducted user interviews, competitor analysis, proto-personas, journey mapping, CSD matrices, wireframes, and usability testing, and delivered high-fidelity prototypes in Figma. I applied this design foundation across all development projects.",
+        "impact": "I delivered 4 complete design projects for 4 distinct clients. The same user-centered methodology now starts every development project — research before a single line of code.",
         "list": {
-          "ui": { "label": "UI Design", "imageSrc": "design.png" },
-          "ux": { "label": "UX Research", "imageSrc": "insight.png" },
+          "designThinking": { "label": "Design Thinking", "imageSrc": "design-thinking.svg" },
+          "deskResearch": { "label": "Desk Research", "imageSrc": "desk-research.svg" },
+          "benchmarking": { "label": "Benchmarking", "imageSrc": "benchmarking.svg" },
+          "userInterviews": { "label": "User Interviews", "imageSrc": "user-interviews.svg" },
+          "competitorAnalysis": {
+            "label": "Competitor Analysis",
+            "imageSrc": "competitor-analysis.svg"
+          },
+          "protoPersonas": { "label": "Proto-personas", "imageSrc": "proto-personas.svg" },
+          "empathyMap": { "label": "Empathy Map", "imageSrc": "empathy-map.svg" },
+          "journeyMapping": { "label": "Journey Mapping", "imageSrc": "journey-mapping.svg" },
+          "csdMatrix": { "label": "CSD Matrix", "imageSrc": "csd-matrix.svg" },
+          "userFlow": { "label": "User Flow", "imageSrc": "user-flow.svg" },
+          "wireframing": { "label": "Wireframing", "imageSrc": "wireframing.svg" },
+          "prototyping": { "label": "Prototyping", "imageSrc": "prototyping.svg" },
+          "usabilityTesting": { "label": "Usability Testing", "imageSrc": "usability-testing.svg" },
+          "feedbackMatrix": { "label": "Feedback Matrix", "imageSrc": "feedback-matrix.svg" },
+          "branding": { "label": "Branding", "imageSrc": "branding.svg" },
           "figma": { "label": "Figma", "imageSrc": "figma.png" }
         }
       }
@@ -380,15 +380,15 @@
         },
         "description": {
           "label": "description",
-          "value": "Planning and creation of digital products and services, focusing on user experience and interface design."
+          "value": "I plan and create digital products and services, focusing on user experience and interface design."
         },
         "work": {
           "label": "work",
           "items": [
-            "Delivered 4 complete design projects end-to-end, from discovery research to high-fidelity prototypes.",
-            "Conducted user interviews, competitor analysis, proto-personas, journey mapping and CSD matrices to ground every decision.",
-            "Crafted maps, flows, wireframes and UX metrics, validated through usability testing.",
-            "Defined branding and high-fidelity prototypes that translated strategy into polished interfaces."
+            "I delivered 4 complete design projects end-to-end, from discovery research to high-fidelity prototypes.",
+            "I conducted user interviews, competitor analysis, proto-personas, journey mapping, and CSD matrices to ground every decision.",
+            "I crafted maps, flows, wireframes, and UX metrics, validated through usability testing.",
+            "I defined branding and high-fidelity prototypes that translated strategy into polished interfaces."
           ]
         },
         "tools": {
@@ -402,9 +402,8 @@
         "achievements": {
           "label": "achievements",
           "items": [
-            "Received positive feedback on every project for a simplified, user-focused approach.",
-            "Recognized for attention to detail and the quality of the research insights delivered.",
-            "Built lasting client relationships, with results appreciated across all engagements."
+            "I delivered 4 complete design projects for 4 distinct clients.",
+            "Every project was validated through usability testing before delivery."
           ]
         },
         "start": {
@@ -423,15 +422,15 @@
         },
         "description": {
           "label": "description",
-          "value": "Development of responsive web projects and native mobile applications."
+          "value": "I develop responsive web platforms and native mobile applications."
         },
         "work": {
           "label": "work",
           "items": [
-            "Developed 3 responsive web platforms with Next.js and 2 native mobile apps with React Native CLI.",
-            "Owned the full stack — API design, secure authentication and database architecture.",
-            "Shipped performance-focused features: complex tables with selection, filtering and sorting using TanStack Table and React Query.",
-            "Optimized large select inputs with React Window, significantly improving form performance."
+            "I developed 3 responsive web platforms (Next.js and React) and 3 native mobile apps with React Native CLI.",
+            "I owned the full stack — API design, secure authentication, and database architecture.",
+            "I shipped performance-focused features: complex tables with selection, filtering, and sorting using TanStack Table and React Query.",
+            "I optimized large select inputs with React Window virtualization."
           ]
         },
         "tools": {
@@ -458,10 +457,9 @@
         "achievements": {
           "label": "achievements",
           "items": [
-            "Delivered tools now in daily operation at a port movements control room.",
-            "Built and maintain a pawn evaluation platform, a financial control solution and a music market hiring app.",
-            "Achieved significant performance gains through TanStack Query caching and React Window virtualization.",
-            "Delivered every product before deadline, with room for enhancements and the same attention to detail."
+            "I put Atalaia Pro into daily operation at a port control room, serving nearly 50 users and about 20 reports per day on average.",
+            "I built and maintain 3 products: Avape (pawn evaluation), Bolso Bom (personal finance), and Musica Show (music hiring).",
+            "I cut select rendering from over 3 seconds to instant with TanStack Query caching and React Window virtualization."
           ]
         },
         "start": {

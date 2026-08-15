@@ -9,7 +9,7 @@ import { MenuBar, type NavItem } from "./index";
 
 const links: NavItem[] = [
   { label: "about", hash: "about" },
-  { label: "projects", hash: "projects", children: [{ label: "Penhor", hash: "penhor" }] },
+  { label: "projects", hash: "projects", children: [{ label: "Avape", hash: "avape" }] },
 ];
 
 function renderMenuBar() {
@@ -36,7 +36,7 @@ describe("MenuBar", () => {
     renderMenuBar();
     await user.click(screen.getByRole("button", { name: /open menu/i }));
     expect(screen.getByRole("menuitem", { name: /about/i })).toBeInTheDocument();
-    expect(screen.getByRole("menuitem", { name: /penhor/i })).toBeInTheDocument();
+    expect(screen.getByRole("menuitem", { name: /avape/i })).toBeInTheDocument();
   });
 
   it("switches language", async () => {

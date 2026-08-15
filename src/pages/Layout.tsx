@@ -34,7 +34,7 @@ export function RootLayout() {
     {
       label: t("projects.title"),
       hash: "projects",
-      children: (["atalaiaPro", "penhor", "bolsobom", "musicaShow"] as const).map((id) => ({
+      children: (["atalaiaPro", "avape", "bolsobom", "musicaShow"] as const).map((id) => ({
         label: t(`projects.list.${id}.name.value`),
         hash: id,
       })),

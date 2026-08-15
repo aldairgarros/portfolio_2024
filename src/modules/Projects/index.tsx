@@ -7,11 +7,11 @@ import { useActiveSection } from "@/context/ActiveSectionContext";
 import { ProjectDetail } from "@/modules/Projects/ProjectDetail";
 import { useTranslation } from "react-i18next";
 
-const PROJECTS = ["atalaiaPro", "penhor", "bolsobom", "musicaShow"] as const;
+const PROJECTS = ["atalaiaPro", "avape", "bolsobom", "musicaShow"] as const;
 
 const PROJECT_PATHS: Record<(typeof PROJECTS)[number], string> = {
   atalaiaPro: "~/projects/atalaia-pro",
-  penhor: "~/projects/penhor",
+  avape: "~/projects/avape",
   bolsobom: "~/projects/bolso-bom",
   musicaShow: "~/projects/musica-show",
 };

@@ -50,5 +50,25 @@
       "playwright"
     ]
   },
-  { "id": "ux-strategy", "tech": ["ui", "ux", "figma"] }
+  {
+    "id": "ux-strategy",
+    "tech": [
+      "designThinking",
+      "deskResearch",
+      "benchmarking",
+      "userInterviews",
+      "competitorAnalysis",
+      "protoPersonas",
+      "empathyMap",
+      "journeyMapping",
+      "csdMatrix",
+      "userFlow",
+      "wireframing",
+      "prototyping",
+      "usabilityTesting",
+      "feedbackMatrix",
+      "branding",
+      "figma"
+    ]
+  }
 ]

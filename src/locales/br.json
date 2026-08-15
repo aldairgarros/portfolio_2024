@@ -18,7 +18,7 @@
     },
     "extras": {
       "available": {
-        "label": "Disponivel",
+        "label": "Disponível",
         "value": "Disponível para novas oportunidades"
       },
       "artificialIntelligence": {
@@ -42,51 +42,47 @@
     "title": "projetos",
     "open": "abrir",
     "list": {
-      "penhor": {
+      "avape": {
         "image": {
-          "src": "/images/penhor-display.png",
-          "alt": "Image do projeto Penhor",
+          "src": "/images/avape-display.png",
+          "alt": "Imagem do projeto Avape",
           "prevLabel": "Imagens anteriores",
           "nextLabel": "Próximas imagens"
         },
         "name": {
           "label": "nome",
-          "value": "Penhor"
+          "value": "Avape"
         },
         "date": {
           "label": "data",
           "value": "2022"
         },
-        "overview": {
-          "label": "visão geral",
-          "value": "Sistema para avaliadores de penhor trabalharem com gemologia, relojoaria e canetas de alto valor. Desenvolvido com Typescript, Next.js, Postgres, JWT e React Query. Design responsivo para desktop e mobile."
-        },
         "description": {
           "label": "descrição",
-          "value": "Projeto de um sistema para avaliadores de penhor, abrangendo atualmente três setores de penhor: gemologia, relojoaria e canetas de alto valor. A seção de gemologia inclui ferramentas para calcular as qualidades e características das gemas. As seções de relojoaria e canetas permitem que os usuários atualizem bancos de dados com detalhes e imagens de cada item."
+          "value": "Construí o Avape, uma plataforma de avaliação de penhor para avaliadores em três setores: gemologia, relojoaria e canetas de alto valor. O módulo de gemologia oferece ferramentas para calcular qualidades e características das gemas, enquanto os módulos de relojoaria e canetas permitem que os usuários mantenham bancos de dados de itens com registros e imagens detalhados."
         },
         "details": {
           "label": "detalhes",
-          "value": "O sistema, desenvolvido com Typescript usando Next.js e um banco de dados Postgres gerenciado com Prisma, integra autenticação JWT para controle de acesso, TanStack Query (React Query) para gerenciar cache e solicitação de dados e TanStack Table (React Table) para fácil e rápida implementação das tabelas para o usuário. Além disso, mantém um registro de alterações de conteúdo para fins de auditoria. E é totalmente operacional e responsivo, garantindo um funcionamento perfeito nas pequenas telas de dispositivos móveis."
+          "value": "Desenvolvido com TypeScript em Next.js e banco de dados PostgreSQL gerenciado com Prisma, o sistema integra autenticação JWT para controle de acesso, TanStack Query para busca e cache de dados e TanStack Table para tabelas rápidas e responsivas. Mantém um registro completo de alterações de conteúdo para fins de auditoria e é totalmente operacional e responsivo em desktop e mobile."
         },
         "images": {
           "label": "imagens",
           "list": {
             "image1": {
-              "src": "/images/penhor-desktop.png",
-              "alt": "Imagem do projeto Penhor",
+              "src": "/images/avape-desktop.png",
+              "alt": "Imagem do projeto Avape",
               "width": "1280",
               "height": "1017"
             },
             "image2": {
-              "src": "/images/penhor-mobile.jpeg",
-              "alt": "Imagem do projeto Penhor",
+              "src": "/images/avape-mobile.jpeg",
+              "alt": "Imagem do projeto Avape",
               "width": "393",
               "height": "852"
             },
             "image3": {
-              "src": "/images/penhor-mobile2.jpeg",
-              "alt": "Imagem do projeto Penhor",
+              "src": "/images/avape-mobile2.jpeg",
+              "alt": "Imagem do projeto Avape",
               "width": "393",
               "height": "852"
             }
@@ -96,7 +92,7 @@
       "musicaShow": {
         "image": {
           "src": "/images/musicashow-display.png",
-          "alt": "Imagem do projeto Musical Show",
+          "alt": "Imagem do projeto Musica Show",
           "prevLabel": "Imagens anteriores",
           "nextLabel": "Próximas imagens"
         },
@@ -108,17 +104,13 @@
           "label": "data",
           "value": "2023"
         },
-        "overview": {
-          "label": "visão geral",
-          "value": "Projeto de aplicativo projetado para artistas musicais, prestadores de serviços e equipamentos e potenciais contratantes. Abrange UI/UX, frontend, banco de dados e backend. Desenvolvido com Typescript, React Native, Postgres e JWT. Compatível com plataformas Android e iOS."
-        },
         "description": {
           "label": "descrição",
-          "value": "Um aplicativo criado para facilitar a comunicação entre artistas musicais e potenciais contratantes, fornecendo uma plataforma para que os artistas mostrem seus talentos e para que os produtores de eventos articulem suas necessidades para encontrar artistas adequados. Além disso, serve como plataforma para prestadores de serviços e equipamentos mostrarem suas ofertas."
+          "value": "Projetei e desenvolvi o Musica Show, um aplicativo que conecta artistas musicais a produtores de eventos e potenciais contratantes, além de dar a prestadores de serviços e equipamentos um espaço para divulgar suas ofertas."
         },
         "details": {
           "label": "detalhes",
-          "value": "O projeto abrange pesquisa, design, prototipagem, desenvolvimento frontend e backend, arquitetura de banco de dados e UX/UI. Desenvolvido com Typescript em React Native, com Postgres como solução de banco de dados principal. O sistema de autenticação é baseado em JWT (JSON Web Tokens). O aplicativo é otimizado para velocidade, funcionalidade leve e é operacional nas plataformas Android e iOS, garantindo uma experiência perfeita para o usuário."
+          "value": "O projeto abrangeu pesquisa, design e prototipagem de UI/UX, além de desenvolvimento frontend e backend e arquitetura de banco de dados. Desenvolvido com TypeScript em React Native, com PostgreSQL como banco de dados principal e autenticação baseada em JWT, o aplicativo é otimizado para velocidade e leveza, funcionando em Android e iOS com uma experiência perfeita para o usuário."
         },
         "link": {
           "label": "Projeto UI/UX",
@@ -129,25 +121,25 @@
           "label": "imagens",
           "list": {
             "image1": {
-              "src": "/images/musicalshow.png",
+              "src": "/images/musicashow.png",
               "alt": "Imagem do projeto Musica Show",
               "width": "393",
               "height": "852"
             },
             "image2": {
-              "src": "/images/musicalshow2.png",
+              "src": "/images/musicashow2.png",
               "alt": "Imagem do projeto Musica Show",
               "width": "393",
               "height": "852"
             },
             "image3": {
-              "src": "/images/musicalshow3.png",
+              "src": "/images/musicashow3.png",
               "alt": "Imagem do projeto Musica Show",
               "width": "393",
               "height": "852"
             },
             "image4": {
-              "src": "/images/musicalshow4.png",
+              "src": "/images/musicashow4.png",
               "alt": "Imagem do projeto Musica Show",
               "width": "393",
               "height": "852"
@@ -170,17 +162,13 @@
           "label": "data",
           "value": "2023"
         },
-        "overview": {
-          "label": "visão geral",
-          "value": "Projeto pessoal de um aplicativo financeiro projetado para facilidade e eficiência, abrangendo UX/UI, frontend, banco de dados e backend. Desenvolvido com Typescript, React Native, Postgres e JWT, opera nas plataformas Android e iOS."
-        },
         "description": {
           "label": "descrição",
-          "value": "Este projeto pessoal teve como objetivo substituir anotações financeiras tradicionais em papel por uma solução fácil e otimizada. O objetivo era criar uma ferramenta simples, direta e amigável para o usuário para facilitar a organização financeira eficiente."
+          "value": "Construí o Bolso Bom como projeto pessoal para substituir as anotações financeiras em papel por um aplicativo simples, rápido e amigável para a organização eficiente do dinheiro."
         },
         "details": {
           "label": "detalhes",
-          "value": "O projeto completo abrange pesquisa, design, prototipagem, desenvolvimento frontend e backend, arquitetura de banco de dados e UX/UI. Desenvolvido com Typescript em React Native, com Postgres como solução de banco de dados principal e empregando autenticação JWT. O aplicativo é otimizado para velocidade, funcionalidade leve e operação perfeita nas plataformas Android e iOS, garantindo uma experiência ideal para o usuário."
+          "value": "O projeto abrangeu pesquisa, design e prototipagem de UI/UX, além de desenvolvimento frontend e backend e arquitetura de banco de dados. Desenvolvido com TypeScript em React Native, com PostgreSQL como banco de dados principal e autenticação JWT, o aplicativo é otimizado para velocidade e leveza, funcionando perfeitamente em Android e iOS."
         },
         "link": {
           "label": "Projeto UI/UX",
@@ -232,13 +220,9 @@
           "label": "data",
           "value": "2026"
         },
-        "overview": {
-          "label": "visão geral",
-          "value": "Um sistema SPA/PWA moderno para uma estação de controle portuário que substitui relatórios manuais em Excel por uma plataforma automatizada de previsão de manobras em tempo real para práticos de navios."
-        },
         "description": {
           "label": "descrição",
-          "value": "O Atalaia Pro otimiza a comunicação operacional na sala de controle da Atalaia, substituindo previsões manuais baseadas em planilhas por um sistema automatizado em tempo real. Construído como um Progressive Web App, funciona offline e em dispositivos móveis -- essencial para práticos no mar. Os recursos incluem importação automática de dados, gerenciamento dinâmico de escalas, suporte a múltiplos cenários de previsão e atualizações instantâneas. Os testes de usabilidade mostraram redução de 82% no tempo de preparação de relatórios em comparação com o fluxo anterior baseado em Excel."
+          "value": "Projetei e desenvolvi o Atalaia Pro para otimizar a comunicação operacional na sala de controle da Atalaia, substituindo as previsões manuais baseadas em planilhas por um sistema automatizado em tempo real. Construído como um Progressive Web App, funciona offline e em dispositivos móveis — essencial para os práticos no mar. Os recursos incluem importação automática de dados, gerenciamento dinâmico de escalas, suporte a múltiplos cenários de previsão e atualizações instantâneas. Os testes de usabilidade mostraram redução de 82% no tempo de preparação de relatórios em comparação com o fluxo anterior baseado em Excel."
         },
         "details": {
           "label": "detalhes",
@@ -290,8 +274,8 @@
       "api-backend": {
         "title": "API & Sistemas Backend",
         "context": "Projeto e implementação de arquiteturas server-side confiáveis — APIs REST, modelagem de banco de dados, sistemas de autenticação e pipelines de observabilidade.",
-        "applicability": "Aplicado em 4 projetos backend: APIs Fastify 5 com Drizzle ORM em PostgreSQL (Atalaia Pro — 80+ endpoints, autenticação com 6 grupos de usuários), Koa 2 com SQL puro e OAuth Firebase (Music Market — 19 tabelas, 80+ endpoints), Express com Sequelize em MariaDB (Budget) e uma API podcast com Fastify, validação Zod completa e documentação Swagger auto-gerada.",
-        "impact": "Entreguei APIs em produção com autenticação, soft deletes, paginação, filtros e operações multi-tenant. Todos os projetos incluem pipelines CI/CD, orquestração com Docker Compose e observabilidade via OpenTelemetry e Sentry.",
+        "applicability": "Projetei e construí os backends de todos os meus 6 projetos em produção: Atalaia Pro (Fastify 5 com Drizzle ORM em PostgreSQL — 80+ endpoints e autenticação com 6 grupos de usuários), Musica Show (Koa 2 com SQL puro e OAuth Firebase — 19 tabelas, 80+ endpoints), Avape (Next.js com Prisma 7 em PostgreSQL — 24 tabelas com trilha de auditoria completa), Bolso Bom (PostgreSQL com JWT), Budget (Express com Sequelize em MariaDB) e uma plataforma de podcast (Fastify com validação Zod completa e documentação Swagger auto-gerada).",
+        "impact": "Entreguei 6 backends em produção, todos ativos atrás de CI/CD com testes automatizados e controle de acesso baseado em permissões.",
         "list": {
           "node": { "label": "Node", "imageSrc": "nodejs.png" },
           "express": { "label": "Express", "imageSrc": "expressjs.png" },
@@ -308,8 +292,8 @@
       "frontend-engineering": {
         "title": "Engenharia Frontend Moderna",
         "context": "Construção de single-page applications performáticas, acessíveis e visualmente refinadas usando arquitetura orientada a componentes, desenvolvimento type-safe e ferramental moderno.",
-        "applicability": "Aplicado em 4 projetos frontend: um PWA React 19 com cache offline IndexedDB, TypeScript 6, Zustand e TanStack Query/Table (Atalaia Pro — 12 páginas, 60+ componentes, árvores de rotas duplas para autenticação); um app Next.js 16 com Prisma 7 e trilha de auditoria completa (Penhor — 14 páginas, 24 tabelas); um dashboard admin React 18 com Zustand e Tailwind 3 (Music Market — 12 rotas); e este portfólio bilíngue com i18next e estética code-as-UI.",
-        "impact": "Entreguei PWAs com suporte offline, filtragem de UI por permissões, UX com drag-and-drop e sistemas de design consistentes. Estabeleci bibliotecas de componentes reutilizáveis, contratos de API type-safe e builds CI/CD automatizados em todos os projetos.",
+        "applicability": "Apliquei isso em 4 projetos frontend: um PWA React 19 com cache offline IndexedDB, TypeScript 6, Zustand e TanStack Query/Table (Atalaia Pro — 12 páginas, 60+ componentes, árvores de rotas duplas para autenticação); um app Next.js 16 com Prisma 7 e trilha de auditoria completa (Avape — 14 páginas, 24 tabelas); um dashboard admin React 18 com Zustand e Tailwind 3 (Musica Show — 12 rotas); e este portfólio bilíngue com i18next e estética code-as-UI.",
+        "impact": "Reduzi a renderização de selects de mais de 3 segundos para resposta instantânea usando virtualização com React Window e cache com TanStack Query, e entreguei PWAs com suporte offline e filtragem de UI por permissões.",
         "list": {
           "react": { "label": "React", "imageSrc": "react.png" },
           "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
@@ -330,8 +314,8 @@
       "mobile": {
         "title": "Desenvolvimento Mobile",
         "context": "Criação de aplicativos móveis nativos multiplataforma para Android e iOS usando React Native com lógica de negócio compartilhada em TypeScript.",
-        "applicability": "Entreguei 3 aplicativos móveis do zero: um app de finanças pessoais (Bolso Bom) com React Native, backend PostgreSQL e autenticação JWT; o app Music Market conectando músicos e produtores em um marketplace comunitário; e um app social de podcast com salas de chat, gestão de mídia e permissões por grupos de usuários.",
-        "impact": "Desenvolvi apps nativos totalmente funcionais com reuso de código TypeScript entre plataformas, autenticação segura, notificações push e integração com APIs REST. Gerenciei o ciclo completo de desenvolvimento, do design UI/UX à arquitetura backend e deploy.",
+        "applicability": "Entreguei 3 aplicativos móveis do zero: um app de finanças pessoais (Bolso Bom) com React Native, backend PostgreSQL e autenticação JWT; o app Musica Show conectando músicos e produtores em um marketplace comunitário; e um app social de podcast com salas de chat, gestão de mídia e permissões por grupos de usuários.",
+        "impact": "Lancei 3 aplicativos nativos ativos em Android e iOS a partir de uma única base de código TypeScript, com autenticação segura e notificações push.",
         "list": {
           "reactNative": { "label": "React Native", "imageSrc": "react.png" },
           "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
@@ -341,8 +325,8 @@
       "devops": {
         "title": "DevOps & Infraestrutura",
         "context": "Gestão de infraestrutura auto-hospedada em VPS — orquestração de contêineres, stacks de observabilidade, pipelines CI/CD e deploys automatizados.",
-        "applicability": "Projetei e mantenho uma plataforma completa de observabilidade LGTM (Loki, Grafana, Tempo, Prometheus) com 9 serviços conteinerizados em Podman rootless, 14 regras de alerta, 8 dashboards provisionados e alertas baseados em SLO com 99,5% de disponibilidade. Todos os 6 projetos em produção utilizam Docker/Podman Compose com GitHub Actions CI/CD, deploys via SSH, proxies reversos Nginx e monitoramento com PostgreSQL exporter.",
-        "impact": "Estabeleci uma infraestrutura com auto-recuperação usando rollbacks automáticos, roteamento de alertas Telegram + email, rastreamento de orçamento de erro multi-janela e retenção de 30 dias de logs/métricas. Possibilitei observabilidade full-stack — logs, métricas e traces distribuídos — em todas as aplicações.",
+        "applicability": "Projetei e mantenho uma plataforma completa de observabilidade LGTM (Loki, Grafana, Tempo, Prometheus) com 9 serviços conteinerizados em Podman rootless, 14 regras de alerta, 8 dashboards provisionados e alertas baseados em SLO com meta de 99,5% de disponibilidade. Todos os meus 6 projetos em produção utilizam Docker/Podman Compose com GitHub Actions CI/CD, deploys via SSH, proxies reversos Nginx e monitoramento com PostgreSQL exporter.",
+        "impact": "Mantenho 100% de disponibilidade medida (contra uma meta de SLO de 99,5%) em 9 serviços auto-hospedados, com cerca de 8 deploys por mês, 14 regras de alerta, 8 dashboards e retenção de 30 dias de logs/métricas.",
         "list": {
           "docker": { "label": "Docker", "imageSrc": "docker.png" },
           "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
@@ -360,11 +344,30 @@
       "ux-strategy": {
         "title": "UX Strategy & Design",
         "context": "Aplicação de metodologia de design centrado no usuário, da pesquisa de descoberta à prototipação de alta fidelidade — unindo rigor analítico e resolução criativa de problemas.",
-        "applicability": "Liderei 3 projetos freelance completos de UI/UX usando metodologias modernas. Conduzi entrevistas com usuários, análise competitiva, proto-personas, mapeamento de jornada, matrizes CSD, wireframes, testes de usabilidade e entreguei protótipos de alta fidelidade no Figma. Apliquei essa base de design em todos os projetos de desenvolvimento.",
-        "impact": "Recebi feedback consistentemente positivo dos clientes pela abordagem simplificada, atenção aos detalhes e insights de pesquisa acionáveis. A metodologia de design agora orienta todo o trabalho de desenvolvimento — cada projeto começa com análise centrada no usuário antes da primeira linha de código.",
+        "applicability": "Liderei 4 projetos freelance completos de UI/UX usando metodologias modernas. Conduzi entrevistas com usuários, análise competitiva, proto-personas, mapeamento de jornada, matrizes CSD, wireframes e testes de usabilidade, e entreguei protótipos de alta fidelidade no Figma. Apliquei essa base de design em todos os projetos de desenvolvimento.",
+        "impact": "Entreguei 4 projetos completos de design para 4 clientes distintos. A mesma metodologia centrada no usuário agora inicia cada projeto de desenvolvimento — pesquisa antes da primeira linha de código.",
         "list": {
-          "ui": { "label": "UI Design", "imageSrc": "design.png" },
-          "ux": { "label": "UX Research", "imageSrc": "insight.png" },
+          "designThinking": { "label": "Design Thinking", "imageSrc": "design-thinking.svg" },
+          "deskResearch": { "label": "Desk Research", "imageSrc": "desk-research.svg" },
+          "benchmarking": { "label": "Benchmarking", "imageSrc": "benchmarking.svg" },
+          "userInterviews": { "label": "Entrevistas", "imageSrc": "user-interviews.svg" },
+          "competitorAnalysis": {
+            "label": "Análise Competitiva",
+            "imageSrc": "competitor-analysis.svg"
+          },
+          "protoPersonas": { "label": "Proto-personas", "imageSrc": "proto-personas.svg" },
+          "empathyMap": { "label": "Mapa de Empatia", "imageSrc": "empathy-map.svg" },
+          "journeyMapping": { "label": "Jornada do Usuário", "imageSrc": "journey-mapping.svg" },
+          "csdMatrix": { "label": "Matriz CSD", "imageSrc": "csd-matrix.svg" },
+          "userFlow": { "label": "Fluxo do Usuário", "imageSrc": "user-flow.svg" },
+          "wireframing": { "label": "Wireframes", "imageSrc": "wireframing.svg" },
+          "prototyping": { "label": "Prototipagem", "imageSrc": "prototyping.svg" },
+          "usabilityTesting": {
+            "label": "Testes de Usabilidade",
+            "imageSrc": "usability-testing.svg"
+          },
+          "feedbackMatrix": { "label": "Matriz de Feedback", "imageSrc": "feedback-matrix.svg" },
+          "branding": { "label": "Branding", "imageSrc": "branding.svg" },
           "figma": { "label": "Figma", "imageSrc": "figma.png" }
         }
       }
@@ -380,7 +383,7 @@
         },
         "description": {
           "label": "descrição",
-          "value": "Planejamento e criação de produtos e serviços digitais, com foco em experiência do usuário e design de interface."
+          "value": "Planejo e crio produtos e serviços digitais, com foco em experiência do usuário e design de interface."
         },
         "work": {
           "label": "trabalho",
@@ -402,9 +405,8 @@
         "achievements": {
           "label": "conquistas",
           "items": [
-            "Recebi feedback positivo em todos os projetos pela abordagem simplificada e centrada no usuário.",
-            "Reconhecido pela atenção aos detalhes e pela qualidade dos insights de pesquisa entregues.",
-            "Construí relacionamentos duradouros com os clientes, com resultados apreciados em todos os trabalhos."
+            "Entreguei 4 projetos completos de design para 4 clientes distintos.",
+            "Todos os projetos foram validados por testes de usabilidade antes da entrega."
           ]
         },
         "start": {
@@ -423,15 +425,15 @@
         },
         "description": {
           "label": "descrição",
-          "value": "Desenvolvimento de projetos web responsivos e mobile nativos."
+          "value": "Desenvolvo plataformas web responsivas e aplicativos móveis nativos."
         },
         "work": {
           "label": "trabalho",
           "items": [
-            "Desenvolvi 3 plataformas web responsivas com Next.js e 2 aplicativos móveis nativos com React Native CLI.",
+            "Desenvolvi 3 plataformas web responsivas (Next.js e React) e 3 aplicativos móveis nativos com React Native CLI.",
             "Assumi todo o stack — design de API, autenticação segura e arquitetura de banco de dados.",
             "Entreguei recursos focados em performance: tabelas complexas com seleção, filtros e ordenação usando TanStack Table e React Query.",
-            "Otimizei selects com grandes listas usando React Window, melhorando significativamente o desempenho dos formulários."
+            "Otimizei selects com grandes listas usando virtualização com React Window."
           ]
         },
         "tools": {
@@ -458,10 +460,9 @@
         "achievements": {
           "label": "conquistas",
           "items": [
-            "Entreguei ferramentas em operação diária em uma sala de controle de movimentações portuárias.",
-            "Desenvolvi e mantenho uma plataforma para avaliadores de penhor, uma solução de controle financeiro e um app de contratação para o mercado musical.",
-            "Alcancei ganhos significativos de desempenho com cache do TanStack Query e virtualização com React Window.",
-            "Entreguei todos os produtos antes do prazo, com margem para melhorias e a mesma atenção aos detalhes."
+            "Coloquei o Atalaia Pro em operação diária em uma sala de controle portuário, atendendo cerca de 50 usuários e gerando em média 20 relatórios por dia.",
+            "Construí e mantenho 3 produtos: Avape (avaliação de penhor), Bolso Bom (finanças pessoais) e Musica Show (contratação musical).",
+            "Reduzi a renderização de selects de mais de 3 segundos para resposta instantânea com cache do TanStack Query e virtualização com React Window."
           ]
         },
         "start": {
