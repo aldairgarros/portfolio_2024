@@ -400,14 +400,6 @@
             "Defini branding e protótipos de alta fidelidade que traduziram a estratégia em interfaces refinadas."
           ]
         },
-        "tools": {
-          "label": "ferramentas",
-          "list": {
-            "figma": { "label": "Figma", "imageSrc": "figma.png" },
-            "designThinking": { "label": "Design Thinking", "imageSrc": "insight.png" },
-            "uiDesign": { "label": "UI Design", "imageSrc": "design.png" }
-          }
-        },
         "achievements": {
           "label": "conquistas",
           "items": [
@@ -441,27 +433,6 @@
             "Entreguei recursos focados em performance: tabelas complexas com seleção, filtros e ordenação usando TanStack Table e React Query.",
             "Otimizei selects com grandes listas usando virtualização com React Window."
           ]
-        },
-        "tools": {
-          "label": "ferramentas",
-          "list": {
-            "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
-            "javascript": { "label": "JavaScript", "imageSrc": "js.png" },
-            "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
-            "react": { "label": "React", "imageSrc": "react.png" },
-            "vite": { "label": "Vite", "imageSrc": "vite.png" },
-            "tailwind": { "label": "TailwindCSS", "imageSrc": "tailwind.png" },
-            "node": { "label": "Node.js", "imageSrc": "nodejs.png" },
-            "express": { "label": "Express", "imageSrc": "expressjs.png" },
-            "postgresql": { "label": "PostgreSQL", "imageSrc": "postgres.png" },
-            "mongodb": { "label": "MongoDB", "imageSrc": "mongodb.png" },
-            "docker": { "label": "Docker", "imageSrc": "docker.png" },
-            "git": { "label": "Git", "imageSrc": "git.png" },
-            "jest": { "label": "Jest", "imageSrc": "jest.png" },
-            "jwt": { "label": "JWT", "imageSrc": "jwt.png" },
-            "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
-            "strapi": { "label": "Strapi", "imageSrc": "strapi.png" }
-          }
         },
         "achievements": {
           "label": "conquistas",

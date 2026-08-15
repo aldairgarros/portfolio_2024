@@ -6,9 +6,3 @@ export const EXPERIENCE_PATHS: Record<ExperienceId, string> = {
   "experience-ui-ux": "~/experiences/experience-ui-ux",
   "experience-full-stack": "~/experiences/experience-full-stack",
 };
-
-export interface ToolItem {
-  id: string;
-  label: string;
-  imageSrc: string;
-}

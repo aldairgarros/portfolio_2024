@@ -397,14 +397,6 @@
             "I defined branding and high-fidelity prototypes that translated strategy into polished interfaces."
           ]
         },
-        "tools": {
-          "label": "tools",
-          "list": {
-            "figma": { "label": "Figma", "imageSrc": "figma.png" },
-            "designThinking": { "label": "Design Thinking", "imageSrc": "insight.png" },
-            "uiDesign": { "label": "UI Design", "imageSrc": "design.png" }
-          }
-        },
         "achievements": {
           "label": "achievements",
           "items": [

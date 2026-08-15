@@ -16,10 +16,10 @@ function renderExperiences() {
 }
 
 describe("Experiences", () => {
-  it("renders work, tools and achievements cards for each experience", () => {
+  it("renders work and achievements cards for each experience", () => {
     renderExperiences();
     expect(screen.getAllByText("work")).toHaveLength(2);
-    expect(screen.getAllByText("tools")).toHaveLength(2);
+    expect(screen.queryAllByText("tools")).toHaveLength(0);
     expect(screen.getAllByText("achievements")).toHaveLength(2);
   });
 
