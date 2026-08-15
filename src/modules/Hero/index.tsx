@@ -98,7 +98,7 @@ export function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden"
+      className="relative flex flex-col items-center justify-center max-h-256 h-screen px-4 text-center overflow-hidden bg-accent-100 dark:bg-accent-900"
       onMouseMove={handleMouseMove}
     >
       {/* CSS 3D cubes — spread behind the container */}
@@ -154,7 +154,7 @@ export function Hero() {
           type="button"
           onClick={() =>
             document
-              .getElementById("experiences")
+              .getElementById("credentials")
               ?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" })
           }
           aria-label={t("scrollDown")}
