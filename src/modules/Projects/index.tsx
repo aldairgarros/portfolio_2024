@@ -1,4 +1,4 @@
-import { Card, type Shade } from "@/components/Card";
+import { Card } from "@/components/Card";
 import { Section } from "@/components/Section";
 import { SectionContent } from "@/components/SectionContent";
 import { SectionHeader } from "@/components/SectionHeader";
