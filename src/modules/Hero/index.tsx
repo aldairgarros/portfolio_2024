@@ -154,7 +154,7 @@ export function Hero() {
           type="button"
           onClick={() =>
             document
-              .getElementById("about")
+              .getElementById("experiences")
               ?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" })
           }
           aria-label={t("scrollDown")}

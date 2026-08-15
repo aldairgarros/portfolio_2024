@@ -1,3 +1,4 @@
+import { SkillIcon } from "@/components/SkillIcon";
 import { useTranslation } from "react-i18next";
 
 interface Props {
@@ -9,16 +10,9 @@ export function Skill({ expertise, skill }: Props): React.JSX.Element {
   const { t } = useTranslation("translation", { keyPrefix: "expertise" });
 
   return (
-    <div className="inline-flex items-center gap-1.5 border border-zinc-300/70 dark:border-zinc-700/60 px-2.5 py-1.5 font-mono text-xs text-primary-600 dark:text-primary-400 cursor-default">
-      <img
-        src={`skill_images/${t(`list.${expertise}.list.${skill}.imageSrc`)}`}
-        alt=""
-        width={16}
-        height={16}
-        loading="lazy"
-        className="w-4 h-4 object-contain grayscale"
-      />
+    <span className="inline-flex items-center gap-2.5 rounded-full bg-white dark:bg-black px-5 py-2 font-mono text-base text-zinc-700 dark:text-zinc-300 cursor-default">
+      <SkillIcon imageSrc={t(`list.${expertise}.list.${skill}.imageSrc`)} className="size-4.5" />
       <span className="leading-none">{t(`list.${expertise}.list.${skill}.label`)}</span>
-    </div>
+    </span>
   );
 }

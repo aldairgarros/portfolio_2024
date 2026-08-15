@@ -10,11 +10,12 @@ import {
   ConsoleSpanExporter,
   SpanProcessor,
 } from "@opentelemetry/sdk-trace-base";
-import { SEMRESATTRS_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
 import { WebTracerProvider } from "@opentelemetry/sdk-trace-web";
+import { SEMRESATTRS_SERVICE_NAME } from "@opentelemetry/semantic-conventions";
+import { v4 as uuidv4 } from "uuid";
 import { initWebVitalsSpans } from "./web-vitals.ts";
 
-const SESSION_ID = crypto.randomUUID();
+const SESSION_ID = uuidv4();
 
 class SessionIdSpanProcessor implements SpanProcessor {
   onStart(span: Span): void {

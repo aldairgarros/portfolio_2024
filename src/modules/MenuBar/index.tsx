@@ -1,8 +1,8 @@
 import { TerminalFrame } from "@/components/TerminalFrame";
 import { useActivePath } from "@/context/ActiveSectionContext";
-import { LuChevronDown } from "react-icons/lu";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { LuChevronDown } from "react-icons/lu";
 import { Link, ScrollRestoration } from "react-router-dom";
 
 export interface NavItem {
@@ -28,7 +28,6 @@ export function MenuBar({ links }: Props) {
   const language = i18n.language;
   const activePath = useActivePath();
   const displayPath = activePath ?? "~";
-  const isAtTop = displayPath === "~";
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -67,29 +66,23 @@ export function MenuBar({ links }: Props) {
           <div className="relative flex-1 min-w-0" ref={menuRef}>
             <button
               className={`font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 focus:ring-2 focus:ring-emerald-400 focus:outline-none w-full
-              flex items-center justify-between gap-1 px-3 py-2 border transition-colors cursor-pointer select-none border-emerald-500/40 dark:border-emerald-500/40 shadow-sm bg-zinc-400/10 dark:bg-zinc-600/10`}
+              flex items-center justify-baseline px-3 py-2 border transition-colors cursor-pointer select-none border-emerald-500/40 dark:border-emerald-500/40 shadow-sm bg-zinc-400/10 dark:bg-zinc-600/10`}
               onClick={() => setIsMenuOpen((state) => !state)}
               aria-label={isMenuOpen ? t("home.menuClose") : t("home.menuOpen")}
               aria-expanded={isMenuOpen}
               aria-haspopup="menu"
             >
-              @<span className="sm:hidden">{t("hero.title.handle")}</span>
-              <span className="hidden sm:inline">{t("hero.title.value")}</span>:
-              {isAtTop ? (
-                <span className="animate-menu-blink mr-auto text-emerald-500" aria-hidden="true">
-                  ▋
-                </span>
-              ) : (
-                <span
-                  key={displayPath}
-                  className="animate-fade-in flex-1 text-left truncate min-w-0"
-                >
-                  {displayPath}
-                </span>
-              )}
-              <span>
-                <LuChevronDown size={16} />
+              <span>@</span>
+              <span>{t("hero.title.handle").toLowerCase()}</span>:
+              <span key={displayPath} className="animate-fade-in text-left truncate min-w-0">
+                {displayPath}
               </span>
+              <span className="animate-menu-blink mr-auto text-emerald-500" aria-hidden="true">
+                ▋
+              </span>
+              <div className="ml-auto">
+                <LuChevronDown size={16} />
+              </div>
             </button>
 
             {isMenuOpen && (

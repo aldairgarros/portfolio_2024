@@ -88,6 +88,7 @@
   --shadow-lg: 0 4px 16px rgb(0 0 0 / 0.08);
   --shadow-xl: 0 8px 32px rgb(0 0 0 / 0.1);
   --shadow-glow: 0 0 24px rgb(0 0 0 / 0.06);
+  --shadow-card: 0 24px 48px -16px rgb(0 0 0 / 0.2), 0 8px 24px -12px rgb(0 0 0 / 0.1);
 
   /* Border radius */
   --radius-sm: 0.25rem;
@@ -95,6 +96,7 @@
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
   --radius-full: 9999px;
 
   /* Animations */
@@ -128,7 +130,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-primary-50);
+  background-color: var(--color-white);
   color: var(--color-primary-950);
   scroll-behavior: smooth;
 }
@@ -217,7 +219,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: var(--color-primary-900);
+    background-color: var(--color-primary-950);
     color: var(--color-primary-50);
   }
 }

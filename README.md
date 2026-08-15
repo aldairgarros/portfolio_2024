@@ -48,7 +48,7 @@ Pages → Modules → Components:
 ```
 src/
 ├── pages/          Route-level entry points (Layout, home)
-├── modules/        Feature sections (Hero, About, Expertise, Education, Projects, Contact, MenuBar)
+├── modules/        Feature sections (Hero, Experiences, Expertise, Credentials, Projects, Contact, MenuBar)
 ├── components/     Generic reusable UI (TerminalFrame, Lightbox, BackgroundDecoration)
 ├── context/        ActiveSectionContext (active section tracking)
 ├── observability/  OTel setup, GlitchTip/Sentry init, web-vitals, ErrorBoundary

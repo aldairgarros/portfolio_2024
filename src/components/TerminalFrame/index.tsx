@@ -1,4 +1,5 @@
 import { type ReactNode, type Ref } from "react";
+import { cn } from "@/lib/cn";
 
 const FRAME =
   "border border-zinc-400/80 dark:border-zinc-600/70 bg-white/80 dark:bg-zinc-900/60 backdrop-blur-md " +
@@ -12,7 +13,7 @@ interface TerminalFrameProps {
 
 export function TerminalFrame({ title, className = "", children }: TerminalFrameProps) {
   return (
-    <div className={`font-mono ${FRAME} ${className}`}>
+    <div className={cn("font-mono", FRAME, className)}>
       {title && (
         <div className="flex items-center border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5">
           <span className="font-bold text-base text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
@@ -39,7 +40,7 @@ interface TerminalPanelProps {
 
 export function TerminalPanel({ title, className = "", children, id, ref }: TerminalPanelProps) {
   return (
-    <div ref={ref} id={id} className={`font-mono ${PANEL} ${className}`}>
+    <div ref={ref} id={id} className={cn("font-mono", PANEL, className)}>
       <div className="flex items-center gap-2 border-b border-zinc-400/80 dark:border-zinc-600/70 bg-zinc-100/70 dark:bg-zinc-800/40 px-4 py-2.5 min-w-0">
         <span className="font-bold text-sm text-emerald-600 dark:text-emerald-400 whitespace-nowrap min-w-0 truncate">
           {title}

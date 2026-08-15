@@ -28,13 +28,14 @@
     },
     "scrollDown": "Rolar para baixo"
   },
-  "education": {
-    "title": "Formação",
+  "credentials": {
+    "title": "credenciais",
     "course": {
       "title": "Especialista em Engenharia de Software",
       "institution": "USP/ESALQ",
       "period": "2024 — 2026",
-      "description": "Especialização de pós-graduação em Engenharia de Software pela Universidade de São Paulo (USP/ESALQ). O programa abordou arquitetura de software, padrões de projeto, metodologias ágeis, gerenciamento de projetos e culminou em um projeto de conclusão baseado em Design Thinking: Atalaia Pro — um sistema SPA/PWA desenvolvido para qualificar a comunicação no controle portuário, capaz de reduzir o tempo de preparação de relatórios de movimentação em até 82%."
+      "description": "Especialização de pós-graduação em Engenharia de Software pela Universidade de São Paulo (USP/ESALQ)",
+      "details": "O programa abordou arquitetura de software, padrões de projeto, metodologias ágeis, gerenciamento de projetos e culminou em um projeto de conclusão baseado em Design Thinking: Atalaia Pro — um sistema SPA/PWA desenvolvido para qualificar a comunicação no controle portuário, capaz de reduzir o tempo de preparação de relatórios de movimentação em até 82%."
     }
   },
   "projects": {
@@ -369,8 +370,8 @@
       }
     }
   },
-  "about": {
-    "title": "sobre",
+  "experiences": {
+    "title": "experiências",
     "list": {
       "experience-ui-ux": {
         "title": {
@@ -383,15 +384,28 @@
         },
         "work": {
           "label": "trabalho",
-          "value": "Desenvolvi quatro projetos completos, iniciando com pesquisa, entrevistas com usuários, análise de concorrência, criação de proto-personas, mapeamento da jornada do usuário, matriz CSD, métricas de UX, mapas e fluxos, wireframes, testes de usabilidade, até o branding e protótipos de alta fidelidade, entre outros elementos."
+          "items": [
+            "Entreguei 4 projetos completos de design de ponta a ponta, da pesquisa de descoberta aos protótipos de alta fidelidade.",
+            "Conduzi entrevistas com usuários, análise de concorrência, proto-personas, mapeamento de jornada e matrizes CSD para embasar cada decisão.",
+            "Criei mapas, fluxos, wireframes e métricas de UX, validados por testes de usabilidade.",
+            "Defini branding e protótipos de alta fidelidade que traduziram a estratégia em interfaces refinadas."
+          ]
         },
         "tools": {
           "label": "ferramentas",
-          "value": "Adotei a metodologia Design Thinking para conduzir meus projetos, utilizando o Figma como uma das ferramentas principais."
+          "list": {
+            "figma": { "label": "Figma", "imageSrc": "figma.png" },
+            "designThinking": { "label": "Design Thinking", "imageSrc": "insight.png" },
+            "uiDesign": { "label": "UI Design", "imageSrc": "design.png" }
+          }
         },
         "achievements": {
           "label": "conquistas",
-          "value": "Recebi feedbacks positivos em todos os projetos pela abordagem simplificada, atenção aos detalhes e apreciação pelos resultados e informações oferecidos."
+          "items": [
+            "Recebi feedback positivo em todos os projetos pela abordagem simplificada e centrada no usuário.",
+            "Reconhecido pela atenção aos detalhes e pela qualidade dos insights de pesquisa entregues.",
+            "Construí relacionamentos duradouros com os clientes, com resultados apreciados em todos os trabalhos."
+          ]
         },
         "start": {
           "label": "início",
@@ -413,15 +427,42 @@
         },
         "work": {
           "label": "trabalho",
-          "value": "Ao desenvolver duas plataformas web responsivas usando Next.js e dois aplicativos móveis nativos para Android e iOS com React Native CLI, gerenciei tanto o frontend quanto o backend, incluindo a implementação de API, autenticação segura e bancos de dados."
+          "items": [
+            "Desenvolvi 3 plataformas web responsivas com Next.js e 2 aplicativos móveis nativos com React Native CLI.",
+            "Assumi todo o stack — design de API, autenticação segura e arquitetura de banco de dados.",
+            "Entreguei recursos focados em performance: tabelas complexas com seleção, filtros e ordenação usando TanStack Table e React Query.",
+            "Otimizei selects com grandes listas usando React Window, melhorando significativamente o desempenho dos formulários."
+          ]
         },
         "tools": {
           "label": "ferramentas",
-          "value": "Inicialmente, adquiri proficiência em linguagens como C, JavaScript e Swift, além de configurar servidores VPS usando Nginx, Apache, Postgres, MariaDB, NodeJS, Docker, Git e PM2 para hospedagem de projetos. Desenvolvi projetos menores utilizando C, PHP, ViteJS, Express, MongoDB, Strapi, Bootstrap, Swift e JavaScript puro. Atualmente, concentro meu trabalho em ferramentas como Git, VSCode, Node, Typescript, NextJS, ViteJS, TailwindCSS, Docker, Jest e JWT (JSON Web Token), utilizando-os como principais recursos no desenvolvimento de projetos."
+          "list": {
+            "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
+            "javascript": { "label": "JavaScript", "imageSrc": "js.png" },
+            "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
+            "react": { "label": "React", "imageSrc": "react.png" },
+            "vite": { "label": "Vite", "imageSrc": "vite.png" },
+            "tailwind": { "label": "TailwindCSS", "imageSrc": "tailwind.png" },
+            "node": { "label": "Node.js", "imageSrc": "nodejs.png" },
+            "express": { "label": "Express", "imageSrc": "expressjs.png" },
+            "postgresql": { "label": "PostgreSQL", "imageSrc": "postgres.png" },
+            "mongodb": { "label": "MongoDB", "imageSrc": "mongodb.png" },
+            "docker": { "label": "Docker", "imageSrc": "docker.png" },
+            "git": { "label": "Git", "imageSrc": "git.png" },
+            "jest": { "label": "Jest", "imageSrc": "jest.png" },
+            "jwt": { "label": "JWT", "imageSrc": "jwt.png" },
+            "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
+            "strapi": { "label": "Strapi", "imageSrc": "strapi.png" }
+          }
         },
         "achievements": {
           "label": "conquistas",
-          "value": "Meus projetos incluem ferramentas em implementação em uma sala de controle de movimentações portuárias. Desenvolvimento e manutenção de uma plataforma para avaliadores de penhor, uma solução de controle financeiro e um aplicativo para contratação de serviços no mercado de música e eventos. Em um projeto, durante o desenvolvimento das complexas tabelas com recursos de seleção, filtros e ordenação, optei por utilizar a biblioteca TanStack React Table e React Query para gerenciamento de cache, resultando em melhorias significativas de desempenho. Além disso, para lidar com inputs select que apresentavam lentidão devido à grande quantidade de itens, implementei o React Window para otimizar a renderização, melhorando consideravelmente o desempenho do formulário e a experiência do usuário. Entreguei todos os produtos antes do prazo, permitindo aperfeiçoamentos. Apesar de serem meus primeiros projetos profissionais, receberam a devida atenção aos detalhes."
+          "items": [
+            "Entreguei ferramentas em operação diária em uma sala de controle de movimentações portuárias.",
+            "Desenvolvi e mantenho uma plataforma para avaliadores de penhor, uma solução de controle financeiro e um app de contratação para o mercado musical.",
+            "Alcancei ganhos significativos de desempenho com cache do TanStack Query e virtualização com React Window.",
+            "Entreguei todos os produtos antes do prazo, com margem para melhorias e a mesma atenção aos detalhes."
+          ]
         },
         "start": {
           "label": "início",

@@ -28,13 +28,14 @@
     },
     "scrollDown": "Scroll down"
   },
-  "education": {
-    "title": "Education",
+  "credentials": {
+    "title": "credentials",
     "course": {
       "title": "Software Engineering Specialist",
       "institution": "USP/ESALQ",
       "period": "2024 — 2026",
-      "description": "Postgraduate specialization in Software Engineering at the University of Sao Paulo (USP/ESALQ). The program covered software architecture, design patterns, agile methodologies, project management, and culminated in a Design Thinking capstone project: Atalaia Pro — a SPA/PWA system developed to improve communication in port control, capable of reducing report preparation time by up to 82%."
+      "description": "Postgraduate specialization in Software Engineering at the University of Sao Paulo (USP/ESALQ)",
+      "details": "The program covered software architecture, design patterns, agile methodologies, project management, and culminated in a Design Thinking capstone project: Atalaia Pro — a SPA/PWA system developed to improve communication in port control, capable of reducing report preparation time by up to 82%."
     }
   },
   "projects": {
@@ -369,8 +370,8 @@
       }
     }
   },
-  "about": {
-    "title": "about",
+  "experiences": {
+    "title": "experiences",
     "list": {
       "experience-ui-ux": {
         "title": {
@@ -383,15 +384,28 @@
         },
         "work": {
           "label": "work",
-          "value": "I developed four complete projects, starting with research, user interviews, competitor analysis, proto-personas, user journey mapping, CSD matrix, UX metrics, maps and flows, wireframes, usability testing, to branding and high-fidelity prototypes, among other elements."
+          "items": [
+            "Delivered 4 complete design projects end-to-end, from discovery research to high-fidelity prototypes.",
+            "Conducted user interviews, competitor analysis, proto-personas, journey mapping and CSD matrices to ground every decision.",
+            "Crafted maps, flows, wireframes and UX metrics, validated through usability testing.",
+            "Defined branding and high-fidelity prototypes that translated strategy into polished interfaces."
+          ]
         },
         "tools": {
           "label": "tools",
-          "value": "I adopted the Design Thinking methodology to conduct my projects, using Figma as one of the main tools."
+          "list": {
+            "figma": { "label": "Figma", "imageSrc": "figma.png" },
+            "designThinking": { "label": "Design Thinking", "imageSrc": "insight.png" },
+            "uiDesign": { "label": "UI Design", "imageSrc": "design.png" }
+          }
         },
         "achievements": {
           "label": "achievements",
-          "value": "I received positive feedback on all projects for the simplified approach, attention to detail, and appreciation for the results and information provided."
+          "items": [
+            "Received positive feedback on every project for a simplified, user-focused approach.",
+            "Recognized for attention to detail and the quality of the research insights delivered.",
+            "Built lasting client relationships, with results appreciated across all engagements."
+          ]
         },
         "start": {
           "label": "start",
@@ -413,15 +427,42 @@
         },
         "work": {
           "label": "work",
-          "value": "While developing two responsive web platforms using Next.js and two native mobile applications for Android and iOS with React Native CLI, I managed both the frontend and backend, including the implementation of API, secure authentication, and database."
+          "items": [
+            "Developed 3 responsive web platforms with Next.js and 2 native mobile apps with React Native CLI.",
+            "Owned the full stack — API design, secure authentication and database architecture.",
+            "Shipped performance-focused features: complex tables with selection, filtering and sorting using TanStack Table and React Query.",
+            "Optimized large select inputs with React Window, significantly improving form performance."
+          ]
         },
         "tools": {
           "label": "tools",
-          "value": "Initially, I gained proficiency in languages like C, JavaScript, and Swift, and configured VPS servers using Nginx, Apache, Postgres, MariaDB, NodeJS, Docker, Git and PM2 for project hosting. I developed smaller projects using C, PHP, ViteJS, Express, MongoDB, Strapi, Bootstrap, Swift, and pure JavaScript. Currently, I focus on tools such as Git, VSCode, Node, Typescript, NextJS, ViteJS, TailwindCSS, Docker, Jest, and JWT (JSON Web Token), using them as primary resources in project development."
+          "list": {
+            "typescript": { "label": "TypeScript", "imageSrc": "ts.png" },
+            "javascript": { "label": "JavaScript", "imageSrc": "js.png" },
+            "nextjs": { "label": "Next.js", "imageSrc": "nextjs.png" },
+            "react": { "label": "React", "imageSrc": "react.png" },
+            "vite": { "label": "Vite", "imageSrc": "vite.png" },
+            "tailwind": { "label": "TailwindCSS", "imageSrc": "tailwind.png" },
+            "node": { "label": "Node.js", "imageSrc": "nodejs.png" },
+            "express": { "label": "Express", "imageSrc": "expressjs.png" },
+            "postgresql": { "label": "PostgreSQL", "imageSrc": "postgres.png" },
+            "mongodb": { "label": "MongoDB", "imageSrc": "mongodb.png" },
+            "docker": { "label": "Docker", "imageSrc": "docker.png" },
+            "git": { "label": "Git", "imageSrc": "git.png" },
+            "jest": { "label": "Jest", "imageSrc": "jest.png" },
+            "jwt": { "label": "JWT", "imageSrc": "jwt.png" },
+            "nginx": { "label": "Nginx", "imageSrc": "nginx.png" },
+            "strapi": { "label": "Strapi", "imageSrc": "strapi.png" }
+          }
         },
         "achievements": {
           "label": "achievements",
-          "value": "My projects include tools under implementation in a port movements control room, contributing to daily operations. Developing and maintaining operational a pawn evaluation platform, a financial control solution, and a local music market service hiring application. While developing complex tables with selection, filtering, and sorting features, I opted to use the TanStack React Table and React Query libraries for cache management, resulting in significant performance improvements. Additionally, to address slow select inputs due to the large list of items, I implemented React Window to optimize rendering, significantly improving form performance and user experience. All products were delivered before the deadline, allowing for enhancements. Despite being my first professional projects, they received the due attention to detail."
+          "items": [
+            "Delivered tools now in daily operation at a port movements control room.",
+            "Built and maintain a pawn evaluation platform, a financial control solution and a music market hiring app.",
+            "Achieved significant performance gains through TanStack Query caching and React Window virtualization.",
+            "Delivered every product before deadline, with room for enhancements and the same attention to detail."
+          ]
         },
         "start": {
           "label": "start",
